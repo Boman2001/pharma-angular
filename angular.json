@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "pharma-partners-front-end"
+  "defaultProject": "pharma-partners-front-end",
+  "cli": {
+    "analytics": false
+  }
 }
