@@ -1,7 +1,3 @@
-// @ts-check
-// Protractor configuration file, see link for more information
-// https://github.com/angular/protractor/blob/master/lib/config.ts
-
 const { SpecReporter } = require('jasmine-spec-reporter');
 const { JUnitXmlReporter } = require('jasmine-reporters');
 const puppeteer = require('puppeteer');
@@ -36,7 +32,7 @@ exports.config = {
     });
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
     var junitReporter = new JUnitXmlReporter({
-      savePath: require('path').join(__dirname, './junit'),
+      savePath: require('path').join(__dirname, '../junit'),
       consolidateAll: true
     });
     jasmine.getEnv().addReporter(junitReporter);
