@@ -27,6 +27,21 @@ steps:
     inputs:
       command: install
       workingDir: src
+      
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'newAvans'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'pharma-team-g-api'
+    cliProjectName: 'pharma-team-g-api'
+    cliSources: '.'
+
+- task: SonarQubeAnalyze@4
+
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
 
   - task: Npm@1
     displayName: 'Build Angular'
@@ -62,20 +77,11 @@ steps:
       customCommand: run test -- --watch=false --code-coverage
       workingDir: src
 
-  - task: PublishCodeCoverageResults@1
-    displayName: 'Publish code coverage Angular results'
-    condition: succeededOrFailed()
-    inputs:
-      codeCoverageTool: Cobertura
-      summaryFileLocation: 'coverage/results/code-coverage.xml'
-      reportDirectory: coverage
-      failIfCoverageEmpty: true
-
   - task: PublishTestResults@2
     displayName: 'Publish Angular test results'
     condition: succeededOrFailed()
     inputs:
-      searchFolder: $(System.DefaultWorkingDirectory)/coverage/junit
+      searchFolder: $(System.DefaultWorkingDirectory)/junit
       testRunTitle: Angular
       testResultsFormat: JUnit
       testResultsFiles: "**/*.xml"
@@ -98,7 +104,7 @@ steps:
     displayName: 'Publish Angular E2E test results'
     condition: succeededOrFailed()
     inputs:
-      searchFolder: $(System.DefaultWorkingDirectory)/src/e2e/junit
+      searchFolder: $(System.DefaultWorkingDirectory)/junit
       testRunTitle: Angular_E2E
       testResultsFormat: JUnit
       testResultsFiles: "**/junit*.xml"
