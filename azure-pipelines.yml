@@ -43,12 +43,12 @@ steps:
   - task: PublishPipelineArtifact@0
     inputs:
       artifactName: drop
-      targetPath: 'dist'
+      targetPath: './dist/pharma-partners-front-end'
 
   - task: DeleteFiles@1
     displayName: 'Delete Build files'
     inputs:
-      Contents: './dist/pharma-partners-front-end'
+      Contents: './dist'
 
   - task: Npm@1
     displayName: 'Test Angular'
