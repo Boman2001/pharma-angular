@@ -43,11 +43,6 @@ steps:
       customCommand: run e2e
       workingDir: src
 
-  - task: DeleteFiles@1
-    displayName: 'Delete Build files'
-    inputs:
-      Contents: './dist/pharma-partners-front-end'
-
   - task: Npm@1
     displayName: 'Build Angular & Server'
     inputs:
