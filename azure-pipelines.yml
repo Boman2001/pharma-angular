@@ -27,7 +27,7 @@ steps:
     inputs:
       command: install
       workingDir: src
-      
+
   - task: Npm@1
     displayName: 'Build Angular'
     inputs:
@@ -38,7 +38,7 @@ steps:
     inputs:
       SourceFolder: './server'
       Contents: 'server.js'
-      TargetFolder: './dist'
+      TargetFolder: './dist/pharma-partners-front-end'
 
   - task: PublishPipelineArtifact@0
     inputs:
