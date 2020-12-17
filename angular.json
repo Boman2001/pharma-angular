@@ -3,6 +3,30 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "pharma-partners-server": {
+      "projectType": "library",
+      "root": "",
+      "sourceRoot": "server",
+      "prefix": "server",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:server",
+          "configurations": {
+            "production": {
+              "main": "server/server.js",
+              "tsConfig": "tsconfig.json",
+              "outputPath": "dist/server",
+              "bundleDependencies": true,
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true
+            }
+          }
+        }
+      }
+    },
     "pharma-partners-front-end": {
       "projectType": "application",
       "schematics": {},
@@ -13,7 +37,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/pharma-partners-front-end",
+            "outputPath": "dist/app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -120,5 +144,8 @@
       }
     }
   },
-  "defaultProject": "pharma-partners-front-end"
+  "defaultProject": "pharma-partners-front-end",
+  "cli": {
+    "analytics": false
+  }
 }
