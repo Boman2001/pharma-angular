@@ -73,7 +73,7 @@ steps:
     condition: succeededOrFailed()
     inputs:
       codeCoverageTool: Cobertura
-      summaryFileLocation: 'src/coverage/cobertura-coverage.xml'
+      summaryFileLocation: 'coverage/cobertura-coverage.xml'
       reportDirectory: src/coverage
       failIfCoverageEmpty: true
 
