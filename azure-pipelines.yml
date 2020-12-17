@@ -67,6 +67,15 @@ steps:
       testRunTitle: Angular_E2E
       testResultsFormat: JUnit
       testResultsFiles: "**/junit*.xml"
+      
+  - task: PublishCodeCoverageResults@1
+    displayName: 'Publish code coverage Angular results'
+    condition: succeededOrFailed()
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: 'src/coverage/cobertura-coverage.xml'
+      reportDirectory: src/coverage
+      failIfCoverageEmpty: true
 
   - task: PublishPipelineArtifact@0
     inputs:
