@@ -47,7 +47,7 @@ steps:
     displayName: 'Build Angular & Server'
     inputs:
       command: custom
-      customCommand: run build -- $(ngBuildConfiguration)
+      customCommand: run build
       workingDir: src
 
   - task: PublishTestResults@2
