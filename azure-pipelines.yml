@@ -27,21 +27,21 @@ steps:
     inputs:
       command: install
       workingDir: src
-      
-- task: SonarQubePrepare@4
-  inputs:
-    SonarQube: 'newAvans'
-    scannerMode: 'CLI'
-    configMode: 'manual'
-    cliProjectKey: 'pharma-team-g-api'
-    cliProjectName: 'pharma-team-g-api'
-    cliSources: '.'
 
-- task: SonarQubeAnalyze@4
+  - task: SonarQubePrepare@4
+    inputs:
+      SonarQube: 'newAvans'
+      scannerMode: 'CLI'
+      configMode: 'manual'
+      cliProjectKey: 'pharma-team-g-api'
+      cliProjectName: 'team-g-api'
+      cliSources: '.'
+  
+  - task: SonarQubeAnalyze@4
 
-- task: SonarQubePublish@4
-  inputs:
-    pollingTimeoutSec: '300'
+  - task: SonarQubePublish@4
+    inputs:
+      pollingTimeoutSec: '300'
 
   - task: Npm@1
     displayName: 'Build Angular'
