@@ -1,10 +1,11 @@
 trigger:
   branches:
     include:
-    - main
-    
+      - main
+      - releases/*
+
 resources:
-- repo: self
+  - repo: self
 
 pool:
   vmImage: 'Ubuntu 18.04'
@@ -15,84 +16,75 @@ variables:
 
 steps:
 
-- task: DeleteFiles@1
-  displayName: 'Delete JUnit files'
-  inputs:
-    SourceFolder: src/angular8/junit
-    Contents: 'TEST*.xml'
+  - task: DeleteFiles@1
+    displayName: 'Delete JUnit files'
+    inputs:
+      SourceFolder: src/junit
+      Contents: 'TEST*.xml'
 
-- task: Npm@1
-  displayName: 'npm install'
-  inputs:
-    command: install
-    workingDir: src/angular8
+  - task: Npm@1
+    displayName: 'npm install'
+    inputs:
+      command: install
+      workingDir: src
 
-- task: Npm@1
-  displayName: 'Build Angular'
-  inputs:
-    command: custom
-    customCommand: run build -- $(ngBuildConfiguration)
-    workingDir: src/angular8
+  - task: Npm@1
+    displayName: 'Build Angular'
+    inputs:
+      command: custom
+      customCommand: run build -- $(ngBuildConfiguration)
+      workingDir: src
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: './server'
+      Contents: 'server.js'
+      TargetFolder: './dist/pharma-partners-front-end'
 
-- task: PublishPipelineArtifact@0
-  inputs:
-    artifactName: angular8PipelineArtifactProd
-    targetPath: 'src/angular8/dist'
+  - task: PublishPipelineArtifact@0
+    inputs:
+      artifactName: drop
+      targetPath: 'dist'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: 'src/angular8/dist'
-    ArtifactName: angular8BuildArtifactProd
+  - task: DeleteFiles@1
+    displayName: 'Delete Build files'
+    inputs:
+      Contents: 'dist'
 
-- task: DeleteFiles@1
-  displayName: 'Delete Build files'
-  inputs:
-    Contents: 'src/angular8/dist'
+  - task: Npm@1
+    displayName: 'Test Angular'
+    inputs:
+      command: custom
+      customCommand: run test -- --watch=false --code-coverage
+      workingDir: src
 
-- task: Npm@1
-  displayName: 'Test Angular'
-  inputs:
-    command: custom
-    customCommand: run test -- --watch=false --code-coverage
-    workingDir: src/angular8
+  - task: PublishTestResults@2
+    displayName: 'Publish Angular test results'
+    condition: succeededOrFailed()
+    inputs:
+      searchFolder: $(System.DefaultWorkingDirectory)/junit
+      testRunTitle: Angular
+      testResultsFormat: JUnit
+      testResultsFiles: "**/*.xml"
 
-- task: PublishCodeCoverageResults@1
-  displayName: 'Publish code coverage Angular results'
-  condition: succeededOrFailed()
-  inputs:
-    codeCoverageTool: Cobertura
-    summaryFileLocation: 'src/coverage/cobertura-coverage.xml'
-    reportDirectory: src/coverage
-    failIfCoverageEmpty: true
+  - task: Npm@1
+    displayName: 'Lint Angular'
+    inputs:
+      command: custom
+      customCommand: run lint --  --format=stylish
+      workingDir: src
 
-- task: PublishTestResults@2
-  displayName: 'Publish Angular test results'
-  condition: succeededOrFailed()
-  inputs:
-    searchFolder: $(System.DefaultWorkingDirectory)/src/junit
-    testRunTitle: Angular
-    testResultsFormat: JUnit
-    testResultsFiles: "**/TESTS*.xml"
+  - task: Npm@1
+    displayName: 'E2E Test Angular'
+    inputs:
+      command: custom
+      customCommand: run e2e
+      workingDir: src
 
-- task: Npm@1
-  displayName: 'Lint Angular'
-  inputs:
-    command: custom
-    customCommand: run lint --  --format=stylish
-    workingDir: src/angular8
-
-- task: Npm@1
-  displayName: 'E2E Test Angular'
-  inputs:
-    command: custom
-    customCommand: run e2e
-    workingDir: src/angular8
-
-- task: PublishTestResults@2
-  displayName: 'Publish Angular E2E test results'
-  condition: succeededOrFailed()
-  inputs:
-    searchFolder: $(System.DefaultWorkingDirectory)/src/angular8/e2e/junit
-    testRunTitle: Angular_E2E
-    testResultsFormat: JUnit
-    testResultsFiles: "**/junit*.xml"
+  - task: PublishTestResults@2
+    displayName: 'Publish Angular E2E test results'
+    condition: succeededOrFailed()
+    inputs:
+      searchFolder: $(System.DefaultWorkingDirectory)/junit
+      testRunTitle: Angular_E2E
+      testResultsFormat: JUnit
+      testResultsFiles: "**/junit*.xml"
