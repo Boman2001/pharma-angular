@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "npm-run-all build:* --parallel",
     "build:app": "ng build pharma-partners-front-end --prod",
-    "build:server": "ng build pharma-partners-server --prod",
+    "build:server": "ng build pharma-partners-server --prod --output-hashing=none",
     "install-puppeteer": "cd node_modules/puppeteer && npm run install",
     "test": "npm run install-puppeteer && ng test",
     "lint": "ng lint",
