@@ -15,7 +15,13 @@
       <nav>
         <ul class="list-group">
           <li class="list-group-item border-0"><a>Home</a></li>
-          <li class="list-group-item border-0"><a>Patienten</a></li>
+          <li class="list-group-item border-0">
+            <a 
+              class="nav-link"
+              routerLink="/patient"
+              [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }">Patienten</a>
+          </li>
           <li class="list-group-item border-0"><a>Doktoren</a></li>
           <li class="list-group-item border-0"><a>Recepten</a></li>
           <li class="list-group-item border-0"><a>Onderzoeken</a></li>

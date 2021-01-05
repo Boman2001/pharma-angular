@@ -7,6 +7,13 @@ const routes: Routes = [
   {
     path: '',
     component: MasterComponent,
+    children: [
+      {
+        path: 'patient',
+        loadChildren: () =>
+          import('./pages/patient/patient.module').then((m) => m.PatientModule)
+      },
+    ]
   }
 ];
 
