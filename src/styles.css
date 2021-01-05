@@ -144,9 +144,9 @@ input[type="radio"]:disabled{
   color: #b1b1b1;
 }
 
-input[type="radio"]:inactive-selection{
+/*input[type="radio"]:inactive-selection{
   color: #313131;
-}
+}*/
 
 input[type="radio"]:hover{
   color: #3d6c99;
@@ -165,9 +165,9 @@ input[type="checkbox"]:disabled{
   color: #b1b1b1;
 }
 
-input[type="checkbox"]:inactive-selection{
+/*input[type="checkbox"]:inactive-selection{
   color: #313131;
-}
+}*/
 
 input[type="checkbox"]:hover{
   color: #3d6c99;
