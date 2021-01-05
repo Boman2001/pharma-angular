@@ -1,193 +1,37 @@
+/*!
+ * CUSTOM CSS FONT
+ */
+
+p{
+  color: #010005;
+  font-size: 15px;
+}
+
+.bold{
+  font-weight: 800;
+}
+
+.semibold{
+  font-weight: 600;
+}
+
+.ligth{
+  font-weight: 200;
+}
+
 html {
   font-family: "Segoe UI", serif!important;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
 }
 
+* {
+  font-family: "Segoe UI", serif!important;
+}
+
+body{
+  font-family: "Segoe UI", serif!important;
+}
 /*!
- * CUSTOM CSS BUTTONS
- */
-
-.btn-big{
-  font-size: 17px;
-  height: 45px;
-  border: 1px;
-  border-radius: 3px;
-  padding-left: 8px;
-  padding-right: 8px;
-  text-align: center;
-  background: #3d6c99;
-  color: #FFFFFF;
-}
-
-.btn-big-o{
-  font-size: 17px;
-  height: 45px;
-  border: 1px solid #3d6c99;
-  border-radius: 3px;
-  padding-left: 8px;
-  padding-right: 8px;
-  text-align: center;
-  background: #FFFFFF;
-  color: #3d6c99;
-}
-
-.btn-normal{
-  font-size: 15px;
-  height: 35px;
-  border: 1px;
-  border-radius: 3px;
-  padding-left: 8px;
-  padding-right: 8px;
-  text-align: center;
-  background: #3d6c99;
-  color: #FFFFFF;
-}
-
-.btn-normal-o{
-  font-size: 15px;
-  height: 35px;
-  border: 1px solid #3d6c99;
-  border-radius: 3px;
-  padding-left: 8px;
-  padding-right: 8px;
-  text-align: center;
-  background: #FFFFFF;
-  color: #3d6c99;
-}
-
-.btn-small{
-  font-size: 13px;
-  height: 30px;
-  border: 1px;
-  border-radius: 3px;
-  padding-left: 8px;
-  padding-right: 8px;
-  text-align: center;
-  background: #3d6c99;
-  color: #FFFFFF;
-}
-
-.btn-small-o{
-  font-size: 13px;
-  height: 30px;
-  border: 1px solid #3d6c99;
-  border-radius: 3px;
-  padding-left: 8px;
-  padding-right: 8px;
-  text-align: center;
-  background: #FFFFFF;
-  color: #3d6c99;
-}
-
-.btn-standard{
-  background: #FFFFFF;
-  color: #3d6c99;
-  border: 1px solid #3d6c99;
-}
-
-.btn-focus{
-  background: #3d6c99;
-  color: #FFFFFF;
-  border: 1px solid #3d6c99;
-}
-
-.btn-hover{
-  background: #004A91;
-  color: #FFFFFF;
-  border: 1px solid #004A91;
-}
-
-.btn-active{
-  background: #5B84A8;
-  color: #FFFFFF;
-  border: 1px solid #5B84A8;
-}
-
-.btn-disabled{
-  background: #CFCFCF;
-  color: #989898;
-  border: 1px solid #CFCFCF;
-}
-
-/*!
- * CUSTOM CSS INPUT
- */
-
-input{
-  height: 35px;
-  border-color: #C6C6C6;
-}
-
-input:focus{
-  border-color: #3d6c99;
-}
-
-.input-validation-success{
-  border-color: #1ab394
-}
-
-.input-validation-error{
-  border-color: #c1272d;
-}
-
-.input-validation-error-text{
-  font-size: 13px;
-  color: #c1272d
-}
-
-/*!
- * CUSTOM CSS INPUT RADIO
- */
-
-input[type="radio"]:disabled{
-  color: #b1b1b1;
-}
-
-input[type="radio"]:inactive-selection{
-  color: #313131;
-}
-
-input[type="radio"]:hover{
-  color: #3d6c99;
-}
-
-input[type="radio"]:active{
-  font-style: oblique;
-  color: #004a91;
-}
-
-/*!
- * CUSTOM CSS INPUT CHECKBOX
- */
-
-input[type="checkbox"]:disabled{
-  color: #b1b1b1;
-}
-
-input[type="checkbox"]:inactive-selection{
-  color: #313131;
-}
-
-input[type="checkbox"]:hover{
-  color: #3d6c99;
-}
-
-input[type="checkbox"]:active{
-  font-style: oblique;
-  color: #004a91;
-}
-
-/*!
- * CUSTOM CSS INPUT SELECTBOX
- */
-
-select{
-  border-color: #C6C6C6!important;
-}
-
-/*!
- * CUSTOM CSS CUSTOM COLORS
+ * CUSTOM CSS COLORS
  */
 
 .pink{
@@ -230,8 +74,196 @@ select{
   color: #FFFFFF;
 }
 
+
 /*!
- * CUSTOM CSS CUSTOM SVG COLORS
+ * CUSTOM CSS TABLES
+ */
+
+
+/*!
+ * CUSTOM CSS BUTTONS
+ */
+
+.btn-big{
+  font-size: 17px;
+  height: 45px;
+  border: 1px;
+  border-radius: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: center;
+  background: #3D6C99;
+  color: #FFFFFF;
+}
+
+.btn-big-o{
+  font-size: 17px;
+  height: 45px;
+  border: 1px solid #3D6C99;
+  border-radius: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: center;
+  background: #FFFFFF;
+  color: #3D6C99;
+}
+
+.btn-normal{
+  font-size: 15px;
+  height: 35px;
+  border: 1px;
+  border-radius: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: center;
+  background: #3D6C99;
+  color: #FFFFFF;
+}
+
+.btn-normal-o{
+  font-size: 15px;
+  height: 35px;
+  border: 1px solid #3D6C99;
+  border-radius: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: center;
+  background: #FFFFFF;
+  color: #3D6C99;
+}
+
+.btn-small{
+  font-size: 13px;
+  height: 30px;
+  border: 1px;
+  border-radius: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: center;
+  background: #3D6C99;
+  color: #FFFFFF;
+}
+
+.btn-small-o{
+  font-size: 13px;
+  height: 30px;
+  border: 1px solid #3d6c99;
+  border-radius: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: center;
+  background: #FFFFFF;
+  color: #3D6C99;
+}
+
+.btn-standard{
+  background: #FFFFFF;
+  color: #3D6C99;
+  border: 1px solid #3D6C99;
+}
+
+.btn-focus{
+  background: #3D6C99;
+  color: #FFFFFF;
+  border: 1px solid #3D6C99;
+}
+
+.btn-hover{
+  background: #004A91;
+  color: #FFFFFF;
+  border: 1px solid #004A91;
+}
+
+.btn-active{
+  background: #5B84A8;
+  color: #FFFFFF;
+  border: 1px solid #5B84A8;
+}
+
+.btn-disabled{
+  background: #CFCFCF;
+  color: #989898;
+  border: 1px solid #CFCFCF;
+}
+
+/*!
+ * CUSTOM CSS INPUT
+ */
+
+.input{
+  height: 35px;
+  border-color: #C6C6C6;
+}
+
+input:focus{
+  border-color: #3D6C99;
+}
+
+.input-validation-success{
+  border-color: #1AB394
+}
+
+.input-validation-error{
+  border-color: #C1272D;
+}
+
+.input-validation-error-text{
+  font-size: 13px;
+  color: #C1272D
+}
+
+/*!
+ * CUSTOM CSS INPUT RADIO
+ */
+
+input[type="radio"]:disabled{
+  color: #B1B1B1;
+}
+
+/*input[type="radio"]:inactive-selection{*/
+/*  color: #313131;*/
+/*}*/
+
+input[type="radio"]:hover{
+  color: #3D6C99;
+}
+
+input[type="radio"]:checked{
+  font-weight: 800;
+  color: #004A91;
+}
+
+/*!
+ * CUSTOM CSS INPUT CHECKBOX
+ */
+
+input[type="checkbox"]:disabled{
+  color: #B1B1B1;
+}
+
+/*input[type="checkbox"]:inactive-selection{*/
+/*  color: #313131;*/
+/*}*/
+
+input[type="checkbox"]:hover{
+  color: #3D6C99;
+}
+
+input[type="checkbox"]:checked{
+  font-weight: 800;
+  color: #004A91;
+}
+
+/*!
+ * CUSTOM CSS INPUT SELECTBOX
+ */
+
+select{
+  border-color: #C6C6C6!important;
+}
+
+/*!
+ * CUSTOM CSS SVG COLORS
  */
 
 .svg-standard{
@@ -255,15 +287,93 @@ select{
 }
 
 /*!
- * CUSTOM CSS CUSTOM FONT WEIGHTS
+ * CUSTOM CSS PAGINATION
  */
 
-.bold{
-  font-weight: 800;
+.pagination{
+  font-size: 16px;
 }
 
-.semibold{
-  font-weight: 600;
+.pagination > li > a
+{
+  background-color: #FFFFFF;
+  color: #666666;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+  color: #FFFFFF;
+  background-color: #004A91;
+  border-color: #004A91;
+}
+
+.pagination > .active > a
+{
+  color: white;
+  background-color: #004A91 !Important;
+  border: solid 1px #004A91 !Important;
+}
+
+.pagination > .active > a:hover
+{
+  background-color: #004A91 !Important;
+  border: solid 1px #004A91;
 }
 
 
+/*!
+ * CUSTOM CSS TABS (PILLS)
+ */
+
+.nav-pills > .nav-item > a.active, a{
+  color: #010005;
+  background: none;
+}
+.nav-pills > .nav-item  > .nav-link {
+  border-radius: 0px;
+}
+.nav-pills > .nav-item > a.active{
+  border-bottom: 3px solid #29ABE2;
+}
+
+/*!
+ * CUSTOM CSS CARDS
+ */
+
+.card {
+  border: none;
+}
+.card-title{
+  font-size: 26px;
+}
+
+.card-body {
+  background-color: #F7F7F7;
+}
+
+/*!
+ * CUSTOM CSS TABLE
+ */
+
+table > tbody > tr {
+  height: 40px;
+}
+
+table > tbody > tr:hover {
+  background-color: #E3ECF4;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #EAEAEA;
+}
+
+.table-striped tbody tr:nth-of-type(odd):hover {
+  background-color: #E3ECF4;
+}
+
+.table-active {
+  background-color: #CBE5FD;
+}
