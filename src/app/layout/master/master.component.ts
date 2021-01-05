@@ -14,7 +14,7 @@ export class MasterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  profileClick() {
+  profileClick(): void {
     this.profile = !this.profile;
   }
 
