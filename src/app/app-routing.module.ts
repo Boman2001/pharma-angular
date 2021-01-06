@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { MasterComponent } from "./layout/master/master.component";
+import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
+import {MasterComponent} from "./layout/master/master.component";
 
 const routes: Routes = [
   {
@@ -16,10 +16,10 @@ const routes: Routes = [
   }
 ];
 
-
 @NgModule({
   declarations: [],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
