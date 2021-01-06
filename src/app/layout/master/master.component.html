@@ -15,7 +15,13 @@
       <nav>
         <ul class="list-group">
           <li class="list-group-item border-0"><a>Home</a></li>
-          <li class="list-group-item border-0"><a>Patienten</a></li>
+          <li class="list-group-item border-0">
+            <a
+              class="nav-link"
+              routerLink="/patients"
+              [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }">Patiënten</a>
+          </li>
           <li class="list-group-item border-0"><a>Doktoren</a></li>
           <li class="list-group-item border-0"><a>Recepten</a></li>
           <li class="list-group-item border-0"><a>Onderzoeken</a></li>
@@ -24,8 +30,8 @@
     </div>
     <div class="main-content">
       <div class="breadcrumbs p-3">
-        <span>home</span> /
-        <span>consults</span>
+        <span>Home</span> /
+        <span>Consults</span>
       </div>
       <router-outlet></router-outlet>
     </div>
