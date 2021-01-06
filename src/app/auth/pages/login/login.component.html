@@ -1,0 +1,24 @@
+<div class="vh-100 vw-100 d-flex justify-content-center align-items-center">
+  <div class="col-md-4 col-xl-3">
+    <div class="img-container pb-5">
+      <img src="/assets/img/pharmapartners-logo.svg" alt="logo" />
+    </div>
+    <form method="post" class="w-100" #loginForm="ngForm" [formGroup]="form">
+      <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['email'].errors.required">Email is required</div>
+      </div>
+      <div class="form-group w-100">
+        <input type="text" class="form-control" name="email" id="email" placeholder="email" formControlName="email" />
+      </div>
+      <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['password'].errors.required">Password is required</div>
+      </div>
+      <div class="form-group w-100">
+        <input type="password" class="form-control" name="password" placeholder="password" formControlName="password" />
+      </div>
+      <button type="submit" id="login-submit-btn" class="btn btn-success float-right" [disabled]="!loginForm.valid">
+        Login
+      </button>
+    </form>
+  </div>
+</div>
