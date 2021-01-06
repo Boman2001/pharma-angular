@@ -1,46 +1,4 @@
 <div class="container-fluid">
     <h1>Patiënt Aanmaken</h1>
-    <form method="POST">
-        <input class="form-control" type="text" name="PatientName" id="PatientName" placeholder="Naam">
-        <input class="form-control" type="text" name="BSN" id="BSN" placeholder="BSN">
-        <input class="form-control" type="email" name="Email" id="Email" placeholder="Email">
-        <input class="form-control" type="text" id="DoB" placeholder="Geboortedatum"/>
-        <div class="form-group">
-            <label class="mr-3">
-                <input class="mr-1" type="radio" id="GenderMale" name="Gender"> Man
-            </label>
-            <label class="mr-3">
-                <input class="mr-1" type="radio" id="GenderFemale" name="Gender"> Vrouw
-            </label>
-            <label class="mr-3">
-                <input class="mr-1" type="radio" id="GenderOther" name="Gender"> Anders
-            </label>
-        </div>
-        <input class="form-control" type="text" name="PhoneNumber" id="PhoneNumber" placeholder="Telefoonnummer">
-        <div class="row">
-            <div class="col-md-8">
-                <input class="form-control" type="text" name="Street" id="Street" placeholder="Straatnaam">
-            </div>
-            <div class="col-md-2">
-                <input class="form-control" type="number" name="HouseNumber" id="HouseNumber" placeholder="Huisnummer">
-            </div>
-            <div class="col-md-2">
-                <input class="form-control" type="text" name="Addition" id="Addition" placeholder="Toevoeging">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-5">
-                <input class="form-control" type="text" name="City" id="City" placeholder="Stad">
-            </div>
-            <div class="col-md-2">
-                <input class="form-control" type="text" name="PostalCode" id="PostalCode" placeholder="Postcode">
-            </div>
-            <div class="col-md-5">
-                <input class="form-control" type="text" name="Country" id="Country" placeholder="Land">
-            </div>
-        </div>
-        <div class="col-md-12 text-right">
-            <button class="btn btn-primary" type="submit">Aanmaken</button>    
-        </div>    
-    </form>
+    <patient-form (button-name)="Aanmaken"></patient-form>
 </div>
