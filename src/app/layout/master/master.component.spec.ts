@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { MasterComponent } from './master.component';
+import { MasterComponent } from "./master.component";
 
-describe('MasterComponent', () => {
+describe("MasterComponent", () => {
   let component: MasterComponent;
   let fixture: ComponentFixture<MasterComponent>;
 
@@ -19,19 +19,19 @@ describe('MasterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have logo', () => {
+  it("should have logo", () => {
     const compiled = fixture.debugElement.nativeElement;
-    const img = compiled.querySelector('header img');
+    const img = compiled.querySelector("header img");
     expect(img).toBeTruthy();
   });
 
-  it('should have 5 nav items', () => {
+  it("should have 5 nav items", () => {
     const compiled = fixture.debugElement.nativeElement;
-    const nav = compiled.querySelector('.sidebar ul');
+    const nav = compiled.querySelector(".sidebar ul");
     expect(nav.children.length).toEqual(5);
   });
 });
