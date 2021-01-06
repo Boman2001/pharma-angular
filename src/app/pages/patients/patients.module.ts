@@ -7,12 +7,42 @@ const routes: Routes = [
   {
     path: "",
     pathMatch: "full",
-    component: fromComponents.PatientOverviewComponent
+    component: fromComponents.PatientOverviewComponent,
+    data: {
+      title: "patients",
+      breadcrumb: [
+        {
+          label: "Home",
+          url: "/"
+        },
+        {
+          label: "Patiënten",
+          url: "/patients"
+        }
+      ]
+    }
   },
   {
     path: "new",
     pathMatch: "full",
-    component: fromComponents.PatientCreateComponent
+    component: fromComponents.PatientCreateComponent,
+    data: {
+      title: "patients",
+      breadcrumb: [
+        {
+          label: "Home",
+          url: "/"
+        },
+        {
+          label: "Patiënten",
+          url: "/patients"
+        },
+        {
+          label: "Nieuw",
+          url: "/patients/new"
+        }
+      ]
+    }
   },
     {
     path: ":id/edit",

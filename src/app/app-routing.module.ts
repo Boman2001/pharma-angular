@@ -10,9 +10,18 @@ const routes: Routes = [
       {
         path: "patients",
         loadChildren: () =>
-          import("./pages/patients/patients.module").then((m) => m.PatientsModule)
+          import("./pages/patients/patients.module").then((m) => m.PatientsModule),
       },
-    ]
+    ],
+    data: {
+      title: "Home",
+      breadcrumb: [
+        {
+          label: "Home",
+          url: "/"
+        }
+      ]
+    }
   }
 ];
 
