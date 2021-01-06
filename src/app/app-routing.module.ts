@@ -1,17 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
-import { MasterComponent } from './layout/master/master.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { MasterComponent } from "./layout/master/master.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: MasterComponent,
     children: [
       {
-        path: 'patient',
+        path: "patients",
         loadChildren: () =>
-          import('./pages/patient/patient.module').then((m) => m.PatientModule)
+          import("./pages/patients/patients.module").then((m) => m.PatientsModule)
       },
     ]
   }
