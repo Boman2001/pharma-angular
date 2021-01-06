@@ -7,6 +7,9 @@ const routes: Routes = [
   {
     path: "",
     component: MasterComponent,
+    children: [
+      { path: "consult", loadChildren: () => import("./consult/consult.module").then(m => m.ConsultModule) },
+    ],
   }
 ];
 
