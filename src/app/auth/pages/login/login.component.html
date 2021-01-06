@@ -3,7 +3,7 @@
     <div class="img-container pb-5">
       <img src="/assets/img/pharmapartners-logo.svg" alt="logo" />
     </div>
-    <form method="post" class="w-100" #loginForm="ngForm" [formGroup]="form">
+    <form method="post" class="w-100" #loginForm="ngForm" [formGroup]="form" (ngSubmit)="loginForm.form.valid && onSubmit()">
       <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
         <div class="alert-danger p-2 mt-2" *ngIf="form.controls['email'].errors.required">Email is required</div>
       </div>

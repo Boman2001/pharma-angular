@@ -5,13 +5,14 @@ import { MasterComponent } from "./layout/master/master.component";
 
 const routes: Routes = [
   {
-    path: "",
+    path: "consult",
     component: MasterComponent,
   },
   {
     path: "auth",
     loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule),
-  }
+  },
+  { path: "**", redirectTo: "auth/login" }
 ];
 
 
