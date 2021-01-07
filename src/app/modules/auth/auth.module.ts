@@ -36,4 +36,4 @@ export class AuthModule { }
 export * from "./services/auth.service";
 
 // Components
-export * from "./pages/login/login.component"
+export * from "./pages/login/login.component";

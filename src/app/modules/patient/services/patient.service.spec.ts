@@ -6,7 +6,7 @@ import { HttpClient } from "@angular/common/http";
 
 describe("PatientService", () => {
   let service: PatientService;
-  let http;
+  // let http;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -17,7 +17,7 @@ describe("PatientService", () => {
     });
 
     service = TestBed.inject(PatientService);
-    http = TestBed.inject(HttpTestingController);
+    // http = TestBed.inject(HttpTestingController);
   });
 
   it("should be created", () => {

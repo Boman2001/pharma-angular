@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
 
 describe("BaseExaminationTypeService", () => {
   let service: BaseExaminationTypeService;
-  let http;
+  // let http;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -18,7 +18,7 @@ describe("BaseExaminationTypeService", () => {
     });
 
     service = TestBed.inject(BaseExaminationTypeService);
-    http = TestBed.inject(HttpTestingController);
+    // http = TestBed.inject(HttpTestingController);
   });
 
   it("should be created", () => {
