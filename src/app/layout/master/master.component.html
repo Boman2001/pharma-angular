@@ -25,7 +25,12 @@
               [routerLinkActive]="['nav-active']"
               [routerLinkActiveOptions]="{ exact: true }">Patiënten</a>
           </li>
-          <li class="list-group-item border-0"><a>Doktoren</a></li>
+          <li class="list-group-item border-0">
+            <a
+            routerLink="/doctors"
+            [routerLinkActive]="['nav-active']"
+            [routerLinkActiveOptions]="{ exact: true }">Doktoren</a>
+          </li>
           <li class="list-group-item border-0"><a>Recepten</a></li>
           <li class="list-group-item border-0"><a>Onderzoeken</a></li>
         </ul>
