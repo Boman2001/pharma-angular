@@ -1,6 +1,11 @@
-import {NgModule} from "@angular/core";
-import {RouterModule, Routes} from "@angular/router";
-import {MasterComponent} from "./layout/master/master.component";
+// Modules
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+
+// Components
+import { MasterComponent } from "./layout/master/master.component";
+import { NotFoundComponent } from "./pages/not-found/not-found.component";
+
 
 const routes: Routes = [
   {
@@ -8,14 +13,19 @@ const routes: Routes = [
     component: MasterComponent,
     children: [
       {
-        path: "consult",
+        path: "",
+        pathMatch: "full",
+        redirectTo: "consultation"
+      },
+      {
+        path: "consultation",
         loadChildren: () =>
-          import("./modules/consult/consult.module").then(m => m.ConsultModule),
+          import("./modules/consultation/consultation.module").then(m => m.ConsultationModule),
       },
       {
         path: "patients",
         loadChildren: () =>
-          import("./modules/patient/patient.module").then((m) => m.PatientsModule),
+          import("./modules/patient/patient.module").then((m) => m.PatientModule),
       },
       {
         path: "doctors",
@@ -28,10 +38,19 @@ const routes: Routes = [
       breadcrumb: [
         {
           label: "Consult",
-          url: "/consult"
+          url: "/consultation"
         }
       ]
     }
+  },
+  {
+    path: "auth",
+    loadChildren: () =>
+      import("./modules/auth/auth.module").then((m) => m.AuthModule),
+  },
+  {
+    path: "**",
+    component: NotFoundComponent
   }
 ];
 
@@ -40,5 +59,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

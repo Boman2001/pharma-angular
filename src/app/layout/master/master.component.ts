@@ -1,12 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 
+
 @Component({
   selector: "app-master",
   templateUrl: "./master.component.html",
   styleUrls: ["./master.component.css"]
 })
 export class MasterComponent implements OnInit {
-
+  navBar = false;
   profile = false;
 
   constructor() { }
@@ -18,4 +19,7 @@ export class MasterComponent implements OnInit {
     this.profile = !this.profile;
   }
 
+  toggleNavBar(): void{
+    this.navBar = !this.navBar;
+  }
 }
