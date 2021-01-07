@@ -7,6 +7,7 @@ const routes: Routes = [
     path: "",
     component: MasterComponent,
     children: [
+      { path: "consult", loadChildren: () => import("./consult/consult.module").then(m => m.ConsultModule) },
       {
         path: "patients",
         loadChildren: () =>
@@ -14,11 +15,11 @@ const routes: Routes = [
       },
     ],
     data: {
-      title: "Home",
+      title: "Consult",
       breadcrumb: [
         {
-          label: "Home",
-          url: "/"
+          label: "Consult",
+          url: "/consult"
         }
       ]
     }

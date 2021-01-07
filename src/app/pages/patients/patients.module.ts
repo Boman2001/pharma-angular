@@ -12,10 +12,6 @@ const routes: Routes = [
       title: "patients",
       breadcrumb: [
         {
-          label: "Home",
-          url: "/"
-        },
-        {
           label: "Patiënten",
           url: "/patients"
         }
