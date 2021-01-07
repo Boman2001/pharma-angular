@@ -29,7 +29,29 @@
     },
     "pharma-partners-front-end": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+          "@schematics/angular:component": {
+      "prefix": "app",
+      "styleext": "less",
+      "lintFix": true
+    },
+    "@schematics/angular:directive": {
+      "prefix": "app",
+      "lintFix": true
+    },
+    "@schematics/angular:pipe": {
+      "lintFix": true
+    },
+    "@schematics/angular:class": {
+      "lintFix": true
+    },
+    "@schematics/angular:module": {
+      "lintFix": true
+    },
+    "@schematics/angular:service": {
+      "lintFix": true
+    }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
