@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
 
 @Component({
   selector: "app-user-form",
@@ -14,7 +13,7 @@ export class UserFormComponent implements OnInit {
     Validators.required
   ];
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -26,6 +25,7 @@ export class UserFormComponent implements OnInit {
       phone: new FormControl("", this.validators),
       street: new FormControl("", this.validators),
       housenumber: new FormControl("", this.validators),
+      additional: new FormControl(""),
       city: new FormControl("", this.validators),
       postalcode: new FormControl("", this.validators),
       country: new FormControl("NL", this.validators),

@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import {ModalDismissReasons, NgbCalendar, NgbDate, NgbDateStruct, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Component, OnInit, ViewChild} from "@angular/core";
+import { NgbCalendar, NgbDate, NgbDateStruct, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-consult-overview",
@@ -25,9 +25,5 @@ export class ConsultOverviewComponent implements OnInit {
 
   prevDay(): void {
     this.date = this.calendar.getPrev(new NgbDate(this.date.year, this.date.month, this.date.day));
-  }
-
-  open(content): void {
-    this.modalService.open(content, {ariaLabelledBy: "modal-basic-title"});
   }
 }

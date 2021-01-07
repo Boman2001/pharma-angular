@@ -1,4 +1,4 @@
-<form method="POST" #doctorForm="ngForm" [formGroup]="form" (ngSubmit)="doctorForm.form.valid && onSubmit()">
+<form method="POST" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
   
     <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
       <div class="alert-danger p-2 mt-2" *ngIf="form.controls['name'].errors.required">Naam is een verplicht veld.</div>

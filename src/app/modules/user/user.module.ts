@@ -3,18 +3,26 @@ import { CommonModule } from "@angular/common";
 import { UserRoutingModule } from "./user-routing.module";
 import { NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import * as fromComponents from ".";
-import { ConsultModule } from "../consult/consult.module";
+import { UserOverviewComponent } from "./pages/user-overview/user-overview.component";
+import { UserCreateComponent } from "./pages/user-create/user-create.component";
+import { UserDetailComponent } from "./pages/user-detail/user-detail.component";
+import { UserEditComponent } from "./pages/user-edit/user-edit.component";
+import { UserFormComponent } from "./pages/user-form/user-form.component";
 
 @NgModule({
-  declarations: [...fromComponents.components],
+  declarations: [
+    UserOverviewComponent,
+    UserCreateComponent,
+    UserDetailComponent,
+    UserEditComponent,
+    UserFormComponent
+  ],
   imports: [
     CommonModule,
     UserRoutingModule,
     NgbDatepickerModule,
     FormsModule,
     ReactiveFormsModule,
-    ConsultModule,
   ]
 })
 export class UserModule { }

@@ -47,7 +47,7 @@ describe("UserFormComponent", () => {
     form.country.setValue("NL");
     form.username.setValue("Test");
     form.password.setValue("test");
-    form.password.setValue("test");
+    form.passwordCheck.setValue("test");
 
     expect(component.form.valid).toBeTruthy();
   });
