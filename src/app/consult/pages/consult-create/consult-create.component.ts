@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-consult-create",
@@ -11,5 +12,4 @@ export class ConsultCreateComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

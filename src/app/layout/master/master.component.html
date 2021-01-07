@@ -17,13 +17,13 @@
           <li class="list-group-item border-0">
             <a routerLink="/consult"
                [routerLinkActive]="['nav-active']"
-               [routerLinkActiveOptions]="{​​ exact: true }​​">Consult</a>
+               [routerLinkActiveOptions]="{ exact: true }">Consult</a>
           </li>
           <li class="list-group-item border-0">
             <a
               routerLink="/patients"
               [routerLinkActive]="['nav-active']"
-              [routerLinkActiveOptions]="{​​ exact: true }​​">Patiënten</a>
+              [routerLinkActiveOptions]="{ exact: true }">Patiënten</a>
           </li>
           <li class="list-group-item border-0"><a>Doktoren</a></li>
           <li class="list-group-item border-0"><a>Recepten</a></li>
@@ -33,8 +33,7 @@
     </div>
     <div class="main-content">
       <div class="breadcrumbs p-3">
-        <span>Home</span> /
-        <span>Consults</span>
+        <app-ng-dynamic-breadcrumb [bgColor]="'#FFFFFF'" [fontColor]="'#003E79'"></app-ng-dynamic-breadcrumb>
       </div>
       <router-outlet></router-outlet>
     </div>
