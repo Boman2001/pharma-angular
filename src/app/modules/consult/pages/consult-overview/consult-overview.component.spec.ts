@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { ConsultOverviewComponent } from "./consult-overview.component";
-import {NgbCalendar, NgbDate, NgbDatepickerModule, NgbDateStruct, NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {ConsultModule} from "../../consult.module";
+import { NgbDate, NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
+import { ConsultModule } from "../../consult.module";
 
 describe("ConsultOverviewComponent", () => {
   let component: ConsultOverviewComponent;

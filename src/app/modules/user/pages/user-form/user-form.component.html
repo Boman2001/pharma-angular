@@ -5,7 +5,7 @@
     </div>
     <div class="form-group">
       <label for="name">Naam</label>
-      <input class="form-control" type="text" name="name" id="name" placeholder="Naam" formControlName="name">
+      <input class="form-control" type="text" name="name" id="user-name" placeholder="Naam" formControlName="name">
     </div>
   
     <div *ngIf="form.controls['bsn'].invalid && form.controls['bsn'].touched">
@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
       <label for="bsn">BSN</label>
-      <input class="form-control" type="text" name="bsn" id="bsn" placeholder="BSN" formControlName="bsn">
+      <input class="form-control" type="text" name="bsn" id="user-bsn" placeholder="BSN" formControlName="bsn">
     </div>
   
     <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input class="form-control" type="email" name="email" id="email" placeholder="Email" formControlName="email">
+      <input class="form-control" type="email" name="email" id="user-email" placeholder="Email" formControlName="email">
     </div>
   
     <div *ngIf="form.controls['dob'].invalid && form.controls['dob'].touched">
@@ -29,7 +29,7 @@
     </div>
     <div class="form-group">
       <label for="dob">Geboortedatum</label>
-      <input class="form-control" type="date" name="dob" id="dob" placeholder="Geboortedatum" formControlName="dob"/>
+      <input class="form-control" type="date" name="dob" id="user-dob" placeholder="Geboortedatum" formControlName="dob"/>
     </div>
   
     <div *ngIf="form.controls['gender'].invalid && form.controls['gender'].touched">
@@ -38,17 +38,17 @@
     <div class="form-group">
       <label for="custom-radio">Geslacht</label>
       <div class="custom-control custom-radio">
-        <input type="radio" id="male" name="gender" class="custom-control-input" value="male" formControlName="gender">
+        <input type="radio" id="user-male" name="gender" class="custom-control-input" value="male" formControlName="gender">
         <label class="custom-control-label" for="male">Man</label>
       </div>
   
       <div class="custom-control custom-radio">
-        <input type="radio" id="female" name="gender" class="custom-control-input" value="female" formControlName="gender">
+        <input type="radio" id="user-female" name="gender" class="custom-control-input" value="female" formControlName="gender">
         <label class="custom-control-label" for="female">Vrouw</label>
       </div>
   
       <div class="custom-control custom-radio">
-        <input type="radio" id="other" name="gender" class="custom-control-input" value="other" formControlName="gender">
+        <input type="radio" id="user-other" name="gender" class="custom-control-input" value="other" formControlName="gender">
         <label class="custom-control-label" for="other">Overige</label>
       </div>
     </div>
@@ -58,7 +58,7 @@
     </div>
     <div class="form-group">
       <label for="phone-number">Telefoonnummer</label>
-      <input class="form-control" type="text" name="phone-number" id="phone-number" placeholder="Telefoonnummer" formControlName="phone">
+      <input class="form-control" type="text" name="phone-number" id="user-phone-number" placeholder="Telefoonnummer" formControlName="phone">
     </div>
   
     <div *ngIf="form.controls['street'].invalid && form.controls['street'].touched">
@@ -71,15 +71,15 @@
       <div class="form-row">
         <div class="col-6">
           <label for="street">Straatnaam</label>
-          <input class="form-control" type="text" name="street" id="street" placeholder="Straatnaam" formControlName="street">
+          <input class="form-control" type="text" name="street" id="user-street" placeholder="Straatnaam" formControlName="street">
         </div>
         <div class="col-3">
           <label for="house-number">Huisnummer</label>
-          <input class="form-control" type="number" name="house-number" id="house-number" placeholder="Huisnummer" formControlName="housenumber">
+          <input class="form-control" type="number" name="house-number" id="user-house-number" placeholder="Huisnummer" formControlName="housenumber">
         </div>
         <div class="col-3">
           <label for="addition">Toevoeging</label>
-          <input class="form-control" type="text" name="addition" id="addition" placeholder="Toevoeging">
+          <input class="form-control" type="text" name="addition" id="user-addition" placeholder="Toevoeging">
         </div>
       </div>
     </div>
@@ -97,15 +97,15 @@
       <div class="form-row">
         <div class="col-6">
           <label for="city">Stad</label>
-          <input class="form-control" type="text" id="city" name="city" placeholder="Stad" formControlName="city">
+          <input class="form-control" type="text" id="user-city" name="city" placeholder="Stad" formControlName="city">
         </div>
         <div class="col-2">
           <label for="postal-code">Postcode</label>
-          <input class="form-control" type="text" name="postal-code" id="postal-code" placeholder="Postcode" formControlName="postalcode">
+          <input class="form-control" type="text" name="postal-code" id="user-postal-code" placeholder="Postcode" formControlName="postalcode">
         </div>
         <div class="col-4">
           <label for="country">Land</label>
-          <select class="custom-select" id="country" name="country" formControlName="country">
+          <select class="custom-select" id="user-country" name="country" formControlName="country">
             <option value="AF">Afghanistan</option>
             <option value="AX">&Aring;land</option>
             <option value="AL">Albani&euml;</option>

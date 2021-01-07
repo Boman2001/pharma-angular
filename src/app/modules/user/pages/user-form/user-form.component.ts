@@ -9,7 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 export class UserFormComponent implements OnInit {
   @Input() buttonName: string;
   form: FormGroup;
-  validators = [
+  userValidators = [
     Validators.required
   ];
 
@@ -17,21 +17,21 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      name: new FormControl("", this.validators),
-      bsn: new FormControl("", this.validators),
-      email: new FormControl("", this.validators),
-      dob: new FormControl("", this.validators),
-      gender: new FormControl("male", this.validators),
-      phone: new FormControl("", this.validators),
-      street: new FormControl("", this.validators),
-      housenumber: new FormControl("", this.validators),
+      name: new FormControl("", this.userValidators),
+      bsn: new FormControl("", this.userValidators),
+      email: new FormControl("", this.userValidators),
+      dob: new FormControl("", this.userValidators),
+      gender: new FormControl("male", this.userValidators),
+      phone: new FormControl("", this.userValidators),
+      street: new FormControl("", this.userValidators),
+      housenumber: new FormControl("", this.userValidators),
       additional: new FormControl(""),
-      city: new FormControl("", this.validators),
-      postalcode: new FormControl("", this.validators),
-      country: new FormControl("NL", this.validators),
-      username: new FormControl("", this.validators),
-      password: new FormControl("", this.validators),
-      passwordCheck: new FormControl("", this.validators),
+      city: new FormControl("", this.userValidators),
+      postalcode: new FormControl("", this.userValidators),
+      country: new FormControl("NL", this.userValidators),
+      username: new FormControl("", this.userValidators),
+      password: new FormControl("", this.userValidators),
+      passwordCheck: new FormControl("", this.userValidators),
     })
   }
 

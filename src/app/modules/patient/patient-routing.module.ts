@@ -4,7 +4,6 @@ import {PatientOverviewComponent} from "./pages/patient-overview/patient-overvie
 import {PatientCreateComponent} from "./pages/patient-create/patient-create.component";
 import {PatientDetailComponent} from "./pages/patient-detail/patient-detail.component";
 import {PatientEditComponent} from "./pages/patient-edit/patient-edit.component";
-import {PatientFormComponent} from "./pages/patient-form/patient-form.component";
 
 const routes: Routes = [
     {

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { NgbCalendar, NgbDate, NgbDateStruct, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({

@@ -6,7 +6,7 @@ import { UserFormComponent } from "./user-form.component";
 describe("UserFormComponent", () => {
   let component: UserFormComponent;
   let fixture: ComponentFixture<UserFormComponent>;
-  let form;
+  let userForm;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -21,33 +21,33 @@ describe("UserFormComponent", () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    form = component.form.controls;
+    userForm = component.form.controls;
   });
 
-  it("should create", () => {
+  it("should create user-form", () => {
     expect(component).toBeTruthy();
   });
 
-  it("should return form is invalid", () => {
+  it("should return user-form is invalid", () => {
     expect(component.form.valid).toBeFalsy();
   });
 
   it("should return form is valid", () => {
-    form.name.setValue("Test");
-    form.bsn.setValue("123");
-    form.email.setValue("test@test.com");
-    form.dob.setValue("2021-01-01");
-    form.gender.setValue("male");
-    form.phone.setValue("0612345678");
-    form.street.setValue("MyStreet");
-    form.housenumber.setValue(15);
-    form.additional.setValue("a");
-    form.city.setValue("Roosendaal");
-    form.postalcode.setValue("1234AB");
-    form.country.setValue("NL");
-    form.username.setValue("Test");
-    form.password.setValue("test");
-    form.passwordCheck.setValue("test");
+    userForm.name.setValue("Test");
+    userForm.bsn.setValue("123");
+    userForm.email.setValue("test@test.com");
+    userForm.dob.setValue("2021-01-01");
+    userForm.gender.setValue("male");
+    userForm.phone.setValue("0612345678");
+    userForm.street.setValue("MyStreet");
+    userForm.housenumber.setValue(15);
+    userForm.additional.setValue("a");
+    userForm.city.setValue("Roosendaal");
+    userForm.postalcode.setValue("1234AB");
+    userForm.country.setValue("NL");
+    userForm.username.setValue("Test");
+    userForm.password.setValue("test");
+    userForm.passwordCheck.setValue("test");
 
     expect(component.form.valid).toBeTruthy();
   });
