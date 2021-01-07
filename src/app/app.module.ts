@@ -5,6 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgDynamicBreadcrumbModule } from "ng-dynamic-breadcrumb";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AuthModule } from "./modules/auth/auth.module";
 import { ConsultationModule } from "./modules/consultation/consultation.module";
@@ -20,29 +21,24 @@ import { UserJournalModule } from "./modules/user-journal/user-journal.module";
 // Components
 import { AppComponent } from "./app.component";
 import { MasterComponent } from "./layout/master/master.component";
+import { NotFoundComponent } from "./pages/not-found/not-found.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MasterComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
     NgbModule,
     NgDynamicBreadcrumbModule,
+    FormsModule,
+    ReactiveFormsModule,
     CoreModule,
-    AuthModule,
-    ConsultationModule,
-    EpisodeModule,
-    ExaminationModule,
-    ICPCModule,
-    IntoleranceModule,
-    PatientModule,
-    PrescriptionModule,
-    UserJournalModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

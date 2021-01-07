@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { ConsultCreateComponent } from "./consult-create.component";
-import {FormBuilder} from "@angular/forms";
+import { FormBuilder } from "@angular/forms";
 
 describe("ConsultCreateComponent", () => {
   let component: ConsultCreateComponent;

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { MasterComponent } from "./master.component";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe("MasterComponent", () => {
   let component: MasterComponent;
@@ -8,7 +9,8 @@ describe("MasterComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MasterComponent ]
+      declarations: [ MasterComponent ],
+      imports: [RouterTestingModule]
     })
     .compileComponents();
   });

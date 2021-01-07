@@ -11,7 +11,7 @@ import { ConsultationService } from "./services/consultation.service";
 
 // Components
 import { ConsultOverviewComponent } from "./pages/consult-overview/consult-overview.component";
-import { ConsultCreateComponent } from "./pages/consult-create/consult-create.component";
+import { ConsultCreateComponent } from "./components/consult-create/consult-create.component";
 
 
 @NgModule({
@@ -44,4 +44,4 @@ export * from "./services/consultation.service";
 
 // Components
 export * from "./pages/consult-overview/consult-overview.component";
-export * from "./pages/consult-create/consult-create.component";
+export * from "./components/consult-create/consult-create.component";

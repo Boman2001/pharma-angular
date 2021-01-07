@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { ConsultOverviewComponent } from "./pages/consult-overview/consult-overview.component";
 
+
 const routes: Routes = [
   {
     path: "",

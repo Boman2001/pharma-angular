@@ -13,7 +13,7 @@ import { PatientOverviewComponent } from "./pages/patient-overview/patient-overv
 import { PatientCreateComponent } from "./pages/patient-create/patient-create.component";
 import { PatientDetailComponent } from "./pages/patient-detail/patient-detail.component";
 import { PatientEditComponent } from "./pages/patient-edit/patient-edit.component";
-import { PatientFormComponent } from "./pages/patient-form/patient-form.component";
+import { PatientFormComponent } from "./components/patient-form/patient-form.component";
 
 
 @NgModule({
@@ -55,4 +55,4 @@ export * from "./pages/patient-overview/patient-overview.component";
 export * from "./pages/patient-create/patient-create.component";
 export * from "./pages/patient-detail/patient-detail.component";
 export * from "./pages/patient-edit/patient-edit.component";
-export * from "./pages/patient-form/patient-form.component";
+export * from "./components/patient-form/patient-form.component";

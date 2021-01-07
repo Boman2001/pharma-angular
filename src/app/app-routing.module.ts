@@ -4,6 +4,7 @@ import { RouterModule, Routes } from "@angular/router";
 
 // Components
 import { MasterComponent } from "./layout/master/master.component";
+import { NotFoundComponent } from "./pages/not-found/not-found.component";
 
 
 const routes: Routes = [
@@ -12,7 +13,12 @@ const routes: Routes = [
     component: MasterComponent,
     children: [
       {
-        path: "consult",
+        path: "",
+        pathMatch: "full",
+        redirectTo: "consultation"
+      },
+      {
+        path: "consultation",
         loadChildren: () =>
           import("./modules/consultation/consultation.module").then(m => m.ConsultationModule),
       },
@@ -32,10 +38,20 @@ const routes: Routes = [
       breadcrumb: [
         {
           label: "Consult",
-          url: "/consult"
+          url: "/consultation"
         }
       ]
     }
+  },
+  {
+    path: "auth",
+    loadChildren: () =>
+      import("./modules/auth/auth.module").then((m) => m.AuthModule),
+  },
+  {
+    path: "**",
+    name: "not-found",
+    component: NotFoundComponent
   }
 ];
 

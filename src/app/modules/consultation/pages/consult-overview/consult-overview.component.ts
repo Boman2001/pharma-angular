@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { NgbCalendar, NgbDate, NgbDateStruct, NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { NgbCalendar, NgbDate, NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
+
 
 @Component({
   selector: "app-consult-overview",
@@ -9,7 +10,7 @@ import { NgbCalendar, NgbDate, NgbDateStruct, NgbModal } from "@ng-bootstrap/ng-
 export class ConsultOverviewComponent implements OnInit {
   date: NgbDateStruct;
 
-  constructor(private calendar: NgbCalendar, private modalService: NgbModal) { }
+  constructor(private calendar: NgbCalendar) { }
 
   ngOnInit(): void {
     this.date = this.calendar.getToday();

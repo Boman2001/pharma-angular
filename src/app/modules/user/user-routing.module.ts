@@ -15,7 +15,7 @@ const routes: Routes = [
     pathMatch: "full",
     component: UserOverviewComponent,
     data: {
-      title: "doctors",
+      title: "Doktoren",
       breadcrumb: [
         {
           label: "Doktoren",
@@ -29,30 +29,16 @@ const routes: Routes = [
     pathMatch: "full",
     component: UserCreateComponent,
     data: {
-      title: "doctors",
+      title: "Dokter Aanmaken",
       breadcrumb: [
         {
           label: "Doktoren",
           url: "/doctors"
         },
         {
-          label: "Nieuw",
+          label: "Dokter Aanmaken",
           url: "/doctors/new"
         }
-      ]
-    }
-  },
-    {
-    path: ":id/edit",
-    pathMatch: "full",
-    component: UserEditComponent,
-    data: {
-      title: "doctors",
-      breadcrumb: [
-        {
-          label: "Doktoren",
-          url: "/doctors"
-        },
       ]
     }
   },
@@ -61,11 +47,33 @@ const routes: Routes = [
     pathMatch: "full",
     component: UserDetailComponent,
     data: {
-      title: "doctors",
+      title: "Dokter",
       breadcrumb: [
         {
           label: "Doktoren",
           url: "/doctors"
+        },
+        {
+          label: "Dokter",
+          url: "/doctors/:id"
+        },
+      ]
+    }
+  },
+  {
+    path: ":id/edit",
+    pathMatch: "full",
+    component: UserEditComponent,
+    data: {
+      title: "Dokter Bewerken",
+      breadcrumb: [
+        {
+          label: "Doktoren",
+          url: "/doctors"
+        },
+        {
+          label: "Dokter Bewerken",
+          url: "/doctors/:id/edit"
         },
       ]
     }
