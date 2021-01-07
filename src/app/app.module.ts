@@ -4,6 +4,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgDynamicBreadcrumbModule } from "ng-dynamic-breadcrumb";
 
 import { AuthModule } from "./modules/auth/auth.module";
 import { ConsultationModule } from "./modules/consultation/consultation.module";
@@ -31,6 +32,7 @@ import { MasterComponent } from "./layout/master/master.component";
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
+    NgDynamicBreadcrumbModule,
     CoreModule,
     AuthModule,
     ConsultationModule,
