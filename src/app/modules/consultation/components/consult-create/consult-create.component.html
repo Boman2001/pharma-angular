@@ -16,7 +16,7 @@
         </div>
       </div>
       <div *ngIf="form.controls['date'].invalid && form.controls['date'].touched">
-        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['date'].errors.required">Date is required</div>
+        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['date'].errors.required">Een datum is verplicht</div>
       </div>
     </div>
     <div class="form-group">
@@ -25,7 +25,7 @@
         <option value="1">Jules Mons</option>
       </select>
       <div *ngIf="form.controls['patient'].invalid && form.controls['patient'].touched">
-        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['patient'].errors.required">Patient is required</div>
+        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['patient'].errors.required">Een patient is verplicht</div>
       </div>
     </div>
     <div class="form-group">
@@ -34,13 +34,13 @@
         <option value="1">Youri van der Sande</option>
       </select>
       <div *ngIf="form.controls['doctor'].invalid && form.controls['doctor'].touched">
-        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['doctor'].errors.required">Doctor is required</div>
+        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['doctor'].errors.required">Een dokter is verplicht</div>
       </div>
     </div>
     <div class="form-group">
       <textarea class="form-control" name="comment" id="comment" rows="5" placeholder="Opmerkingen" formControlName="comment"></textarea>
       <div *ngIf="form.controls['comment'].invalid && form.controls['comment'].touched">
-        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['comment'].errors.required">Comment is required</div>
+        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['comment'].errors.required">Een opmerking is verplicht</div>
       </div>
     </div>
   </form>
