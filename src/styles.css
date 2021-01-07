@@ -19,6 +19,10 @@ p{
   font-weight: 200;
 }
 
+.nav-active {
+  padding: .5rem 1rem;
+}
+
 html {
   font-family: "Segoe UI", serif!important;
 }
@@ -43,7 +47,7 @@ body{
 }
 
 .dark-blue{
-  color: #004a91;
+  color: #004A91;
 }
 
 .dark-blue-l{
@@ -73,12 +77,6 @@ body{
 .white{
   color: #FFFFFF;
 }
-
-
-/*!
- * CUSTOM CSS TABLES
- */
-
 
 /*!
  * CUSTOM CSS BUTTONS

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {NgbCalendar, NgbDate, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
+import {ModalDismissReasons, NgbCalendar, NgbDate, NgbDateStruct, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-consult-overview",
@@ -9,7 +9,7 @@ import {NgbCalendar, NgbDate, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 export class ConsultOverviewComponent implements OnInit {
   date: NgbDateStruct;
 
-  constructor(private calendar: NgbCalendar) { }
+  constructor(private calendar: NgbCalendar, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.date = this.calendar.getToday();
@@ -25,5 +25,9 @@ export class ConsultOverviewComponent implements OnInit {
 
   prevDay(): void {
     this.date = this.calendar.getPrev(new NgbDate(this.date.year, this.date.month, this.date.day));
+  }
+
+  open(content): void {
+    this.modalService.open(content, {ariaLabelledBy: "modal-basic-title"});
   }
 }

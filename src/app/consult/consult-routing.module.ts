@@ -6,7 +6,16 @@ import {ConsultOverviewComponent} from "./pages/consult-overview/consult-overvie
 const routes: Routes = [
   {
     path: "",
-    component: ConsultOverviewComponent
+    component: ConsultOverviewComponent,
+    data: {
+      title: "Consult",
+      breadcrumb: [
+        {
+          label: "Consult",
+          url: "/consult"
+        }
+      ]
+    }
   }
 ];
 
