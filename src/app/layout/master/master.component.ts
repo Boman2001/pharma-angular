@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./master.component.css"]
 })
 export class MasterComponent implements OnInit {
-
+  navBar = false;
   profile = false;
 
   constructor() { }
@@ -16,6 +16,10 @@ export class MasterComponent implements OnInit {
 
   profileClick(): void {
     this.profile = !this.profile;
+  }
+
+  toggleNavBar(): void{
+    this.navBar = !this.navBar;
   }
 
 }

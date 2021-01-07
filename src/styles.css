@@ -19,8 +19,9 @@ p{
   font-weight: 200;
 }
 
-.nav-active {
-  padding: .5rem 1rem;
+a.nav-active{
+  background: #cbe5fd;
+  color: #000;
 }
 
 html {
@@ -40,6 +41,11 @@ body{
 
 .pink{
   color: #ED1E79;
+}
+
+.bg-pink{
+  background-color: #ED1E79;
+  color: #fff;
 }
 
 .cyan-blue{

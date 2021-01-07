@@ -12,23 +12,39 @@
   </header>
   <div class="d-flex flex-grow-1">
     <div class="p-3 sidebar border-right h-100">
-      <nav>
-        <ul class="list-group">
-          <li class="list-group-item border-0">
-            <a routerLink="/consult"
-               [routerLinkActive]="['nav-active']"
-               [routerLinkActiveOptions]="{ exact: true }">Consult</a>
-          </li>
-          <li class="list-group-item border-0">
-            <a
-              routerLink="/patients"
-              [routerLinkActive]="['nav-active']"
-              [routerLinkActiveOptions]="{ exact: true }">Patiënten</a>
-          </li>
-          <li class="list-group-item border-0"><a>Doktoren</a></li>
-          <li class="list-group-item border-0"><a>Recepten</a></li>
-          <li class="list-group-item border-0"><a>Onderzoeken</a></li>
-        </ul>
+      <nav class="navbar navbar-expand-lg">
+        <button class="navbar-toggler" type="button" (click)="toggleNavBar()">
+          <div id="navBars">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+        <div class="collapse navbar-collapse show" [ngClass]="{ 'show': navBar }">
+          <ul class="list-group w-100">
+            <li class="list-group-item border-0 p-0">
+              <a class="w-100 h-100 p-2 d-block text-decoration-none"
+                 routerLink="/consult"
+                 [routerLinkActive]="['nav-active']"
+                 [routerLinkActiveOptions]="{ exact: true }">Consult</a>
+            </li>
+            <li class="list-group-item border-0 p-0">
+              <a class="w-100 h-100 p-2 d-block text-decoration-none"
+                routerLink="/patients"
+                [routerLinkActive]="['nav-active']"
+                [routerLinkActiveOptions]="{ exact: true }">Patiënten</a>
+            </li>
+            <li class="list-group-item border-0 p-0">
+              <a class="w-100 h-100 p-2 d-block text-decoration-none">Doktoren</a>
+            </li>
+            <li class="list-group-item border-0 p-0">
+              <a class="w-100 h-100 p-2 d-block text-decoration-none">Recepten</a>
+            </li>
+            <li class="list-group-item border-0 p-0">
+              <a class="w-100 h-100 p-2 d-block text-decoration-none">Onderzoeken</a>
+            </li>
+          </ul>
+        </div>
       </nav>
     </div>
     <div class="main-content">
