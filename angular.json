@@ -2,34 +2,33 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
+  "defaultProject": "pharma-partners-front-end",
   "projects": {
-    "pharma-partners-server": {
-      "projectType": "library",
-      "root": "",
-      "sourceRoot": "server",
-      "prefix": "server",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:server",
-          "configurations": {
-            "production": {
-              "main": "server/server.js",
-              "tsConfig": "tsconfig.json",
-              "outputPath": "dist/server",
-              "bundleDependencies": true,
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true
-            }
-          }
-        }
-      }
-    },
     "pharma-partners-front-end": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "prefix": "app",
+          "styleext": "less",
+          "lintFix": true
+        },
+        "@schematics/angular:directive": {
+          "prefix": "app",
+          "lintFix": true
+        },
+        "@schematics/angular:pipe": {
+          "lintFix": true
+        },
+        "@schematics/angular:class": {
+          "lintFix": true
+        },
+        "@schematics/angular:module": {
+          "lintFix": true
+        },
+        "@schematics/angular:service": {
+          "lintFix": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -143,9 +142,32 @@
           }
         }
       }
+    },
+    "pharma-partners-server": {
+      "projectType": "library",
+      "root": "",
+      "sourceRoot": "server",
+      "prefix": "server",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:server",
+          "configurations": {
+            "production": {
+              "main": "server/server.js",
+              "tsConfig": "tsconfig.json",
+              "outputPath": "dist/server",
+              "bundleDependencies": true,
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true
+            }
+          }
+        }
+      }
     }
   },
-  "defaultProject": "pharma-partners-front-end",
   "cli": {
     "analytics": false
   }
