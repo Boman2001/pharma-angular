@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
-import * as fromComponents from "../patient";
+import * as fromComponents from ".";
 
 const routes: Routes = [
     {
