@@ -13,6 +13,7 @@ import { ConsultCreateComponent } from "./pages/consult-create/consult-create.co
     ConsultRoutingModule,
     NgbDatepickerModule,
     FormsModule
-  ]
+  ],
+  exports: [ConsultOverviewComponent],
 })
 export class ConsultModule { }

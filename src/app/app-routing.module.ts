@@ -10,11 +10,17 @@ const routes: Routes = [
       { 
         path: "consult", 
         loadChildren: () => 
-          import("./modules/consult/consult.module").then(m => m.ConsultModule) },
+          import("./modules/consult/consult.module").then(m => m.ConsultModule),
+      },
       {
         path: "patients",
         loadChildren: () =>
           import("./modules/patient/patient.module").then((m) => m.PatientsModule),
+      },
+      {
+        path: "doctors",
+        loadChildren: () =>
+          import('./modules/user/user.module').then((m) => m.UserModule),
       },
     ],
     data: {

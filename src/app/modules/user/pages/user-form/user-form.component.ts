@@ -1,23 +1,20 @@
-import {Component, Input, OnInit} from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 @Component({
-  selector: "app-patient-form",
-  templateUrl: "./patient-form.component.html",
-  styleUrls: ["./patient-form.component.css"]
+  selector: "app-user-form",
+  templateUrl: "./user-form.component.html",
+  styleUrls: ["./user-form.component.css"]
 })
-export class PatientFormComponent implements OnInit {
-
+export class UserFormComponent implements OnInit {
   @Input() buttonName: string;
   form: FormGroup;
   validators = [
     Validators.required
   ];
-  modal;
 
-  constructor(private fb: FormBuilder, private router: Router) {
-  }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -31,11 +28,15 @@ export class PatientFormComponent implements OnInit {
       housenumber: new FormControl("", this.validators),
       city: new FormControl("", this.validators),
       postalcode: new FormControl("", this.validators),
-      country: new FormControl("NL", this.validators)
+      country: new FormControl("NL", this.validators),
+      username: new FormControl("", this.validators),
+      password: new FormControl("", this.validators),
+      passwordCheck: new FormControl("", this.validators),
     })
   }
 
   onSubmit(): void{
-    this.modal.close();
+    //TODO
   }
+
 }

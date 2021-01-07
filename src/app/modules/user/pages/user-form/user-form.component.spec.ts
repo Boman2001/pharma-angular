@@ -1,21 +1,23 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { FormBuilder } from "@angular/forms";
 
-import { PatientFormComponent } from "./patient-form.component";
+import { UserFormComponent } from "./user-form.component";
 
-describe("PatientFormComponent", () => {
-  let component: PatientFormComponent;
-  let fixture: ComponentFixture<PatientFormComponent>;
+describe("UserFormComponent", () => {
+  let component: UserFormComponent;
+  let fixture: ComponentFixture<UserFormComponent>;
   let form;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PatientFormComponent ]
+      declarations: [ UserFormComponent ],
+      providers: [ FormBuilder ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PatientFormComponent);
+    fixture = TestBed.createComponent(UserFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
@@ -43,6 +45,9 @@ describe("PatientFormComponent", () => {
     form.city.setValue("Roosendaal");
     form.postalcode.setValue("1234AB");
     form.country.setValue("NL");
+    form.username.setValue("Test");
+    form.password.setValue("test");
+    form.password.setValue("test");
 
     expect(component.form.valid).toBeTruthy();
   });

@@ -1,5 +1,4 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { Routes, RouterModule } from "@angular/router";
 import * as fromComponents from ".";
 
@@ -39,12 +38,30 @@ const routes: Routes = [
       {
       path: ":id/edit",
       pathMatch: "full",
-      component: fromComponents.PatientEditComponent
+      component: fromComponents.PatientEditComponent,
+      data: {
+        title: "patients",
+        breadcrumb: [
+          {
+            label: "Patiënten",
+            url: "/patients"
+          }
+        ]
+      }
     },
     {
       path: ":id",
       pathMatch: "full",
-      component: fromComponents.PatientDetailComponent
+      component: fromComponents.PatientDetailComponent,
+      data: {
+        title: "patients",
+        breadcrumb: [
+          {
+            label: "Patiënten",
+            url: "/patients"
+          }
+        ]
+      }
     },
   ];
 
