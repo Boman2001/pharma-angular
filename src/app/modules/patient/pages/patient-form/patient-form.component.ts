@@ -32,7 +32,7 @@ export class PatientFormComponent implements OnInit {
       city: new FormControl("", this.validators),
       postalcode: new FormControl("", this.validators),
       country: new FormControl("NL", this.validators)
-    })
+    });
   }
 
   onSubmit(): void{

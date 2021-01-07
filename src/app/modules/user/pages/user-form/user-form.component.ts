@@ -32,11 +32,11 @@ export class UserFormComponent implements OnInit {
       username: new FormControl("", this.userValidators),
       password: new FormControl("", this.userValidators),
       passwordCheck: new FormControl("", this.userValidators),
-    })
+    });
   }
 
   onSubmit(): void{
-    //TODO
+    // TODO
   }
 
 }
