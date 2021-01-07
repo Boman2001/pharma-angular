@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
 import { environment } from "../../../../environments/environment";
 import { HttpService, StorageService } from "../../core/core.module";
 import { User } from "../../user/user.module";
 import { HttpClient } from "@angular/common/http";
-import {LoginResponse} from "../models/LoginResponse.model";
+import { LoginResponse } from "../models/LoginResponse.model";
 
 
 @Injectable({

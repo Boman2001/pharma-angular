@@ -1,11 +1,11 @@
-import {TestBed} from "@angular/core/testing";
-import {AuthService} from "./auth.service";
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../../environments/environment";
-import {LoginResponse} from "../models/LoginResponse.model";
-import {User} from "../../user/user.module";
-import {Gender} from "../../core/core.module";
+import { TestBed } from "@angular/core/testing";
+import { AuthService } from "./auth.service";
+import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "../../../../environments/environment";
+import { LoginResponse } from "../models/LoginResponse.model";
+import { User } from "../../user/user.module";
+import { Gender } from "../../core/core.module";
 
 const mockToken = "ey1234.test.test.test";
 
