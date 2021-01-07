@@ -15,7 +15,9 @@ describe("StorageService", () => {
   });
 
   it("should set an item", () => {
-    expect(service.SetItem("test", "12345")).not.toThrow();
+    service.SetItem("test", "12345");
+    expect(true).toBeTrue(); // If the function throws an exception, the test will fail.
+    // expect(service.SetItem("test", "12345")).not.toThrow();
   });
 
   it("should get an item", () => {
@@ -26,21 +28,33 @@ describe("StorageService", () => {
   });
 
   it("should remove item", () => {
-    expect(service.RemoveItem("test")).not.toThrow();
+
+    service.RemoveItem("test");
+    expect(true).toBeTrue(); // If the function throws an exception, the test will fail.
+    // expect(service.RemoveItem("test")).not.toThrow();
   });
 
   it("should set multiple items", () => {
-    expect(
-      service.SetItems([
-        { key: "test1", value: "12345" },
-        { key: "test2", value: "12345" },
-        { key: "test3", value: "12345" },
-        { key: "test4", value: "12345" },
-        { key: "test5", value: "12345" },
-        { key: "test6", value: "12345" }
-      ])
-    )
-    .not.toThrow();
+    service.SetItems([
+      { key: "test1", value: "12345" },
+      { key: "test2", value: "12345" },
+      { key: "test3", value: "12345" },
+      { key: "test4", value: "12345" },
+      { key: "test5", value: "12345" },
+      { key: "test6", value: "12345" }
+    ]);
+    expect(true).toBeTrue(); // If the function throws an exception, the test will fail.
+    // expect(
+    //   service.SetItems([
+    //     { key: "test1", value: "12345" },
+    //     { key: "test2", value: "12345" },
+    //     { key: "test3", value: "12345" },
+    //     { key: "test4", value: "12345" },
+    //     { key: "test5", value: "12345" },
+    //     { key: "test6", value: "12345" }
+    //   ])
+    // )
+    // .not.toThrow();
   });
 
   it("should get multiple items", () => {
