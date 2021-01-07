@@ -1,12 +1,15 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
-import { MasterComponent } from './layout/master/master.component';
+// Modules
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+
+// Components
+import { MasterComponent } from "./layout/master/master.component";
+
 
 const routes: Routes = [
   {
-    path: '',
-    component: MasterComponent,
+    path: "",
+    component: MasterComponent
   }
 ];
 
