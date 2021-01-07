@@ -7,9 +7,9 @@ const routes: Routes = [
     path: "",
     component: MasterComponent,
     children: [
-      { 
-        path: "consult", 
-        loadChildren: () => 
+      {
+        path: "consult",
+        loadChildren: () =>
           import("./modules/consult/consult.module").then(m => m.ConsultModule),
       },
       {
@@ -20,7 +20,7 @@ const routes: Routes = [
       {
         path: "doctors",
         loadChildren: () =>
-          import('./modules/user/user.module').then((m) => m.UserModule),
+          import("./modules/user/user.module").then((m) => m.UserModule),
       },
     ],
     data: {

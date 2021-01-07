@@ -9,7 +9,7 @@ export class UserCreateComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
   }
 
 }
