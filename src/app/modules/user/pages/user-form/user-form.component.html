@@ -1,6 +1,6 @@
 <form method="POST" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
   
-    <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+    <div id="name-alert" *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
       <div class="alert-danger p-2 mt-2" *ngIf="form.controls['name'].errors.required">Naam is een verplicht veld.</div>
     </div>
     <div class="form-group">
@@ -8,7 +8,7 @@
       <input class="form-control" type="text" name="name" id="user-name" placeholder="Naam" formControlName="name">
     </div>
   
-    <div *ngIf="form.controls['bsn'].invalid && form.controls['bsn'].touched">
+    <div id="bsn-alert" *ngIf="form.controls['bsn'].invalid && form.controls['bsn'].touched">
       <div class="alert-danger p-2 mt-2" *ngIf="form.controls['bsn'].errors.required">BSN is een verplicht veld.</div>
     </div>
     <div class="form-group">
@@ -16,7 +16,7 @@
       <input class="form-control" type="text" name="bsn" id="user-bsn" placeholder="BSN" formControlName="bsn">
     </div>
   
-    <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+    <div id="email-alert" *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
       <div class="alert-danger p-2 mt-2" *ngIf="form.controls['email'].errors.required">Email is een verplicht veld.</div>
     </div>
     <div class="form-group">
@@ -24,7 +24,7 @@
       <input class="form-control" type="email" name="email" id="user-email" placeholder="Email" formControlName="email">
     </div>
   
-    <div *ngIf="form.controls['dob'].invalid && form.controls['dob'].touched">
+    <div id="dob-alert" *ngIf="form.controls['dob'].invalid && form.controls['dob'].touched">
       <div class="alert-danger p-2 mt-2" *ngIf="form.controls['dob'].errors.required">Geboortedatum is een verplicht veld.</div>
     </div>
     <div class="form-group">
@@ -32,7 +32,7 @@
       <input class="form-control" type="date" name="dob" id="user-dob" placeholder="Geboortedatum" formControlName="dob"/>
     </div>
   
-    <div *ngIf="form.controls['gender'].invalid && form.controls['gender'].touched">
+    <div id="gender-alert" *ngIf="form.controls['gender'].invalid && form.controls['gender'].touched">
       <div class="alert-danger p-2 mt-2" *ngIf="form.controls['gender'].errors.required">Geslacht is een verplicht veld.</div>
     </div>
     <div class="form-group">
@@ -53,7 +53,7 @@
       </div>
     </div>
   
-    <div *ngIf="form.controls['phone'].invalid && form.controls['phone'].touched">
+    <div id="phone-alert" *ngIf="form.controls['phone'].invalid && form.controls['phone'].touched">
       <div class="alert-danger p-2 mt-2" *ngIf="form.controls['phone'].errors.required">Telefoonnummer is een verplicht veld.</div>
     </div>
     <div class="form-group">
@@ -61,10 +61,10 @@
       <input class="form-control" type="text" name="phone-number" id="user-phone-number" placeholder="Telefoonnummer" formControlName="phone">
     </div>
   
-    <div *ngIf="form.controls['street'].invalid && form.controls['street'].touched">
+    <div id="street-alert" *ngIf="form.controls['street'].invalid && form.controls['street'].touched">
       <div class="alert-danger p-2 mt-2" *ngIf="form.controls['street'].errors.required">Straatnaam is een verplicht veld.</div>
     </div>
-    <div *ngIf="form.controls['housenumber'].invalid && form.controls['housenumber'].touched">
+    <div id="house-alert" *ngIf="form.controls['housenumber'].invalid && form.controls['housenumber'].touched">
       <div class="alert-danger p-2 mt-2" *ngIf="form.controls['housenumber'].errors.required">Huisnummer is een verplicht veld.</div>
     </div>
     <div class="form-group">
@@ -84,13 +84,13 @@
       </div>
     </div>
   
-    <div *ngIf="form.controls['city'].invalid && form.controls['city'].touched">
+    <div id="city-alert" *ngIf="form.controls['city'].invalid && form.controls['city'].touched">
       <div class="alert-danger p-2 mt-2" *ngIf="form.controls['city'].errors.required">Stad is een verplicht veld.</div>
     </div>
-    <div *ngIf="form.controls['postalcode'].invalid && form.controls['postalcode'].touched">
+    <div id="postalcode-alert" *ngIf="form.controls['postalcode'].invalid && form.controls['postalcode'].touched">
       <div class="alert-danger p-2 mt-2" *ngIf="form.controls['postalcode'].errors.required">Postcode is een verplicht veld.</div>
     </div>
-    <div *ngIf="form.controls['country'].invalid && form.controls['country'].touched">
+    <div id="city-alert" *ngIf="form.controls['country'].invalid && form.controls['country'].touched">
       <div class="alert-danger p-2 mt-2" *ngIf="form.controls['country'].errors.required">Land is een verplicht veld.</div>
     </div>
     <div class="form-group">
@@ -106,261 +106,261 @@
         <div class="col-4">
           <label for="country">Land</label>
           <select class="custom-select" id="user-country" name="country" formControlName="country">
-            <option value="AF">Afghanistan</option>
-            <option value="AX">&Aring;land</option>
-            <option value="AL">Albani&euml;</option>
-            <option value="DZ">Algerije</option>
-            <option value="VI">Amerikaanse Maagdeneilanden</option>
-            <option value="AS">Amerikaans-Samoa</option>
-            <option value="AD">Andorra</option>
-            <option value="AO">Angola</option>
-            <option value="AI">Anguilla</option>
-            <option value="AQ">Antarctica</option>
-            <option value="AG">Antigua en Barbuda</option>
-            <option value="AR">Argentini&euml;</option>
-            <option value="AM">Armeni&euml;</option>
-            <option value="AW">Aruba</option>
-            <option value="AU">Australi&euml;</option>
-            <option value="AZ">Azerbeidzjan</option>
-            <option value="BS">Bahama's</option>
-            <option value="BH">Bahrein</option>
-            <option value="BD">Bangladesh</option>
-            <option value="BB">Barbados</option>
-            <option value="BE">Belgi&euml;</option>
-            <option value="BZ">Belize</option>
-            <option value="BJ">Benin</option>
-            <option value="BM">Bermuda</option>
-            <option value="BT">Bhutan</option>
-            <option value="BO">Bolivia</option>
-            <option value="BQ">Bonaire, Sint Eustatius en Saba</option>
-            <option value="BA">Bosni&euml; en Herzegovina</option>
-            <option value="BW">Botswana</option>
-            <option value="BV">Bouveteiland</option>
-            <option value="BR">Brazili&euml;</option>
-            <option value="VG">Britse Maagdeneilanden</option>
-            <option value="IO">Brits Indische Oceaanterritorium</option>
-            <option value="BN">Brunei</option>
-            <option value="BG">Bulgarije</option>
-            <option value="BF">Burkina Faso</option>
-            <option value="BI">Burundi</option>
-            <option value="KH">Cambodja</option>
-            <option value="CA">Canada</option>
-            <option value="CF">Centraal-Afrikaanse Republiek</option>
-            <option value="CL">Chili</option>
-            <option value="CN">China</option>
-            <option value="CX">Christmaseiland</option>
-            <option value="CC">Cocoseilanden</option>
-            <option value="CO">Colombia</option>
-            <option value="KM">Comoren</option>
-            <option value="CG">Congo-Brazzaville</option>
-            <option value="CD">Congo-Kinshasa</option>
-            <option value="CK">Cookeilanden</option>
-            <option value="CR">Costa Rica</option>
-            <option value="CU">Cuba</option>
-            <option value="CW">Cura&ccedil;ao</option>
-            <option value="CY">Cyprus</option>
-            <option value="DK">Denemarken</option>
-            <option value="DJ">Djibouti</option>
-            <option value="DM">Dominica</option>
-            <option value="DO">Dominicaanse Republiek</option>
-            <option value="DE">Duitsland</option>
-            <option value="EC">Ecuador</option>
-            <option value="EG">Egypte</option>
-            <option value="SV">El Salvador</option>
-            <option value="GQ">Equatoriaal-Guinea</option>
-            <option value="ER">Eritrea</option>
-            <option value="EE">Estland</option>
-            <option value="ET">Ethiopi&euml;</option>
-            <option value="FO">Faer&ouml;er</option>
-            <option value="FK">Falklandeilanden</option>
-            <option value="FJ">Fiji</option>
-            <option value="PH">Filipijnen</option>
-            <option value="FI">Finland</option>
-            <option value="FR">Frankrijk</option>
-            <option value="TF">Franse Zuidelijke en Antarctische Gebieden</option>
-            <option value="GF">Frans-Guyana</option>
-            <option value="PF">Frans-Polynesi&euml;</option>
-            <option value="GA">Gabon</option>
-            <option value="GM">Gambia</option>
-            <option value="GE">Georgi&euml;</option>
-            <option value="GH">Ghana</option>
-            <option value="GI">Gibraltar</option>
-            <option value="GD">Grenada</option>
-            <option value="GR">Griekenland</option>
-            <option value="GL">Groenland</option>
-            <option value="GP">Guadeloupe</option>
-            <option value="GU">Guam</option>
-            <option value="GT">Guatemala</option>
-            <option value="GG">Guernsey</option>
-            <option value="GN">Guinee</option>
-            <option value="GW">Guinee-Bissau</option>
-            <option value="GY">Guyana</option>
-            <option value="HT">Ha&iuml;ti</option>
-            <option value="HM">Heard en McDonaldeilanden</option>
-            <option value="HN">Honduras</option>
-            <option value="HU">Hongarije</option>
-            <option value="HK">Hongkong</option>
-            <option value="IE">Ierland</option>
-            <option value="IS">IJsland</option>
-            <option value="IN">India</option>
-            <option value="ID">Indonesi&euml;</option>
-            <option value="IQ">Irak</option>
-            <option value="IR">Iran</option>
-            <option value="IL">Isra&euml;l</option>
-            <option value="IT">Itali&euml;</option>
-            <option value="CI">Ivoorkust</option>
-            <option value="JM">Jamaica</option>
-            <option value="JP">Japan</option>
-            <option value="YE">Jemen</option>
-            <option value="JE">Jersey</option>
-            <option value="JO">Jordani&euml;</option>
-            <option value="KY">Kaaimaneilanden</option>
-            <option value="CV">Kaapverdi&euml;</option>
-            <option value="CM">Kameroen</option>
-            <option value="KZ">Kazachstan</option>
-            <option value="KE">Kenia</option>
-            <option value="KG">Kirgizi&euml;</option>
-            <option value="KI">Kiribati</option>
-            <option value="UM">Kleine Pacifische eilanden van de V.S.</option>
-            <option value="KW">Koeweit</option>
-            <option value="HR">Kroati&euml;</option>
-            <option value="LA">Laos</option>
-            <option value="LS">Lesotho</option>
-            <option value="LV">Letland</option>
-            <option value="LB">Libanon</option>
-            <option value="LR">Liberia</option>
-            <option value="LY">Libi&euml;</option>
-            <option value="LI">Liechtenstein</option>
-            <option value="LT">Litouwen</option>
-            <option value="LU">Luxemburg</option>
-            <option value="MO">Macau</option>
-            <option value="MK">Macedoni&euml;</option>
-            <option value="MG">Madagaskar</option>
-            <option value="MW">Malawi</option>
-            <option value="MV">Maldiven</option>
-            <option value="MY">Maleisi&euml;</option>
-            <option value="ML">Mali</option>
-            <option value="MT">Malta</option>
-            <option value="IM">Man</option>
-            <option value="MA">Marokko</option>
-            <option value="MH">Marshalleilanden</option>
-            <option value="MQ">Martinique</option>
-            <option value="MR">Mauritani&euml;</option>
-            <option value="MU">Mauritius</option>
-            <option value="YT">Mayotte</option>
-            <option value="MX">Mexico</option>
-            <option value="FM">Micronesia</option>
-            <option value="MD">Moldavi&euml;</option>
-            <option value="MC">Monaco</option>
-            <option value="MN">Mongoli&euml;</option>
-            <option value="ME">Montenegro</option>
-            <option value="MS">Montserrat</option>
-            <option value="MZ">Mozambique</option>
-            <option value="MM">Myanmar</option>
-            <option value="NA">Namibi&euml;</option>
-            <option value="NR">Nauru</option>
-            <option value="NL">Nederland</option>
-            <option value="NP">Nepal</option>
-            <option value="NI">Nicaragua</option>
-            <option value="NC">Nieuw-Caledoni&euml;</option>
-            <option value="NZ">Nieuw-Zeeland</option>
-            <option value="NE">Niger</option>
-            <option value="NG">Nigeria</option>
-            <option value="NU">Niue</option>
-            <option value="MP">Noordelijke Marianen</option>
-            <option value="KP">Noord-Korea</option>
-            <option value="NO">Noorwegen</option>
-            <option value="NF">Norfolk</option>
-            <option value="UG">Oeganda</option>
-            <option value="UA">Oekra&iuml;ne</option>
-            <option value="UZ">Oezbekistan</option>
-            <option value="OM">Oman</option>
-            <option value="AT">Oostenrijk</option>
-            <option value="TL">Oost-Timor</option>
-            <option value="PK">Pakistan</option>
-            <option value="PW">Palau</option>
-            <option value="PS">Palestina</option>
-            <option value="PA">Panama</option>
-            <option value="PG">Papoea-Nieuw-Guinea</option>
-            <option value="PY">Paraguay</option>
-            <option value="PE">Peru</option>
-            <option value="PN">Pitcairneilanden</option>
-            <option value="PL">Polen</option>
-            <option value="PT">Portugal</option>
-            <option value="PR">Puerto Rico</option>
-            <option value="QA">Qatar</option>
-            <option value="RE">R&eacute;union</option>
-            <option value="RO">Roemeni&euml;</option>
-            <option value="RU">Rusland</option>
-            <option value="RW">Rwanda</option>
-            <option value="BL">Saint-Barth&eacute;lemy</option>
-            <option value="KN">Saint Kitts en Nevis</option>
-            <option value="LC">Saint Lucia</option>
-            <option value="PM">Saint-Pierre en Miquelon</option>
-            <option value="VC">Saint Vincent en de Grenadines</option>
-            <option value="SB">Salomonseilanden</option>
-            <option value="WS">Samoa</option>
-            <option value="SM">San Marino</option>
-            <option value="SA">Saoedi-Arabi&euml;</option>
-            <option value="ST">Sao Tom&eacute; en Principe</option>
-            <option value="SN">Senegal</option>
-            <option value="RS">Servi&euml;</option>
-            <option value="SC">Seychellen</option>
-            <option value="SL">Sierra Leone</option>
-            <option value="SG">Singapore</option>
-            <option value="SH">Sint-Helena, Ascension en Tristan da Cunha</option>
-            <option value="MF">Sint-Maarten</option>
-            <option value="SX">Sint Maarten</option>
-            <option value="SI">Sloveni&euml;</option>
-            <option value="SK">Slowakije</option>
-            <option value="SD">Soedan</option>
-            <option value="SO">Somali&euml;</option>
-            <option value="ES">Spanje</option>
-            <option value="SJ">Spitsbergen en Jan Mayen</option>
-            <option value="LK">Sri Lanka</option>
-            <option value="SR">Suriname</option>
-            <option value="SZ">Swaziland</option>
-            <option value="SY">Syri&euml;</option>
-            <option value="TJ">Tadzjikistan</option>
-            <option value="TW">Taiwan</option>
-            <option value="TZ">Tanzania</option>
-            <option value="TH">Thailand</option>
-            <option value="TG">Togo</option>
-            <option value="TK">Tokelau</option>
-            <option value="TO">Tonga</option>
-            <option value="TT">Trinidad en Tobago</option>
-            <option value="TD">Tsjaad</option>
-            <option value="CZ">Tsjechi&euml;</option>
-            <option value="TN">Tunesi&euml;</option>
-            <option value="TR">Turkije</option>
-            <option value="TM">Turkmenistan</option>
-            <option value="TC">Turks- en Caicoseilanden</option>
-            <option value="TV">Tuvalu</option>
-            <option value="UY">Uruguay</option>
-            <option value="VU">Vanuatu</option>
-            <option value="VA">Vaticaanstad</option>
-            <option value="VE">Venezuela</option>
-            <option value="AE">Verenigde Arabische Emiraten</option>
-            <option value="US">Verenigde Staten</option>
-            <option value="GB">Verenigd Koninkrijk</option>
-            <option value="VN">Vietnam</option>
-            <option value="WF">Wallis en Futuna</option>
-            <option value="EH">Westelijke Sahara</option>
-            <option value="BY">Wit-Rusland</option>
-            <option value="ZM">Zambia</option>
-            <option value="ZW">Zimbabwe</option>
-            <option value="ZA">Zuid-Afrika</option>
-            <option value="GS">Zuid-Georgia en de Zuidelijke Sandwicheilanden</option>
-            <option value="KR">Zuid-Korea</option>
-            <option value="SS">Zuid-Soedan</option>
-            <option value="SE">Zweden</option>
-            <option value="CH">Zwitserland</option>
+            <option class="" value="AF">Afghanistan</option>
+            <option class="" value="AX">&Aring;land</option>
+            <option class="" value="AL">Albani&euml;</option>
+            <option class="" value="DZ">Algerije</option>
+            <option class="" value="VI">Amerikaanse Maagdeneilanden</option>
+            <option class="" value="AS">Amerikaans-Samoa</option>
+            <option class="" value="AD">Andorra</option>
+            <option class="" value="AO">Angola</option>
+            <option class="" value="AI">Anguilla</option>
+            <option class="" value="AQ">Antarctica</option>
+            <option class="" value="AG">Antigua en Barbuda</option>
+            <option class="" value="AR">Argentini&euml;</option>
+            <option class="" value="AM">Armeni&euml;</option>
+            <option class="" value="AW">Aruba</option>
+            <option class="" value="AU">Australi&euml;</option>
+            <option class="" value="AZ">Azerbeidzjan</option>
+            <option class="" value="BS">Bahama's</option>
+            <option class="" value="BH">Bahrein</option>
+            <option class="" value="BD">Bangladesh</option>
+            <option class="" value="BB">Barbados</option>
+            <option class="" value="BE">Belgi&euml;</option>
+            <option class="" value="BZ">Belize</option>
+            <option class="" value="BJ">Benin</option>
+            <option class="" value="BM">Bermuda</option>
+            <option class="" value="BT">Bhutan</option>
+            <option class="" value="BO">Bolivia</option>
+            <option class="" value="BQ">Bonaire, Sint Eustatius en Saba</option>
+            <option class="" value="BA">Bosni&euml; en Herzegovina</option>
+            <option class="" value="BW">Botswana</option>
+            <option class="" value="BV">Bouveteiland</option>
+            <option class="" value="BR">Brazili&euml;</option>
+            <option class="" value="VG">Britse Maagdeneilanden</option>
+            <option class="" value="IO">Brits Indische Oceaanterritorium</option>
+            <option class="" value="BN">Brunei</option>
+            <option class="" value="BG">Bulgarije</option>
+            <option class="" value="BF">Burkina Faso</option>
+            <option class="" value="BI">Burundi</option>
+            <option class="" value="KH">Cambodja</option>
+            <option class="" value="CA">Canada</option>
+            <option class="" value="CF">Centraal-Afrikaanse Republiek</option>
+            <option class="" value="CL">Chili</option>
+            <option class="" value="CN">China</option>
+            <option class="" value="CX">Christmaseiland</option>
+            <option class="" value="CC">Cocoseilanden</option>
+            <option class="" value="CO">Colombia</option>
+            <option class="" value="KM">Comoren</option>
+            <option class="" value="CG">Congo-Brazzaville</option>
+            <option class="" value="CD">Congo-Kinshasa</option>
+            <option class="" value="CK">Cookeilanden</option>
+            <option class="" value="CR">Costa Rica</option>
+            <option class="" value="CU">Cuba</option>
+            <option class="" value="CW">Cura&ccedil;ao</option>
+            <option class="" value="CY">Cyprus</option>
+            <option class="" value="DK">Denemarken</option>
+            <option class="" value="DJ">Djibouti</option>
+            <option class="" value="DM">Dominica</option>
+            <option class="" value="DO">Dominicaanse Republiek</option>
+            <option class="" value="DE">Duitsland</option>
+            <option class="" value="EC">Ecuador</option>
+            <option class="" value="EG">Egypte</option>
+            <option class="" value="SV">El Salvador</option>
+            <option class="" value="GQ">Equatoriaal-Guinea</option>
+            <option class="" value="ER">Eritrea</option>
+            <option class="" value="EE">Estland</option>
+            <option class="" value="ET">Ethiopi&euml;</option>
+            <option class="" value="FO">Faer&ouml;er</option>
+            <option class="" value="FK">Falklandeilanden</option>
+            <option class="" value="FJ">Fiji</option>
+            <option class="" value="PH">Filipijnen</option>
+            <option class="" value="FI">Finland</option>
+            <option class="" value="FR">Frankrijk</option>
+            <option class="" value="TF">Franse Zuidelijke en Antarctische Gebieden</option>
+            <option class="" value="GF">Frans-Guyana</option>
+            <option class="" value="PF">Frans-Polynesi&euml;</option>
+            <option class="" value="GA">Gabon</option>
+            <option class="" value="GM">Gambia</option>
+            <option class="" value="GE">Georgi&euml;</option>
+            <option class="" value="GH">Ghana</option>
+            <option class="" value="GI">Gibraltar</option>
+            <option class="" value="GD">Grenada</option>
+            <option class="" value="GR">Griekenland</option>
+            <option class="" value="GL">Groenland</option>
+            <option class="" value="GP">Guadeloupe</option>
+            <option class="" value="GU">Guam</option>
+            <option class="" value="GT">Guatemala</option>
+            <option class="" value="GG">Guernsey</option>
+            <option class="" value="GN">Guinee</option>
+            <option class="" value="GW">Guinee-Bissau</option>
+            <option class="" value="GY">Guyana</option>
+            <option class="" value="HT">Ha&iuml;ti</option>
+            <option class="" value="HM">Heard en McDonaldeilanden</option>
+            <option class="" value="HN">Honduras</option>
+            <option class="" value="HU">Hongarije</option>
+            <option class="" value="HK">Hongkong</option>
+            <option class="" value="IE">Ierland</option>
+            <option class="" value="IS">IJsland</option>
+            <option class="" value="IN">India</option>
+            <option class="" value="ID">Indonesi&euml;</option>
+            <option class="" value="IQ">Irak</option>
+            <option class="" value="IR">Iran</option>
+            <option class="" value="IL">Isra&euml;l</option>
+            <option class="" value="IT">Itali&euml;</option>
+            <option class="" value="CI">Ivoorkust</option>
+            <option class="" value="JM">Jamaica</option>
+            <option class="" value="JP">Japan</option>
+            <option class="" value="YE">Jemen</option>
+            <option class="" value="JE">Jersey</option>
+            <option class="" value="JO">Jordani&euml;</option>
+            <option class="" value="KY">Kaaimaneilanden</option>
+            <option class="" value="CV">Kaapverdi&euml;</option>
+            <option class="" value="CM">Kameroen</option>
+            <option class="" value="KZ">Kazachstan</option>
+            <option class="" value="KE">Kenia</option>
+            <option class="" value="KG">Kirgizi&euml;</option>
+            <option class="" value="KI">Kiribati</option>
+            <option class="" value="UM">Kleine Pacifische eilanden van de V.S.</option>
+            <option class="" value="KW">Koeweit</option>
+            <option class="" value="HR">Kroati&euml;</option>
+            <option class="" value="LA">Laos</option>
+            <option class="" value="LS">Lesotho</option>
+            <option class="" value="LV">Letland</option>
+            <option class="" value="LB">Libanon</option>
+            <option class="" value="LR">Liberia</option>
+            <option class="" value="LY">Libi&euml;</option>
+            <option class="" value="LI">Liechtenstein</option>
+            <option class="" value="LT">Litouwen</option>
+            <option class="" value="LU">Luxemburg</option>
+            <option class="" value="MO">Macau</option>
+            <option class="" value="MK">Macedoni&euml;</option>
+            <option class="" value="MG">Madagaskar</option>
+            <option class="" value="MW">Malawi</option>
+            <option class="" value="MV">Maldiven</option>
+            <option class="" value="MY">Maleisi&euml;</option>
+            <option class="" value="ML">Mali</option>
+            <option class="" value="MT">Malta</option>
+            <option class="" value="IM">Man</option>
+            <option class="" value="MA">Marokko</option>
+            <option class="" value="MH">Marshalleilanden</option>
+            <option class="" value="MQ">Martinique</option>
+            <option class="" value="MR">Mauritani&euml;</option>
+            <option class="" value="MU">Mauritius</option>
+            <option class="" value="YT">Mayotte</option>
+            <option class="" value="MX">Mexico</option>
+            <option class="" value="FM">Micronesia</option>
+            <option class="" value="MD">Moldavi&euml;</option>
+            <option class="" value="MC">Monaco</option>
+            <option class="" value="MN">Mongoli&euml;</option>
+            <option class="" value="ME">Montenegro</option>
+            <option class="" value="MS">Montserrat</option>
+            <option class="" value="MZ">Mozambique</option>
+            <option class="" value="MM">Myanmar</option>
+            <option class="" value="NA">Namibi&euml;</option>
+            <option class="" value="NR">Nauru</option>
+            <option class="" value="NL">Nederland</option>
+            <option class="" value="NP">Nepal</option>
+            <option class="" value="NI">Nicaragua</option>
+            <option class="" value="NC">Nieuw-Caledoni&euml;</option>
+            <option class="" value="NZ">Nieuw-Zeeland</option>
+            <option class="" value="NE">Niger</option>
+            <option class="" value="NG">Nigeria</option>
+            <option class="" value="NU">Niue</option>
+            <option class="" value="MP">Noordelijke Marianen</option>
+            <option class="" value="KP">Noord-Korea</option>
+            <option class="" value="NO">Noorwegen</option>
+            <option class="" value="NF">Norfolk</option>
+            <option class="" value="UG">Oeganda</option>
+            <option class="" value="UA">Oekra&iuml;ne</option>
+            <option class="" value="UZ">Oezbekistan</option>
+            <option class="" value="OM">Oman</option>
+            <option class="" value="AT">Oostenrijk</option>
+            <option class="" value="TL">Oost-Timor</option>
+            <option class="" value="PK">Pakistan</option>
+            <option class="" value="PW">Palau</option>
+            <option class="" value="PS">Palestina</option>
+            <option class="" value="PA">Panama</option>
+            <option class="" value="PG">Papoea-Nieuw-Guinea</option>
+            <option class="" value="PY">Paraguay</option>
+            <option class="" value="PE">Peru</option>
+            <option class="" value="PN">Pitcairneilanden</option>
+            <option class="" value="PL">Polen</option>
+            <option class="" value="PT">Portugal</option>
+            <option class="" value="PR">Puerto Rico</option>
+            <option class="" value="QA">Qatar</option>
+            <option class="" value="RE">R&eacute;union</option>
+            <option class="" value="RO">Roemeni&euml;</option>
+            <option class="" value="RU">Rusland</option>
+            <option class="" value="RW">Rwanda</option>
+            <option class="" value="BL">Saint-Barth&eacute;lemy</option>
+            <option class="" value="KN">Saint Kitts en Nevis</option>
+            <option class="" value="LC">Saint Lucia</option>
+            <option class="" value="PM">Saint-Pierre en Miquelon</option>
+            <option class="" value="VC">Saint Vincent en de Grenadines</option>
+            <option class="" value="SB">Salomonseilanden</option>
+            <option class="" value="WS">Samoa</option>
+            <option class="" value="SM">San Marino</option>
+            <option class="" value="SA">Saoedi-Arabi&euml;</option>
+            <option class="" value="ST">Sao Tom&eacute; en Principe</option>
+            <option class="" value="SN">Senegal</option>
+            <option class="" value="RS">Servi&euml;</option>
+            <option class="" value="SC">Seychellen</option>
+            <option class="" value="SL">Sierra Leone</option>
+            <option class="" value="SG">Singapore</option>
+            <option class="" value="SH">Sint-Helena, Ascension en Tristan da Cunha</option>
+            <option class="" value="MF">Sint-Maarten</option>
+            <option class="" value="SX">Sint Maarten</option>
+            <option class="" value="SI">Sloveni&euml;</option>
+            <option class="" value="SK">Slowakije</option>
+            <option class="" value="SD">Soedan</option>
+            <option class="" value="SO">Somali&euml;</option>
+            <option class="" value="ES">Spanje</option>
+            <option class="" value="SJ">Spitsbergen en Jan Mayen</option>
+            <option class="" value="LK">Sri Lanka</option>
+            <option class="" value="SR">Suriname</option>
+            <option class="" value="SZ">Swaziland</option>
+            <option class="" value="SY">Syri&euml;</option>
+            <option class="" value="TJ">Tadzjikistan</option>
+            <option class="" value="TW">Taiwan</option>
+            <option class="" value="TZ">Tanzania</option>
+            <option class="" value="TH">Thailand</option>
+            <option class="" value="TG">Togo</option>
+            <option class="" value="TK">Tokelau</option>
+            <option class="" value="TO">Tonga</option>
+            <option class="" value="TT">Trinidad en Tobago</option>
+            <option class="" value="TD">Tsjaad</option>
+            <option class="" value="CZ">Tsjechi&euml;</option>
+            <option class="" value="TN">Tunesi&euml;</option>
+            <option class="" value="TR">Turkije</option>
+            <option class="" value="TM">Turkmenistan</option>
+            <option class="" value="TC">Turks- en Caicoseilanden</option>
+            <option class="" value="TV">Tuvalu</option>
+            <option class="" value="UY">Uruguay</option>
+            <option class="" value="VU">Vanuatu</option>
+            <option class="" value="VA">Vaticaanstad</option>
+            <option class="" value="VE">Venezuela</option>
+            <option class="" value="AE">Verenigde Arabische Emiraten</option>
+            <option class="" value="US">Verenigde Staten</option>
+            <option class="" value="GB">Verenigd Koninkrijk</option>
+            <option class="" value="VN">Vietnam</option>
+            <option class="" value="WF">Wallis en Futuna</option>
+            <option class="" value="EH">Westelijke Sahara</option>
+            <option class="" value="BY">Wit-Rusland</option>
+            <option class="" value="ZM">Zambia</option>
+            <option class="" value="ZW">Zimbabwe</option>
+            <option class="" value="ZA">Zuid-Afrika</option>
+            <option class="" value="GS">Zuid-Georgia en de Zuidelijke Sandwicheilanden</option>
+            <option class="" value="KR">Zuid-Korea</option>
+            <option class="" value="SS">Zuid-Soedan</option>
+            <option class="" value="SE">Zweden</option>
+            <option class="" value="CH">Zwitserland</option>
           </select>
         </div>
       </div>
     </div>
 
-    <div *ngIf="form.controls['username'].invalid && form.controls['username'].touched">
+    <div id="username-alert" *ngIf="form.controls['username'].invalid && form.controls['username'].touched">
         <div class="alert-danger p-2 mt-2" *ngIf="form.controls['username'].errors.required">Gebruikersnaam is een verplicht veld.</div>
     </div>    
     <div class="form-group">
@@ -368,7 +368,7 @@
         <input class="form-control" type="text" name="username" id="username" placeholder="Gebruikersnaam" formControlName="username">
     </div>
 
-    <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+    <div id="password-alert" *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
         <div class="alert-danger p-2 mt-2" *ngIf="form.controls['password'].errors.required">Wachtwoord is een verplicht veld.</div>
     </div>
     <div class="form-group">
@@ -376,7 +376,7 @@
         <input class="form-control" type="password" name="password" id="password" placeholder="Wachtwoord" formControlName="password">
     </div>
 
-    <div *ngIf="form.controls['passwordCheck'].invalid && form.controls['passwordCheck'].touched">
+    <div id="password-check-alert" *ngIf="form.controls['passwordCheck'].invalid && form.controls['passwordCheck'].touched">
         <div class="alert-danger p-2 mt-2" *ngIf="form.controls['passwordCheck'].errors.required">Wachtwoord herhalen is een verplicht veld.</div>
     </div>
     <div class="form-group">
