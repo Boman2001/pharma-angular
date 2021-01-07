@@ -50,7 +50,6 @@ const routes: Routes = [
   },
   {
     path: "**",
-    name: "not-found",
     component: NotFoundComponent
   }
 ];

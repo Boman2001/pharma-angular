@@ -21,7 +21,7 @@ html, html body, html body .wrapper {
   overflow-y: auto;
 }
 
-router-outlet + * {
+.master-layout-router + * {
   flex-grow: 1;
 }
 
