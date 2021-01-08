@@ -1,0 +1,16 @@
+.not-found.page {
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.not-found.page .buttons {
+
+  width: 15vw;
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}

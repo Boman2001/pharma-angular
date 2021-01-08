@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  appKey: "H7h*U8qC?@gq5xB@=s3Mzu+?qsJTYa&b",
+  apiUrl: "https://pharma-partners-api.azurewebsites.net/api"
 };

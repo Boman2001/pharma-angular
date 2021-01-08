@@ -1,16 +1,34 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+// Modules
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { HttpClientModule } from "@angular/common/http";
+import { AppRoutingModule } from "./app-routing.module";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgDynamicBreadcrumbModule } from "ng-dynamic-breadcrumb";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CoreModule } from "./modules/core/core.module";
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+// Components
+import { AppComponent } from "./app.component";
+import { MasterComponent } from "./layout/master/master.component";
+import { NotFoundComponent } from "./pages/not-found/not-found.component";
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MasterComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    NgbModule,
+    NgDynamicBreadcrumbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CoreModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

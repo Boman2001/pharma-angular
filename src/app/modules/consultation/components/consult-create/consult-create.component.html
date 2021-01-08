@@ -1,0 +1,52 @@
+<button class="btn bg-pink" id="create-consult-btn" (click)="open(content)">+ Aanmaken</button>
+<ng-template #content let-modal>
+  <div class="modal-header px-4 py-3">
+    <h4 class="modal-title" id="modal-create-consult">Consult aanmaken</h4>
+    <button type="button" class="close border-0" (click)="modal.close('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<div class="modal-body px-5 py-3">
+  <form #consultCreateForm="ngForm" name="form" [formGroup]="form">
+    <div class="form-group">
+      <div class="input-group">
+        <input id="date" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" formControlName="date" required>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+        </div>
+      </div>
+      <div *ngIf="form.controls['date'].invalid && form.controls['date'].touched">
+        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['date'].errors.required">Een datum is verplicht</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <select class="form-control" name="patient" id="patient" formControlName="patient" required>
+        <option value="">Kies een patient</option>
+        <option value="1">Jules Mons</option>
+      </select>
+      <div *ngIf="form.controls['patient'].invalid && form.controls['patient'].touched">
+        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['patient'].errors.required">Een patient is verplicht</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <select class="form-control" name="doctor" id="doctor" formControlName="doctor" required>
+        <option value="">Kies een dokter</option>
+        <option value="1">Youri van der Sande</option>
+      </select>
+      <div *ngIf="form.controls['doctor'].invalid && form.controls['doctor'].touched">
+        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['doctor'].errors.required">Een dokter is verplicht</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" name="comment" id="comment" rows="5" placeholder="Opmerkingen" formControlName="comment"></textarea>
+      <div *ngIf="form.controls['comment'].invalid && form.controls['comment'].touched">
+        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['comment'].errors.required">Een opmerking is verplicht</div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer d-flex justify-content-between px-4 py-3">
+  <button type="button" class="btn btn-outline-danger" (click)="modal.close('Cancel click')">Annuleren</button>
+  <button type="button" class="btn btn-outline-primary" (click)="submit()" [disabled]="!consultCreateForm.valid">Aanmaken</button>
+</div>
+</ng-template>
