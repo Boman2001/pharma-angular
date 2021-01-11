@@ -1,8 +1,14 @@
+// Modules
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+
+// Services
 import { PrescriptionService } from "./services/prescription.service";
+
+// Components
 import { PrescriptionOverviewComponent } from "./pages/prescription-overview/prescription-overview.component";
 import { PrescriptionDetailComponent } from "./pages/prescription-detail/prescription-detail.component";
+import { PrescriptionRoutingModule } from "./prescription-routing.module";
 
 
 @NgModule({
@@ -11,7 +17,8 @@ import { PrescriptionDetailComponent } from "./pages/prescription-detail/prescri
     PrescriptionDetailComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    PrescriptionRoutingModule
   ],
   providers: [
     PrescriptionService

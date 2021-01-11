@@ -9,11 +9,11 @@ const routes: Routes = [
     pathMatch: "full",
     component: PrescriptionOverviewComponent,
     data: {
-      title: "Medicatie",
+      title: "Recepten",
       breadcrumb: [
         {
-          label: "Medicatie",
-          url: "/prescription"
+          label: "Recepten",
+          url: "/prescriptions"
         }
       ]
     }
@@ -23,15 +23,15 @@ const routes: Routes = [
     pathMatch: "full",
     component: PrescriptionDetailComponent,
     data: {
-      title: "Medicatie",
+      title: "Recepten",
       breadcrumb: [
         {
-          label: "Medicatie",
-          url: "/prescription"
+          label: "Recepten",
+          url: "/prescriptions"
         },
         {
-          label: "Medicijn",
-          url: "/prescription/:id"
+          label: "Recept",
+          url: "/prescriptions/:id"
         }
       ]
     }
@@ -43,4 +43,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PatientRoutingModule { }
+export class PrescriptionRoutingModule { }
