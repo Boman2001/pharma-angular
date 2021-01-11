@@ -1,6 +1,6 @@
 /*
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { GenericHttpService } from '../../services/generic-http.service';
+import { CountryService } from './testdata/country.service';
 
 import { Datatable } from './datatable';
 
@@ -20,7 +20,7 @@ describe('Datatable', () => {
         component = fixture.componentInstance;
         fixture.detectChanges();
 
-        component.service = new GenericHttpService();
+        component.service = new CountryService();
         component.actions = [{
             id: "editButton",
             name: "edit",
@@ -33,7 +33,6 @@ describe('Datatable', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
-
 
     it('test button', () => {
 

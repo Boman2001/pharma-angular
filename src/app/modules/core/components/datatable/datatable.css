@@ -7,7 +7,7 @@ th.sortable {
 th.sortable:after {
   content: '';
   display: block;
-  background: url('../../assets/images/normalfilter.svg') no-repeat;
+  background: url("../../../../../assets/img/normalfilter.svg") no-repeat;
   background-size: 22px;
   width: 22px;
   height: 22px;
@@ -18,7 +18,7 @@ th.sortable:after {
 th.sortable.desc:after, th.sortable.asc:after {
   content: '';
   display: block;
-  background: url('../../assets/images/normalfilterasc.svg') no-repeat;
+  background: url("../../../../../assets/img/normalfilterasc.svg") no-repeat;
   float: right;
 }
 

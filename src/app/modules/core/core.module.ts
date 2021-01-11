@@ -1,16 +1,17 @@
 // Modules
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { Datatable } from "./components/datatable/datatable";
 
 // Services
 import { StorageService } from "./services/storage.service";
 
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule
   ],
+  exports: [Datatable],
   providers: [
     StorageService
   ]

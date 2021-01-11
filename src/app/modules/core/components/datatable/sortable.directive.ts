@@ -1,5 +1,5 @@
-import { Directive, EventEmitter, Input, Output } from '@angular/core';
-import { BaseEntity } from '../../models/base-entity.model';
+import { Directive, EventEmitter, Input, Output } from "@angular/core";
+import { BaseEntity } from "../../models/base-entity.model";
 
 export type SortColumn = keyof BaseEntity | '';
 export type SortDirection = 'asc' | 'desc' | '';

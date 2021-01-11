@@ -1,8 +1,8 @@
-import { BehaviorSubject, Subject } from 'rxjs';
-import { DecimalPipe } from '@angular/common';
-import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
-import { SortColumn, SortDirection } from './sortable.directive';
-import { IRepository } from '../../lib/IRepository';
+import { BehaviorSubject, Subject } from "rxjs";
+import { DecimalPipe } from "@angular/common";
+import { debounceTime, delay, switchMap, tap } from "rxjs/operators";
+import { SortColumn, SortDirection } from "./sortable.directive";
+import { IRepository } from "../../lib/IRepository";
 
 interface SearchResult {
     entities: any[];

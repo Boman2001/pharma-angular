@@ -1,14 +1,14 @@
-import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { DecimalPipe, KeyValue } from '@angular/common';
-import { TableService } from './datatable.service';
-import { NgbdSortableHeader, SortEvent } from './sortable.directive';
-import { IRepository } from '../../lib/IRepository';
+import { Component, Input, OnInit, QueryList, ViewChildren } from "@angular/core";
+import { DecimalPipe, KeyValue } from "@angular/common";
+import { TableService } from "./datatable.service";
+import { NgbdSortableHeader, SortEvent } from "./sortable.directive";
+import { IRepository } from "../../lib/IRepository";
 
 
 @Component({
-    selector: 'Datatable',
-    templateUrl: './datatable.html',
-    styleUrls: ['./datatable.css'],
+    selector: "Datatable",
+    templateUrl: "./datatable.html",
+    styleUrls: ["./datatable.css"],
     providers: [DecimalPipe]
 })
 export class Datatable implements OnInit {
