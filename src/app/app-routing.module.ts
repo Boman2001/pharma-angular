@@ -2,6 +2,7 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 
+
 // Components
 import {MasterComponent} from "./layout/master/master.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
@@ -25,13 +26,14 @@ const routes: Routes = [
       {
         path: "patients",
         loadChildren: () =>
-          import("./modules/patient/patient.module").then((m) => m.PatientModule),
+          import("./modules/patient/patient.module").then(m => m.PatientModule),
       },
       {
         path: "doctors",
         loadChildren: () =>
-          import("./modules/user/user.module").then((m) => m.UserModule),
+          import("./modules/user/user.module").then(m => m.UserModule),
       },
+
       {
         path: "examinations",
         loadChildren: () =>
@@ -47,7 +49,7 @@ const routes: Routes = [
   {
     path: "auth",
     loadChildren: () =>
-      import("./modules/auth/auth.module").then((m) => m.AuthModule),
+      import("./modules/auth/auth.module").then(m => m.AuthModule),
   },
   {
     path: "**",
