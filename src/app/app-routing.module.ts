@@ -38,15 +38,6 @@ const routes: Routes = [
           import("./modules/examination/examination.module").then((m) => m.ExaminationModule),
       }
     ],
-    data: {
-      title: "Consult",
-      breadcrumb: [
-        {
-          label: "Consult",
-          url: "/consultation"
-        }
-      ]
-    }
   },
   {
     path: "auth",
