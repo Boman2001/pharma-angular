@@ -1,11 +1,11 @@
 // Modules
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
 
 
 // Components
-import { MasterComponent } from "./layout/master/master.component";
-import { NotFoundComponent } from "./pages/not-found/not-found.component";
+import {MasterComponent} from "./layout/master/master.component";
+import {NotFoundComponent} from "./pages/not-found/not-found.component";
 
 
 const routes: Routes = [
@@ -39,7 +39,8 @@ const routes: Routes = [
         loadChildren: () =>
           import("./modules/prescription/prescription.module").then((m) => m.PrescriptionModule),
       },
-    ],
+    ]
+  },
   {
     path: "auth",
     loadChildren: () =>
@@ -56,4 +57,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
