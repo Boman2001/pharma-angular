@@ -13,7 +13,7 @@ import { PrescriptionRoutingModule } from "./prescription-routing.module";
 
 @NgModule({
   declarations: [
-    PrescriptionOverviewComponent, 
+    PrescriptionOverviewComponent,
     PrescriptionDetailComponent
   ],
   imports: [
@@ -24,7 +24,7 @@ import { PrescriptionRoutingModule } from "./prescription-routing.module";
     PrescriptionService
   ],
   exports: [
-    PrescriptionOverviewComponent, 
+    PrescriptionOverviewComponent,
     PrescriptionDetailComponent
   ]
 })
