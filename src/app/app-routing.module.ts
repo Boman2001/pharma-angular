@@ -32,6 +32,11 @@ const routes: Routes = [
         loadChildren: () =>
           import("./modules/user/user.module").then((m) => m.UserModule),
       },
+      {
+        path: "prescriptions",
+        loadChildren: () =>
+          import("./modules/prescription/prescription.module").then((m) => m.PrescriptionModule),
+      },
     ],
     data: {
       title: "Consult",
