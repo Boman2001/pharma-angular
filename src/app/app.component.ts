@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { ActivationEnd, NavigationEnd, Router } from "@angular/router";
+import { ActivationEnd, Router } from "@angular/router";
 import { NgDynamicBreadcrumbService } from "ng-dynamic-breadcrumb";
 
 @Component({
