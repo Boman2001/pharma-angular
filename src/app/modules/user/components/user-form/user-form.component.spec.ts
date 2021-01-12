@@ -33,21 +33,21 @@ describe("UserFormComponent", () => {
   });
 
   it("should return form is valid", () => {
-    userForm.name.setValue("Test");
-    userForm.bsn.setValue("123");
-    userForm.email.setValue("test@test.com");
-    userForm.dob.setValue("2021-01-01");
-    userForm.gender.setValue("male");
-    userForm.phone.setValue("0612345678");
-    userForm.street.setValue("MyStreet");
-    userForm.housenumber.setValue(15);
-    userForm.additional.setValue("a");
-    userForm.city.setValue("Roosendaal");
-    userForm.postalcode.setValue("1234AB");
-    userForm.country.setValue("NL");
-    userForm.username.setValue("Test");
-    userForm.password.setValue("test");
-    userForm.passwordCheck.setValue("test");
+    userForm.Name.setValue("Test");
+    userForm.BSN.setValue("123");
+    userForm.Email.setValue("test@test.com");
+    userForm.Dob.setValue("2021-01-01");
+    userForm.Gender.setValue("male");
+    userForm.PhoneNumber.setValue("0612345678");
+    userForm.Street.setValue("MyStreet");
+    userForm.HouseNumber.setValue(15);
+    userForm.HouseNumberAddon.setValue("a");
+    userForm.City.setValue("Roosendaal");
+    userForm.PostalCode.setValue("1234AB");
+    userForm.Country.setValue("NL");
+    userForm.Username.setValue("Test");
+    userForm.Password.setValue("test");
+    userForm.PasswordCheck.setValue("test");
 
     expect(component.form.valid).toBeTruthy();
   });

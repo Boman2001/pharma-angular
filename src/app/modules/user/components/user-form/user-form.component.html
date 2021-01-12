@@ -1,111 +1,134 @@
-<form method="POST" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
-  
-    <div id="name-alert" *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
-      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['name'].errors.required">Naam is een verplicht veld.</div>
+<div class="form-spinner" *ngIf="(editMode && !user?.Id); else userForm">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<ng-template #userForm>
+  <form method="POST" [formGroup]="form" (ngSubmit)="save()">
+
+    <input type="hidden" Name="Id" id="user-Id" formControlName="Id">
+
+    <div id="Name-alert" *ngIf="form.controls['Name'].invalid && form.controls['Name'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['Name'].errors.required">Naam is een verplicht veld.</div>
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['Name'].errors.maxLength">Naam is te lang.</div>
     </div>
     <div class="form-group">
-      <label for="name">Naam</label>
-      <input class="form-control" type="text" name="name" id="user-name" placeholder="Naam" formControlName="name">
+      <label for="user-Name">Naam</label>
+      <input class="form-control" type="text" Name="Name" id="user-Name" placeholder="Naam" formControlName="Name">
     </div>
-  
-    <div id="bsn-alert" *ngIf="form.controls['bsn'].invalid && form.controls['bsn'].touched">
-      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['bsn'].errors.required">BSN is een verplicht veld.</div>
-    </div>
-    <div class="form-group">
-      <label for="bsn">BSN</label>
-      <input class="form-control" type="text" name="bsn" id="user-bsn" placeholder="BSN" formControlName="bsn">
-    </div>
-  
-    <div id="email-alert" *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
-      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['email'].errors.required">Email is een verplicht veld.</div>
+
+    <div id="BSN-alert" *ngIf="form.controls['BSN'].invalid && form.controls['BSN'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['BSN'].errors.required">BSN is een verplicht veld.</div>
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['BSN'].errors.minLength">BSN is te kort.</div>
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['BSN'].errors.maxLength">BSN is te lang.</div>
     </div>
     <div class="form-group">
-      <label for="email">Email</label>
-      <input class="form-control" type="email" name="email" id="user-email" placeholder="Email" formControlName="email">
+      <label for="user-BSN">BSN</label>
+      <input class="form-control" type="text" Name="BSN" id="user-BSN" placeholder="BSN" formControlName="BSN">
     </div>
-  
-    <div id="dob-alert" *ngIf="form.controls['dob'].invalid && form.controls['dob'].touched">
-      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['dob'].errors.required">Geboortedatum is een verplicht veld.</div>
-    </div>
-    <div class="form-group">
-      <label for="dob">Geboortedatum</label>
-      <input class="form-control" type="date" name="dob" id="user-dob" placeholder="Geboortedatum" formControlName="dob"/>
-    </div>
-  
-    <div id="gender-alert" *ngIf="form.controls['gender'].invalid && form.controls['gender'].touched">
-      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['gender'].errors.required">Geslacht is een verplicht veld.</div>
+
+    <div id="Email-alert" *ngIf="form.controls['Email'].invalid && form.controls['Email'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['Email'].errors.required">Email is een verplicht veld.</div>
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['Email'].errors.maxLength">Email is te lang.</div>
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['Email'].errors.email">Email is ongeldig.</div>
     </div>
     <div class="form-group">
-      <label for="custom-radio">Geslacht</label>
+      <label for="user-Email">Email</label>
+      <input class="form-control" type="Email" Name="Email" id="user-Email" placeholder="Email" formControlName="Email">
+    </div>
+
+    <div id="Dob-alert" *ngIf="form.controls['Dob'].invalid && form.controls['Dob'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['Dob'].errors.required">Geboortedatum is een verplicht veld.</div>
+    </div>
+    <div class="form-group">
+      <label for="user-Dob">Geboortedatum</label>
+      <input class="form-control" type="date" Name="Dob" id="user-Dob" placeholder="Geboortedatum" formControlName="Dob"/>
+    </div>
+
+    <div id="Gender-alert" *ngIf="form.controls['Gender'].invalid && form.controls['Gender'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['Gender'].errors.required">Geslacht is een verplicht veld.</div>
+    </div>
+    <div class="form-group">
+      <label>Geslacht</label>
       <div class="custom-control custom-radio">
-        <input type="radio" id="user-male" name="gender" class="custom-control-input" value="male" formControlName="gender">
-        <label class="custom-control-label" for="male">Man</label>
+        <input type="radio" id="user-Gender-male" Name="Gender" class="custom-control-input" value="male" formControlName="Gender">
+        <label class="custom-control-label" for="user-Gender-male">Man</label>
       </div>
-  
+
       <div class="custom-control custom-radio">
-        <input type="radio" id="user-female" name="gender" class="custom-control-input" value="female" formControlName="gender">
-        <label class="custom-control-label" for="female">Vrouw</label>
+        <input type="radio" id="user-Gender-female" Name="Gender" class="custom-control-input" value="female" formControlName="Gender">
+        <label class="custom-control-label" for="user-Gender-female">Vrouw</label>
       </div>
-  
+
       <div class="custom-control custom-radio">
-        <input type="radio" id="user-other" name="gender" class="custom-control-input" value="other" formControlName="gender">
-        <label class="custom-control-label" for="other">Overige</label>
+        <input type="radio" id="user-Gender-other" Name="Gender" class="custom-control-input" value="other" formControlName="Gender">
+        <label class="custom-control-label" for="user-Gender-other">Overige</label>
       </div>
     </div>
-  
-    <div id="phone-alert" *ngIf="form.controls['phone'].invalid && form.controls['phone'].touched">
-      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['phone'].errors.required">Telefoonnummer is een verplicht veld.</div>
+
+    <div id="user-PhoneNumber-alert" *ngIf="form.controls['PhoneNumber'].invalid && form.controls['PhoneNumber'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['PhoneNumber'].errors.required">Telefoonnummer is een verplicht veld.</div>
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['PhoneNumber'].errors.maxLength">Telefoonnummer is te lang.</div>
     </div>
     <div class="form-group">
-      <label for="phone-number">Telefoonnummer</label>
-      <input class="form-control" type="text" name="phone-number" id="user-phone-number" placeholder="Telefoonnummer" formControlName="phone">
+      <label for="user-PhoneNumber-number">Telefoonnummer</label>
+      <input class="form-control" type="text" Name="PhoneNumber-number" id="user-PhoneNumber-number" placeholder="Telefoonnummer" formControlName="PhoneNumber">
     </div>
-  
-    <div id="street-alert" *ngIf="form.controls['street'].invalid && form.controls['street'].touched">
-      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['street'].errors.required">Straatnaam is een verplicht veld.</div>
+
+    <div id="user-Street-alert" *ngIf="form.controls['Street'].invalid && form.controls['Street'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['Street'].errors.required">Straatnaam is een verplicht veld.</div>
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['Street'].errors.maxLength">Straatnaam is te lang.</div>
     </div>
-    <div id="house-alert" *ngIf="form.controls['housenumber'].invalid && form.controls['housenumber'].touched">
-      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['housenumber'].errors.required">Huisnummer is een verplicht veld.</div>
+    <div id="user-HouseNumber-alert" *ngIf="form.controls['HouseNumber'].invalid && form.controls['HouseNumber'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['HouseNumber'].errors.required">Huisnummer is een verplicht veld.</div>
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['HouseNumber'].errors.maxLength">Huisnummer is te lang.</div>
+    </div>
+    <div id="user-HouseNumberAddon-alert" *ngIf="form.controls['HouseNumberAddon'].invalid && form.controls['HouseNumberAddon'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['HouseNumberAddon'].errors.maxLength">Toevoeging is te lang.</div>
     </div>
     <div class="form-group">
       <div class="form-row">
         <div class="col-6">
-          <label for="street">Straatnaam</label>
-          <input class="form-control" type="text" name="street" id="user-street" placeholder="Straatnaam" formControlName="street">
+          <label for="user-Street">Straatnaam</label>
+          <input class="form-control" type="text" Name="Street" id="user-Street" placeholder="Straatnaam" formControlName="Street">
         </div>
         <div class="col-3">
-          <label for="house-number">Huisnummer</label>
-          <input class="form-control" type="number" name="house-number" id="user-house-number" placeholder="Huisnummer" formControlName="housenumber">
+          <label for="user-HouseNumber">Huisnummer</label>
+          <input class="form-control" type="number" Name="HouseNumber" id="user-HouseNumber" placeholder="Huisnummer" formControlName="HouseNumber">
         </div>
         <div class="col-3">
-          <label for="addition">Toevoeging</label>
-          <input class="form-control" type="text" name="addition" id="user-addition" placeholder="Toevoeging">
+          <label for="user-HouseNumberAddon">Toevoeging</label>
+          <input class="form-control" type="text" Name="HouseNumberAddon" id="user-HouseNumberAddon" placeholder="Toevoeging" formControlName="HouseNumberAddon">
         </div>
       </div>
     </div>
-  
-    <div id="city-alert" *ngIf="form.controls['city'].invalid && form.controls['city'].touched">
-      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['city'].errors.required">Stad is een verplicht veld.</div>
+
+    <div id="user-City-alert" *ngIf="form.controls['City'].invalid && form.controls['City'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['City'].errors.required">Stad is een verplicht veld.</div>
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['City'].errors.maxLength">Stad is te lang.</div>
     </div>
-    <div id="postalcode-alert" *ngIf="form.controls['postalcode'].invalid && form.controls['postalcode'].touched">
-      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['postalcode'].errors.required">Postcode is een verplicht veld.</div>
+    <div id="user-PostalCode-alert" *ngIf="form.controls['PostalCode'].invalid && form.controls['PostalCode'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['PostalCode'].errors.required">Postcode is een verplicht veld.</div>
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['PostalCode'].errors.minLength">Postcode is te kort.</div>
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['PostalCode'].errors.maxLength">Postcode is te lang.</div>
     </div>
-    <div id="city-alert" *ngIf="form.controls['country'].invalid && form.controls['country'].touched">
-      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['country'].errors.required">Land is een verplicht veld.</div>
+    <div id="user-Country-alert" *ngIf="form.controls['Country'].invalid && form.controls['Country'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['Country'].errors.required">Land is een verplicht veld.</div>
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['Country'].errors.maxLength">Land is te lang.</div>
     </div>
     <div class="form-group">
       <div class="form-row">
         <div class="col-6">
-          <label for="city">Stad</label>
-          <input class="form-control" type="text" id="user-city" name="city" placeholder="Stad" formControlName="city">
+          <label for="user-City">Stad</label>
+          <input class="form-control" type="text" id="user-City" Name="City" placeholder="Stad" formControlName="City">
         </div>
         <div class="col-2">
-          <label for="postal-code">Postcode</label>
-          <input class="form-control" type="text" name="postal-code" id="user-postal-code" placeholder="Postcode" formControlName="postalcode">
+          <label for="user-PostalCode">Postcode</label>
+          <input class="form-control" type="text" Name="PostalCode" id="user-PostalCode" placeholder="Postcode" formControlName="PostalCode">
         </div>
         <div class="col-4">
-          <label for="country">Land</label>
-          <select class="custom-select" id="user-country" name="country" formControlName="country">
+          <label for="user-Country">Land</label>
+          <select class="custom-select" id="user-Country" Name="Country" formControlName="Country">
             <option class="" value="AF">Afghanistan</option>
             <option class="" value="AX">&Aring;land</option>
             <option class="" value="AL">Albani&euml;</option>
@@ -318,7 +341,7 @@
             <option class="" value="ES">Spanje</option>
             <option class="" value="SJ">Spitsbergen en Jan Mayen</option>
             <option class="" value="LK">Sri Lanka</option>
-            <option class="" value="SR">Suriname</option>
+            <option class="" value="SR">SuriName</option>
             <option class="" value="SZ">Swaziland</option>
             <option class="" value="SY">Syri&euml;</option>
             <option class="" value="TJ">Tadzjikistan</option>
@@ -360,31 +383,36 @@
       </div>
     </div>
 
-    <div id="username-alert" *ngIf="form.controls['username'].invalid && form.controls['username'].touched">
-        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['username'].errors.required">Gebruikersnaam is een verplicht veld.</div>
-    </div>    
+    <div id="user-Username-alert" *ngIf="form.controls['Username'].invalid && form.controls['Username'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['Username'].errors.required">Gebruikersnaam is een verplicht veld.</div>
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['Username'].errors.maxLength">Gebruikersnaam is te lang.</div>
+    </div>
     <div class="form-group">
-        <label for="username">Gebruikersnaam</label>
-        <input class="form-control" type="text" name="username" id="username" placeholder="Gebruikersnaam" formControlName="username">
+      <label for="Username">Gebruikersnaam</label>
+      <input class="form-control" type="text" Name="Username" id="Username" placeholder="Gebruikersnaam" formControlName="Username">
     </div>
 
-    <div id="password-alert" *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
-        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['password'].errors.required">Wachtwoord is een verplicht veld.</div>
+    <div id="user-Password-alert" *ngIf="form.controls['Password'].invalid && form.controls['Password'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['Password'].errors.required">Wachtwoord is een verplicht veld.</div>
     </div>
     <div class="form-group">
-        <label for="password">Wachtwoord</label>
-        <input class="form-control" type="password" name="password" id="password" placeholder="Wachtwoord" formControlName="password">
+      <label for="Password">Wachtwoord</label>
+      <input class="form-control" type="Password" Name="Password" id="Password" placeholder="Wachtwoord" formControlName="Password">
     </div>
 
-    <div id="password-check-alert" *ngIf="form.controls['passwordCheck'].invalid && form.controls['passwordCheck'].touched">
-        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['passwordCheck'].errors.required">Wachtwoord herhalen is een verplicht veld.</div>
+    <div id="user-PasswordCheck-alert" *ngIf="form.controls['PasswordCheck'].invalid && form.controls['PasswordCheck'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['PasswordCheck'].errors.required">Wachtwoord herhalen is een verplicht veld.</div>
+    </div>
+    <div id="Password-check-notMatching-alert" *ngIf="form.controls['PasswordCheck'].invalid && form.controls['PasswordCheck'].touched">
+      <div class="alert-danger p-2 mt-2" *ngIf="form.controls['PasswordCheck'].errors.notMatching">Het bevestigde wachtwoord komt niet overeen met het wachtwoord</div>
     </div>
     <div class="form-group">
-        <label for="passwordCheck">Wachtwoord herhalen</label>
-        <input class="form-control" type="password" name="passwordCheck" id="passwordCheck" placeholder="Wachtwoord herhalen" formControlName="passwordCheck">
+      <label for="PasswordCheck">Wachtwoord herhalen</label>
+      <input class="form-control" type="Password" Name="PasswordCheck" id="PasswordCheck" placeholder="Wachtwoord herhalen" formControlName="PasswordCheck">
     </div>
 
     <div class="form-group pt-3 text-right">
-        <button class="btn btn-primary" type="submit">{{ buttonName }}</button>
+      <button class="btn btn-primary" type="submit">{{ buttonName }}</button>
     </div>
-</form>      
+  </form>
+</ng-template>
