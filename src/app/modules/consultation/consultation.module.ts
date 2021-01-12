@@ -27,7 +27,7 @@ import { ConsultCreateComponent } from "./components/consult-create/consult-crea
     ConsultationRoutingModule,
     NgbDatepickerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
     ConsultOverviewComponent,

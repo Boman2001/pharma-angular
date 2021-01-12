@@ -14,6 +14,7 @@ import { PatientCreateComponent } from "./pages/patient-create/patient-create.co
 import { PatientDetailComponent } from "./pages/patient-detail/patient-detail.component";
 import { PatientEditComponent } from "./pages/patient-edit/patient-edit.component";
 import { PatientFormComponent } from "./components/patient-form/patient-form.component";
+import { CoreModule } from "../core/core.module";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { PatientFormComponent } from "./components/patient-form/patient-form.com
     PatientRoutingModule,
     NgbDatepickerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreModule
   ],
   providers: [
     PatientService

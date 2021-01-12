@@ -9,6 +9,7 @@ import { PrescriptionService } from "./services/prescription.service";
 import { PrescriptionOverviewComponent } from "./pages/prescription-overview/prescription-overview.component";
 import { PrescriptionDetailComponent } from "./pages/prescription-detail/prescription-detail.component";
 import { PrescriptionRoutingModule } from "./prescription-routing.module";
+import { CoreModule } from "../core/core.module";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { PrescriptionRoutingModule } from "./prescription-routing.module";
   ],
   imports: [
     CommonModule,
-    PrescriptionRoutingModule
+    PrescriptionRoutingModule,
+    CoreModule
   ],
   providers: [
     PrescriptionService

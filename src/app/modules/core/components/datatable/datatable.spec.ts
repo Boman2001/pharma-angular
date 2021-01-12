@@ -1,4 +1,3 @@
-/*
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CountryService } from './testdata/country.service';
 
@@ -35,8 +34,20 @@ describe('Datatable', () => {
     });
 
     it('test button', () => {
+        const ourDomTableUnderTest = document.querySelector('table.table');
 
-        fixture.debugElement.nativeElement.querySelector("#editButton").click();
+        const tableHeaders = Array.from(
+            ourDomTableUnderTest.getElementsByClassName('sortable')
+        );
+
+        const headerClass = [
+            'sortable'
+        ]
+
+        tableHeaders.forEach(header => {
+            expect(
+                headerClass.some(item => header.classList.contains(item))
+            ).toBeTrue();
+        })
     })
 });
-*/
