@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormBuilder } from "@angular/forms";
-
 import { UserFormComponent } from "./user-form.component";
+import { UserService } from "../../services/user.service";
+import { RouterTestingModule } from "@angular/router/testing";
+import { HttpClient, HttpHandler } from "@angular/common/http";
+
 
 describe("UserFormComponent", () => {
   let component: UserFormComponent;
@@ -10,8 +13,14 @@ describe("UserFormComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ RouterTestingModule ],
       declarations: [ UserFormComponent ],
-      providers: [ FormBuilder ]
+      providers: [
+        UserService,
+        HttpClient,
+        HttpHandler,
+        FormBuilder
+      ]
     })
     .compileComponents();
   });
@@ -33,10 +42,11 @@ describe("UserFormComponent", () => {
   });
 
   it("should return form is valid", () => {
-    userForm.Name.setValue("Test");
-    userForm.BSN.setValue("123");
+    userForm.Id.setValue("1");
+    userForm.Name.setValue("Test Test");
+    userForm.BSN.setValue("12345678911");
     userForm.Email.setValue("test@test.com");
-    userForm.Dob.setValue("2021-01-01");
+    userForm.Dob.setValue("01-01-2021");
     userForm.Gender.setValue("male");
     userForm.PhoneNumber.setValue("0612345678");
     userForm.Street.setValue("MyStreet");

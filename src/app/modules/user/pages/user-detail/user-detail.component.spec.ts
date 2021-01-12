@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { UserDetailComponent } from "./user-detail.component";
+import {ActivatedRoute, convertToParamMap} from "@angular/router";
+import { UserService } from "../../services/user.service";
+import { of } from "rxjs";
+import { HttpClient, HttpHandler } from "@angular/common/http";
+
 
 describe("UserDetailComponent", () => {
   let component: UserDetailComponent;
@@ -8,7 +12,16 @@ describe("UserDetailComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserDetailComponent ]
+      declarations: [ UserDetailComponent ],
+      providers: [
+        UserService,
+        HttpClient,
+        HttpHandler,
+        {
+          provide: ActivatedRoute,
+          useValue: { paramMap: of(convertToParamMap({ id: 1 })) }
+        },
+      ]
     })
     .compileComponents();
   });

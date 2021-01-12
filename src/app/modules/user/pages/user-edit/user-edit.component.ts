@@ -14,8 +14,8 @@ export class UserEditComponent {
   user: Observable<User>;
 
   constructor(private userService: UserService, private route: ActivatedRoute) {
-    this.route.params.subscribe(async (params) => {
-      this.user = this.userService.Get(params.id);
+    this.route.paramMap.subscribe(params => {
+      this.user = this.userService.Get(params.get("id"));
     });
   }
 }
