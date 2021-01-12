@@ -1,10 +1,11 @@
 // Modules
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
+
 
 // Components
-import { MasterComponent } from "./layout/master/master.component";
-import { NotFoundComponent } from "./pages/not-found/not-found.component";
+import {MasterComponent} from "./layout/master/master.component";
+import {NotFoundComponent} from "./pages/not-found/not-found.component";
 
 
 const routes: Routes = [
@@ -25,12 +26,18 @@ const routes: Routes = [
       {
         path: "patients",
         loadChildren: () =>
-          import("./modules/patient/patient.module").then((m) => m.PatientModule),
+          import("./modules/patient/patient.module").then(m => m.PatientModule),
       },
       {
         path: "doctors",
         loadChildren: () =>
-          import("./modules/user/user.module").then((m) => m.UserModule),
+          import("./modules/user/user.module").then(m => m.UserModule),
+      },
+
+      {
+        path: "examinations",
+        loadChildren: () =>
+          import("./modules/examination/examination.module").then((m) => m.ExaminationModule),
       },
       {
         path: "prescriptions",
@@ -38,20 +45,11 @@ const routes: Routes = [
           import("./modules/prescription/prescription.module").then((m) => m.PrescriptionModule),
       },
     ],
-    data: {
-      title: "Consult",
-      breadcrumb: [
-        {
-          label: "Consult",
-          url: "/consultation"
-        }
-      ]
-    }
   },
   {
     path: "auth",
     loadChildren: () =>
-      import("./modules/auth/auth.module").then((m) => m.AuthModule),
+      import("./modules/auth/auth.module").then(m => m.AuthModule),
   },
   {
     path: "**",
@@ -64,4 +62,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
