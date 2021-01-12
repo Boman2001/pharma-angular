@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 
@@ -56,7 +56,7 @@ export class PatientOverviewComponent {
     }
   ];
 
-  constructor(public patientService: PatientService, public router: Router) { 
+  constructor(public patientService: PatientService, public router: Router) {
     this.deleteEntity = new Observable(e => this.emitter = e);
   }
 }

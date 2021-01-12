@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { BaseEntity } from "src/app/modules/core/core.module";
@@ -55,8 +55,7 @@ export class UserOverviewComponent {
     }
   ]
 
-  constructor(public userService: UserService, public router: Router) { 
+  constructor(public userService: UserService, public router: Router) {
     this.deleteEntity = new Observable(e => this.emitter = e);
   }
-
 }
