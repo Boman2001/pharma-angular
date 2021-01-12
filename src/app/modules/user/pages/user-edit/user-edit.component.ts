@@ -1,15 +1,21 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { User } from "../../models/user.model";
+import { UserService } from "../../services/user.service";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-user-edit",
   templateUrl: "./user-edit.component.html",
   styleUrls: ["./user-edit.component.css"]
 })
-export class UserEditComponent implements OnInit {
+export class UserEditComponent {
 
-  constructor() { }
+  user: Observable<User>;
 
-  ngOnInit(): void {
+  constructor(private userService: UserService, private route: ActivatedRoute) {
+    this.route.params.subscribe(async (params) => {
+      this.user = this.userService.Get(params.id);
+    });
   }
-
 }

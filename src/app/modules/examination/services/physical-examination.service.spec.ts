@@ -1,8 +1,8 @@
 import { TestBed } from "@angular/core/testing";
-
 import { PhysicalExaminationService } from "./physical-examination.service";
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { HttpClient } from "@angular/common/http";
+import { StorageService } from "../../core/core.module";
 
 
 describe("PhysicalExaminationService", () => {
@@ -13,7 +13,8 @@ describe("PhysicalExaminationService", () => {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
       providers: [
-        HttpClient
+        HttpClient,
+        StorageService
       ]
     });
 
