@@ -1,0 +1,15 @@
+<ng-template #modalContent let-modal>
+    <div class="modal-header px-4 py-3">
+      <h4 class="modal-title" id="modal-confirm-delete">Verwijderen</h4>
+      <button type="button" class="close border-0" (click)="close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <div class="modal-body px-5 py-3">
+      <p>Weet je zeker dat je dit wilt verwijderen?</p>
+  </div>
+  <div class="modal-footer d-flex justify-content-between px-4 py-3">
+    <button type="button" class="btn btn-outline-danger" (click)="close">Annuleren</button>
+    <button type="button" class="btn btn-outline-primary" (click)="delete">Verwijderen</button>
+  </div>
+</ng-template>  

@@ -1,13 +1,16 @@
 // Modules
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { Datatable } from "./components/datatable/datatable";
 
 // Services
 import { StorageService } from "./services/storage.service";
 import { FormsModule } from "@angular/forms";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgbdSortableHeader } from "./components/datatable/sortable.directive";
+
+// Components
+import { Datatable } from "./components/datatable/datatable";
+import { DeleteModalComponent } from "./components/delete-modal/delete-modal.component";
 
 
 @NgModule({
@@ -19,9 +22,11 @@ import { NgbdSortableHeader } from "./components/datatable/sortable.directive";
   declarations: [
     Datatable,
     NgbdSortableHeader,
+    DeleteModalComponent,
   ],
   exports: [
-    Datatable
+    Datatable,
+    DeleteModalComponent
   ],
   providers: [
     StorageService
@@ -34,7 +39,8 @@ export class CoreModule { }
 export * from "./models/base-entity.model";
 
 // Components
-export { Datatable } from "./components/datatable/datatable"
+export * from "./components/datatable/datatable";
+export * from "./components/delete-modal/delete-modal.component";
 
 // Services
 export * from "./services/http.service";

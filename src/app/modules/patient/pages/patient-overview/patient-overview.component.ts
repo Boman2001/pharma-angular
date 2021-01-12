@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { Observable } from "rxjs";
 
 import { BaseEntity } from "src/app/modules/core/core.module";
 import { PatientService } from "../../services/patient.service";
@@ -9,7 +10,10 @@ import { PatientService } from "../../services/patient.service";
   templateUrl: "./patient-overview.component.html",
   styleUrls: ["./patient-overview.component.css"]
 })
-export class PatientOverviewComponent implements OnInit {
+export class PatientOverviewComponent {
+
+  private emitter;
+  public deleteEntity: Observable<BaseEntity>;
 
   headerArray: string[] = [
     "Name",
@@ -22,10 +26,10 @@ export class PatientOverviewComponent implements OnInit {
     "Street",
     "HouseNumber",
     "HouseNumberAddon",
-    "PostalCode",
-
+    "PostalCode"
   ];
-  actionsArray: { id: string, class: string, icon: string, action: (entity: BaseEntity) => void }[] = [
+  actionsArray: { id: string, class: string, icon: string, action: (entity: BaseEntity) => void }[] = 
+  [
     {
       id: "patient-detail",
       class: "btn btn-primary",
@@ -47,15 +51,12 @@ export class PatientOverviewComponent implements OnInit {
       class: "btn btn-danger",
       icon: '<i class="fas fa-trash-alt"></i>',
       action: (entity: BaseEntity) => {
-        console.log(entity.Id);
+        this.emitter.next(entity);
       }
     }
   ];
 
-
-  constructor(public patientService: PatientService, public router: Router) { }
-
-  ngOnInit(): void {
+  constructor(public patientService: PatientService, public router: Router) { 
+    this.deleteEntity = new Observable(e => this.emitter = e);
   }
-
 }
