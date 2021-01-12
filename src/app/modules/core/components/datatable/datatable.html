@@ -36,8 +36,8 @@
                         </td>
                     </ng-container>
                     <td *ngIf="actions.length != 0">
-                        <button *ngFor="let a of actions" [id]="a.id" (click)="a.action()" class="btn btn-primary mx-1">
-                            {{a.name}}
+                        <button *ngFor="let a of actions" [id]="a.id" (click)="a.action(entity)" (class)="a.class">
+                            {{a.icon}}
                         </button>
                     </td>
                 </tr>

@@ -1,8 +1,10 @@
 import { Component, Input, OnInit, QueryList, ViewChildren } from "@angular/core";
 import { DecimalPipe, KeyValue } from "@angular/common";
+
 import { TableService } from "./datatable.service";
 import { NgbdSortableHeader, SortEvent } from "./sortable.directive";
 import { IRepository } from "../../lib/IRepository";
+import { BaseEntity } from "../../core.module";
 
 
 @Component({
@@ -15,7 +17,7 @@ export class Datatable implements OnInit {
 
     @Input() public service: IRepository<any>;
     @Input() public show: string[];
-    @Input() public actions: { id: string, name: string, action: () => void }[];
+    @Input() public actions: { id: string, class: string, icon: string, action: (entity: BaseEntity) => void }[];
     @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
     public tableService: TableService<any>;

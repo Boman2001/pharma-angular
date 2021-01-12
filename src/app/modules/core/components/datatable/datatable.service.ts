@@ -96,7 +96,7 @@ export class TableService<T> {
         const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 
         // 1. sort
-        let entities = this.sort(await this.service.GetAll().toPromise(), sortColumn, sortDirection);
+        let entities = this.sort(await this.service.GetAll().toPromise() || [], sortColumn, sortDirection);
 
         // 2. filter
         entities = entities.filter(entity => this.matchesSearchTerm(entity, searchTerm, this.pipe));
