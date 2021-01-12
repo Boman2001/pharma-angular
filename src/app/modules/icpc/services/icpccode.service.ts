@@ -10,6 +10,6 @@ import { ICPCCode } from "../models/icpccode.model";
 export class ICPCCodeService extends GenericHttpService<ICPCCode> {
 
   constructor(protected http: HttpClient, protected storage: StorageService) {
-    super("icpccode", http, storage);
+    super("IcpcCodes", http, storage);
   }
 }

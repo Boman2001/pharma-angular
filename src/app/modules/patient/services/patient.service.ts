@@ -10,6 +10,6 @@ import { Patient } from "../models/patient.model";
 export class PatientService extends GenericHttpService<Patient> {
 
   constructor(protected http: HttpClient, protected storage: StorageService) {
-    super("patient", http, storage);
+    super("Patients", http, storage);
   }
 }

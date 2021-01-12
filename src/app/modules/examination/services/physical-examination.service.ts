@@ -10,6 +10,6 @@ import {PhysicalExamination} from "../models/physical-examination.model";
 export class PhysicalExaminationService extends GenericHttpService<PhysicalExamination>{
 
   constructor(protected http: HttpClient, protected storage: StorageService) {
-    super("physical-examination", http, storage);
+    super("PhysicalExaminations", http, storage);
   }
 }

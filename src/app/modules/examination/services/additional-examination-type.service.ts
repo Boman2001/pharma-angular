@@ -10,6 +10,6 @@ import { AdditionalExaminationType } from "../models/additional-examination-type
 export class AdditionalExaminationTypeService extends GenericHttpService<AdditionalExaminationType> {
 
   constructor(protected http: HttpClient, protected storage: StorageService) {
-    super("additional-examination-type", http, storage);
+    super("AdditionalExaminationTypes", http, storage);
   }
 }

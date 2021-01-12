@@ -9,6 +9,6 @@ import { HttpClient } from "@angular/common/http";
 export class UserService extends GenericHttpService<User> {
 
   constructor(protected http: HttpClient, protected storage: StorageService) {
-    super("user", http, storage);
+    super("Users", http, storage);
   }
 }

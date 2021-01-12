@@ -52,7 +52,7 @@ describe("ConsultationService (GenericHttpService)", () => {
   });
 
   it("should return correct basePath", () => {
-    expect(service.basePath).toBe(`${environment.apiUrl}/consultation`);
+    expect(service.basePath).toBe(`${environment.apiUrl}/Consultations`);
   });
 
   it("should return all consultations", () => {
@@ -60,7 +60,7 @@ describe("ConsultationService (GenericHttpService)", () => {
       expect(consultations.length).toBeGreaterThanOrEqual(1);
     });
 
-    const request = http.expectOne(req => req.method === "GET" && req.url === `${environment.apiUrl}/consultation`);
+    const request = http.expectOne(req => req.method === "GET" && req.url === `${environment.apiUrl}/Consultations`);
     request.flush(mockData);
   });
 
@@ -70,7 +70,7 @@ describe("ConsultationService (GenericHttpService)", () => {
       expect(result).toBeTruthy();
     });
 
-    const request = http.expectOne(req => req.method === "POST" && req.url === `${environment.apiUrl}/consultation`);
+    const request = http.expectOne(req => req.method === "POST" && req.url === `${environment.apiUrl}/Consultations`);
     request.flush(true);
   });
 
@@ -79,7 +79,7 @@ describe("ConsultationService (GenericHttpService)", () => {
       expect(result).toBeGreaterThanOrEqual(1);
     });
 
-    const request = http.expectOne(req => req.method === "PUT" && req.url === `${environment.apiUrl}/consultation/1`);
+    const request = http.expectOne(req => req.method === "PUT" && req.url === `${environment.apiUrl}/Consultations/1`);
     request.flush(true);
   });
 
@@ -88,7 +88,7 @@ describe("ConsultationService (GenericHttpService)", () => {
       expect(consultation.Id).toBe("1");
     });
 
-    const request = http.expectOne(req => req.method === "GET" && req.url === `${environment.apiUrl}/consultation/1`);
+    const request = http.expectOne(req => req.method === "GET" && req.url === `${environment.apiUrl}/Consultations/1`);
     request.flush(mockEntity);
   });
 
@@ -97,7 +97,7 @@ describe("ConsultationService (GenericHttpService)", () => {
       expect(result).toBeTruthy();
     });
 
-    const request = http.expectOne(req => req.method === "DELETE" && req.url === `${environment.apiUrl}/consultation/1`);
+    const request = http.expectOne(req => req.method === "DELETE" && req.url === `${environment.apiUrl}/Consultations/1`);
     request.flush(true);
   });
 });

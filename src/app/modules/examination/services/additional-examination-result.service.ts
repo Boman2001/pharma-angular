@@ -9,6 +9,6 @@ import { HttpClient } from "@angular/common/http";
 export class AdditionalExaminationResultService extends GenericHttpService<AdditionalExaminationResultService> {
 
   constructor(protected http: HttpClient, protected storage: StorageService) {
-    super("additional-examination-result", http, storage);
+    super("AdditionalExaminationResults", http, storage);
   }
 }

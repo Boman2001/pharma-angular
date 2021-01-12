@@ -10,6 +10,6 @@ import { Consultation } from "../models/consultation.model";
 export class ConsultationService extends GenericHttpService<Consultation> {
 
   constructor(protected http: HttpClient, protected storage: StorageService) {
-    super("consultation", http, storage);
+    super("Consultations", http, storage);
   }
 }

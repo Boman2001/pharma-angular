@@ -10,6 +10,6 @@ import { Intolerance } from "../models/intolerance.model";
 export class IntoleranceService extends GenericHttpService<Intolerance> {
 
   constructor(protected http: HttpClient, protected storage: StorageService) {
-    super("intolerance", http, storage);
+    super("Intolerances", http, storage);
   }
 }

@@ -10,6 +10,6 @@ import { Episode } from "../models/episode.model";
 export class EpisodeService extends GenericHttpService<Episode> {
 
   constructor(protected http: HttpClient, protected storage: StorageService) {
-    super("episode", http, storage);
+    super("Episodes", http, storage);
   }
 }

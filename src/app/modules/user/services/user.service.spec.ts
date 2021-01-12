@@ -1,13 +1,12 @@
 import { TestBed } from "@angular/core/testing";
 import { UserService } from "./user.service";
-import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { HttpClient } from "@angular/common/http";
 import { StorageService } from "../../core/core.module";
 
 
 describe("UserService", () => {
   let service: UserService;
-  // let http;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -19,7 +18,6 @@ describe("UserService", () => {
     });
 
     service = TestBed.inject(UserService);
-    // http = TestBed.inject(HttpTestingController);
   });
 
   it("should be created", () => {

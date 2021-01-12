@@ -11,28 +11,33 @@ import { LoginResponse } from "../models/LoginResponse.model";
 })
 export class AuthService extends HttpService {
 
-  constructor(protected http: HttpClient, protected storage: StorageService) {
+  constructor(protected http: HttpClient, protected storage: StorageService)
+  {
     super(http, storage);
   }
 
   public get basePath(): string
   {
-    return `${environment.apiUrl}/auth`;
+    return `${environment.apiUrl}/Auth`;
   }
 
-  public get user(): User {
+  public get user(): User
+  {
     return this.storage.GetItem("user");
   }
 
-  public set user(value: User) {
+  public set user(value: User)
+  {
     this.storage.SetItem("user", value);
   }
 
-  public get token(): string {
+  public get token(): string
+  {
     return this.storage.GetItem("token");
   }
 
-  public set token(value: string) {
+  public set token(value: string)
+  {
     this.storage.SetItem("token", value);
   }
 

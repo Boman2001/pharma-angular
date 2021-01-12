@@ -10,6 +10,6 @@ import {BaseExaminationType} from "../models/base-examination-type.model";
 export class BaseExaminationTypeService extends GenericHttpService<BaseExaminationType> {
 
   constructor(protected http: HttpClient, protected storage: StorageService) {
-    super("base-examination-type", http, storage);
+    super("BaseExaminationTypes", http, storage);
   }
 }
