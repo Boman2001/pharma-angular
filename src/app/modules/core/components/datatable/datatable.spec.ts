@@ -33,7 +33,7 @@ describe('Datatable', () => {
         expect(component).toBeTruthy();
     });
 
-    it('test button', () => {
+    it('should contain sortable class', () => {
         const ourDomTableUnderTest = document.querySelector('table.table');
 
         const tableHeaders = Array.from(
