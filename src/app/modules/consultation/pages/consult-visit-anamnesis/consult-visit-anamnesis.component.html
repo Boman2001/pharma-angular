@@ -1,0 +1,96 @@
+<div class="d-flex p-3 h-100">
+  <div class="w-50 p-3 h-100">
+    <h3>Huidige klachten/problemen</h3>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Datum</th>
+        <th scope="col">Klacht/Probleem</th>
+        <th scope="col">ICPC</th>
+        <th scope="col">Acties</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th>21-06-2002</th>
+        <td>Roken: 15/dag</td>
+        <td>P17</td>
+        <td><button class="btn btn-primary">Beeindig</button></td>
+      </tr>
+      <tr>
+        <th>21-06-2003</th>
+        <td>Hooikoorts/allergische rhinitis; bbom+;gras+</td>
+        <td>R97</td>
+        <td><button class="btn btn-primary">Beeindig</button></td>
+      </tr>
+      <tr>
+        <th>21-06-2004</th>
+        <td>cvrm</td>
+        <td>K49.01</td>
+        <td><button class="btn btn-primary">Beeindig</button></td>
+      </tr>
+      </tbody>
+    </table>
+    <form>
+      <div class="form-group d-flex">
+        <div class="form-group d-flex w-50 pr-2">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                 name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+          </div>
+        </div>
+        <div class="form-group w-50 pl-2">
+          <input type="text" class="form-control" placeholder="ICPC">
+        </div>
+      </div>
+      <div class="form-group">
+        <textarea class="form-control"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="w-50 p-3 h-100">
+    <h3>Voorgeschiedenis</h3>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Datum</th>
+        <th scope="col">Klacht/Probleem</th>
+        <th scope="col">ICPC</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th>21-06-2002</th>
+        <td>Roken: 15/dag</td>
+        <td>P17</td>
+      </tr>
+      <tr>
+        <th>21-06-2003</th>
+        <td>Hooikoorts/allergische rhinitis; bbom+;gras+</td>
+        <td>R97</td>
+      </tr>
+      <tr>
+        <th>21-06-2004</th>
+        <td>cvrm</td>
+        <td>K49.01</td>
+      </tr>
+      <tr>
+        <th>21-06-2002</th>
+        <td>Roken: 15/dag</td>
+        <td>P17</td>
+      </tr>
+      <tr>
+        <th>21-06-2003</th>
+        <td>Hooikoorts/allergische rhinitis; bbom+;gras+</td>
+        <td>R97</td>
+      </tr>
+      <tr>
+        <th>21-06-2004</th>
+        <td>cvrm</td>
+        <td>K49.01</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

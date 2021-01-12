@@ -1,0 +1,51 @@
+<div class="page container-fluid d-flex flex-column">
+  <nav class="navbar nav-steps pl-0">
+    <ul class="d-flex flex-row navbar-nav w-100">
+      <li class="nav-item ml-1 step-item">
+        <a class="step nav-link w-100 ml-1 p-3 d-flex align-items-center"
+           routerLink="/consultation/{{consult.Id}}"
+           [routerLinkActive]="['active']"
+           [routerLinkActiveOptions]="{ exact: true }"><span class="w-100 text-center">Algemene informatie</span></a>
+      </li>
+      <li class="nav-item ml-1 step-item">
+        <a class="step nav-link w-100 ml-1 p-3 d-flex align-items-center"
+           routerLink="anamnese"
+           [routerLinkActive]="['active']"
+           [routerLinkActiveOptions]="{ exact: true }"><span class="w-100 text-center">Anamnese</span></a>
+      </li>
+      <li class="nav-item ml-1 step-item">
+        <a class="step nav-link w-100 ml-1 p-3 d-flex align-items-center"
+           routerLink=""
+           [routerLinkActive]="['active']"
+           [routerLinkActiveOptions]="{ exact: true }"><span class="w-100 text-center">Biometrie</span></a>
+      </li>
+      <li class="nav-item ml-1 step-item">
+        <a class="step nav-link w-100 ml-1 p-3 d-flex align-items-center"
+           routerLink=""
+           [routerLinkActive]="['active']"
+           [routerLinkActiveOptions]="{ exact: true }"><span class="w-100 text-center">Aanvullend onderzoek</span></a>
+      </li>
+      <li class="nav-item ml-1 step-item">
+        <a class="step nav-link w-100 ml-1 p-3 d-flex align-items-center"
+           routerLink=""
+           [routerLinkActive]="['active']"
+           [routerLinkActiveOptions]="{ exact: true }"><span class="w-100 text-center">Evaluatie</span></a>
+      </li>
+      <li class="nav-item ml-1 step-item">
+        <a class="step nav-link w-100 ml-1 p-3 d-flex align-items-center"
+           routerLink=""
+           [routerLinkActive]="['active']"
+           [routerLinkActiveOptions]="{ exact: true }"><span class="w-100 text-center">Beleid</span></a>
+      </li>
+      <li class="nav-item ml-1 step-item">
+        <a class="step nav-link w-100 ml-1 p-3 d-flex align-items-center"
+           routerLink=""
+           [routerLinkActive]="['active']"
+           [routerLinkActiveOptions]="{ exact: true }"><span class="w-100 text-center">Samenvatting</span></a>
+      </li>
+    </ul>
+  </nav>
+  <div class="flex-grow-1">
+    <router-outlet></router-outlet>
+  </div>
+</div>

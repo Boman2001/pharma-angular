@@ -12,12 +12,18 @@ import { ConsultationService } from "./services/consultation.service";
 // Components
 import { ConsultOverviewComponent } from "./pages/consult-overview/consult-overview.component";
 import { ConsultCreateComponent } from "./components/consult-create/consult-create.component";
+import { ConsultVisitComponent } from "./pages/consult-visit/consult-visit.component";
+import { ConsultVisitInfoComponent } from "./pages/consult-visit-info/consult-visit-info.component";
+import { ConsultVisitAnamnesisComponent } from "./pages/consult-visit-anamnesis/consult-visit-anamnesis.component";
 
 
 @NgModule({
   declarations: [
     ConsultOverviewComponent,
-    ConsultCreateComponent
+    ConsultCreateComponent,
+    ConsultVisitComponent,
+    ConsultVisitInfoComponent,
+    ConsultVisitAnamnesisComponent
   ],
   providers: [
     ConsultationService
