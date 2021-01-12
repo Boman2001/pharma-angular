@@ -260,7 +260,7 @@ input:focus{
 }
 
 .input-validation-error{
-  border-color: #C1272D;
+  border-color: #C1272D !important;
 }
 
 .input-validation-error-text{
