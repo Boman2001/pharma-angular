@@ -7,5 +7,5 @@
       <button routerLink="new" class="btn btn-primary">+ Aanmaken</button>
     </div>
   </div>
-  <Datatable></Datatable>
+  <Datatable [show]="headerArray" [actions]="actionsArray" [service]="examinationService"></Datatable>
 </div>
