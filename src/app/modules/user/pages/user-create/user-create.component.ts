@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-user-create",
@@ -7,5 +8,15 @@ import { Component } from "@angular/core";
 })
 export class UserCreateComponent {
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  async onSaveComplete(saveResult: boolean): Promise<void> {
+    if (saveResult)
+    {
+      await this.router.navigate(["users"]);
+      return;
+    }
+
+    // @TODO: GlobalModalService or ToastService
+  }
 }

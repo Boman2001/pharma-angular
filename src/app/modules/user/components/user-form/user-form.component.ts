@@ -13,6 +13,8 @@ import {Observable} from "rxjs";
 export class UserFormComponent implements OnInit {
   @Input() buttonName: string;
   @Input() initialUser: Observable<User>;
+  @Input() onSaveComplete: (saveResult: boolean) => void;
+
   form: FormGroup;
 
   constructor(private router: Router, private userService: UserService, private fb: FormBuilder) {}
@@ -88,14 +90,11 @@ export class UserFormComponent implements OnInit {
       result = await this.userService.Add(this.user).toPromise();
     }
 
-    if (result)
-    {
-      await this.router.navigate(["users"]);
-      return;
+    // onSaveComplete hook
+    if (this.onSaveComplete != null) {
+      this.onSaveComplete(result);
     }
-    else
-    {
-      // @TODO: GlobalModalService or ToastService
-    }
+
+    return result;
   }
 }
