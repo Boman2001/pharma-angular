@@ -17,10 +17,21 @@ export class UserEditComponent {
     this.route.paramMap.subscribe(params => {
       this.user = this.userService.Get(params.get("id"));
 
-      this.user.subscribe((u: User) => {
+      // If user is not retrieved...
+      this.user.toPromise()
+      .then(async (u: User) => {
         if (u == null || u.Id == null) {
-          router.navigate(["doctors"]);
+          // @TODO: Global modal service, ToastService?
+          console.error("User could not be found...");
+          await router.navigate(["doctors"]);
+          return;
         }
+      })
+      .catch(async (e) => {
+        console.error("API could not be reached...");
+        // @TODO: Global modal service, ToastService?
+        await router.navigate(["doctors"]);
+        return;
       });
     });
   }
