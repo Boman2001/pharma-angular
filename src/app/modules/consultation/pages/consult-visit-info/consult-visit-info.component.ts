@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, OnInit } from "@angular/core";
 import {DomSanitizer} from "@angular/platform-browser";
 import {NgbCalendar, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 
@@ -10,12 +10,16 @@ import {NgbCalendar, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 export class ConsultVisitInfoComponent implements OnInit {
   model: NgbDateStruct;
   date: { year: number, month: number };
+  address: string;
+  map: string;
 
-  constructor(private calendar: NgbCalendar) {
+  constructor(private calendar: NgbCalendar, public sanitizer: DomSanitizer) {
     this.model = this.calendar.getToday();
+    this.address = "Dreef 4,Made,Nederland";
   }
 
   ngOnInit(): void {
+    this.map = "https://www.google.com/maps/embed/v1/place?key=AIzaSyCLsoYzJ84PGUrhtghT1CPJPGAYZQDdRnw&q=" + this.address;
   }
 
 }
