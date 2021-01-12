@@ -12,7 +12,7 @@ import { LoginResponse } from "../models/LoginResponse.model";
 export class AuthService extends HttpService {
 
   constructor(protected http: HttpClient, protected storage: StorageService) {
-    super(http);
+    super(http, storage);
   }
 
   public get basePath(): string

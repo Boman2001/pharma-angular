@@ -4,8 +4,8 @@ import { BaseEntity, Gender } from "../../core/core.module";
 export class User extends BaseEntity {
   Name: string;
   Username: string;
-  Password: string;
-  PasswordCheck: string;
+  Password?: string;
+  PasswordCheck?: string;
   Email: string;
   BSN: string;
   Dob: Date;

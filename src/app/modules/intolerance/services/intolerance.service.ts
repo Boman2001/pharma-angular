@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { GenericHttpService } from "../../core/core.module";
+import {GenericHttpService, StorageService} from "../../core/core.module";
 import { HttpClient } from "@angular/common/http";
 import { Intolerance } from "../models/intolerance.model";
 
@@ -9,7 +9,7 @@ import { Intolerance } from "../models/intolerance.model";
 })
 export class IntoleranceService extends GenericHttpService<Intolerance> {
 
-  constructor(protected http: HttpClient) {
-    super("intolerance", http);
+  constructor(protected http: HttpClient, protected storage: StorageService) {
+    super("intolerance", http, storage);
   }
 }

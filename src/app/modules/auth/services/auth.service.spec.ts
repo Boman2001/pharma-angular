@@ -5,16 +5,19 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../../environments/environment";
 import { LoginResponse } from "../models/LoginResponse.model";
 import { User } from "../../user/user.module";
-import { Gender } from "../../core/core.module";
+import { Gender, StorageService } from "../../core/core.module";
 
 const mockToken = "ey1234.test.test.test";
 
 const date = new Date();
 
 const mockUser: User = {
-  Id: 1,
+  Id: "1",
   Name: "Mock User",
+  Username: "testuser",
   Email: "test@example.com",
+  BSN: "12345678911",
+  Country: "NL",
   Dob: date,
   Gender: Gender.MALE,
   PhoneNumber: "+31612345678",
@@ -39,7 +42,8 @@ describe("AuthService", () => {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
       providers: [
-        HttpClient
+        HttpClient,
+        StorageService
       ]
     });
 
