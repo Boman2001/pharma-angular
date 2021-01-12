@@ -18,9 +18,10 @@ export class HttpService {
 
   public get baseOptions(): object
   {
+    const token = this.storage.GetItem("token");
     return {
       headers: {
-        Authorization: `Bearer ${ this.storage.GetItem("token") }`
+        ...(token != null ? { Authorization: `Bearer ${ token }` } : {})
       },
       responseType: "json",
       withCredentials: true,
