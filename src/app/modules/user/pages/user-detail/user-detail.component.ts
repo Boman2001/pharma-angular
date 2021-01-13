@@ -26,7 +26,12 @@ export class UserDetailComponent implements OnInit {
         if (u == null || u.Id == null) {
           // @TODO: Global modal service, ToastService?
           console.error("User could not be found...");
-          await this.router.navigate(["doctors"]);
+          try {
+            await this.router.navigate(["doctors"]);
+          }
+          catch (e) {
+            // @TODO: Global modal/Toast??
+          }
           return;
         }
         this.user = u;
@@ -35,6 +40,12 @@ export class UserDetailComponent implements OnInit {
         console.error("API could not be reached...");
         // @TODO: Global modal service, ToastService?
         await this.router.navigate(["doctors"]);
+        try {
+          await this.router.navigate(["doctors"]);
+        }
+        catch (e) {
+          // @TODO: Global modal/Toast??
+        }
         return;
       });
   }
