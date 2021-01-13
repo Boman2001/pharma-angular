@@ -7,6 +7,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgDynamicBreadcrumbModule } from "ng-dynamic-breadcrumb";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CoreModule } from "./modules/core/core.module";
+import { CommonModule } from "@angular/common";
 
 // Components
 import { AppComponent } from "./app.component";
@@ -21,6 +22,7 @@ import { NotFoundComponent } from "./pages/not-found/not-found.component";
     NotFoundComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     NgbModule,
