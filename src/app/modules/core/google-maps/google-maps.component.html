@@ -1,0 +1,28 @@
+<div class="page container-fluid">
+  <agm-map [latitude]="center.lat" [longitude]="center.lng">
+    <agm-marker [latitude]="initial.lat" [longitude]="initial.lng">
+      <agm-info-window>
+        Arts Startpunt
+      </agm-info-window>
+    </agm-marker>
+    <agm-direction *ngIf="showMap"
+      [renderOptions]="renderOptions"
+      [origin]="origin"
+      [destination]="destination">
+    </agm-direction>
+
+    <ng-container *ngFor="let appointment of appointments;let i = index">
+      <agm-marker
+        (markerClick)="clickedMarker(i)"
+        [latitude]="appointment[1].lat"
+        [longitude]="appointment[1].lng">
+        <agm-info-window>
+           {{appointment[0].client}} <br>
+           {{appointment[0].address}} <br>
+           <a id="google-link" class="pink" href="http://www.google.com/maps/place/{{appointment[0].urlstring}}" target="_BLANK">Weergeven in Google Maps</a>
+
+        </agm-info-window>
+      </agm-marker>
+    </ng-container>
+  </agm-map>
+</div>

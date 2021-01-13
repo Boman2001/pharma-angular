@@ -4,12 +4,20 @@ import { CommonModule } from "@angular/common";
 
 // Services
 import { StorageService } from "./services/storage.service";
+import { AgmCoreModule } from "@agm/core";
+import { GoogleMapsComponent } from "./google-maps/google-maps.component";
+import { AgmDirectionModule } from "agm-direction";
+
 
 
 @NgModule({
-  declarations: [],
+  declarations: [GoogleMapsComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyCBVzozETyDe794IpgWsIe7zi5iFwCPP54"
+    }),
+    AgmDirectionModule
   ],
   providers: [
     StorageService
@@ -28,3 +36,6 @@ export * from "./services/storage.service";
 
 // Enums
 export * from "./enums/gender.enum";
+
+// Components
+export * from "./google-maps/google-maps.component";
