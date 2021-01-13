@@ -10,69 +10,69 @@
 
     <div class="form-group">
       <label for="user-Name">Naam</label>
-      <input class="form-control" type="text" Name="Name" id="user-Name" placeholder="Naam" formControlName="Name">
+      <input class="form-control" type="text" Name="Name" id="user-Name" [class.input-validation-error]="form.controls['Name'].invalid && form.controls['Name'].touched" placeholder="Naam" formControlName="Name">
       <div id="Name-alert" *ngIf="form.controls['Name'].invalid && form.controls['Name'].touched">
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['Name'].errors.required">Naam is een verplicht veld.</div>
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['Name'].errors.maxlength">Naam is te lang.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['Name'].errors.required">Naam is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['Name'].errors.maxlength">Naam is te lang.</div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="user-BSN">BSN</label>
-      <input class="form-control" type="text" Name="BSN" id="user-BSN" placeholder="BSN" formControlName="BSN">
+      <input class="form-control" type="text" Name="BSN" id="user-BSN" [class.input-validation-error]="form.controls['BSN'].invalid && form.controls['BSN'].touched" placeholder="BSN" formControlName="BSN">
       <div id="BSN-alert" *ngIf="form.controls['BSN'].invalid && form.controls['BSN'].touched">
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['BSN'].errors.required">BSN is een verplicht veld.</div>
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['BSN'].errors.minlength">BSN is te kort.</div>
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['BSN'].errors.maxlength">BSN is te lang.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['BSN'].errors.required">BSN is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['BSN'].errors.minlength">BSN is te kort.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['BSN'].errors.maxlength">BSN is te lang.</div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="user-Email">Email</label>
-      <input class="form-control" type="Email" Name="Email" id="user-Email" placeholder="Email" formControlName="Email">
+      <input class="form-control" type="Email" Name="Email" id="user-Email" [class.input-validation-error]="form.controls['Email'].invalid && form.controls['Email'].touched" placeholder="Email" formControlName="Email">
       <div id="Email-alert" *ngIf="form.controls['Email'].invalid && form.controls['Email'].touched">
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['Email'].errors.required">Email is een verplicht veld.</div>
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['Email'].errors.maxlength">Email is te lang.</div>
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['Email'].errors.email">Email is ongeldig.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['Email'].errors.required">Email is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['Email'].errors.maxlength">Email is te lang.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['Email'].errors.email">Email is ongeldig.</div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="user-Dob">Geboortedatum</label>
-      <input class="form-control" type="date" Name="Dob" id="user-Dob" placeholder="Geboortedatum" formControlName="Dob"/>
+      <input class="form-control" type="date" Name="Dob" id="user-Dob" [class.input-validation-error]="form.controls['Dob'].invalid && form.controls['Dob'].touched" placeholder="Geboortedatum" formControlName="Dob"/>
       <div id="Dob-alert" *ngIf="form.controls['Dob'].invalid && form.controls['Dob'].touched">
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['Dob'].errors.required">Geboortedatum is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['Dob'].errors.required">Geboortedatum is een verplicht veld.</div>
       </div>
     </div>
 
     <div class="form-group">
       <label>Geslacht</label>
       <div class="custom-control custom-radio">
-        <input type="radio" id="user-Gender-male" Name="Gender" class="custom-control-input" value="male" formControlName="Gender">
-        <label class="custom-control-label" for="user-Gender-male">Man</label>
+        <input type="radio" id="user-Gender-male" [class.input-validation-error]="form.controls['Gender'].invalid && form.controls['Gender'].touched" Name="Gender" class="custom-control-input" value="male" formControlName="Gender">
+        <label class="custom-control-label" for="user-Gender-male" ngfor>Man</label>
       </div>
 
       <div class="custom-control custom-radio">
-        <input type="radio" id="user-Gender-female" Name="Gender" class="custom-control-input" value="female" formControlName="Gender">
+        <input type="radio" id="user-Gender-female" [class.input-validation-error]="form.controls['Gender'].invalid && form.controls['Gender'].touched" Name="Gender" class="custom-control-input" value="female" formControlName="Gender">
         <label class="custom-control-label" for="user-Gender-female">Vrouw</label>
       </div>
 
       <div class="custom-control custom-radio">
-        <input type="radio" id="user-Gender-other" Name="Gender" class="custom-control-input" value="other" formControlName="Gender">
+        <input type="radio" id="user-Gender-other" [class.input-validation-error]="form.controls['Gender'].invalid && form.controls['Gender'].touched" Name="Gender" class="custom-control-input" value="other" formControlName="Gender">
         <label class="custom-control-label" for="user-Gender-other">Overige</label>
       </div>
 
       <div id="Gender-alert" *ngIf="form.controls['Gender'].invalid && form.controls['Gender'].touched">
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['Gender'].errors.required">Geslacht is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['Gender'].errors.required">Geslacht is een verplicht veld.</div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="user-PhoneNumber-number">Telefoonnummer</label>
-      <input class="form-control" type="text" Name="PhoneNumber-number" id="user-PhoneNumber-number" placeholder="Telefoonnummer" formControlName="PhoneNumber">
+      <input class="form-control" type="text" Name="PhoneNumber-number" id="user-PhoneNumber-number" [class.input-validation-error]="form.controls['PhoneNumber'].invalid && form.controls['PhoneNumber'].touched" placeholder="Telefoonnummer" formControlName="PhoneNumber">
       <div id="user-PhoneNumber-alert" *ngIf="form.controls['PhoneNumber'].invalid && form.controls['PhoneNumber'].touched">
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['PhoneNumber'].errors.required">Telefoonnummer is een verplicht veld.</div>
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['PhoneNumber'].errors.maxlength">Telefoonnummer is te lang.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['PhoneNumber'].errors.required">Telefoonnummer is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['PhoneNumber'].errors.maxlength">Telefoonnummer is te lang.</div>
       </div>
     </div>
 
@@ -80,25 +80,25 @@
       <div class="form-row">
         <div class="col-6">
           <label for="user-Street">Straatnaam</label>
-          <input class="form-control" type="text" Name="Street" id="user-Street" placeholder="Straatnaam" formControlName="Street">
+          <input class="form-control" type="text" Name="Street" id="user-Street" [class.input-validation-error]="form.controls['Street'].invalid && form.controls['Street'].touched" placeholder="Straatnaam" formControlName="Street">
           <div id="user-Street-alert" *ngIf="form.controls['Street'].invalid && form.controls['Street'].touched">
-            <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['Street'].errors.required">Straatnaam is een verplicht veld.</div>
-            <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['Street'].errors.maxlength">Straatnaam is te lang.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['Street'].errors.required">Straatnaam is een verplicht veld.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['Street'].errors.maxlength">Straatnaam is te lang.</div>
           </div>
         </div>
         <div class="col-3">
           <label for="user-HouseNumber">Huisnummer</label>
-          <input class="form-control" type="number" Name="HouseNumber" id="user-HouseNumber" placeholder="Huisnummer" formControlName="HouseNumber">
+          <input class="form-control" type="number" Name="HouseNumber" id="user-HouseNumber" [class.input-validation-error]="form.controls['HouseNumber'].invalid && form.controls['HouseNumber'].touched" placeholder="Huisnummer" formControlName="HouseNumber">
           <div id="user-HouseNumber-alert" *ngIf="form.controls['HouseNumber'].invalid && form.controls['HouseNumber'].touched">
-            <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['HouseNumber'].errors.required">Huisnummer is een verplicht veld.</div>
-            <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['HouseNumber'].errors.maxlength">Huisnummer is te lang.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['HouseNumber'].errors.required">Huisnummer is een verplicht veld.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['HouseNumber'].errors.maxlength">Huisnummer is te lang.</div>
           </div>
         </div>
         <div class="col-3">
           <label for="user-HouseNumberAddon">Toevoeging</label>
-          <input class="form-control" type="text" Name="HouseNumberAddon" id="user-HouseNumberAddon" placeholder="Toevoeging" formControlName="HouseNumberAddon">
+          <input class="form-control" type="text" Name="HouseNumberAddon" id="user-HouseNumberAddon" [class.input-validation-error]="form.controls['HouseNumberAddon'].invalid && form.controls['HouseNumberAddon'].touched" placeholder="Toevoeging" formControlName="HouseNumberAddon">
           <div id="user-HouseNumberAddon-alert" *ngIf="form.controls['HouseNumberAddon'].invalid && form.controls['HouseNumberAddon'].touched">
-            <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['HouseNumberAddon'].errors.maxlength">Toevoeging is te lang.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['HouseNumberAddon'].errors.maxlength">Toevoeging is te lang.</div>
           </div>
         </div>
       </div>
@@ -108,24 +108,24 @@
       <div class="form-row">
         <div class="col-6">
           <label for="user-City">Stad</label>
-          <input class="form-control" type="text" id="user-City" Name="City" placeholder="Stad" formControlName="City">
+          <input class="form-control" type="text" id="user-City" [class.input-validation-error]="form.controls['City'].invalid && form.controls['City'].touched" Name="City" placeholder="Stad" formControlName="City">
           <div id="user-City-alert" *ngIf="form.controls['City'].invalid && form.controls['City'].touched">
-            <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['City'].errors.required">Stad is een verplicht veld.</div>
-            <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['City'].errors.maxlength">Stad is te lang.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['City'].errors.required">Stad is een verplicht veld.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['City'].errors.maxlength">Stad is te lang.</div>
           </div>
         </div>
         <div class="col-2">
           <label for="user-PostalCode">Postcode</label>
-          <input class="form-control" type="text" Name="PostalCode" id="user-PostalCode" placeholder="Postcode" formControlName="PostalCode">
+          <input class="form-control" [class.input-validation-error]="form.controls['PostalCode'].invalid && form.controls['PostalCode'].touched" type="text" Name="PostalCode" id="user-PostalCode" placeholder="Postcode" formControlName="PostalCode">
           <div id="user-PostalCode-alert" *ngIf="form.controls['PostalCode'].invalid && form.controls['PostalCode'].touched">
-            <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['PostalCode'].errors.required">Postcode is een verplicht veld.</div>
-            <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['PostalCode'].errors.minlength">Postcode is te kort.</div>
-            <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['PostalCode'].errors.maxlength">Postcode is te lang.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['PostalCode'].errors.required">Postcode is een verplicht veld.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['PostalCode'].errors.minlength">Postcode is te kort.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['PostalCode'].errors.maxlength">Postcode is te lang.</div>
           </div>
         </div>
         <div class="col-4">
           <label for="user-Country">Land</label>
-          <select class="custom-select" id="user-Country" Name="Country" formControlName="Country">
+          <select class="custom-select" id="user-Country" [class.input-validation-error]="form.controls['Country'].invalid && form.controls['Country'].touched" Name="Country" formControlName="Country">
             <option class="" value="AF">Afghanistan</option>
             <option class="" value="AX">&Aring;land</option>
             <option class="" value="AL">Albani&euml;</option>
@@ -377,8 +377,8 @@
             <option class="" value="CH">Zwitserland</option>
           </select>
           <div id="user-Country-alert" *ngIf="form.controls['Country'].invalid && form.controls['Country'].touched">
-            <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['Country'].errors.required">Land is een verplicht veld.</div>
-            <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['Country'].errors.maxlength">Land is te lang.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['Country'].errors.required">Land is een verplicht veld.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['Country'].errors.maxlength">Land is te lang.</div>
           </div>
         </div>
       </div>
@@ -386,27 +386,27 @@
 
     <div class="form-group">
       <label for="Username">Gebruikersnaam</label>
-      <input class="form-control" type="text" Name="Username" id="Username" placeholder="Gebruikersnaam" formControlName="Username">
+      <input class="form-control" type="text" Name="Username" id="Username" [class.input-validation-error]="form.controls['Username'].invalid && form.controls['Username'].touched" placeholder="Gebruikersnaam" formControlName="Username">
       <div id="user-Username-alert" *ngIf="form.controls['Username'].invalid && form.controls['Username'].touched">
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['Username'].errors.required">Gebruikersnaam is een verplicht veld.</div>
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['Username'].errors.maxlength">Gebruikersnaam is te lang.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['Username'].errors.required">Gebruikersnaam is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['Username'].errors.maxlength">Gebruikersnaam is te lang.</div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="Password">Wachtwoord</label>
-      <input class="form-control" type="Password" Name="Password" id="Password" placeholder="Wachtwoord" formControlName="Password">
+      <input class="form-control" type="Password" Name="Password" id="Password" [class.input-validation-error]="form.controls['Password'].invalid && form.controls['Password'].touched" placeholder="Wachtwoord" formControlName="Password">
       <div id="user-Password-alert" *ngIf="form.controls['Password'].invalid && form.controls['Password'].touched">
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['Password'].errors.required">Wachtwoord is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['Password'].errors.required">Wachtwoord is een verplicht veld.</div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="PasswordCheck">Wachtwoord herhalen</label>
-      <input class="form-control" type="Password" Name="PasswordCheck" id="PasswordCheck" placeholder="Wachtwoord herhalen" formControlName="PasswordCheck">
+      <input class="form-control" type="Password" Name="PasswordCheck" id="PasswordCheck" [class.input-validation-error]="form.controls['PasswordCheck'].touched && (form.controls['PasswordCheck'].invalid || form.errors?.notMatching)" placeholder="Wachtwoord herhalen" formControlName="PasswordCheck">
       <div id="user-PasswordCheck-alert" *ngIf="form.controls['PasswordCheck'].touched">
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.controls['PasswordCheck'].invalid && form.controls['PasswordCheck'].errors.required">Wachtwoord herhalen is een verplicht veld.</div>
-        <div class="input-validation-error-text p-2 mt-2" *ngIf="form.errors?.notMatching">Het bevestigde wachtwoord komt niet overeen met het wachtwoord</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['PasswordCheck'].invalid && form.controls['PasswordCheck'].errors.required">Wachtwoord herhalen is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.errors?.notMatching">Het bevestigde wachtwoord komt niet overeen met het wachtwoord</div>
       </div>
     </div>
 
