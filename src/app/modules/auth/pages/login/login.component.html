@@ -3,7 +3,7 @@
     <div class="img-container pb-5">
       <img src="/assets/img/pharmapartners-logo.svg" alt="logo" />
     </div>
-    <form method="post" class="w-100" #loginForm="ngForm" [formGroup]="form" (ngSubmit)="loginForm.form.valid && onSubmit()">
+    <form method="post" class="w-100" #loginForm="ngForm" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
         <div class="alert-danger p-2 mt-2" *ngIf="form.controls['email'].errors.email">Email is invalid</div>
         <div class="alert-danger p-2 mt-2" *ngIf="form.controls['email'].errors.required">Email is required</div>
@@ -19,7 +19,7 @@
       <div class="form-group w-100">
         <input type="password" class="form-control" name="password" placeholder="password" formControlName="password" />
       </div>
-      <button type="submit" id="login-submit-btn" class="btn btn-primary float-right" [disabled]="!loginForm.valid">
+      <button type="submit" id="login-submit-btn" class="btn btn-primary float-right">
         Login
       </button>
     </form>
