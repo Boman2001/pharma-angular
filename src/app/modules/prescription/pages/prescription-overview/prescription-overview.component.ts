@@ -30,7 +30,7 @@ export class PrescriptionOverviewComponent implements OnInit {
       class: "btn btn-primary",
       icon: "<i class=\"fas fa-eye\"></i>",
       action: (entity: BaseEntity) => {
-        this.router.navigate(["/" + entity.Id]);
+        this.router.navigate([`/prescriptions/${entity.Id}`]);
       }
     },
   ];

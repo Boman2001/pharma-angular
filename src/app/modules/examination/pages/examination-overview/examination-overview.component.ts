@@ -23,12 +23,12 @@ export class ExaminationOverviewComponent {
   actionsArray: { id: string, class: string, icon: string, action: (entity: BaseEntity) => void }[] =
     [
       {
-        id: "prescription-detail",
-        class: "btn btn-primary",
-        icon: "<i class=\"fas fa-eye\"></i>",
+        id: "prescription-edit",
+        class: "btn btn-warning",
+        icon: "<i class=\"fas fa-pencil-alt\"></i>",
         action: (entity: BaseEntity) => {
-          this.router.navigate(["/" + entity.Id]);
-        }
+          this.router.navigate([`/examinations/${entity.Id}/edit`]);
+        },
       },
       {
         id: "prescription-delete",
@@ -36,8 +36,8 @@ export class ExaminationOverviewComponent {
         icon: "<i class=\"fas fa-trash-alt\"></i>",
         action: (entity: BaseEntity) => {
           this.examinationEmitter.next(entity);
-        }
-      }
+        },
+      },
     ];
 
   constructor(public examinationService: ExaminationTypeService, public router: Router) {

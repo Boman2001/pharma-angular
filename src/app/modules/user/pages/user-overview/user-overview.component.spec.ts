@@ -1,4 +1,4 @@
-import { HttpClient, HttpHandler } from "@angular/common/http";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { UserService } from "../../services/user.service";
@@ -13,12 +13,11 @@ describe("UserOverviewComponent", () => {
     await TestBed.configureTestingModule({
       declarations: [UserOverviewComponent],
       providers: [
-        HttpClient,
-        HttpHandler,
-        UserService
+        UserService,
       ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientTestingModule
       ]
     })
       .compileComponents();

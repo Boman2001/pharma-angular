@@ -1,9 +1,7 @@
-import { HttpClient, HttpHandler } from "@angular/common/http";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { NgbDate, NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
-import { TableService } from "src/app/modules/core/components/datatable/datatable.service";
-import { Datatable } from "src/app/modules/core/core.module";
 import { ConsultationModule } from "../../consultation.module";
 import { ConsultationService } from "../../services/consultation.service";
 import { ConsultOverviewComponent } from "./consult-overview.component";
@@ -20,12 +18,11 @@ describe("ConsultOverviewComponent", () => {
         ConsultOverviewComponent
       ],
       providers: [
-        HttpClient,
-        HttpHandler,
         ConsultationService,
 
       ],
       imports: [
+        HttpClientTestingModule,
         RouterTestingModule,
         ConsultationModule,
         NgbDatepickerModule,
