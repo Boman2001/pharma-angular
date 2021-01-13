@@ -15,8 +15,4 @@ describe("workspace-project App", () => {
       level: logging.Level.SEVERE,
     } as logging.Entry));
   });
-
-  it("should display form without user data.", () => {
-    expect(true).toBeTrue();
-  });
 });
