@@ -20,14 +20,14 @@ export class DeleteModalComponent implements OnInit {
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.deleteEntity.subscribe((e: BaseEntity) => {
+    this.deleteEntity?.subscribe((e: BaseEntity) => {
       this.deleteId = e.Id;
       this.open();
     })
   }
 
   public open(): void {
-    this.modal = this.modalService.open(this.content, {ariaLabelledBy: "modal-confirm-delete"});
+    this.modal = this.modalService.open(this.content, { ariaLabelledBy: "modal-confirm-delete" });
   }
 
   public close(): void {

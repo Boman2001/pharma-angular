@@ -22,7 +22,8 @@ describe('Datatable', () => {
         component.service = new CountryService();
         component.actions = [{
             id: "editButton",
-            name: "edit",
+            class: '<i class="fas fa-pencil-alt"></i>',
+            icon: "",
             action: () => {
                 expect(true).toBeTrue();
             }

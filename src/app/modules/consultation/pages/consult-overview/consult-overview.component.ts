@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbCalendar, NgbDate, NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 import { Observable } from "rxjs";
-import { BaseEntity, Datatable } from "src/app/modules/core/core.module";
+import { BaseEntity } from "src/app/modules/core/core.module";
 
 import { ConsultationService } from "../../services/consultation.service";
 
@@ -14,7 +14,7 @@ import { ConsultationService } from "../../services/consultation.service";
 export class ConsultOverviewComponent implements OnInit {
   date: NgbDateStruct;
 
-  dataTable: Datatable;
+  @ViewChild('dataTable') dataTable;
 
   private consultEmitter;
   public deleteEntity: Observable<BaseEntity>;
@@ -85,7 +85,9 @@ export class ConsultOverviewComponent implements OnInit {
   }
 
   changeDate(date: NgbDateStruct) {
-    this.dataTable.tableService.searchTerm = this.date.year + "-" + this.date.month + "-" + this.date.day;
+    if (this.dataTable != null) {
+      this.dataTable.tableService.searchTerm = this.date.year + "-" + this.date.month + "-" + this.date.day;
+    }
   }
 
 }
