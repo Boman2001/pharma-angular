@@ -13,7 +13,7 @@ import {Observable} from "rxjs";
 export class UserFormComponent implements OnInit {
   @Input() buttonName: string;
   @Input() initialUser: Observable<User>;
-  @Input() onSaveComplete: (saveResult: boolean) => void;
+  @Input() saveComplete: (saveResult: boolean) => void;
 
   form: FormGroup;
 
@@ -91,8 +91,8 @@ export class UserFormComponent implements OnInit {
     }
 
     // onSaveComplete hook
-    if (this.onSaveComplete != null) {
-      this.onSaveComplete(result);
+    if (this.saveComplete != null) {
+      this.saveComplete(result);
     }
 
     return result;

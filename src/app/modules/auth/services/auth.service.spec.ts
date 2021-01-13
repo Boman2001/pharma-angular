@@ -56,7 +56,7 @@ describe("AuthService", () => {
   });
 
   it("should return correct basePath", () => {
-    expect(service.basePath).toBe(`${environment.apiUrl}/auth`);
+    expect(service.basePath).toBe(`${environment.apiUrl}/Auth`);
   });
 
   it("should return a login response", async () => {
@@ -64,7 +64,7 @@ describe("AuthService", () => {
       expect(loginResponse).toBeTruthy();
     });
 
-    const request = http.expectOne(req => req.method === "POST" && req.url === `${environment.apiUrl}/auth/login`);
+    const request = http.expectOne(req => req.method === "POST" && req.url === `${environment.apiUrl}/Auth/login`);
     request.flush({
       token: mockToken,
       user: mockUser
