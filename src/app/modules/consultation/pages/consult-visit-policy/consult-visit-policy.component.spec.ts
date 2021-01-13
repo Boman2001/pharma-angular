@@ -1,23 +1,23 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConsultVisitAnamnesisComponent } from "./consult-visit-anamnesis.component";
-import {NgbDatepickerModule} from "@ng-bootstrap/ng-bootstrap";
+import { ConsultVisitPolicyComponent } from "./consult-visit-policy.component";
 import {ConsultationModule} from "../../consultation.module";
+import {NgbDatepickerModule} from "@ng-bootstrap/ng-bootstrap";
 
-describe("ConsultVisitAnamnesisComponent", () => {
-  let component: ConsultVisitAnamnesisComponent;
-  let fixture: ComponentFixture<ConsultVisitAnamnesisComponent>;
+describe("ConsultVisitPolicyComponent", () => {
+  let component: ConsultVisitPolicyComponent;
+  let fixture: ComponentFixture<ConsultVisitPolicyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConsultVisitAnamnesisComponent ],
+      declarations: [ ConsultVisitPolicyComponent ],
       imports: [ConsultationModule, NgbDatepickerModule]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConsultVisitAnamnesisComponent);
+    fixture = TestBed.createComponent(ConsultVisitPolicyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

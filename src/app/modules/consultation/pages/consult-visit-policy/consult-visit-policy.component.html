@@ -1,0 +1,122 @@
+<div class="h-100 d-flex flex-column">
+  <h3 class="p-3">Beleid</h3>
+  <div class="d-flex flex-column flex-grow-1">
+    <div class="d-flex flex-column flex-md-row px-3 flex-grow-1">
+      <div class="col-12 col-md-6 d-flex flex-column">
+        <h4>Medicatie</h4>
+          <div class="overflow-auto table-wrapper">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">Omschrijving</th>
+                <th scope="col">Start datum</th>
+                <th scope="col">Eind datum</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th>Morfine 22mg tweemaal daags 1 tablet</th>
+                <td>17-12-2020</td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Morfine 22mg tweemaal daags 1 tablet</th>
+                <td>17-12-2020</td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Morfine 22mg tweemaal daags 1 tablet</th>
+                <td>17-12-2020</td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Morfine 22mg tweemaal daags 1 tablet</th>
+                <td>17-12-2020</td>
+                <td></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+      <div class="col-12 col-md-6 mt-5 mt-md-0 d-flex flex-column">
+        <h4>Intoleranties</h4>
+        <div class="table-wrapper overflow-auto">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">Omschrijving</th>
+              <th scope="col">Start datum</th>
+              <th scope="col">Eind datum</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <th>Lactose intolerantie</th>
+              <td>17-12-2020</td>
+              <td></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex p-3 flex-column flex-md-row">
+      <form class="col-12 col-md-6">
+        <div class="form-group d-flex">
+          <div class="form-group w-50 mr-2">
+            <label>Start datum</label>
+            <div class="d-flex">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                     name="dp" [(ngModel)]="medicineStartDate" ngbDatepicker #mStart="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="mStart.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group w-50 ml-4">
+            <label>Eind datum</label>
+            <div class="d-flex">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                     name="dp" [(ngModel)]="medicineEndDate" ngbDatepicker #mEnd="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="mEnd.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" placeholder="Omschrijving"></textarea>
+        </div>
+        <input type="submit" class="btn btn-primary float-right" value="Voeg medicatie toe">
+      </form>
+      <form class="col-12 col-md-6 mt-5 mt-md-0">
+        <div class="form-group d-flex">
+          <div class="form-group w-50 mr-2">
+            <label>Start datum</label>
+            <div class="d-flex">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                     name="dp" [(ngModel)]="intoleranceStartDate" ngbDatepicker #iStart="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="iStart.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group w-50 ml-2">
+            <label>Eind datum</label>
+            <div class="d-flex">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                     name="dp" [(ngModel)]="intoleranceEndDate" ngbDatepicker #iEnd="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="iEnd.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" placeholder="Omschrijving"></textarea>
+        </div>
+        <input type="submit" class="btn btn-primary float-right" value="voeg intolerantie toe">
+      </form>
+    </div>
+  </div>
+</div>

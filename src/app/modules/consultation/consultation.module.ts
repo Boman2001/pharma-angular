@@ -15,6 +15,11 @@ import { ConsultCreateComponent } from "./components/consult-create/consult-crea
 import { ConsultVisitComponent } from "./pages/consult-visit/consult-visit.component";
 import { ConsultVisitInfoComponent } from "./pages/consult-visit-info/consult-visit-info.component";
 import { ConsultVisitAnamnesisComponent } from "./pages/consult-visit-anamnesis/consult-visit-anamnesis.component";
+import { ConsultVisitBiometricsComponent } from "./pages/consult-visit-biometrics/consult-visit-biometrics.component";
+import { ConsultVisitExaminationComponent } from "./pages/consult-visit-examination/consult-visit-examination.component";
+import { ConsultVisitPolicyComponent } from "./pages/consult-visit-policy/consult-visit-policy.component";
+import { ConsultVisitEvaluationComponent } from "./pages/consult-visit-evaluation/consult-visit-evaluation.component";
+import { ConsultVisitResumeComponent } from "./pages/consult-visit-resume/consult-visit-resume.component";
 
 
 @NgModule({
@@ -23,7 +28,12 @@ import { ConsultVisitAnamnesisComponent } from "./pages/consult-visit-anamnesis/
     ConsultCreateComponent,
     ConsultVisitComponent,
     ConsultVisitInfoComponent,
-    ConsultVisitAnamnesisComponent
+    ConsultVisitAnamnesisComponent,
+    ConsultVisitBiometricsComponent,
+    ConsultVisitExaminationComponent,
+    ConsultVisitPolicyComponent,
+    ConsultVisitEvaluationComponent,
+    ConsultVisitResumeComponent
   ],
   providers: [
     ConsultationService

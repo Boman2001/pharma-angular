@@ -490,5 +490,30 @@ button.calendar, button.calendar:active {
 }
 
 .step:after{
+  z-index: 8;
+}
+
+.mobile-nav-steps .step-item{
+  width: auto;
+}
+
+.mobile-nav-steps .navbar-nav-container{
+  top: 100%;
   z-index: 9;
+}
+
+.mobile-nav-steps .navbar-nav-container.show{
+  display: block!important;
+}
+
+.mobile-nav-steps .steps-buttons div.active{
+  display: flex!important;
+  background: #003e79;
+  border-radius: 0;
+  height: 50px;
+  width: 200px;
+}
+
+.mobile-nav-steps .step:before{
+  content: none;
 }

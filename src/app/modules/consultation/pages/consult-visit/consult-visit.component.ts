@@ -8,6 +8,7 @@ import {Consultation} from "../../models/consultation.model";
 })
 export class ConsultVisitComponent implements OnInit {
   consult: Consultation;
+  steps = false;
 
   constructor() { }
 
@@ -15,5 +16,9 @@ export class ConsultVisitComponent implements OnInit {
     this.consult = new Consultation();
     this.consult.Id = 1;
   }
+
+  toggleSteps(): void{
+    this.steps = !this.steps;
+}
 
 }
