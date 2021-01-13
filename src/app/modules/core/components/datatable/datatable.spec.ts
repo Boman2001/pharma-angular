@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CountryService } from './testdata/country.service';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { CountryService } from "./testdata/country.service";
 
-import { Datatable } from './datatable';
+import { Datatable } from "./datatable";
 
-describe('Datatable', () => {
+describe("Datatable", () => {
     let component: Datatable;
     let fixture: ComponentFixture<Datatable>;
 
@@ -22,7 +22,7 @@ describe('Datatable', () => {
         component.service = new CountryService();
         component.actions = [{
             id: "editButton",
-            class: '<i class="fas fa-pencil-alt"></i>',
+            class: "<i class=\"fas fa-pencil-alt\"></i>",
             icon: "",
             action: () => {
                 expect(true).toBeTrue();
@@ -30,25 +30,25 @@ describe('Datatable', () => {
         }];
     });
 
-    it('should create', () => {
+    it("should create", () => {
         expect(component).toBeTruthy();
     });
 
-    it('should contain sortable class', () => {
-        const ourDomTableUnderTest = document.querySelector('table.table');
+    it("should contain sortable class", () => {
+        const ourDomTableUnderTest = document.querySelector("table.table");
 
         const tableHeaders = Array.from(
-            ourDomTableUnderTest.getElementsByClassName('sortable')
+            ourDomTableUnderTest.getElementsByClassName("sortable")
         );
 
         const headerClass = [
-            'sortable'
-        ]
+            "sortable"
+        ];
 
         tableHeaders.forEach(header => {
             expect(
                 headerClass.some(item => header.classList.contains(item))
             ).toBeTrue();
-        })
-    })
+        });
+    });
 });

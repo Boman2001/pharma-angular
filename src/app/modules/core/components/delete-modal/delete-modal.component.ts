@@ -19,11 +19,12 @@ export class DeleteModalComponent implements OnInit {
 
   constructor(private modalService: NgbModal) { }
 
+  // tslint:disable-next-line:typedef
   ngOnInit() {
     this.deleteEntity?.subscribe((e: BaseEntity) => {
       this.deleteId = e.Id;
       this.open();
-    })
+    });
   }
 
   public open(): void {

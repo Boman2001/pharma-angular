@@ -14,7 +14,7 @@ import { ConsultationService } from "../../services/consultation.service";
 export class ConsultOverviewComponent implements OnInit {
   date: NgbDateStruct;
 
-  @ViewChild('dataTable') dataTable;
+  @ViewChild("dataTable") dataTable;
 
   private consultEmitter;
   public deleteEntity: Observable<BaseEntity>;
@@ -37,23 +37,23 @@ export class ConsultOverviewComponent implements OnInit {
     {
       id: "consult-detail",
       class: "btn btn-primary",
-      icon: '<i class="fas fa-eye"></i>',
+      icon: "<i class=\"fas fa-eye\"></i>",
       action: (entity: BaseEntity) => {
-        this.router.navigate(['/' + entity.Id])
+        this.router.navigate(["/" + entity.Id]);
       }
     },
     {
       id: "consult-edit",
       class: "btn btn-warning",
-      icon: '<i class="fas fa-pencil-alt"></i>',
+      icon: "<i class=\"fas fa-pencil-alt\"></i>",
       action: (entity: BaseEntity) => {
-        this.router.navigate(['/' + entity.Id + '/edit'])
+        this.router.navigate(["/" + entity.Id + "/edit"]);
       }
     },
     {
       id: "consult-delete",
       class: "btn btn-danger",
-      icon: '<i class="fas fa-trash-alt"></i>',
+      icon: "<i class=\"fas fa-trash-alt\"></i>",
       action: (entity: BaseEntity) => {
         this.consultEmitter.next(entity);
       }
@@ -84,6 +84,7 @@ export class ConsultOverviewComponent implements OnInit {
     this.changeDate(this.date);
   }
 
+  // tslint:disable-next-line:typedef
   changeDate(date: NgbDateStruct) {
     if (this.dataTable != null) {
       this.dataTable.tableService.searchTerm = this.date.year + "-" + this.date.month + "-" + this.date.day;

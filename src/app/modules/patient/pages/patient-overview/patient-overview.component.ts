@@ -33,23 +33,23 @@ export class PatientOverviewComponent {
       {
         id: "patient-detail",
         class: "btn btn-primary",
-        icon: '<i class="fas fa-eye"></i>',
+        icon: "<i class=\"fas fa-eye\"></i>",
         action: (entity: BaseEntity) => {
-          this.router.navigate(['/' + entity.Id])
+          this.router.navigate(["/" + entity.Id]);
         }
       },
       {
         id: "patient-edit",
         class: "btn btn-warning",
-        icon: '<i class="fas fa-pencil-alt"></i>',
+        icon: "<i class=\"fas fa-pencil-alt\"></i>",
         action: (entity: BaseEntity) => {
-          this.router.navigate(['/' + entity.Id + '/edit'])
+          this.router.navigate(["/" + entity.Id + "/edit"]);
         }
       },
       {
         id: "patient-delete",
         class: "btn btn-danger",
-        icon: '<i class="fas fa-trash-alt"></i>',
+        icon: "<i class=\"fas fa-trash-alt\"></i>",
         action: (entity: BaseEntity) => {
           this.patientEmitter.next(entity);
         }

@@ -8,11 +8,13 @@ import { BaseEntity } from "../../core.module";
 
 
 @Component({
+  // tslint:disable-next-line:component-selector
     selector: "Datatable",
     templateUrl: "./datatable.html",
     styleUrls: ["./datatable.css"],
     providers: [DecimalPipe]
 })
+// tslint:disable-next-line:component-class-suffix
 export class Datatable implements OnInit {
 
     @Input() public service: IRepository<any>;
@@ -24,8 +26,8 @@ export class Datatable implements OnInit {
     selectedRow: number;
     itemArray: any;
 
-    sortKey: string = "";
-    sortIndex: number = 1;
+    sortKey = "";
+    sortIndex = 1;
 
     constructor(private pipe: DecimalPipe) { }
 
@@ -33,22 +35,22 @@ export class Datatable implements OnInit {
         this.tableService = new TableService<any>(this.service, this.pipe);
     }
 
-    onSort({ column, direction }: SortEvent) {
+    onSort({ column, direction }: SortEvent): void {
         this.selectedRow = -1;
         // resetting other headers
         this.headers.forEach(header => {
             if (header.sortable !== column) {
-                header.direction = '';
+                header.direction = "";
             }
         });
 
         this.tableService.sortColumn = column;
         if (column === this.sortKey) {
-            if (this.sortIndex == 1) {
+            if (this.sortIndex === 1) {
                 this.tableService.sortDirection = "asc";
                 this.sortIndex += 1;
             }
-            else if (this.sortIndex == 2) {
+            else if (this.sortIndex === 2) {
                 this.tableService.sortDirection = "desc";
                 this.sortIndex = 0;
             } else {
@@ -69,7 +71,7 @@ export class Datatable implements OnInit {
         return 0;
     }
 
-    setActiveRow(index) {
+    setActiveRow(index): void {
         this.selectedRow = index;
     }
 }
