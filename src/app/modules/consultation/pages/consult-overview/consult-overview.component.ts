@@ -16,7 +16,7 @@ export class ConsultOverviewComponent implements OnInit {
 
   dataTable: Datatable;
 
-  private emitter;
+  private consultEmitter;
   public deleteEntity: Observable<BaseEntity>;
 
   headerArray: string[] = [
@@ -55,13 +55,13 @@ export class ConsultOverviewComponent implements OnInit {
       class: "btn btn-danger",
       icon: '<i class="fas fa-trash-alt"></i>',
       action: (entity: BaseEntity) => {
-        this.emitter.next(entity);
+        this.consultEmitter.next(entity);
       }
     }
   ];
 
   constructor(private calendar: NgbCalendar, public consultService: ConsultationService, public router: Router) {
-    this.deleteEntity = new Observable(e => this.emitter = e);
+    this.deleteEntity = new Observable(e => this.consultEmitter = e);
   }
 
   ngOnInit(): void {

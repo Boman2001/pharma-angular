@@ -11,7 +11,7 @@ import { ExaminationTypeService } from "../../services/examination-type.service"
 })
 export class ExaminationOverviewComponent {
 
-  private emitter;
+  private examinationEmitter;
   public deleteEntity: Observable<BaseEntity>;
 
   headerArray: string[] = [
@@ -20,27 +20,27 @@ export class ExaminationOverviewComponent {
     "Value"
   ]
 
-  actionsArray: { id: string, class: string, icon: string, action: (entity: BaseEntity) => void }[] = 
-  [
-    {
-      id: "prescription-detail",
-      class: "btn btn-primary",
-      icon: '<i class="fas fa-eye"></i>',
-      action: (entity: BaseEntity) => {
-        this.router.navigate(['/' + entity.Id])
+  actionsArray: { id: string, class: string, icon: string, action: (entity: BaseEntity) => void }[] =
+    [
+      {
+        id: "prescription-detail",
+        class: "btn btn-primary",
+        icon: '<i class="fas fa-eye"></i>',
+        action: (entity: BaseEntity) => {
+          this.router.navigate(['/' + entity.Id])
+        }
+      },
+      {
+        id: "prescription-delete",
+        class: "btn btn-danger",
+        icon: '<i class="fas fa-trash-alt"></i>',
+        action: (entity: BaseEntity) => {
+          this.examinationEmitter.next(entity);
+        }
       }
-    },
-    {
-      id: "prescription-delete",
-      class: "btn btn-danger",
-      icon: '<i class="fas fa-trash-alt"></i>',
-      action: (entity: BaseEntity) => {
-        this.emitter.next(entity);
-      }
-    }
-  ];
+    ];
 
   constructor(public examinationService: ExaminationTypeService, public router: Router) {
-    this.deleteEntity = new Observable(e => this.emitter = e);
+    this.deleteEntity = new Observable(e => this.examinationEmitter = e);
   }
 }

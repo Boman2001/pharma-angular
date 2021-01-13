@@ -27,16 +27,6 @@ th.sortable.desc:after {
   -ms-transform: rotate(180deg);
 }
 
-/* Filtering table demo */
-ngbd-table-filtering span.ngb-highlight {
-  background-color: yellow;
-}
-
-/* Complete table demo */
-ngbd-table-complete span.ngb-highlight {
-  background-color: yellow;
-}
-
 .table-striped tbody tr:hover {
   background-color: #e3ecf4;
 }
