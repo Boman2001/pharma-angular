@@ -12,13 +12,12 @@ import { Observable } from "rxjs";
 export class UserEditComponent {
 
   user: Observable<User>;
+  userEmitter;
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
+    this.user = new Observable<User>(e => this.userEmitter = e);
     this.route.paramMap.subscribe(params => {
-      this.user = this.userService.Get(params.get("id"));
-
-      // If user is not retrieved...
-      this.user.toPromise()
+      this.userService.Get(params.get("id")).toPromise()
       .then(async (u: User) => {
         if (u == null || u.id == null) {
           // @TODO: Global modal service, ToastService?
@@ -26,6 +25,8 @@ export class UserEditComponent {
           await router.navigate(["doctors"]);
           return;
         }
+
+        this.userEmitter.next(u);
       })
       .catch(async (e) => {
         console.error("API could not be reached...");
