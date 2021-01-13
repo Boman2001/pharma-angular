@@ -1,4 +1,4 @@
 <div class="page container-fluid">
     <h2>Dokter Aanmaken</h2>
-    <app-user-form buttonName="Aanmaken" [saveComplete]="onSaveComplete"></app-user-form>
+    <app-user-form buttonName="Aanmaken" (saveComplete)="onSaveComplete($event)"></app-user-form>
 </div>

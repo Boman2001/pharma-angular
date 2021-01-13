@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, Output } from "@angular/core";
 import {
   AbstractControl,
   FormBuilder,
@@ -11,7 +11,8 @@ import {
 import { UserService } from "../../services/user.service";
 import { User } from "../../models/user.model";
 import { Router } from "@angular/router";
-import {Observable} from "rxjs";
+import { Observable } from "rxjs";
+import { EventEmitter } from "events";
 
 @Component({
   selector: "app-user-form",
@@ -21,8 +22,9 @@ import {Observable} from "rxjs";
 export class UserFormComponent implements OnInit {
   @Input() buttonName: string;
   @Input() initialUser: Observable<User>;
-  @Input() saveComplete: (saveResult: boolean) => void;
-  @Input() saveError: (exception: ExceptionInformation) => void;
+
+  @Output() saveComplete = new EventEmitter<boolean>();
+  @Output() saveError = new EventEmitter<ExceptionInformation>();
 
   form: FormGroup;
 
@@ -106,19 +108,12 @@ export class UserFormComponent implements OnInit {
       {
         result = await this.userService.Add(this.user).toPromise();
       }
-
-      // onSaveComplete hook
-      if (this.saveComplete != null) {
-        this.saveComplete(result);
-      }
+      // @TODO: Toast? GlobalModal??
+      this.saveComplete.emit(result);
     }
     catch (e) {
       // @TODO: Toast? GlobalModal??
-
-      // onSaveError hook
-      if (this.saveError != null) {
-        this.saveError(e);
-      }
+      this.saveError.emit(e);
     }
 
     return result;
