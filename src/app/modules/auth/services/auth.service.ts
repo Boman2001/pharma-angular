@@ -37,7 +37,7 @@ export class AuthService extends HttpService {
     this.storage.SetItem("token", value);
   }
 
-  public async Login(email: string, password: string): Promise<LoginResponse>
+  public async Login(email: string, password: string): Promise<boolean>
   {
     const loginResponse = await this.http.post<LoginResponse>(
       `${this.basePath}/login`,
@@ -57,13 +57,13 @@ export class AuthService extends HttpService {
       || loginResponse.user.Id == null
     )
     {
-      return null;
+      return false;
     }
 
     this.token = loginResponse.token;
     this.user = new BehaviorSubject<User>(loginResponse.user);
 
-    return loginResponse;
+    return true;
   }
 
   public Logout(): void

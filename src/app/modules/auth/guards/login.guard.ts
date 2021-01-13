@@ -17,10 +17,13 @@ export class LoginGuard implements CanActivate {
     return this.authService.user
       .pipe(
         map(user => {
-          if (!user) {
+          if (!user)
+          {
             this.router.navigate(["/auth/login"]);
             return false;
-          } else {
+          }
+          else
+          {
             return true;
           }
         })
