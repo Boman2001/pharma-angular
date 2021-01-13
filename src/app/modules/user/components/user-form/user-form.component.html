@@ -1,4 +1,4 @@
-<div class="form-spinner" *ngIf="(editMode && !user?.Id); else userForm">
+<div class="form-spinner" *ngIf="(editMode && !user?.id); else userForm">
   <div class="spinner-border" role="status">
     <span class="sr-only">Loading...</span>
   </div>
@@ -48,17 +48,17 @@
     <div class="form-group">
       <label>Geslacht</label>
       <div class="custom-control custom-radio">
-        <input type="radio" id="user-Gender-male" [class.input-validation-error]="form.controls['Gender'].invalid && form.controls['Gender'].touched" Name="Gender" class="custom-control-input" value="male" formControlName="Gender">
-        <label class="custom-control-label" for="user-Gender-male" ngfor>Man</label>
+        <input type="radio" id="user-Gender-male" [class.input-validation-error]="form.controls['Gender'].invalid && form.controls['Gender'].touched" Name="Gender" class="custom-control-input" [value]="0" formControlName="Gender">
+        <label class="custom-control-label" for="user-Gender-male">Man</label>
       </div>
 
       <div class="custom-control custom-radio">
-        <input type="radio" id="user-Gender-female" [class.input-validation-error]="form.controls['Gender'].invalid && form.controls['Gender'].touched" Name="Gender" class="custom-control-input" value="female" formControlName="Gender">
+        <input type="radio" id="user-Gender-female" [class.input-validation-error]="form.controls['Gender'].invalid && form.controls['Gender'].touched" Name="Gender" class="custom-control-input" [value]="1" formControlName="Gender">
         <label class="custom-control-label" for="user-Gender-female">Vrouw</label>
       </div>
 
       <div class="custom-control custom-radio">
-        <input type="radio" id="user-Gender-other" [class.input-validation-error]="form.controls['Gender'].invalid && form.controls['Gender'].touched" Name="Gender" class="custom-control-input" value="other" formControlName="Gender">
+        <input type="radio" id="user-Gender-other" [class.input-validation-error]="form.controls['Gender'].invalid && form.controls['Gender'].touched" Name="Gender" class="custom-control-input" [value]="2" formControlName="Gender">
         <label class="custom-control-label" for="user-Gender-other">Overige</label>
       </div>
 
@@ -88,7 +88,7 @@
         </div>
         <div class="col-3">
           <label for="user-HouseNumber">Huisnummer</label>
-          <input class="form-control" type="number" Name="HouseNumber" id="user-HouseNumber" [class.input-validation-error]="form.controls['HouseNumber'].invalid && form.controls['HouseNumber'].touched" placeholder="Huisnummer" formControlName="HouseNumber">
+          <input class="form-control" type="text" Name="HouseNumber" id="user-HouseNumber" [class.input-validation-error]="form.controls['HouseNumber'].invalid && form.controls['HouseNumber'].touched" placeholder="Huisnummer" formControlName="HouseNumber">
           <div id="user-HouseNumber-alert" *ngIf="form.controls['HouseNumber'].invalid && form.controls['HouseNumber'].touched">
             <div class="input-validation-error-text" *ngIf="form.controls['HouseNumber'].errors.required">Huisnummer is een verplicht veld.</div>
             <div class="input-validation-error-text" *ngIf="form.controls['HouseNumber'].errors.maxlength">Huisnummer is te lang.</div>

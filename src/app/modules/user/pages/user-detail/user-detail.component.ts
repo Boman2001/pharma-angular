@@ -23,7 +23,7 @@ export class UserDetailComponent implements OnInit {
   private retrieveUserData(id: string): void {
     this.userService.Get(id).toPromise()
       .then(async (u: User) => {
-        if (u == null || u.Id == null) {
+        if (u == null || u.id == null) {
           // @TODO: Global modal service, ToastService?
           console.error("User could not be found...");
           try {

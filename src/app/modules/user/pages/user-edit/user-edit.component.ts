@@ -20,7 +20,7 @@ export class UserEditComponent {
       // If user is not retrieved...
       this.user.toPromise()
       .then(async (u: User) => {
-        if (u == null || u.Id == null) {
+        if (u == null || u.id == null) {
           // @TODO: Global modal service, ToastService?
           console.error("User could not be found...");
           await router.navigate(["doctors"]);
@@ -37,12 +37,11 @@ export class UserEditComponent {
   }
 
   async onSaveComplete(saveResult: boolean): Promise<void> {
+    // @TODO: GlobalModalService or ToastService
     if (saveResult)
     {
-      await this.router.navigate(["users"]);
+      await this.router.navigate(["doctors"]);
       return;
     }
-
-    // @TODO: GlobalModalService or ToastService
   }
 }

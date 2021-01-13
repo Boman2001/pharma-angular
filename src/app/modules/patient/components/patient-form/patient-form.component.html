@@ -1,5 +1,5 @@
 <form method="POST" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
-  
+
   <div class="form-group">
     <label for="patient-name">Naam</label>
     <input class="form-control" [ngClass]="form.controls['name'].invalid && form.controls['name'].touched ? 'input-validation-error' : ''" type="text" name="patient-name" id="patient-name" placeholder="Naam" formControlName="name">
@@ -33,7 +33,7 @@
   </div>
 
   <div class="form-group">
-    <label for="custom-radio">Geslacht</label>
+    <label>Geslacht</label>
     <div class="custom-control custom-radio">
       <input type="radio" id="male" name="gender" class="custom-control-input" value="male" formControlName="gender">
       <label class="custom-control-label" for="male">Man</label>
@@ -82,7 +82,7 @@
         <label for="addition">Toevoeging</label>
         <input class="form-control" type="text" name="addition" id="addition" placeholder="Toevoeging">
       </div>
-    </div>    
+    </div>
   </div>
 
   <div class="form-group">

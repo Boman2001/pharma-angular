@@ -63,7 +63,7 @@ export class AuthService extends HttpService {
       loginResponse == null
       || loginResponse.token == null
       || loginResponse.user == null
-      || loginResponse.user.Id == null
+      || loginResponse.user.id == null
     )
     {
       return false;

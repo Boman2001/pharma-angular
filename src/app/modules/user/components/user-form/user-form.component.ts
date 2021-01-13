@@ -38,7 +38,7 @@ export class UserFormComponent implements OnInit {
         BSN: new FormControl("", [ Validators.required, Validators.maxLength(11), Validators.minLength(11) ]),
         Email: new FormControl("", [ Validators.required, Validators.maxLength(255), Validators.email ]),
         Dob: new FormControl("", [ Validators.required ]),
-        Gender: new FormControl("male", [ Validators.required ]),
+        Gender: new FormControl("", [ Validators.required ]),
         PhoneNumber: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
         Street: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
         HouseNumber: new FormControl("", [ Validators.required, Validators.maxLength(5) ]),
@@ -92,9 +92,9 @@ export class UserFormComponent implements OnInit {
 
     let result;
     try {
-      if (this.user.Id != null)
+      if (this.user.id != null)
       {
-        result = await this.userService.Update(this.user.Id, this.user).toPromise();
+        result = await this.userService.Update(this.user.id, this.user).toPromise();
       }
       else
       {

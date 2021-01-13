@@ -1,4 +1,4 @@
-<div class="form-spinner" *ngIf="(!user?.Id); else userDetail">
+<div class="form-spinner" *ngIf="(!user?.id); else userDetail">
   <div class="spinner-border" role="status">
     <span class="sr-only">Loading...</span>
   </div>
@@ -17,13 +17,13 @@
     <div class="row">
       <div class="col-md-2">
         <h5>Informatie</h5>
-        <div>{{ user.Name }}</div>
-        <div>{{ user.Username }}</div>
-        <div>{{ user.Dob }}</div>
-        <div>{{ user.Email }}</div>
-        <div>{{ user.PhoneNumber }}</div>
-        <div>{{ user.Street }} {{ user.HouseNumber }}{{ user.HouseNumberAddon }}</div>
-        <div>{{ user.PostalCode }} {{ user.City }}, {{ user.Country }}</div>
+        <div>{{ user.name }}</div>
+        <div>{{ user.username }}</div>
+        <div>{{ user.dob }}</div>
+        <div>{{ user.email }}</div>
+        <div>{{ user.phoneNumber }}</div>
+        <div>{{ user.street }} {{ user.houseNumber }}{{ user.houseNumberAddon }}</div>
+        <div>{{ user.postalCode }} {{ user.city }}, {{ user.country }}</div>
       </div>
       <div class="col-md-10">
         TABLE

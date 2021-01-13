@@ -6,7 +6,7 @@
     <div id="profile-btn" class="rounded-circle position-relative border border-dark">
       <div class="w-100 h-100 d-flex justify-content-center align-items-center" (click)="profileClick()">JD</div>
       <div class="popup position-absolute p-2 border bg-white" *ngIf="profile">
-        <a>Logout</a>
+        <a (click)="logout()">Logout</a>
       </div>
     </div>
   </header>
