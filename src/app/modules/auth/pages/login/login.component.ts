@@ -14,18 +14,41 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      email: new FormControl("", [ Validators.required ]),
+      email: new FormControl("", [ Validators.required, Validators.email ]),
       password: new FormControl("", [ Validators.required ])
     });
   }
 
   async onSubmit(): Promise<void> {
-    if (await this.authService.Login(this.form.controls.email.value, this.form.controls.password.value))
-    {
-      await this.router.navigate(["consultation"]);
+
+    for (const i in this.form.controls) {
+      if (this.form.controls.hasOwnProperty(i)) {
+        this.form.controls[i]?.markAsTouched();
+      }
     }
-    else
+
+    if (!this.form.valid)
     {
+      // @TODO: Toast? GlobalModal??
+      return;
+    }
+
+    try {
+      if (await this.authService.Login(this.form.controls.email.value, this.form.controls.password.value))
+      {
+        await this.router.navigate(["consultation"]);
+      }
+      else
+      {
+        // this.form.controls.email.setErrors({ incorrect: true });
+        // this.form.controls.password.setErrors({ incorrect: true });
+        // Required because the API returns a 400,
+        // and the angular HTTP client turns it into asn exception
+        throw new Error();
+      }
+    }
+    catch (e) {
+      console.error(e);
       this.form.controls.email.setErrors({ incorrect: true });
       this.form.controls.password.setErrors({ incorrect: true });
     }
