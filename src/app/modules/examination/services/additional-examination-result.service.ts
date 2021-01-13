@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { GenericHttpService } from "../../core/core.module";
+import {GenericHttpService, StorageService} from "../../core/core.module";
 import { HttpClient } from "@angular/common/http";
 
 
@@ -8,7 +8,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class AdditionalExaminationResultService extends GenericHttpService<AdditionalExaminationResultService> {
 
-  constructor(protected http: HttpClient) {
-    super("additional-examination-result", http);
+  constructor(protected http: HttpClient, protected storage: StorageService) {
+    super("AdditionalExaminationResults", http, storage);
   }
 }

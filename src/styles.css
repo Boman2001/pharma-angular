@@ -21,6 +21,16 @@ html, html body, html body .wrapper {
   overflow-y: auto;
 }
 
+.form-spinner {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  height: 50%;
+}
+
 .master-layout-router + * {
   flex-grow: 1;
 }
@@ -250,7 +260,7 @@ input:focus{
 }
 
 .input-validation-error{
-  border-color: #C1272D;
+  border-color: #C1272D !important;
 }
 
 .input-validation-error-text{

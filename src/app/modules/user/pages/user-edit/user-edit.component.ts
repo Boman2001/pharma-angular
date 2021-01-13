@@ -1,15 +1,48 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+import {ActivatedRoute, Router} from "@angular/router";
+import { User } from "../../models/user.model";
+import { UserService } from "../../services/user.service";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-user-edit",
   templateUrl: "./user-edit.component.html",
   styleUrls: ["./user-edit.component.css"]
 })
-export class UserEditComponent implements OnInit {
+export class UserEditComponent {
 
-  constructor() { }
+  user: Observable<User>;
 
-  ngOnInit(): void {
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
+    this.route.paramMap.subscribe(params => {
+      this.user = this.userService.Get(params.get("id"));
+
+      // If user is not retrieved...
+      this.user.toPromise()
+      .then(async (u: User) => {
+        if (u == null || u.Id == null) {
+          // @TODO: Global modal service, ToastService?
+          console.error("User could not be found...");
+          await router.navigate(["doctors"]);
+          return;
+        }
+      })
+      .catch(async (e) => {
+        console.error("API could not be reached...");
+        // @TODO: Global modal service, ToastService?
+        await router.navigate(["doctors"]);
+        return;
+      });
+    });
   }
 
+  async onSaveComplete(saveResult: boolean): Promise<void> {
+    if (saveResult)
+    {
+      await this.router.navigate(["users"]);
+      return;
+    }
+
+    // @TODO: GlobalModalService or ToastService
+  }
 }
