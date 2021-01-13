@@ -22,6 +22,7 @@ export class UserFormComponent implements OnInit {
   @Input() buttonName: string;
   @Input() initialUser: Observable<User>;
   @Input() saveComplete: (saveResult: boolean) => void;
+  @Input() saveError: (exception: ExceptionInformation) => void;
 
   form: FormGroup;
 
@@ -91,23 +92,33 @@ export class UserFormComponent implements OnInit {
 
     if (!this.form.valid)
     {
-      //@TODO: Toast? GlobalModal??
+      // @TODO: Toast? GlobalModal??
       return;
     }
 
     let result;
-    if (this.user.Id != null)
-    {
-      result = await this.userService.Update(this.user.Id, this.user).toPromise();
-    }
-    else
-    {
-      result = await this.userService.Add(this.user).toPromise();
-    }
+    try {
+      if (this.user.Id != null)
+      {
+        result = await this.userService.Update(this.user.Id, this.user).toPromise();
+      }
+      else
+      {
+        result = await this.userService.Add(this.user).toPromise();
+      }
 
-    // onSaveComplete hook
-    if (this.saveComplete != null) {
-      this.saveComplete(result);
+      // onSaveComplete hook
+      if (this.saveComplete != null) {
+        this.saveComplete(result);
+      }
+    }
+    catch (e) {
+      // @TODO: Toast? GlobalModal??
+
+      // onSaveError hook
+      if (this.saveError != null) {
+        this.saveError(e);
+      }
     }
 
     return result;
