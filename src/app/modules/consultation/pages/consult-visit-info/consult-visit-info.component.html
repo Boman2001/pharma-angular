@@ -22,6 +22,13 @@
 <div class="d-flex flex-sm-column flex-md-row p-3">
   <div class="col-md-6 col-sm-12">
     <textarea class="form-control" disabled>Max heeft last van zijn knie</textarea>
+    <iframe
+      class="mt-2"
+      width="775"
+      height="300"
+      frameborder="0" style="border:0"
+      [src]="sanitizer.bypassSecurityTrustResourceUrl(map)" allowfullscreen>
+    </iframe>
   </div>
   <div class="col-md-6 col-sm-12 d-flex justify-content-between mt-sm-3 mt-md-0">
     <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
