@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { BaseEntity } from "src/app/modules/core/core.module";
-import { PhysicalExaminationService } from "../../services/physical-examination.service";
+import { ExaminationTypeService } from "../../services/examination-type.service";
 
 @Component({
   selector: "app-examination-overview",
@@ -27,7 +27,7 @@ export class ExaminationOverviewComponent implements OnInit {
     },
   ];
 
-  constructor(public examinationService: PhysicalExaminationService, public router: Router) { }
+  constructor(public examinationService: ExaminationTypeService, public router: Router) { }
 
   ngOnInit(): void {
   }
