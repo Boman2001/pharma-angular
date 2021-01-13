@@ -5,6 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../../environments/environment";
 import { HttpService } from "./http.service";
 import { IRepository } from "../lib/IRepository";
+import { StorageService } from "./storage.service";
 
 
 @Injectable({
@@ -13,8 +14,8 @@ import { IRepository } from "../lib/IRepository";
 
 export class GenericHttpService<T> extends HttpService implements IRepository<T> {
 
-  constructor(private readonly entityPath: string, protected http: HttpClient) {
-    super(http);
+  constructor(private readonly entityPath: string, protected http: HttpClient, protected storage: StorageService) {
+    super(http, storage);
   }
 
   public get basePath(): string
@@ -27,7 +28,7 @@ export class GenericHttpService<T> extends HttpService implements IRepository<T>
     return this.http.get<T[]>(this.basePath, this.baseOptions);
   }
 
-  public Get(id: number): Observable<T>
+  public Get(id: string): Observable<T>
   {
     return this.http.get<T>(`${this.basePath}/${ id }`, this.baseOptions);
   }
@@ -52,7 +53,7 @@ export class GenericHttpService<T> extends HttpService implements IRepository<T>
     return this.http.put<boolean>(`${this.basePath}/${ id }`, entity, this.baseOptions);
   }
 
-  public Delete(id: number): Observable<boolean>
+  public Delete(id: string): Observable<boolean>
   {
     return this.http.delete<boolean>(`${this.basePath}/${ id }`, this.baseOptions);
   }
