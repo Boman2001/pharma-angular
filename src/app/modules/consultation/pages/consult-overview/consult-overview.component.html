@@ -10,30 +10,36 @@
           <div class="input-group d-flex justify-content-between col-sm-12 col-md-auto p-0">
             <div class="d-flex">
               <span class="d-flex align-items-center px-2" (click)="prevDay()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-              </svg>
-            </span>
-              <input class="form-control" placeholder="yyyy-mm-dd"
-                     name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-chevron-left" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                </svg>
+              </span>
+              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="date" ngbDatepicker
+                #d="ngbDatepicker">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
               </div>
               <span class="d-flex align-items-center px-2" (click)="nextDay()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-              </svg>
-            </span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-chevron-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                </svg>
+              </span>
             </div>
             <button class="btn btn-primary ml-3" (click)="selectToday()">Vandaag</button>
           </div>
         </div>
       </form>
     </div>
-    <div class="md-form m-0 p-0 col-sm-12 col-md-4">
+    <!--<div class="md-form m-0 p-0 col-sm-12 col-md-4">
       <div class="d-flex flex-row-reverse">
         <input class="form-control col-12" type="text" placeholder="Search" aria-label="Search">
       </div>
-    </div>
+    </div> -->
   </div>
+  <Datatable [show]="headerArray" [actions]="actionsArray" [service]="consultService"></Datatable>
+  <app-delete-modal [deleteEntity]="deleteEntity" [service]="consultService"></app-delete-modal>
 </div>
