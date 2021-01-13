@@ -4,7 +4,7 @@ import { UserService } from "../../services/user.service";
 import { User } from "../../models/user.model";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
-import { EventEmitter } from "events";
+import { EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-user-form",
