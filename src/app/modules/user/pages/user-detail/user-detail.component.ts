@@ -20,6 +20,12 @@ export class UserDetailComponent implements OnInit {
     });
   }
 
+  public async delete(): Promise<void> {
+
+    await this.userService.Delete(this.user.id).toPromise();
+    await this.router.navigate(["/doctors"]);
+  }
+
   private retrieveUserData(id: string): void {
     this.userService.Get(id).toPromise()
       .then(async (u: User) => {
