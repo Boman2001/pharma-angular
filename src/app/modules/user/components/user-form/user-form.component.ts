@@ -1,13 +1,5 @@
 import { Component, Input, OnInit, Output } from "@angular/core";
-import {
-  AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ValidationErrors,
-  ValidatorFn,
-  Validators
-} from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
 import { UserService } from "../../services/user.service";
 import { User } from "../../models/user.model";
 import { Router } from "@angular/router";
