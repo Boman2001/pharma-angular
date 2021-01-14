@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { BaseEntity, TableAction, TableHeader } from "src/app/modules/core/core.module";
 import { PrescriptionService } from "../../services/prescription.service";
 import { Consultation } from "../../../consultation/models/consultation.model";
+import {Patient} from "../../../patient/models/patient.model";
 
 
 @Component({
@@ -17,21 +18,30 @@ export class PrescriptionOverviewComponent {
       key: "consultation",
       text: "Consult",
       transform: (c: Consultation) => {
-        return `Consult op ${ new Date(c.date).toDateString() }`;
+        return c?.id != null ? `Consult op ${ new Date(c.date).toDateString() }` : "-";
       }
     },
     {
       key: "patient",
-      text: "Patiënt"
+      text: "Patiënt",
+      transform: (p: Patient) => {
+        return p?.id != null ? p.name : "-";
+      }
     },
     { key: "description", text: "Beschrijving" },
     {
       key: "startDate",
-      text: "Startdatum"
+      text: "Startdatum",
+      transform: (d: string) => {
+        return new Date(d).toDateString();
+      }
     },
     {
       key: "endDate",
-      text: "Einddatum"
+      text: "Einddatum",
+      transform: (d: string) => {
+        return new Date(d).toDateString();
+      }
     },
   ];
   actionsArray: TableAction[] = [
