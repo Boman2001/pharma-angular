@@ -24,8 +24,15 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="form-group">
-                <h3>Location?</h3>
+            <div class="form-group h-100 d-flex flex-column">
+                <h3>Locatie</h3>
+                <iframe
+                  title="Patiënt adres"
+                  class="mb-3 flex-grow-1"
+                  width="100%"
+                  style="border:0"
+                  [src]="sanitizer.bypassSecurityTrustResourceUrl(map)" allowfullscreen>
+                </iframe>
             </div>
         </div>
     </div>
