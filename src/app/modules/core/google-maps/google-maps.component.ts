@@ -64,7 +64,7 @@ export class GoogleMapsComponent implements OnInit {
   }
 
   urlMapsGenerator(patientInfo: any): string{
-    const base = "http://www.google.com/maps/place/";
+    const base = "https://www.google.com/maps/place/";
 
     let url = "";
     if (patientInfo.houseNumberAddon !== ""){

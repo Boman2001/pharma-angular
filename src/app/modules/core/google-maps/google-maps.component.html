@@ -24,7 +24,7 @@
            {{consult.date}} -  <a class="google-link pink" [routerLink]="['/consultation', consult.id]">Bekijk Consult</a> <br>
            {{consult.patient.street}} {{consult.patient.houseNumber}} {{consult.patient.houseNumberAddon}},
            {{consult.patient.postalCode}} {{consult.patient.city}}<br>
-           <a class="google-link pink" [href]="urlMapsGenerator(consult.patient)" target="_BLANK">Weergeven in Google Maps</a>
+           <a class="google-link pink" [href]="urlMapsGenerator(consult.patient)" target="_BLANK" rel=noopener>Weergeven in Google Maps</a>
         </agm-info-window>
       </agm-marker>
     </ng-container>
