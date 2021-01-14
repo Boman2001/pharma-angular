@@ -1,0 +1,32 @@
+<div class="page container-fluid pb-4 d-flex flex-column">
+  <h3>Routes</h3>
+  <agm-map [fitBounds]="true" [latitude]="center.lat" [longitude]="center.lng">
+    <agm-marker [latitude]="initial.lat" [longitude]="initial.lng">
+      <agm-info-window>
+        Arts Startpunt
+      </agm-info-window>
+    </agm-marker>
+    <agm-direction *ngIf="showMap"
+      [renderOptions]="renderOptions"
+      [origin]="origin"
+      [destination]="destination">
+    </agm-direction>
+
+    <ng-container *ngFor="let consult of consultations;let i = index">
+      <agm-marker
+        [agmFitBounds]="true"
+        (markerClick)="clickedMarker(i, iw)"
+        [latitude]="consult.patient.latitude"
+        [longitude]="consult.patient.longitude">
+        <agm-info-window #iw>
+           {{consult.patient.name}} <br>
+           {{consult.patient.phoneNumber}}  <br>
+           {{consult.date}} -  <a class="google-link pink" [routerLink]="['/consultation', consult.id]">Bekijk Consult</a> <br>
+           {{consult.patient.street}} {{consult.patient.houseNumber}} {{consult.patient.houseNumberAddon}},
+           {{consult.patient.postalCode}} {{consult.patient.city}}<br>
+           <a class="google-link pink" [href]="urlMapsGenerator(consult.patient)" target="_BLANK" rel=noopener>Weergeven in Google Maps</a>
+        </agm-info-window>
+      </agm-marker>
+    </ng-container>
+  </agm-map>
+</div>
