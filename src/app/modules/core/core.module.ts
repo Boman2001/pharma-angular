@@ -1,25 +1,29 @@
 // Modules
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import {NgModule} from "@angular/core";
+import {CommonModule} from "@angular/common";
 
 // Services
-import { StorageService } from "./services/storage.service";
-import { AgmCoreModule } from "@agm/core";
-import { GoogleMapsComponent } from "./google-maps/google-maps.component";
-import { AgmDirectionModule } from "agm-direction";
-import { RouterModule } from "@angular/router";
-import { environment } from "../../../environments/environment";
-import { FormsModule } from "@angular/forms";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { NgbdSortableHeader } from "./components/datatable/sortable.directive";
+import {StorageService} from "./services/storage.service";
+import {AgmCoreModule} from "@agm/core";
+import {GoogleMapsComponent} from "./google-maps/google-maps.component";
+import {AgmDirectionModule} from "agm-direction";
+import {RouterModule} from "@angular/router";
+import {environment} from "../../../environments/environment";
+import {FormsModule} from "@angular/forms";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbdSortableHeader} from "./components/datatable/sortable.directive";
 
 // Components
-import { Datatable } from "./components/datatable/datatable";
-import { DeleteModalComponent } from "./components/delete-modal/delete-modal.component";
+import {Datatable} from "./components/datatable/datatable";
+import {DeleteModalComponent} from "./components/delete-modal/delete-modal.component";
 
 
 @NgModule({
-  declarations: [GoogleMapsComponent],
+  declarations: [GoogleMapsComponent,
+    Datatable,
+    NgbdSortableHeader,
+    DeleteModalComponent
+  ],
   imports: [
     CommonModule,
     AgmCoreModule.forRoot({
@@ -31,11 +35,6 @@ import { DeleteModalComponent } from "./components/delete-modal/delete-modal.com
     FormsModule,
     NgbModule
   ],
-  declarations: [
-    Datatable,
-    NgbdSortableHeader,
-    DeleteModalComponent,
-  ],
   exports: [
     Datatable,
     DeleteModalComponent
@@ -45,7 +44,8 @@ import { DeleteModalComponent } from "./components/delete-modal/delete-modal.com
   ]
 })
 
-export class CoreModule { }
+export class CoreModule {
+}
 
 // Models
 export * from "./models/base-entity.model";
