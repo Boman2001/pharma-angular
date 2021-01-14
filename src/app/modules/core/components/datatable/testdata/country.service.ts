@@ -1,4 +1,3 @@
-// todo fix this horrendous code
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { COUNTRIES } from "./countries";
@@ -12,13 +11,14 @@ import { IRepository } from "../../../lib/IRepository";
 export class CountryService implements IRepository<Country> {
 
   constructor() { }
+
   public GetAll(): Observable<Country[]> {
     return from([COUNTRIES]);
   }
   Get(id: string): Observable<Country> {
     throw new Error("Method not implemented.");
   }
-  GetByFilter(filter: (i: Country) => boolean): Observable<Country> {
+  GetByFilter(filter: (i: Country) => boolean): Observable<Country[]> {
     throw new Error("Method not implemented.");
   }
   Add(entity: Country): Observable<boolean> {

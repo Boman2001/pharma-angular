@@ -23,8 +23,8 @@ export class UserFormComponent implements OnInit {
   constructor(private router: Router, private userService: UserService, private fb: FormBuilder) {}
 
   private passwordCheckValidator: ValidatorFn = (fg: FormGroup): ValidationErrors | null => {
-    const password = fg.get("Password");
-    const passwordCheck = fg.get("PasswordCheck");
+    const password = fg.get("password");
+    const passwordCheck = fg.get("passwordCheck");
 
     return (password.value != null && (password.value !== passwordCheck.value)) ? { notMatching: true } : null;
   }
@@ -33,22 +33,20 @@ export class UserFormComponent implements OnInit {
     this.form = this.fb.group
     (
       {
-        Id: new FormControl("", []),
-        Name: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
-        BSN: new FormControl("", [ Validators.required, Validators.maxLength(11), Validators.minLength(11) ]),
-        Email: new FormControl("", [ Validators.required, Validators.maxLength(255), Validators.email ]),
-        Dob: new FormControl("", [ Validators.required ]),
-        Gender: new FormControl("male", [ Validators.required ]),
-        PhoneNumber: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
-        Street: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
-        HouseNumber: new FormControl("", [ Validators.required, Validators.maxLength(5) ]),
-        HouseNumberAddon: new FormControl("", [ Validators.maxLength(255) ]),
-        City: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
-        PostalCode: new FormControl("", [ Validators.required, Validators.minLength(6), Validators.maxLength(6) ]),
-        Country: new FormControl("NL", [ Validators.required, Validators.maxLength(255) ]),
-        Username: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
-        Password: new FormControl("", this.editMode ? [] : [ Validators.required ]),
-        PasswordCheck: new FormControl("", this.editMode ? [] : [ Validators.required ]),
+        id: new FormControl("", []),
+        name: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
+        email: new FormControl("", [ Validators.required, Validators.maxLength(255), Validators.email ]),
+        dob: new FormControl("", [ Validators.required ]),
+        gender: new FormControl("", [ Validators.required ]),
+        phoneNumber: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
+        street: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
+        houseNumber: new FormControl("", [ Validators.required, Validators.maxLength(5) ]),
+        houseNumberAddon: new FormControl("", [ Validators.maxLength(255) ]),
+        city: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
+        postalCode: new FormControl("", [ Validators.required, Validators.minLength(6), Validators.maxLength(6) ]),
+        country: new FormControl("NL", [ Validators.required, Validators.maxLength(255) ]),
+        password: new FormControl("", this.editMode ? [] : [ Validators.required ]),
+        passwordCheck: new FormControl("", this.editMode ? [] : [ Validators.required ]),
       },
       {
         validators: [
@@ -92,9 +90,9 @@ export class UserFormComponent implements OnInit {
 
     let result;
     try {
-      if (this.user.Id != null)
+      if (this.user.id != null && this.user.id !== "")
       {
-        result = await this.userService.Update(this.user.Id, this.user).toPromise();
+        result = await this.userService.Update(this.user.id, this.user).toPromise();
       }
       else
       {

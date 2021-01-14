@@ -4,6 +4,10 @@ th.sortable {
   -webkit-user-select: none;
 }
 
+.datatable-button {
+  margin-right: 5%;
+}
+
 th.sortable:after {
   content: '';
   display: block;

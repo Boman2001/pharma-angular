@@ -35,6 +35,6 @@
       </form>
     </div>
   </div>
-  <Datatable #dataTable [show]="headerArray" [actions]="actionsArray" [service]="consultService"></Datatable>
+  <app-datatable-component #dataTable [show]="headerArray" [actions]="actionsArray" [service]="consultService"></app-datatable-component>
   <app-delete-modal [deleteEntity]="deleteEntity" [service]="consultService"></app-delete-modal>
 </div>

@@ -14,8 +14,7 @@ export class ExaminationFormComponent implements OnInit {
     Validators.required
   ];
 
-  constructor(private fb: FormBuilder) {
-  }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({

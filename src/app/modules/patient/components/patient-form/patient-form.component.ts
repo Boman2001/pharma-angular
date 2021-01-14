@@ -10,32 +10,28 @@ export class PatientFormComponent implements OnInit {
 
   @Input() buttonName: string;
   form: FormGroup;
-  validators = [
-    Validators.required
-  ];
-  modal;
 
-  constructor(private fb: FormBuilder) {
-  }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      name: new FormControl("", this.validators),
-      bsn: new FormControl("", this.validators),
-      email: new FormControl("", this.validators),
-      dob: new FormControl("", this.validators),
-      gender: new FormControl("male", this.validators),
-      phone: new FormControl("", this.validators),
-      street: new FormControl("", this.validators),
-      housenumber: new FormControl("", this.validators),
-      additional: new FormControl(""),
-      city: new FormControl("", this.validators),
-      postalcode: new FormControl("", this.validators),
-      country: new FormControl("NL", this.validators)
+      name: new FormControl("", [ Validators.required ]),
+      bsn: new FormControl("", [ Validators.required ]),
+      email: new FormControl("", [ Validators.required ]),
+      dob: new FormControl("", [ Validators.required ]),
+      gender: new FormControl("male", [ Validators.required ]),
+      phoneNumber: new FormControl("", [ Validators.required ]),
+      street: new FormControl("", [ Validators.required ]),
+      houseNumber: new FormControl("", [ Validators.required ]),
+      houseNumberAddon: new FormControl(""),
+      city: new FormControl("", [ Validators.required ]),
+      postalCode: new FormControl("", [ Validators.required ]),
+      country: new FormControl("NL", [ Validators.required ])
     });
   }
 
-  onSubmit(): void{
-    this.modal.close();
+  save(): void {
+
+    // @TODO: implement
   }
 }

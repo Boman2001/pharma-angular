@@ -13,7 +13,7 @@ export class UserCreateComponent {
   async onSaveComplete(saveResult: boolean): Promise<void> {
     if (saveResult)
     {
-      await this.router.navigate(["users"]);
+      await this.router.navigate(["doctors"]);
       return;
     }
 
