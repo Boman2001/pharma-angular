@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+import { AuthService } from "../../modules/auth/auth.module";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -6,13 +8,16 @@ import { Component, OnInit } from "@angular/core";
   templateUrl: "./master.component.html",
   styleUrls: ["./master.component.css"]
 })
-export class MasterComponent implements OnInit {
+export class MasterComponent {
   navBar = false;
   profile = false;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
+  logout(): void {
+
+    this.authService.Logout();
+    this.router.navigate(["/auth/login"]);
   }
 
   profileClick(): void {

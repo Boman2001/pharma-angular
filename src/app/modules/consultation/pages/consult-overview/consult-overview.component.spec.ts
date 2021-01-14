@@ -1,10 +1,14 @@
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
-import { NgbDate, NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbDate, NgbDatepickerModule, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ConsultationModule } from "../../consultation.module";
 import { ConsultationService } from "../../services/consultation.service";
 import { ConsultOverviewComponent } from "./consult-overview.component";
+import { UserService } from "../../../user/user.module";
+import { PatientService } from "../../../patient/patient.module";
+import { FormBuilder } from "@angular/forms";
+import { StorageService } from "../../../core/services/storage.service";
 
 
 describe("ConsultOverviewComponent", () => {
@@ -18,8 +22,12 @@ describe("ConsultOverviewComponent", () => {
         ConsultOverviewComponent
       ],
       providers: [
+        StorageService,
         ConsultationService,
-
+        UserService,
+        PatientService,
+        NgbModal,
+        FormBuilder
       ],
       imports: [
         HttpClientTestingModule,
@@ -49,14 +57,14 @@ describe("ConsultOverviewComponent", () => {
   });
 
   it("should set date tomorrow", () => {
-    const today = new NgbDate(date.getFullYear(), date.getMonth() + 1, date.getDate() + 1);
+    const tomorrow = new NgbDate(date.getFullYear(), date.getMonth() + 1, date.getDate() + 1);
     component.nextDay();
-    expect(component.date).toEqual(today);
+    expect(component.date).toEqual(tomorrow);
   });
 
   it("should set date yesterday", () => {
-    const today = new NgbDate(date.getFullYear(), date.getMonth() + 1, date.getDate() - 1);
+    const yesterday = new NgbDate(date.getFullYear(), date.getMonth() + 1, date.getDate() - 1);
     component.prevDay();
-    expect(component.date).toEqual(today);
+    expect(component.date).toEqual(yesterday);
   });
 });

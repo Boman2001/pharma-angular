@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbCalendar, NgbDate, NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 import { Observable } from "rxjs";
-import { BaseEntity } from "src/app/modules/core/core.module";
-
+import { BaseEntity, TableAction, TableHeader } from "src/app/modules/core/core.module";
 import { ConsultationService } from "../../services/consultation.service";
+import { User } from "../../../user/user.module";
+import { Patient } from "../../../patient/models/patient.model";
+
 
 @Component({
   selector: "app-consult-overview",
@@ -19,41 +21,51 @@ export class ConsultOverviewComponent implements OnInit {
   private consultEmitter;
   public deleteEntity: Observable<BaseEntity>;
 
-  headerArray: string[] = [
-    "Name",
-    "BSN",
-    "Email",
-    "Dob",
-    "Gender",
-    "PhoneNumber",
-    "City",
-    "Street",
-    "HouseNumber",
-    "HouseNumberAddon",
-    "PostalCode",
+  headerArray: TableHeader[] = [
+    {
+      key: "date",
+      text: "Datum",
+      transform: (date: string) => {
+        return new Date(date).toDateString();
+      }
+    },
+    {
+      key: "doctor",
+      text: "Arts",
+      transform: (d: User) => {
+        return d?.name || "-";
+      }
+    },
+    {
+      key: "patient",
+      text: "Patiënt",
+      transform: (p: Patient) => {
+        return p?.name || "-";
+      }
+    },
   ];
 
-  actionsArray: { id: string, class: string, icon: string, action: (entity: BaseEntity) => void }[] = [
+  actionsArray: TableAction[] = [
     {
       id: "consult-detail",
-      class: "btn btn-primary",
-      icon: "<i class=\"fas fa-eye\"></i>",
+      classes: ["btn", "btn-primary"],
+      icon: `eye`,
       action: (entity: BaseEntity) => {
-        this.router.navigate([`/consultation/${entity.Id}`]);
+        this.router.navigate([`/consultation/${entity.id}`]);
       }
     },
     {
       id: "consult-edit",
-      class: "btn btn-warning",
-      icon: "<i class=\"fas fa-pencil-alt\"></i>",
+      classes: ["btn", "btn-warning"],
+      icon: `pencil-alt`,
       action: (entity: BaseEntity) => {
-        this.router.navigate([`/consultation/${entity.Id}/edit`]);
+        this.router.navigate([`/consultation/${entity.id}/edit`]);
       }
     },
     {
       id: "consult-delete",
-      class: "btn btn-danger",
-      icon: "<i class=\"fas fa-trash-alt\"></i>",
+      classes: ["btn", "btn-danger"],
+      icon: `trash-alt`,
       action: (entity: BaseEntity) => {
         this.consultEmitter.next(entity);
       }
@@ -84,11 +96,9 @@ export class ConsultOverviewComponent implements OnInit {
     this.changeDate(this.date);
   }
 
-  // tslint:disable-next-line:typedef
-  changeDate(date: NgbDateStruct) {
+  changeDate(date: NgbDateStruct): void {
     if (this.dataTable != null) {
       this.dataTable.tableService.searchTerm = this.date.year + "-" + this.date.month + "-" + this.date.day;
     }
   }
-
 }
