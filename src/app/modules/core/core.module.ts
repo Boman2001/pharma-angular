@@ -8,7 +8,7 @@ import { AgmCoreModule } from "@agm/core";
 import { GoogleMapsComponent } from "./google-maps/google-maps.component";
 import { AgmDirectionModule } from "agm-direction";
 import { RouterModule } from "@angular/router";
-import {environment} from "../../../environments/environment";
+import { environment } from "../../../environments/environment";
 
 
 

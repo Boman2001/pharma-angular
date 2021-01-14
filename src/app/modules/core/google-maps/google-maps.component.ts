@@ -9,7 +9,8 @@ import { AgmInfoWindow } from "@agm/core";
 
 export class GoogleMapsComponent implements OnInit {
 
-  center = { lat: 52.092876, lng: 5.104480 }; // UTRECHT
+  // center = { lat: 52.092876, lng: 5.104480 }; // UTRECHT
+  center = { lat: 0 , lng: 0};
   initial = { lat: 51.578980, lng: 4.790310 }; // Eggestraat 3, Breda (HUISARTSENPOST)
   renderOptions = { suppressMarkers: true };
   origin = {};
@@ -24,12 +25,14 @@ export class GoogleMapsComponent implements OnInit {
     {id: 1, date: "14-01-2021 10:00:00", patient: {name: "Max Bogaers", phoneNumber: "06123456789", postalCode: "4921ZB", city: "Made", country: "NL", street: "Dreef", houseNumber: 4, houseNumberAddon: "", latitude: 51.680240, longitude: 4.791620 }},
     {id: 1, date: "14-01-2021 11:00:00", patient: {name: "Maarten Donkersloot", phoneNumber: "06123456789", postalCode: "4273CV", city: "Hank", country: "NL", street: "Lepelaarstraat", houseNumber: 20, houseNumberAddon: "", latitude: 51.739650 , longitude: 4.899030}},
     {id: 1, date: "14-01-2021 12:00:00", patient: {name: "Dion Rodie V2", phoneNumber: "06123456789", postalCode: "4814RS", city: "Breda", country: "NL", street: "Neerloopweg", houseNumber: 4, houseNumberAddon: "A", latitude: 51.590423 , longitude: 4.738946}},
+    {id: 1, date: "14-01-2021 16:00:00", patient: {name: "Dion Rodie V3", phoneNumber: "06123456789", postalCode: "9711CK", city: "Groningen", country: "NL", street: "Grote Raamstraat", houseNumber: 9, houseNumberAddon: "", latitude: 53.214340 , longitude: 6.568120}},
   ];
 
   constructor() { }
 
   ngOnInit(): void {
     this.origin = this.initial;
+    this.calculateCenter();
     this.setDestinations();
   }
 
@@ -71,5 +74,20 @@ export class GoogleMapsComponent implements OnInit {
     }
 
     return url;
+  }
+
+  calculateCenter(): void{
+    let totalLat = 0;
+    let totalLng = 0;
+
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.consultations.length; i++) {
+      totalLat += this.consultations[i].patient.latitude;
+      totalLng += this.consultations[i].patient.longitude;
+    }
+
+    const centerLat = totalLat / this.consultations.length;
+    const centerLng = totalLng / this.consultations.length;
+    this.center = { lat: centerLat, lng: centerLng};
   }
 }

@@ -1,5 +1,6 @@
-<div class="page container-fluid">
-  <agm-map [latitude]="center.lat" [longitude]="center.lng">
+<div class="page container-fluid pb-5">
+  <h3>Routes</h3>
+  <agm-map [fitBounds]="true" [latitude]="center.lat" [longitude]="center.lng">
     <agm-marker [latitude]="initial.lat" [longitude]="initial.lng">
       <agm-info-window>
         Arts Startpunt
@@ -13,6 +14,7 @@
 
     <ng-container *ngFor="let consult of consultations;let i = index">
       <agm-marker
+        [agmFitBounds]="true"
         (markerClick)="clickedMarker(i, iw)"
         [latitude]="consult.patient.latitude"
         [longitude]="consult.patient.longitude">
