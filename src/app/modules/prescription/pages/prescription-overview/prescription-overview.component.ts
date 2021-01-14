@@ -1,34 +1,44 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { BaseEntity } from "src/app/modules/core/core.module";
+import { BaseEntity, TableAction, TableHeader } from "src/app/modules/core/core.module";
 import { PrescriptionService } from "../../services/prescription.service";
+import { Consultation } from "../../../consultation/models/consultation.model";
+
 
 @Component({
   selector: "app-prescription-overview",
   templateUrl: "./prescription-overview.component.html",
   styleUrls: ["./prescription-overview.component.css"]
 })
-export class PrescriptionOverviewComponent implements OnInit {
+export class PrescriptionOverviewComponent {
 
-  headerArray: string[] = [
-    "Name",
-    "BSN",
-    "Email",
-    "Dob",
-    "Gender",
-    "PhoneNumber",
-    "City",
-    "Street",
-    "HouseNumber",
-    "HouseNumberAddon",
-    "PostalCode",
-
+  headerArray: TableHeader[] = [
+    {
+      key: "consultation",
+      text: "Consult",
+      transform: (c: Consultation) => {
+        return `Consult op ${ new Date(c.date).toDateString() }`;
+      }
+    },
+    {
+      key: "patient",
+      text: "Patiënt"
+    },
+    { key: "description", text: "Beschrijving" },
+    {
+      key: "startDate",
+      text: "Startdatum"
+    },
+    {
+      key: "endDate",
+      text: "Einddatum"
+    },
   ];
-  actionsArray: { id: string, class: string, icon: string, action: (entity: BaseEntity) => void }[] = [
+  actionsArray: TableAction[] = [
     {
       id: "prescription-detail",
-      class: "btn btn-primary",
-      icon: "<i class=\"fas fa-eye\"></i>",
+      classes: ["btn", "btn-primary"],
+      icon: `eye`,
       action: (entity: BaseEntity) => {
         this.router.navigate([`/prescriptions/${entity.id}`]);
       }
@@ -36,8 +46,4 @@ export class PrescriptionOverviewComponent implements OnInit {
   ];
 
   constructor(public prescriptionService: PrescriptionService, public router: Router) { }
-
-  ngOnInit(): void {
-  }
-
 }

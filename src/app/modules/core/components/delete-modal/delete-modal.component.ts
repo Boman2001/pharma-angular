@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, Input, OnInit, Output, ViewChild, EventEmitter } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Observable } from "rxjs";
 import { IRepository } from "../../lib/IRepository";
@@ -13,14 +13,14 @@ export class DeleteModalComponent implements OnInit {
   @Input() public service: IRepository<any>;
   @Input() public deleteEntity: Observable<BaseEntity>;
   @ViewChild("modalContent") public content: ElementRef;
+  @Output() deleteComplete = new EventEmitter<boolean>();
 
   private deleteId;
   private modal;
 
   constructor(private modalService: NgbModal) { }
 
-  // tslint:disable-next-line:typedef
-  ngOnInit() {
+  ngOnInit(): void {
     this.deleteEntity?.subscribe((e: BaseEntity) => {
       this.deleteId = e.id;
       this.open();
@@ -36,7 +36,17 @@ export class DeleteModalComponent implements OnInit {
   }
 
   public async delete(): Promise<void> {
-    await this.service.Delete(this.deleteId).toPromise();
-    this.deleteEntity = null;
+
+    let result = false;
+    try {
+      result = await this.service.Delete(this.deleteId).toPromise();
+      this.deleteId = null;
+      this.close();
+    }
+    catch (e) {
+      // @TODO: GlobalModalService? Toast Service??
+    }
+
+    this.deleteComplete.emit(result);
   }
 }

@@ -44,7 +44,6 @@ describe("UserFormComponent", () => {
   it("should return form is valid", () => {
     userForm.id.setValue("1");
     userForm.name.setValue("Test Test");
-    userForm.bsn.setValue("12345678911");
     userForm.email.setValue("test@test.com");
     userForm.dob.setValue("01-01-2021");
     userForm.gender.setValue("male");

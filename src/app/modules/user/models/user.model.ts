@@ -7,7 +7,6 @@ export class User extends BaseEntity {
   password?: string;
   passwordCheck?: string;
   email: string;
-  bsn: string;
   dob: Date;
   gender: Gender;
   phoneNumber: string;

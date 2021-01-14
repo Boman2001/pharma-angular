@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "../../models/user.model";
 import { UserService } from "../../services/user.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { TableHeader, TableAction } from "../../../core/core.module";
+import { ConsultationService } from "../../../consultation/services/consultation.service";
+
 
 @Component({
   selector: "app-user-detail",
@@ -12,7 +15,15 @@ export class UserDetailComponent implements OnInit {
 
   user: User;
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) { }
+  tableHeaders: TableHeader[] = [];
+  tableActions: TableAction[] = [];
+
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private router: Router,
+    private consultationService: ConsultationService
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -23,7 +34,7 @@ export class UserDetailComponent implements OnInit {
   public async delete(): Promise<void> {
 
     await this.userService.Delete(this.user.id).toPromise();
-    await this.router.navigate(["/doctors"]);
+    await this.router.navigate(["doctors"]);
   }
 
   private retrieveUserData(id: string): void {

@@ -35,7 +35,6 @@ export class UserFormComponent implements OnInit {
       {
         id: new FormControl("", []),
         name: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
-        bsn: new FormControl("", [ Validators.required, Validators.maxLength(11), Validators.minLength(11) ]),
         email: new FormControl("", [ Validators.required, Validators.maxLength(255), Validators.email ]),
         dob: new FormControl("", [ Validators.required ]),
         gender: new FormControl("", [ Validators.required ]),
@@ -91,7 +90,7 @@ export class UserFormComponent implements OnInit {
 
     let result;
     try {
-      if (this.user.id != null)
+      if (this.user.id != null && this.user.id !== "")
       {
         result = await this.userService.Update(this.user.id, this.user).toPromise();
       }

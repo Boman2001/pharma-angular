@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
-
-import { BaseEntity } from "src/app/modules/core/core.module";
+import { BaseEntity, TableAction, TableHeader } from "src/app/modules/core/core.module";
 import { PatientService } from "../../services/patient.service";
+
 
 @Component({
   selector: "app-patient-overview",
@@ -15,46 +15,61 @@ export class PatientOverviewComponent {
   private patientEmitter;
   public deleteEntity: Observable<BaseEntity>;
 
-  headerArray: string[] = [
-    "Name",
-    "BSN",
-    "Email",
-    "Dob",
-    "Gender",
-    "PhoneNumber",
-    "City",
-    "Street",
-    "HouseNumber",
-    "HouseNumberAddon",
-    "PostalCode"
-  ];
-  actionsArray: { id: string, class: string, icon: string, action: (entity: BaseEntity) => void }[] =
-    [
-      {
-        id: "patient-detail",
-        class: "btn btn-primary",
-        icon: "<i class=\"fas fa-eye\"></i>",
-        action: (entity: BaseEntity) => {
-          this.router.navigate([`/patients/${entity.id}`]);
-        }
-      },
-      {
-        id: "patient-edit",
-        class: "btn btn-warning",
-        icon: "<i class=\"fas fa-pencil-alt\"></i>",
-        action: (entity: BaseEntity) => {
-          this.router.navigate([`/patients/${entity.id}/edit`]);
-        }
-      },
-      {
-        id: "patient-delete",
-        class: "btn btn-danger",
-        icon: "<i class=\"fas fa-trash-alt\"></i>",
-        action: (entity: BaseEntity) => {
-          this.patientEmitter.next(entity);
+  headerArray: TableHeader[] = [
+    { key: "name", text: "Naam" },
+    { key: "email", text: "Email" },
+    {
+      key: "dob",
+      text: "Geboortedatum",
+      transform: (e: string) => {
+        return new Date(e).toDateString();
+      }
+    },
+    {
+      key: "gender",
+      text: "Geslacht",
+      transform: (e: number) => {
+        switch (e) {
+          case 0:
+            return "Man";
+
+          case 1:
+            return "Vrouw";
+
+          default:
+            return "Overig";
         }
       }
-    ];
+    },
+    { key: "phoneNumber", text: "Telefoonnummer" },
+    { key: "bsn", text: "BSN" },
+  ];
+  actionsArray: TableAction[] = [
+    {
+      id: "patient-detail",
+      classes: ["btn", "btn-primary"],
+      icon: `eye`,
+      action: (entity: BaseEntity) => {
+        this.router.navigate([`/patients/${entity.id}`]);
+      }
+    },
+    {
+      id: "patient-edit",
+      classes: ["btn", "btn-warning"],
+      icon: `pencil-alt`,
+      action: (entity: BaseEntity) => {
+        this.router.navigate([`/patients/${entity.id}/edit`]);
+      }
+    },
+    {
+      id: "patient-delete",
+      classes: ["btn", "btn-danger"],
+      icon: `trash-alt`,
+      action: (entity: BaseEntity) => {
+        this.patientEmitter.next(entity);
+      }
+    }
+  ];
 
   constructor(public patientService: PatientService, public router: Router) {
     this.deleteEntity = new Observable(e => this.patientEmitter = e);

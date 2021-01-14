@@ -16,7 +16,6 @@ const mockUser: User = {
   name: "Mock User",
   username: "testuser",
   email: "test@example.com",
-  bsn: "12345678911",
   country: "NL",
   dob: date,
   gender: Gender.MALE,

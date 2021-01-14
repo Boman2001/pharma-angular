@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { ConsultCreateComponent } from "./consult-create.component";
 import { FormBuilder } from "@angular/forms";
+import { HttpClient, HttpHandler } from "@angular/common/http";
+import { StorageService } from "../../../core/core.module";
 
 describe("ConsultCreateComponent", () => {
   let component: ConsultCreateComponent;
@@ -11,7 +13,12 @@ describe("ConsultCreateComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ConsultCreateComponent ],
-      providers: [FormBuilder]
+      providers: [
+        HttpClient,
+        HttpHandler,
+        StorageService,
+        FormBuilder
+      ]
     })
     .compileComponents();
   });

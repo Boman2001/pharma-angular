@@ -7,6 +7,6 @@
             <button routerLink="new" class="btn btn-primary">+ Aanmaken</button>
         </div>
     </div>
-    <Datatable [show]="headerArray" [actions]="actionsArray" [service]="patientService"></Datatable>
-    <app-delete-modal [deleteEntity]="deleteEntity" [service]="patientService"></app-delete-modal>   
+    <app-datatable-component [show]="headerArray" [actions]="actionsArray" [service]="patientService"></app-datatable-component>
+    <app-delete-modal [deleteEntity]="deleteEntity" [service]="patientService"></app-delete-modal>
 </div>

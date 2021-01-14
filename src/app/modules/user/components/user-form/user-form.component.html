@@ -18,18 +18,8 @@
     </div>
 
     <div class="form-group">
-      <label for="user-bsn">bsn</label>
-      <input class="form-control" type="text" name="bsn" id="user-bsn" [class.input-validation-error]="form.controls['bsn'].invalid && form.controls['bsn'].touched" placeholder="bsn" formControlName="bsn">
-      <div id="bsn-alert" *ngIf="form.controls['bsn'].invalid && form.controls['bsn'].touched">
-        <div class="input-validation-error-text" *ngIf="form.controls['bsn'].errors.required">bsn is een verplicht veld.</div>
-        <div class="input-validation-error-text" *ngIf="form.controls['bsn'].errors.minlength">bsn is te kort.</div>
-        <div class="input-validation-error-text" *ngIf="form.controls['bsn'].errors.maxlength">bsn is te lang.</div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="user-email">email</label>
-      <input class="form-control" type="email" name="email" id="user-email" [class.input-validation-error]="form.controls['email'].invalid && form.controls['email'].touched" placeholder="email" formControlName="email">
+      <label for="user-email">Email</label>
+      <input class="form-control" type="email" name="email" id="user-email" [class.input-validation-error]="form.controls['email'].invalid && form.controls['email'].touched" placeholder="Email" formControlName="email">
       <div id="email-alert" *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
         <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.required">email is een verplicht veld.</div>
         <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.maxlength">email is te lang.</div>
