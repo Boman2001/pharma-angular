@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {NgbCalendar, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
+import {NgbCalendar} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({

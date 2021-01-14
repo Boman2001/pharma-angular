@@ -1,5 +1,5 @@
 <div class="page container-fluid d-flex flex-column">
-  <nav class="navbar mobile-nav-steps position-relative">
+  <nav class="navbar mobile-nav-steps position-relative" aria-label="mobile visit steps">
     <div class="steps-buttons">
       <div class="d-none step align-items-center justify-content-center" (click)="toggleSteps()"
               routerLink="/consultation/{{consult.Id}}"
@@ -77,7 +77,7 @@
       </ul>
     </div>
   </nav>
-  <nav class="navbar nav-steps pl-0">
+  <nav class="navbar nav-steps pl-0" aria-label="visit steps">
     <ul class="d-flex flex-row navbar-nav w-100">
       <li class="nav-item ml-1 step-item">
         <a class="step nav-link w-100 ml-1 p-3 d-flex align-items-center"

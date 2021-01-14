@@ -26,7 +26,6 @@ describe("ConsultVisitAnamnesisComponent", () => {
 
     // TODO TESTS SCHRIJVEN
     spyOn(component, "submit");
-    form = component.form.controls;
   });
 
   it("should create", () => {
