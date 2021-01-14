@@ -2,31 +2,31 @@
   <nav class="navbar mobile-nav-steps position-relative" aria-label="mobile visit steps">
     <div class="steps-buttons">
       <div class="d-none step align-items-center justify-content-center" (click)="toggleSteps()"
-              routerLink="/consultation/{{consult.Id}}"
+              routerLink="/consultation/{{consult.id}}"
               [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact: true }">Algemene informatie</div>
       <div class="d-none step align-items-center justify-content-center" (click)="toggleSteps()"
-              routerLink="/consultation/{{consult.Id}}/anamnese"
+              routerLink="/consultation/{{consult.id}}/anamnese"
               [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact: true }">Anamnese</div>
       <div class="d-none step align-items-center justify-content-center" (click)="toggleSteps()"
-              routerLink="/consultation/{{consult.Id}}/biometrie"
+              routerLink="/consultation/{{consult.id}}/biometrie"
               [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact: true }">Biometrie</div>
       <div class="d-none step align-items-center justify-content-center" (click)="toggleSteps()"
-              routerLink="/consultation/{{consult.Id}}/onderzoek"
+              routerLink="/consultation/{{consult.id}}/onderzoek"
               [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact: true }">Aanvullend onderzoek</div>
       <div class="d-none step align-items-center justify-content-center" (click)="toggleSteps()"
-              routerLink="/consultation/{{consult.Id}}/evaluatie"
+              routerLink="/consultation/{{consult.id}}/evaluatie"
               [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact: true }">Evaluatie</div>
       <div class="d-none step align-items-center justify-content-center" (click)="toggleSteps()"
-              routerLink="/consultation/{{consult.Id}}/beleid"
+              routerLink="/consultation/{{consult.id}}/beleid"
               [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact: true }">Beleid</div>
       <div class="d-none step align-items-center justify-content-center" (click)="toggleSteps()"
-              routerLink="/consultation/{{consult.Id}}/samenvatting"
+              routerLink="/consultation/{{consult.id}}/samenvatting"
               [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact: true }">Samenvatting</div>
     </div>
@@ -34,7 +34,7 @@
       <ul class="d-flex flex-column navbar-nav">
         <li class="nav-item step-item bg-light">
           <a class="nav-link w-100 p-3 d-flex align-items-center"
-             routerLink="/consultation/{{consult.Id}}"
+             routerLink="/consultation/{{consult.id}}"
              [routerLinkActive]="['active']"
              [routerLinkActiveOptions]="{ exact: true }"><span class="w-100 text-center">Algemene informatie</span></a>
         </li>
@@ -81,7 +81,7 @@
     <ul class="d-flex flex-row navbar-nav w-100">
       <li class="nav-item ml-1 step-item">
         <a class="step nav-link w-100 ml-1 p-3 d-flex align-items-center"
-           routerLink="/consultation/{{consult.Id}}"
+           routerLink="/consultation/{{consult.id}}"
            [routerLinkActive]="['active']"
            [routerLinkActiveOptions]="{ exact: true }"><span class="w-100 text-center">Algemene informatie</span></a>
       </li>
