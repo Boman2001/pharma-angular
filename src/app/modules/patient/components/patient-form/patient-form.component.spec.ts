@@ -6,7 +6,6 @@ import { PatientFormComponent } from "./patient-form.component";
 describe("PatientFormComponent", () => {
   let component: PatientFormComponent;
   let fixture: ComponentFixture<PatientFormComponent>;
-  let form;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -20,8 +19,6 @@ describe("PatientFormComponent", () => {
     fixture = TestBed.createComponent(PatientFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
-    form = component.form.controls;
   });
 
   it("should create", () => {
@@ -33,18 +30,18 @@ describe("PatientFormComponent", () => {
   });
 
   it("should return form is valid", () => {
-    form.name.setValue("Test");
-    form.bsn.setValue("123");
-    form.email.setValue("test@test.com");
-    form.dob.setValue("2021-01-01");
-    form.gender.setValue("male");
-    form.phone.setValue("0612345678");
-    form.street.setValue("MyStreet");
-    form.housenumber.setValue(15);
-    form.additional.setValue("a");
-    form.city.setValue("Roosendaal");
-    form.postalcode.setValue("1234AB");
-    form.country.setValue("NL");
+    component.form.controls.name.setValue("Test");
+    component.form.controls.email.setValue("test@test.com");
+    component.form.controls.bsn.setValue("12345678911");
+    component.form.controls.dob.setValue("2021-01-01");
+    component.form.controls.gender.setValue("male");
+    component.form.controls.phoneNumber.setValue("0612345678");
+    component.form.controls.street.setValue("MyStreet");
+    component.form.controls.houseNumber.setValue(15);
+    component.form.controls.houseNumberAddon.setValue("a");
+    component.form.controls.city.setValue("Roosendaal");
+    component.form.controls.postalCode.setValue("1234AB");
+    component.form.controls.country.setValue("NL");
 
     expect(component.form.valid).toBeTruthy();
   });

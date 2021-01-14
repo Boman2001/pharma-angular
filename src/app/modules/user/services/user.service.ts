@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import {GenericHttpService, StorageService} from "../../core/core.module";
+import { GenericHttpService, StorageService } from "../../core/core.module";
 import { User } from "../models/user.model";
 import { HttpClient } from "@angular/common/http";
 

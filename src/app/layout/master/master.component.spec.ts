@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { MasterComponent } from "./master.component";
-import {RouterTestingModule} from "@angular/router/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { AuthService } from "../../modules/auth/auth.module";
+import { HttpClient, HttpHandler } from "@angular/common/http";
+import { StorageService } from "../../modules/core/core.module";
 
 describe("MasterComponent", () => {
   let component: MasterComponent;
@@ -10,7 +12,13 @@ describe("MasterComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ MasterComponent ],
-      imports: [RouterTestingModule]
+      imports: [ RouterTestingModule ],
+      providers: [
+        AuthService,
+        HttpClient,
+        HttpHandler,
+        StorageService
+      ]
     })
     .compileComponents();
   });

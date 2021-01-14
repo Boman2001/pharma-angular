@@ -5,9 +5,9 @@ import { Patient } from "../../patient/patient.module";
 
 export class Prescription extends BaseEntity {
 
-  Consultation: Consultation;
-  Patient: Patient;
-  Description: string;
-  StartDate: Date;
-  EndDate: Date;
+  consultation: Consultation;
+  patient: Patient;
+  description: string;
+  startDate: Date;
+  endDate: Date;
 }
