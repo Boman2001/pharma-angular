@@ -8,7 +8,6 @@ import {FormBuilder} from "@angular/forms";
 describe("ConsultVisitAnamnesisComponent", () => {
   let component: ConsultVisitAnamnesisComponent;
   let fixture: ComponentFixture<ConsultVisitAnamnesisComponent>;
-  let form;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

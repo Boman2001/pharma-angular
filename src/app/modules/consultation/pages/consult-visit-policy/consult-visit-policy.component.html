@@ -73,7 +73,7 @@
               </div>
             </div>
             <div *ngIf="medicineForm.controls['startDate'].getError('incorrect')">
-              <div class="alert-danger p-2 mt-2">Een begin datum is verplicht</div>
+              <div class="input-validation-error-text">Een begin datum is verplicht</div>
             </div>
           </div>
           <div class="form-group w-50 ml-4">
@@ -86,14 +86,14 @@
               </div>
             </div>
             <div *ngIf="medicineForm.controls['endDate'].getError('incorrect')">
-              <div class="alert-danger p-2 mt-2">Een eind datum is verplicht</div>
+              <div class="input-validation-error-text">Een eind datum is verplicht</div>
             </div>
           </div>
         </div>
         <div class="form-group">
           <textarea class="form-control" placeholder="Omschrijving" formControlName="comment"></textarea>
           <div *ngIf="medicineForm.controls['comment'].getError('incorrect')">
-            <div class="alert-danger p-2 mt-2">Een opmerking is verplicht</div>
+            <div class="input-validation-error-text">Een opmerking is verplicht</div>
           </div>
         </div>
         <input type="submit" class="btn btn-primary float-right" value="Voeg medicatie toe" (click)="submitMedicine()">
@@ -110,7 +110,7 @@
               </div>
             </div>
             <div *ngIf="intoleranceForm.controls['startDate'].getError('incorrect')">
-              <div class="alert-danger p-2 mt-2">Een begin datum is verplicht</div>
+              <div class="input-validation-error-text">Een begin datum is verplicht</div>
             </div>
           </div>
           <div class="form-group w-50 ml-4">
@@ -123,14 +123,14 @@
               </div>
             </div>
             <div *ngIf="intoleranceForm.controls['endDate'].getError('incorrect')">
-              <div class="alert-danger p-2 mt-2">Een eind datum is verplicht</div>
+              <div class="input-validation-error-text">Een eind datum is verplicht</div>
             </div>
           </div>
         </div>
         <div class="form-group">
           <textarea class="form-control" placeholder="Omschrijving" formControlName="comment"></textarea>
           <div *ngIf="intoleranceForm.controls['comment'].getError('incorrect')">
-            <div class="alert-danger p-2 mt-2">Een opmerking is verplicht</div>
+            <div class="input-validation-error-text">Een opmerking is verplicht</div>
           </div>
         </div>
         <input type="submit" class="btn btn-primary float-right" value="Voeg medicatie toe" (click)="submitIntolerance()">

@@ -18,8 +18,8 @@ export class ConsultVisitAnamnesisComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       date: new FormControl("", this.validators),
-      icpc: new FormControl("test", this.validators),
-      comment: new FormControl("test", this.validators)
+      icpc: new FormControl("", this.validators),
+      comment: new FormControl("", this.validators)
     });
   }
 
