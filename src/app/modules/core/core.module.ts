@@ -7,6 +7,7 @@ import { StorageService } from "./services/storage.service";
 import { AgmCoreModule } from "@agm/core";
 import { GoogleMapsComponent } from "./google-maps/google-maps.component";
 import { AgmDirectionModule } from "agm-direction";
+import { RouterModule } from "@angular/router";
 
 
 
@@ -17,7 +18,8 @@ import { AgmDirectionModule } from "agm-direction";
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyCBVzozETyDe794IpgWsIe7zi5iFwCPP54"
     }),
-    AgmDirectionModule
+    AgmDirectionModule,
+    RouterModule
   ],
   providers: [
     StorageService

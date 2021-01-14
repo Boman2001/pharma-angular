@@ -6,7 +6,7 @@ import {RouterModule, Routes} from "@angular/router";
 // Components
 import {MasterComponent} from "./layout/master/master.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
-import {GoogleMapsComponent} from './modules/core/google-maps/google-maps.component';
+import {GoogleMapsComponent} from "./modules/core/google-maps/google-maps.component";
 
 
 const routes: Routes = [
@@ -38,12 +38,12 @@ const routes: Routes = [
       {
         path: "examinations",
         loadChildren: () =>
-          import("./modules/examination/examination.module").then((m) => m.ExaminationModule),
+          import("./modules/examination/examination.module").then(m => m.ExaminationModule),
       },
       {
         path: "prescriptions",
         loadChildren: () =>
-          import("./modules/prescription/prescription.module").then((m) => m.PrescriptionModule),
+          import("./modules/prescription/prescription.module").then(m => m.PrescriptionModule),
       },
       {
         path: "googleMaps", pathMatch: "full", component: GoogleMapsComponent
