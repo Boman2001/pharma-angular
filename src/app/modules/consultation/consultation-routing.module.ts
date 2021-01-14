@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { ConsultOverviewComponent } from "./pages/consult-overview/consult-overview.component";
+
 import { ConsultVisitComponent } from "./pages/consult-visit/consult-visit.component";
 import {ConsultVisitInfoComponent} from "./pages/consult-visit-info/consult-visit-info.component";
 import {ConsultVisitAnamnesisComponent} from "./pages/consult-visit-anamnesis/consult-visit-anamnesis.component";
@@ -9,7 +10,7 @@ import {ConsultVisitExaminationComponent} from "./pages/consult-visit-examinatio
 import {ConsultVisitPolicyComponent} from "./pages/consult-visit-policy/consult-visit-policy.component";
 import {ConsultVisitEvaluationComponent} from "./pages/consult-visit-evaluation/consult-visit-evaluation.component";
 import {ConsultVisitResumeComponent} from "./pages/consult-visit-resume/consult-visit-resume.component";
-import {GoogleMapsComponent} from "../core/google-maps/google-maps.component";
+import { GoogleMapsComponent } from "../core/core.module";
 
 
 const routes: Routes = [
