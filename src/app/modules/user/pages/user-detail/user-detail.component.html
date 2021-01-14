@@ -1,25 +1,33 @@
-<div class="page container-fluid">
-    <div class="row">
-        <div class="col-md-6">
-            <h2>Dokter</h2>
-        </div>
-        <div class="col-md-6 text-right">
-            <button class="btn btn-primary">Verwijderen</button>
-            <button routerLink="edit" class="btn btn-primary">Bewerken</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            <h5>Informatie</h5>
-            <div>Youri van der Sande</div>
-            <div>11-07-1998</div>
-            <div>youri@example.com</div>
-            <div>+31612345678</div>
-            <div>Youristraat 23c</div>
-            <div>1234AB Roosendaal, Nederland</div>
-        </div>
-        <div class="col-md-10">
-            TABLE
-        </div>
-    </div>
+<div class="form-spinner" *ngIf="(!user?.Id); else userDetail">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
 </div>
+<ng-template #userDetail>
+  <div class="page container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Dokter</h2>
+      </div>
+      <div class="col-md-6 text-right">
+        <button class="btn btn-primary">Verwijderen</button>
+        <button routerLink="edit" class="btn btn-primary">Bewerken</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <h5>Informatie</h5>
+        <div>{{ user.Name }}</div>
+        <div>{{ user.Username }}</div>
+        <div>{{ user.Dob }}</div>
+        <div>{{ user.Email }}</div>
+        <div>{{ user.PhoneNumber }}</div>
+        <div>{{ user.Street }} {{ user.HouseNumber }}{{ user.HouseNumberAddon }}</div>
+        <div>{{ user.PostalCode }} {{ user.City }}, {{ user.Country }}</div>
+      </div>
+      <div class="col-md-10">
+        TABLE
+      </div>
+    </div>
+  </div>
+</ng-template>

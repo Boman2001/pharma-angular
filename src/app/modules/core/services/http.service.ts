@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { environment } from "../../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
+import {StorageService} from "./storage.service";
 
 
 @Injectable({
@@ -8,7 +9,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class HttpService {
 
-  constructor(protected http: HttpClient) { }
+  constructor(protected http: HttpClient, protected storage: StorageService) { }
 
   public get basePath(): string
   {
@@ -17,9 +18,10 @@ export class HttpService {
 
   public get baseOptions(): object
   {
+    const token = this.storage.GetItem("token");
     return {
       headers: {
-        Authorization: "bearer "// @TODO: Add token retrieval logic
+        ...(token != null ? { Authorization: `Bearer ${ token }` } : {})
       },
       responseType: "json",
       withCredentials: true,

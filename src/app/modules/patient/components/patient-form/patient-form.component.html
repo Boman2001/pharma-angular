@@ -1,40 +1,37 @@
 <form method="POST" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
   
-  <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
-    <div class="alert-danger p-2 mt-2" *ngIf="form.controls['name'].errors.required">Naam is een verplicht veld.</div>
-  </div>
   <div class="form-group">
     <label for="patient-name">Naam</label>
-    <input class="form-control" type="text" name="patient-name" id="patient-name" placeholder="Naam" formControlName="name">
+    <input class="form-control" [ngClass]="form.controls['name'].invalid && form.controls['name'].touched ? 'input-validation-error' : ''" type="text" name="patient-name" id="patient-name" placeholder="Naam" formControlName="name">
+    <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+      <div class="input-validation-error-text" *ngIf="form.controls['name'].errors.required">Naam is een verplicht veld.</div>
+    </div>
   </div>
 
-  <div *ngIf="form.controls['bsn'].invalid && form.controls['bsn'].touched">
-    <div class="alert-danger p-2 mt-2" *ngIf="form.controls['bsn'].errors.required">BSN is een verplicht veld.</div>
-  </div>
   <div class="form-group">
     <label for="bsn">BSN</label>
-    <input class="form-control" type="text" name="bsn" id="bsn" placeholder="BSN" formControlName="bsn">
+    <input class="form-control" [ngClass]="form.controls['bsn'].invalid && form.controls['bsn'].touched ? 'input-validation-error' : ''" type="text" name="bsn" id="bsn" placeholder="BSN" formControlName="bsn">
+    <div *ngIf="form.controls['bsn'].invalid && form.controls['bsn'].touched">
+      <div class="input-validation-error-text" *ngIf="form.controls['bsn'].errors.required">BSN is een verplicht veld.</div>
+    </div>
   </div>
 
-  <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
-    <div class="alert-danger p-2 mt-2" *ngIf="form.controls['email'].errors.required">Email is een verplicht veld.</div>
-  </div>
   <div class="form-group">
     <label for="email">Email</label>
-    <input class="form-control" type="email" name="email" id="email" placeholder="Email" formControlName="email">
+    <input class="form-control" [ngClass]="form.controls['email'].invalid && form.controls['email'].touched ? 'input-validation-error' : ''" type="email" name="email" id="email" placeholder="Email" formControlName="email">
+    <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+      <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.required">Email is een verplicht veld.</div>
+    </div>
   </div>
 
-  <div *ngIf="form.controls['dob'].invalid && form.controls['dob'].touched">
-    <div class="alert-danger p-2 mt-2" *ngIf="form.controls['dob'].errors.required">Geboortedatum is een verplicht veld.</div>
-  </div>
   <div class="form-group">
     <label for="dob">Geboortedatum</label>
-    <input class="form-control" type="date" name="dob" id="dob" placeholder="Geboortedatum" formControlName="dob"/>
+    <input class="form-control" [ngClass]="form.controls['dob'].invalid && form.controls['dob'].touched ? 'input-validation-error' : ''" type="date" name="dob" id="dob" placeholder="Geboortedatum" formControlName="dob"/>
+    <div *ngIf="form.controls['dob'].invalid && form.controls['dob'].touched">
+      <div class="input-validation-error-text" *ngIf="form.controls['dob'].errors.required">Geboortedatum is een verplicht veld.</div>
+    </div>
   </div>
 
-  <div *ngIf="form.controls['gender'].invalid && form.controls['gender'].touched">
-    <div class="alert-danger p-2 mt-2" *ngIf="form.controls['gender'].errors.required">Geslacht is een verplicht veld.</div>
-  </div>
   <div class="form-group">
     <label for="custom-radio">Geslacht</label>
     <div class="custom-control custom-radio">
@@ -51,57 +48,58 @@
       <input type="radio" id="other" name="gender" class="custom-control-input" value="other" formControlName="gender">
       <label class="custom-control-label" for="other">Overige</label>
     </div>
+
+    <div *ngIf="form.controls['gender'].invalid && form.controls['gender'].touched">
+      <div class="input-validation-error-text" *ngIf="form.controls['gender'].errors.required">Geslacht is een verplicht veld.</div>
+    </div>
   </div>
 
-  <div *ngIf="form.controls['phone'].invalid && form.controls['phone'].touched">
-    <div class="alert-danger p-2 mt-2" *ngIf="form.controls['phone'].errors.required">Telefoonnummer is een verplicht veld.</div>
-  </div>
   <div class="form-group">
     <label for="phone-number">Telefoonnummer</label>
-    <input class="form-control" type="text" name="phone-number" id="phone-number" placeholder="Telefoonnummer" formControlName="phone">
+    <input class="form-control" [ngClass]="form.controls['phone'].invalid && form.controls['phone'].touched ? 'input-validation-error' : ''" type="text" name="phone-number" id="phone-number" placeholder="Telefoonnummer" formControlName="phone">
+    <div *ngIf="form.controls['phone'].invalid && form.controls['phone'].touched">
+      <div class="input-validation-error-text" *ngIf="form.controls['phone'].errors.required">Telefoonnummer is een verplicht veld.</div>
+    </div>
   </div>
 
-  <div *ngIf="form.controls['street'].invalid && form.controls['street'].touched">
-    <div class="alert-danger p-2 mt-2" *ngIf="form.controls['street'].errors.required">Straatnaam is een verplicht veld.</div>
-  </div>
-  <div *ngIf="form.controls['housenumber'].invalid && form.controls['housenumber'].touched">
-    <div class="alert-danger p-2 mt-2" *ngIf="form.controls['housenumber'].errors.required">Huisnummer is een verplicht veld.</div>
-  </div>
   <div class="form-group">
     <div class="form-row">
       <div class="col-6">
         <label for="street">Straatnaam</label>
-        <input class="form-control" type="text" name="street" id="street" placeholder="Straatnaam" formControlName="street">
+        <input class="form-control" [ngClass]="form.controls['street'].invalid && form.controls['street'].touched ? 'input-validation-error' : ''" type="text" name="street" id="street" placeholder="Straatnaam" formControlName="street">
+        <div *ngIf="form.controls['street'].invalid && form.controls['street'].touched">
+          <div class="input-validation-error-text" *ngIf="form.controls['street'].errors.required">Straatnaam is een verplicht veld.</div>
+        </div>
       </div>
       <div class="col-3">
         <label for="house-number">Huisnummer</label>
-        <input class="form-control" type="number" name="house-number" id="house-number" placeholder="Huisnummer" formControlName="housenumber">
+        <input class="form-control" [ngClass]="form.controls['housenumber'].invalid && form.controls['housenumber'].touched ? 'input-validation-error' : ''" type="number" name="house-number" id="house-number" placeholder="Huisnummer" formControlName="housenumber">
+        <div *ngIf="form.controls['housenumber'].invalid && form.controls['housenumber'].touched">
+          <div class="input-validation-error-text" *ngIf="form.controls['housenumber'].errors.required">Huisnummer is een verplicht veld.</div>
+        </div>
       </div>
       <div class="col-3">
         <label for="addition">Toevoeging</label>
         <input class="form-control" type="text" name="addition" id="addition" placeholder="Toevoeging">
       </div>
-    </div>
+    </div>    
   </div>
 
-  <div *ngIf="form.controls['city'].invalid && form.controls['city'].touched">
-    <div class="alert-danger p-2 mt-2" *ngIf="form.controls['city'].errors.required">Stad is een verplicht veld.</div>
-  </div>
-  <div *ngIf="form.controls['postalcode'].invalid && form.controls['postalcode'].touched">
-    <div class="alert-danger p-2 mt-2" *ngIf="form.controls['postalcode'].errors.required">Postcode is een verplicht veld.</div>
-  </div>
-  <div *ngIf="form.controls['country'].invalid && form.controls['country'].touched">
-    <div class="alert-danger p-2 mt-2" *ngIf="form.controls['country'].errors.required">Land is een verplicht veld.</div>
-  </div>
   <div class="form-group">
     <div class="form-row">
       <div class="col-6">
         <label for="city">Stad</label>
-        <input class="form-control" type="text" id="city" name="city" placeholder="Stad" formControlName="city">
+        <input class="form-control" [ngClass]="form.controls['city'].invalid && form.controls['city'].touched ? 'input-validation-error' : ''" type="text" id="city" name="city" placeholder="Stad" formControlName="city">
+        <div *ngIf="form.controls['city'].invalid && form.controls['city'].touched">
+          <div class="input-validation-error-text" *ngIf="form.controls['city'].errors.required">Stad is een verplicht veld.</div>
+        </div>
       </div>
       <div class="col-2">
         <label for="postal-code">Postcode</label>
-        <input class="form-control" type="text" name="postal-code" id="postal-code" placeholder="Postcode" formControlName="postalcode">
+        <input class="form-control" [ngClass]="form.controls['postalcode'].invalid && form.controls['postalcode'].touched ? 'input-validation-error' : ''" type="text" name="postal-code" id="postal-code" placeholder="Postcode" formControlName="postalcode">
+        <div *ngIf="form.controls['postalcode'].invalid && form.controls['postalcode'].touched">
+          <div class="input-validation-error-text" *ngIf="form.controls['postalcode'].errors.required">Postcode is een verplicht veld.</div>
+        </div>
       </div>
       <div class="col-4">
         <label for="country">Land</label>
@@ -356,6 +354,9 @@
           <option value="SE">Zweden</option>
           <option value="CH">Zwitserland</option>
         </select>
+        <div *ngIf="form.controls['country'].invalid && form.controls['country'].touched">
+          <div class="input-validation-error-text" *ngIf="form.controls['country'].errors.required">Land is een verplicht veld.</div>
+        </div>
       </div>
     </div>
 

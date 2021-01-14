@@ -14,7 +14,7 @@ export class ConsultVisitComponent implements OnInit {
 
   ngOnInit(): void {
     this.consult = new Consultation();
-    this.consult.Id = 1;
+    this.consult.Id = "1";
   }
 
   toggleSteps(): void{

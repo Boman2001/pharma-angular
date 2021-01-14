@@ -9,6 +9,7 @@ import {ConsultVisitExaminationComponent} from "./pages/consult-visit-examinatio
 import {ConsultVisitPolicyComponent} from "./pages/consult-visit-policy/consult-visit-policy.component";
 import {ConsultVisitEvaluationComponent} from "./pages/consult-visit-evaluation/consult-visit-evaluation.component";
 import {ConsultVisitResumeComponent} from "./pages/consult-visit-resume/consult-visit-resume.component";
+import {GoogleMapsComponent} from "../core/google-maps/google-maps.component";
 
 
 const routes: Routes = [
@@ -26,58 +27,170 @@ const routes: Routes = [
     }
   },
   {
-    path: ":id",
-    component: ConsultVisitComponent,
-    children: [
-      {
-        path: "",
-        component: ConsultVisitInfoComponent
-      },
-      {
-        path: "anamnese",
-        pathMatch: "full",
-        component: ConsultVisitAnamnesisComponent
-      },
-      {
-        path: "biometrie",
-        pathMatch: "full",
-        component: ConsultVisitBiometricsComponent
-      },
-      {
-        path: "onderzoek",
-        pathMatch: "full",
-        component: ConsultVisitExaminationComponent
-      },
-      {
-        path: "evaluatie",
-        pathMatch: "full",
-        component: ConsultVisitEvaluationComponent
-      },
-      {
-        path: "beleid",
-        pathMatch: "full",
-        component: ConsultVisitPolicyComponent
-      },
-      {
-        path: "samenvatting",
-        pathMatch: "full",
-        component: ConsultVisitResumeComponent
-      }
-    ],
+    path: "route", pathMatch: "full", component: GoogleMapsComponent,
     data: {
-      title: "Consult visite",
+      title: "Route",
       breadcrumb: [
         {
           label: "Consult",
           url: "/consultation"
         },
         {
-          label: "Visite",
-          url: "/consultation/:id"
+          label: "Route",
+          url: "/consultation/route"
         }
       ]
     }
   },
+  {
+    path: ":id",
+    component: ConsultVisitComponent,
+    children: [
+      {
+        path: "",
+        pathMatch: "full",
+        component: ConsultVisitInfoComponent,
+        data: {
+          title: "Consult visite",
+          breadcrumb: [
+            {
+              label: "Consult",
+              url: "/consultation"
+            }, {
+              label: "Visit",
+              url: "/consultation/:id"
+            }
+          ]
+        }
+      },
+      {
+        path: "anamnese",
+        pathMatch: "full",
+        component: ConsultVisitAnamnesisComponent,
+        data: {
+          title: "Consult visite anamnese",
+          breadcrumb: [
+            {
+              label: "Consult",
+              url: "/consultation"
+            }, {
+              label: "Visit",
+              url: "/consultation/:id"
+            },
+            {
+              label: "Anamnese",
+              url: "/consultation/:id/anamnese"
+            }
+          ]
+        }
+      },
+      {
+        path: "biometrie",
+        pathMatch: "full",
+        component: ConsultVisitBiometricsComponent,
+        data: {
+          title: "Consult visite biometrie",
+          breadcrumb: [
+            {
+              label: "Consult",
+              url: "/consultation"
+            }, {
+              label: "Visit",
+              url: "/consultation/:id"
+            },
+            {
+              label: "Biometrie",
+              url: "/consultation/:id/biometrie"
+            }
+          ]
+        }
+      },
+      {
+        path: "onderzoek",
+        pathMatch: "full",
+        component: ConsultVisitExaminationComponent,
+        data: {
+          title: "Consult visite onderzoek",
+          breadcrumb: [
+            {
+              label: "Consult",
+              url: "/consultation"
+            }, {
+              label: "Visit",
+              url: "/consultation/:id"
+            },
+            {
+              label: "Onderzoek",
+              url: "/consultation/:id/onderzoek"
+            }
+          ]
+        }
+      },
+      {
+        path: "evaluatie",
+        pathMatch: "full",
+        component: ConsultVisitEvaluationComponent,
+        data: {
+          title: "Consult visite evaluatie",
+          breadcrumb: [
+            {
+              label: "Consult",
+              url: "/consultation"
+            }, {
+              label: "Visit",
+              url: "/consultation/:id"
+            },
+            {
+              label: "Evaluatie",
+              url: "/consultation/:id/evaluatie"
+            }
+          ]
+        }
+      },
+      {
+        path: "beleid",
+        pathMatch: "full",
+        component: ConsultVisitPolicyComponent,
+        data: {
+          title: "Consult visite beleid",
+          breadcrumb: [
+            {
+              label: "Consult",
+              url: "/consultation"
+            }, {
+              label: "Visit",
+              url: "/consultation/:id"
+            },
+            {
+              label: "Beleid",
+              url: "/consultation/:id/beleid"
+            }
+          ]
+        }
+      },
+      {
+        path: "samenvatting",
+        pathMatch: "full",
+        component: ConsultVisitResumeComponent,
+        data: {
+          title: "Consult visite samenvatting",
+          breadcrumb: [
+            {
+              label: "Consult",
+              url: "/consultation"
+            }, {
+              label: "Visit",
+              url: "/consultation/:id"
+            },
+            {
+              label: "Samenvatting",
+              url: "/consultation/:id/samenvatting"
+            }
+          ]
+        }
+      }
+    ]
+  }
 ];
 
 @NgModule({

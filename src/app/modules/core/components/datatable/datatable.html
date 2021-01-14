@@ -1,0 +1,55 @@
+<form class="mt-5">
+    <div class="form-group form-inline">
+        Zoeken: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="tableService.searchTerm" />
+
+        <div *ngIf="tableService.loading$ | async" class="spinner-border ml-2" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <caption style="display: none"></caption>
+        <thead>
+            <tr *ngFor="let entity of (tableService.entities$ | async).slice(-1)">
+                <ng-container *ngFor="let subentity of entity | keyvalue: originalOrder">
+                    <th *ngIf="show.includes(subentity.key)" scope="col" [sortable]="subentity.key" class="sortable"
+                        [class.asc]="sortKey.includes(subentity.key) &&  sortIndex == 2"
+                        [class.desc]="sortKey.includes(subentity.key) && sortIndex == 0" (sort)="onSort($event)">
+                        {{subentity.key}}
+                    </th>
+                </ng-container>
+                <th scope="col" *ngIf="actions.length != 0" class="text-center"> Actions </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngIf="(tableService.entities$ | async).length <= 0; else data">
+                <td colspan="4" class="text-center"> Geen data beschikbaar... </td>
+            </tr>
+
+            <ng-template #data>
+                <tr *ngFor="let entity of (tableService.entities$ | async); let i = index" (click)="setActiveRow(i)"
+                    [class.active]=" i==selectedRow">
+                    <ng-container *ngFor=" let subentity of entity | keyvalue: originalOrder">
+                        <td *ngIf="show.includes(subentity.key)">
+                            <ngb-highlight [result]="subentity.value" [term]="tableService.searchTerm"></ngb-highlight>
+                        </td>
+                    </ng-container>
+                    <td *ngIf="actions.length != 0">
+                        <button *ngFor="let a of actions" [id]="a.id" (click)="a.action(entity)" (class)="a.class">
+                            {{a.icon}}
+                        </button>
+                    </td>
+                </tr>
+            </ng-template>
+
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [collectionSize]="tableService.total$ | async" [(page)]="tableService.page"
+            [pageSize]="tableService.pageSize">
+        </ngb-pagination>
+    </div>
+
+</form>

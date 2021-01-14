@@ -20,6 +20,7 @@ import { ConsultVisitExaminationComponent } from "./pages/consult-visit-examinat
 import { ConsultVisitPolicyComponent } from "./pages/consult-visit-policy/consult-visit-policy.component";
 import { ConsultVisitEvaluationComponent } from "./pages/consult-visit-evaluation/consult-visit-evaluation.component";
 import { ConsultVisitResumeComponent } from "./pages/consult-visit-resume/consult-visit-resume.component";
+import { CoreModule } from "../core/core.module";
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ConsultVisitResumeComponent } from "./pages/consult-visit-resume/consul
     ConsultationRoutingModule,
     NgbDatepickerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreModule
   ],
   exports: [
     ConsultOverviewComponent,

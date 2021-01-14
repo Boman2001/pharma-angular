@@ -14,10 +14,6 @@ export class ConsultVisitPolicyComponent implements OnInit {
   ];
   intoleranceForm: FormGroup;
   model: NgbDateStruct;
-  medicineStartDate: { year: number, month: number };
-  medicineEndDate: { year: number, month: number };
-  intoleranceStartDate: { year: number, month: number };
-  intoleranceEndDate: { year: number, month: number };
 
   constructor(private calendar: NgbCalendar, private fb: FormBuilder) {}
 
