@@ -14,6 +14,7 @@ import { UserCreateComponent } from "./pages/user-create/user-create.component";
 import { UserDetailComponent } from "./pages/user-detail/user-detail.component";
 import { UserEditComponent } from "./pages/user-edit/user-edit.component";
 import { UserFormComponent } from "./components/user-form/user-form.component";
+import { CoreModule } from "../core/core.module";
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { UserFormComponent } from "./components/user-form/user-form.component";
     NgbDatepickerModule,
     FormsModule,
     ReactiveFormsModule,
+    CoreModule
   ],
   exports: [
     UserOverviewComponent,
