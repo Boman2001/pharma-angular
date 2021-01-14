@@ -101,4 +101,8 @@ export class ConsultOverviewComponent implements OnInit {
       this.dataTable.tableService.searchTerm = this.date.year + "-" + this.date.month + "-" + this.date.day;
     }
   }
+
+  onCreateComplete(result: boolean) {
+    this.dataTable.tableService.refresh();
+  }
 }
