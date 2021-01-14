@@ -38,12 +38,12 @@ const routes: Routes = [
       {
         path: "examinations",
         loadChildren: () =>
-          import("./modules/examination/examination.module").then((m) => m.ExaminationModule),
+          import("./modules/examination/examination.module").then(m => m.ExaminationModule),
       },
       {
         path: "prescriptions",
         loadChildren: () =>
-          import("./modules/prescription/prescription.module").then((m) => m.PrescriptionModule),
+          import("./modules/prescription/prescription.module").then(m => m.PrescriptionModule),
       },
     ],
   },
