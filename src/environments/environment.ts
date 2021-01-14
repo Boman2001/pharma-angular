@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   appKey: "U%m2Ayh#JyS&y6SN-M^#J35gM@NhWA6?",
-  apiUrl: "http://localhost:44346"
+  apiUrl: "http://localhost:44346",
+  googleKey: "AIzaSyCBVzozETyDe794IpgWsIe7zi5iFwCPP54"
 };
 
 /*
