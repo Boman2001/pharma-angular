@@ -9,7 +9,7 @@ import { StorageService } from "./services/storage.service";
 import { FormsModule } from "@angular/forms";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AgmCoreModule } from "@agm/core";
-import { GoogleMapsComponent } from "./google-maps/google-maps.component";
+import { GoogleMapsComponent } from "./components/google-maps/google-maps.component";
 import { AgmDirectionModule } from "agm-direction";
 import { RouterModule } from "@angular/router";
 import { environment } from "../../../environments/environment";
@@ -76,7 +76,7 @@ export * from "./enums/gender.enum";
 export * from "./directives/sortable.directive";
 
 // Components
-export * from "./google-maps/google-maps.component";
+export * from "./components/google-maps/google-maps.component";
 
 // Types
 export * from "./lib/TableHeader";
