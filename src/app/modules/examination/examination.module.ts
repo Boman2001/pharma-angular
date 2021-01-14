@@ -9,8 +9,9 @@ import { ExaminationOverviewComponent } from "./pages/examination-overview/exami
 import { ExaminationCreateComponent } from "./pages/examination-create/examination-create.component";
 import { ExaminationEditComponent } from "./pages/examination-edit/examination-edit.component";
 import { ExaminationFormComponent } from "./components/examination-form/examination-form.component";
-import {ExaminationRoutingModule} from "./examination-routing.module";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ExaminationRoutingModule } from "./examination-routing.module";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CoreModule } from "../core/core.module";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     ExaminationRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreModule
   ],
   providers: [
     AdditionalExaminationResultService,

@@ -1,6 +1,9 @@
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
 import { NgbDate, NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { ConsultationModule } from "../../consultation.module";
+import { ConsultationService } from "../../services/consultation.service";
 import { ConsultOverviewComponent } from "./consult-overview.component";
 
 
@@ -14,12 +17,18 @@ describe("ConsultOverviewComponent", () => {
       declarations: [
         ConsultOverviewComponent
       ],
+      providers: [
+        ConsultationService,
+
+      ],
       imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
         ConsultationModule,
-        NgbDatepickerModule
+        NgbDatepickerModule,
       ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

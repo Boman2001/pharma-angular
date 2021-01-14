@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { BaseEntity } from "src/app/modules/core/core.module";
+import { PrescriptionService } from "../../services/prescription.service";
 
 @Component({
   selector: "app-prescription-overview",
@@ -7,7 +10,32 @@ import { Component, OnInit } from "@angular/core";
 })
 export class PrescriptionOverviewComponent implements OnInit {
 
-  constructor() { }
+  headerArray: string[] = [
+    "Name",
+    "BSN",
+    "Email",
+    "Dob",
+    "Gender",
+    "PhoneNumber",
+    "City",
+    "Street",
+    "HouseNumber",
+    "HouseNumberAddon",
+    "PostalCode",
+
+  ];
+  actionsArray: { id: string, class: string, icon: string, action: (entity: BaseEntity) => void }[] = [
+    {
+      id: "prescription-detail",
+      class: "btn btn-primary",
+      icon: "<i class=\"fas fa-eye\"></i>",
+      action: (entity: BaseEntity) => {
+        this.router.navigate([`/prescriptions/${entity.Id}`]);
+      }
+    },
+  ];
+
+  constructor(public prescriptionService: PrescriptionService, public router: Router) { }
 
   ngOnInit(): void {
   }
