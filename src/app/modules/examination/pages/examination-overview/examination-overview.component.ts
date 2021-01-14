@@ -27,7 +27,7 @@ export class ExaminationOverviewComponent {
         class: "btn btn-warning",
         icon: "<i class=\"fas fa-pencil-alt\"></i>",
         action: (entity: BaseEntity) => {
-          this.router.navigate([`/examinations/${entity.Id}/edit`]);
+          this.router.navigate([`/examinations/${entity.id}/edit`]);
         },
       },
       {

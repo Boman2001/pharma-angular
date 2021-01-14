@@ -39,7 +39,7 @@ export class ConsultOverviewComponent implements OnInit {
       class: "btn btn-primary",
       icon: "<i class=\"fas fa-eye\"></i>",
       action: (entity: BaseEntity) => {
-        this.router.navigate([`/consultation/${entity.Id}`]);
+        this.router.navigate([`/consultation/${entity.id}`]);
       }
     },
     {
@@ -47,7 +47,7 @@ export class ConsultOverviewComponent implements OnInit {
       class: "btn btn-warning",
       icon: "<i class=\"fas fa-pencil-alt\"></i>",
       action: (entity: BaseEntity) => {
-        this.router.navigate([`/consultation/${entity.Id}/edit`]);
+        this.router.navigate([`/consultation/${entity.id}/edit`]);
       }
     },
     {

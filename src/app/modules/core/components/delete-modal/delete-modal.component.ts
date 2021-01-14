@@ -22,7 +22,7 @@ export class DeleteModalComponent implements OnInit {
   // tslint:disable-next-line:typedef
   ngOnInit() {
     this.deleteEntity?.subscribe((e: BaseEntity) => {
-      this.deleteId = e.Id;
+      this.deleteId = e.id;
       this.open();
     });
   }

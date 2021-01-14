@@ -35,7 +35,7 @@ export class PatientOverviewComponent {
         class: "btn btn-primary",
         icon: "<i class=\"fas fa-eye\"></i>",
         action: (entity: BaseEntity) => {
-          this.router.navigate([`/patients/${entity.Id}`]);
+          this.router.navigate([`/patients/${entity.id}`]);
         }
       },
       {
@@ -43,7 +43,7 @@ export class PatientOverviewComponent {
         class: "btn btn-warning",
         icon: "<i class=\"fas fa-pencil-alt\"></i>",
         action: (entity: BaseEntity) => {
-          this.router.navigate([`/patients/${entity.Id}/edit`]);
+          this.router.navigate([`/patients/${entity.id}/edit`]);
         }
       },
       {
