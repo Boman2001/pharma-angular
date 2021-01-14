@@ -9,7 +9,13 @@ import { GoogleMapsComponent } from "./google-maps/google-maps.component";
 import { AgmDirectionModule } from "agm-direction";
 import { RouterModule } from "@angular/router";
 import { environment } from "../../../environments/environment";
+import { FormsModule } from "@angular/forms";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbdSortableHeader } from "./components/datatable/sortable.directive";
 
+// Components
+import { Datatable } from "./components/datatable/datatable";
+import { DeleteModalComponent } from "./components/delete-modal/delete-modal.component";
 
 
 @NgModule({
@@ -20,7 +26,19 @@ import { environment } from "../../../environments/environment";
       apiKey: environment.googleKey
     }),
     AgmDirectionModule,
-    RouterModule
+    RouterModule,
+    CommonModule,
+    FormsModule,
+    NgbModule
+  ],
+  declarations: [
+    Datatable,
+    NgbdSortableHeader,
+    DeleteModalComponent,
+  ],
+  exports: [
+    Datatable,
+    DeleteModalComponent
   ],
   providers: [
     StorageService
@@ -31,6 +49,10 @@ export class CoreModule { }
 
 // Models
 export * from "./models/base-entity.model";
+
+// Components
+export * from "./components/datatable/datatable";
+export * from "./components/delete-modal/delete-modal.component";
 
 // Services
 export * from "./services/http.service";

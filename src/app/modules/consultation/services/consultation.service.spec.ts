@@ -3,11 +3,12 @@ import { ConsultationService } from "./consultation.service";
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { environment } from "../../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
+import { StorageService } from "../../core/core.module";
 
 
 const mockData = [
   {
-    Id: 1,
+    Id: "1",
     Doctor: { /* not required in this test... */ },
     Patient: { /* not required in this test... */ },
     Date: new Date()
@@ -16,7 +17,7 @@ const mockData = [
 
 const date = new Date();
 const mockEntity = {
-  Id: 1,
+  Id: "1",
   CreatedAt: date,
   CreatedBy: null,
   Date: date,
@@ -37,7 +38,8 @@ describe("ConsultationService (GenericHttpService)", () => {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
       providers: [
-        HttpClient
+        HttpClient,
+        StorageService
       ]
     });
 
@@ -50,7 +52,7 @@ describe("ConsultationService (GenericHttpService)", () => {
   });
 
   it("should return correct basePath", () => {
-    expect(service.basePath).toBe(`${environment.apiUrl}/consultation`);
+    expect(service.basePath).toBe(`${environment.apiUrl}/Consultations`);
   });
 
   it("should return all consultations", () => {
@@ -58,7 +60,7 @@ describe("ConsultationService (GenericHttpService)", () => {
       expect(consultations.length).toBeGreaterThanOrEqual(1);
     });
 
-    const request = http.expectOne(req => req.method === "GET" && req.url === `${environment.apiUrl}/consultation`);
+    const request = http.expectOne(req => req.method === "GET" && req.url === `${environment.apiUrl}/Consultations`);
     request.flush(mockData);
   });
 
@@ -68,7 +70,7 @@ describe("ConsultationService (GenericHttpService)", () => {
       expect(result).toBeTruthy();
     });
 
-    const request = http.expectOne(req => req.method === "POST" && req.url === `${environment.apiUrl}/consultation`);
+    const request = http.expectOne(req => req.method === "POST" && req.url === `${environment.apiUrl}/Consultations`);
     request.flush(true);
   });
 
@@ -77,25 +79,25 @@ describe("ConsultationService (GenericHttpService)", () => {
       expect(result).toBeGreaterThanOrEqual(1);
     });
 
-    const request = http.expectOne(req => req.method === "PUT" && req.url === `${environment.apiUrl}/consultation/1`);
+    const request = http.expectOne(req => req.method === "PUT" && req.url === `${environment.apiUrl}/Consultations/1`);
     request.flush(true);
   });
 
   it("should return the consultation with ID 1", () => {
-    service.Get(1).subscribe(consultation => {
-      expect(consultation.Id).toBe(1);
+    service.Get("1").subscribe(consultation => {
+      expect(consultation.Id).toBe("1");
     });
 
-    const request = http.expectOne(req => req.method === "GET" && req.url === `${environment.apiUrl}/consultation/1`);
+    const request = http.expectOne(req => req.method === "GET" && req.url === `${environment.apiUrl}/Consultations/1`);
     request.flush(mockEntity);
   });
 
   it("should delete the consultation with ID 1", () => {
-    service.Delete(1).subscribe(result => {
+    service.Delete("1").subscribe(result => {
       expect(result).toBeTruthy();
     });
 
-    const request = http.expectOne(req => req.method === "DELETE" && req.url === `${environment.apiUrl}/consultation/1`);
+    const request = http.expectOne(req => req.method === "DELETE" && req.url === `${environment.apiUrl}/Consultations/1`);
     request.flush(true);
   });
 });

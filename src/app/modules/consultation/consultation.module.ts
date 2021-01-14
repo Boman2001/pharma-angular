@@ -12,6 +12,7 @@ import { ConsultationService } from "./services/consultation.service";
 // Components
 import { ConsultOverviewComponent } from "./pages/consult-overview/consult-overview.component";
 import { ConsultCreateComponent } from "./components/consult-create/consult-create.component";
+import { CoreModule } from "../core/core.module";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ConsultCreateComponent } from "./components/consult-create/consult-crea
     ConsultationRoutingModule,
     NgbDatepickerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreModule
   ],
   exports: [
     ConsultOverviewComponent,
