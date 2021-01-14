@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from "@angular/core";
+import { Component } from "@angular/core";
 import { Observable } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { PatientService } from "../../services/patient.service";

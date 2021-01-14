@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Patient } from "../../models/patient.model";
 import { PatientService } from "../../services/patient.service";
@@ -94,7 +94,7 @@ export class PatientDetailComponent implements OnInit {
         try {
           await this.router.navigate(["patients"]);
         }
-        catch (e) {
+        catch (ex) {
           // @TODO: Global modal/Toast??
         }
         return;

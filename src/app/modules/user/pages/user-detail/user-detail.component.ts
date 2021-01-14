@@ -66,7 +66,7 @@ export class UserDetailComponent implements OnInit {
         try {
           await this.router.navigate(["doctors"]);
         }
-        catch (e) {
+        catch (ex) {
           // @TODO: Global modal/Toast??
         }
         return;

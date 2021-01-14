@@ -3,7 +3,7 @@ import { PatientEditComponent } from "./patient-edit.component";
 import { RouterTestingModule } from "@angular/router/testing";
 import { PatientService } from "../../services/patient.service";
 import { StorageService } from "../../../core/services/storage.service";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 
 describe("PatientEditComponent", () => {
