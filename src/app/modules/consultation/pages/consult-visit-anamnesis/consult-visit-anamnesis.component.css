@@ -1,0 +1,7 @@
+.table-wrapper{
+  height: calc(40vh - 1.5rem)!important;
+}
+
+.big-table-wrapper{
+  height: calc(60vh);
+}

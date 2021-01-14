@@ -441,3 +441,89 @@ button.calendar, button.calendar:active {
   background-size: 23px;
   background-position: 50%;
 }
+
+/*!
+ * CUSTOM CSS STEPS
+ */
+.step-item{
+  width: 14%;
+}
+
+.step{
+  width: 100%;
+  height: 50px;
+  position: relative;
+  background: #E6E6E6;
+  border-color: #E6E6E6;
+  cursor: pointer;
+}
+
+.step-item:first-child .step:before{
+  content: none;
+}
+
+.step:hover{
+  background: #004a91;
+  border-color: #004a91;
+  color: #fff;
+}
+
+.step.active{
+  background: #003e79;
+  border-color: #003e79;
+  color: #fff;
+}
+
+.step a{
+  padding: 0;
+  color: inherit;
+}
+
+.step:before,
+.step:after{
+  content: "";
+  display: block;
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  border-left: 10px solid #fff;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  border-left-color: inherit;
+}
+
+.step:before{
+  border-left-color: #fff;
+  left: 0;
+}
+
+.step:after{
+  z-index: 8;
+}
+
+.mobile-nav-steps .step-item{
+  width: auto;
+}
+
+.mobile-nav-steps .navbar-nav-container{
+  top: 100%;
+  z-index: 9;
+}
+
+.mobile-nav-steps .navbar-nav-container.show{
+  display: block!important;
+}
+
+.mobile-nav-steps .steps-buttons div.active{
+  display: flex!important;
+  background: #003e79;
+  border-radius: 0;
+  height: 50px;
+  width: 200px;
+}
+
+.mobile-nav-steps .step:before{
+  content: none;
+}
