@@ -6,7 +6,7 @@
 <ng-template #patientForm>
   <form method="POST" [formGroup]="form" (ngSubmit)="save()">
 
-    <input type="hidden" name="id" id="user-id" formControlName="id">
+    <input type="hidden" name="id" id="patient-id" formControlName="id">
 
     <div class="form-group">
       <label for="patient-name">Naam</label>
@@ -48,21 +48,21 @@
     <div class="form-group">
       <label>Geslacht</label>
       <div class="custom-control custom-radio">
-        <input type="radio" id="male" name="gender" class="custom-control-input" value="male" formControlName="gender">
-        <label [class.input-validation-error]="form.controls['gender'].invalid && form.controls['gender'].touched" class="custom-control-label" for="male">Man</label>
+        <input type="radio" id="patient-gender-male" [class.input-validation-error]="form.controls['gender'].invalid && form.controls['gender'].touched" name="gender" class="custom-control-input" [value]="0" formControlName="gender">
+        <label class="custom-control-label" for="patient-gender-male">Man</label>
       </div>
 
       <div class="custom-control custom-radio">
-        <input type="radio" id="female" name="gender" class="custom-control-input" value="female" formControlName="gender">
-        <label [class.input-validation-error]="form.controls['gender'].invalid && form.controls['gender'].touched" class="custom-control-label" for="female">Vrouw</label>
+        <input type="radio" id="patient-gender-female" [class.input-validation-error]="form.controls['gender'].invalid && form.controls['gender'].touched" name="gender" class="custom-control-input" [value]="1" formControlName="gender">
+        <label class="custom-control-label" for="patient-gender-female">Vrouw</label>
       </div>
 
       <div class="custom-control custom-radio">
-        <input type="radio" id="other" name="gender" class="custom-control-input" value="other" formControlName="gender">
-        <label [class.input-validation-error]="form.controls['gender'].invalid && form.controls['gender'].touched" class="custom-control-label" for="other">Overige</label>
+        <input type="radio" id="patient-gender-other" [class.input-validation-error]="form.controls['gender'].invalid && form.controls['gender'].touched" name="gender" class="custom-control-input" [value]="2" formControlName="gender">
+        <label class="custom-control-label" for="patient-gender-other">Overige</label>
       </div>
 
-      <div *ngIf="form.controls['gender'].invalid && form.controls['gender'].touched">
+      <div id="gender-alert" *ngIf="form.controls['gender'].invalid && form.controls['gender'].touched">
         <div class="input-validation-error-text" *ngIf="form.controls['gender'].errors.required">Geslacht is een verplicht veld.</div>
       </div>
     </div>
@@ -88,7 +88,7 @@
         </div>
         <div class="col-3">
           <label for="house-number">Huisnummer</label>
-          <input class="form-control" [class.input-validation-error]="form.controls['houseNumber'].invalid && form.controls['houseNumber'].touched" type="number" name="house-number" id="house-number" placeholder="Huisnummer" formControlName="houseNumber">
+          <input class="form-control" [class.input-validation-error]="form.controls['houseNumber'].invalid && form.controls['houseNumber'].touched" type="text" name="house-number" id="house-number" placeholder="Huisnummer" formControlName="houseNumber">
           <div *ngIf="form.controls['houseNumber'].invalid && form.controls['houseNumber'].touched">
             <div class="input-validation-error-text" *ngIf="form.controls['houseNumber'].errors.required">Huisnummer is een verplicht veld.</div>
             <div class="input-validation-error-text" *ngIf="form.controls['houseNumber'].errors.maxlength">Huisnummer is te lang.</div>

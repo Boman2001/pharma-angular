@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import {Component, ViewChild} from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { BaseEntity, TableAction, TableHeader } from "src/app/modules/core/core.module";
@@ -71,7 +71,17 @@ export class PatientOverviewComponent {
     }
   ];
 
+  @ViewChild("patientsTable") table;
+
   constructor(public patientService: PatientService, public router: Router) {
     this.deleteEntity = new Observable(e => this.patientEmitter = e);
+  }
+
+  onDeleteComplete(success): void {
+    // @TODO: The API doesn't return true;
+    // if (success) {
+    //   this.table.tableService.refresh();
+    // }
+    this.table.tableService.refresh();
   }
 }

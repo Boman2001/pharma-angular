@@ -64,6 +64,14 @@ const routes: Routes = [
       title: "Patiënt Bewerken",
       breadcrumb: [
         {
+          label: "Patiënten",
+          url: "/patients"
+        },
+        {
+          label: "Patiënt",
+          url: "/patients/:id"
+        },
+        {
           label: "Patiënt Bewerken",
           url: "/patients/:id/edit"
         }

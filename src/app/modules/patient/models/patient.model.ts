@@ -13,5 +13,6 @@ export class Patient extends BaseEntity {
   street: string;
   houseNumber: string;
   houseNumberAddon: string;
+  country: string;
   postalCode: string;
 }

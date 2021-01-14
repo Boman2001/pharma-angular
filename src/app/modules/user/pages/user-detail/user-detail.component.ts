@@ -2,8 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "../../models/user.model";
 import { UserService } from "../../services/user.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { TableHeader, TableAction } from "../../../core/core.module";
+import { TableHeader, TableAction, BaseEntity } from "../../../core/core.module";
 import { ConsultationService } from "../../../consultation/services/consultation.service";
+import { Observable } from "rxjs";
 
 
 @Component({
@@ -13,6 +14,8 @@ import { ConsultationService } from "../../../consultation/services/consultation
 })
 export class UserDetailComponent implements OnInit {
 
+  public userEmitter;
+  public deleteEntity: Observable<BaseEntity>;
   user: User;
 
   tableHeaders: TableHeader[] = [];
@@ -20,10 +23,13 @@ export class UserDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService,
+    public userService: UserService,
     private router: Router,
-    private consultationService: ConsultationService
-  ) {}
+    public consultationService: ConsultationService
+  )
+  {
+    this.deleteEntity = new Observable(e => this.userEmitter = e);
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -65,5 +71,9 @@ export class UserDetailComponent implements OnInit {
         }
         return;
       });
+  }
+
+  async onDeleteComplete(success): Promise<void> {
+    await this.router.navigate(["doctors"]);
   }
 }

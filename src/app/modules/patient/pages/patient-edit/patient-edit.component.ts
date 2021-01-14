@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter } from "@angular/core";
 import { Observable } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { PatientService } from "../../services/patient.service";
@@ -12,10 +12,15 @@ import { Patient } from "../../models/patient.model";
 })
 export class PatientEditComponent {
 
-  patient: Observable<Patient>;
-  patientEmitter;
+  public patient: Observable<Patient>;
+  public deleteEntity: Observable<Patient>;
 
-  constructor(private patientService: PatientService, private route: ActivatedRoute, private router: Router) {
+  public deletePatientEmitter;
+  public patientEmitter;
+
+  constructor(public patientService: PatientService, private route: ActivatedRoute, private router: Router) {
+    this.deleteEntity = new Observable(e => this.deletePatientEmitter = e);
+
     this.patient = new Observable<Patient>(e => this.patientEmitter = e);
     this.route.paramMap.subscribe(params => {
       this.patientService.Get(params.get("id")).toPromise()
@@ -26,7 +31,6 @@ export class PatientEditComponent {
             await router.navigate(["patients"]);
             return;
           }
-
           this.patientEmitter.next(p);
         })
         .catch(async (e) => {
@@ -45,5 +49,9 @@ export class PatientEditComponent {
       await this.router.navigate(["patients"]);
       return;
     }
+  }
+
+  async onDeleteComplete(success): Promise<void> {
+    await this.router.navigate(["patients"]);
   }
 }

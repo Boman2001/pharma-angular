@@ -4,9 +4,9 @@
       <h2>Patiënt Wijzigen</h2>
     </div>
     <div class="col-md-6 text-right">
-      <button *ngIf="form.editMode" class="btn btn-primary" name="Delete" id="Delete">Verwijderen</button>
+      <button *ngIf="form.editMode" class="btn btn-primary" name="Delete" id="Delete" (click)="deletePatientEmitter.next(form.patient)">Verwijderen</button>
     </div>
   </div>
   <app-patient-form #form buttonName="Wijzigen" (saveComplete)="onSaveComplete($event)" [initialPatient]="patient"></app-patient-form>
+  <app-delete-modal [deleteEntity]="deleteEntity" [service]="patientService" (deleteComplete)="onDeleteComplete($event)"></app-delete-modal>
 </div>
-
