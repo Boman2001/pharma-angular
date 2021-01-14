@@ -30,7 +30,7 @@ import { NotFoundComponent } from "./pages/not-found/not-found.component";
     FormsModule,
     ReactiveFormsModule,
     CoreModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { PrescriptionService } from "../../services/prescription.service";
 
 import { PrescriptionOverviewComponent } from "./prescription-overview.component";
 
@@ -8,9 +11,16 @@ describe("PrescriptionOverviewComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PrescriptionOverviewComponent ]
+      declarations: [PrescriptionOverviewComponent],
+      providers: [
+        PrescriptionService,
+      ],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

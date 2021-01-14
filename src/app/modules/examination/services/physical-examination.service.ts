@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import {GenericHttpService, StorageService} from "../../core/core.module";
 import { HttpClient } from "@angular/common/http";
-import {PhysicalExamination} from "../models/physical-examination.model";
+import { PhysicalExamination } from "../models/physical-examination.model";
 
 
 @Injectable({
