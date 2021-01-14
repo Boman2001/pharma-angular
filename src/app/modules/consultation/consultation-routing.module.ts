@@ -27,6 +27,7 @@ const routes: Routes = [
     }
   },
   {
+    // TODO sub routes id is undefined in breadcrumb
     path: "route", pathMatch: "full", component: GoogleMapsComponent,
     data: {
       title: "Route",
