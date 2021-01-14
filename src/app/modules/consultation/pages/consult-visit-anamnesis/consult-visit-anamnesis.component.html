@@ -17,59 +17,70 @@
             <th>21-06-2002</th>
             <td>Roken: 15/dag</td>
             <td>P17</td>
-            <td><button class="btn btn-primary">Beeindig</button></td>
+            <td><button class="btn btn-primary">Beëindig</button></td>
           </tr>
           <tr>
             <th>21-06-2003</th>
-            <td>Hooikoorts/allergische rhinitis; bbom+;gras+</td>
+            <td>Hooikoorts/allergische rhinitis; boom+;gras+</td>
             <td>R97</td>
-            <td><button class="btn btn-primary">Beeindig</button></td>
+            <td><button class="btn btn-primary">Beëindig</button></td>
           </tr>
           <tr>
             <th>21-06-2004</th>
             <td>cvrm</td>
             <td>K49.01</td>
-            <td><button class="btn btn-primary">Beeindig</button></td>
+            <td><button class="btn btn-primary">Beëindig</button></td>
           </tr>
           <tr>
             <th>21-06-2002</th>
             <td>Roken: 15/dag</td>
             <td>P17</td>
-            <td><button class="btn btn-primary">Beeindig</button></td>
+            <td><button class="btn btn-primary">Beëindig</button></td>
           </tr>
           <tr>
             <th>21-06-2003</th>
-            <td>Hooikoorts/allergische rhinitis; bbom+;gras+</td>
+            <td>Hooikoorts/allergische rhinitis; boom+;gras+</td>
             <td>R97</td>
-            <td><button class="btn btn-primary">Beeindig</button></td>
+            <td><button class="btn btn-primary">Beëindig</button></td>
           </tr>
           <tr>
             <th>21-06-2004</th>
             <td>cvrm</td>
             <td>K49.01</td>
-            <td><button class="btn btn-primary">Beeindig</button></td>
+            <td><button class="btn btn-primary">Beëindig</button></td>
           </tr>
           </tbody>
         </table>
       </div>
       <div>
-        <form>
+        <form #consultAnamnesisForm="ngForm" name="form" [formGroup]="form">
           <div class="form-group d-flex">
-            <div class="form-group d-flex w-50 pr-2">
-              <input class="form-control" placeholder="yyyy-mm-dd"
-                     name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+            <div class="form-group w-50 pr-2">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                       name="dp" formControlName="date" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                </div>
+              </div>
+              <div *ngIf="form.controls['date'].getError('incorrect')">
+                <div class="alert-danger p-2 mt-2">Een datum is verplicht</div>
               </div>
             </div>
             <div class="form-group w-50 pl-2">
-              <input type="text" class="form-control" placeholder="ICPC">
+              <input type="text" class="form-control" formControlName="icpc" placeholder="ICPC">
+              <div *ngIf="form.controls['icpc'].getError('incorrect')">
+                <div class="alert-danger p-2 mt-2">Een ICPC is verplicht</div>
+              </div>
             </div>
           </div>
           <div class="form-group">
-            <textarea class="form-control"></textarea>
+            <textarea class="form-control" name="comment" formControlName="comment" placeholder="Klacht/Probleem"></textarea>
+            <div *ngIf="form.controls['comment'].getError('incorrect')">
+              <div class="alert-danger p-2 mt-2">Een klacht of probleem is verplicht</div>
+            </div>
           </div>
-          <input type="submit" class="btn btn-primary float-right" value="toevoegen">
+          <input type="submit" class="btn btn-primary float-right" value="Toevoegen" id="add-anamnese" (click)="submit()">
         </form>
       </div>
     </div>

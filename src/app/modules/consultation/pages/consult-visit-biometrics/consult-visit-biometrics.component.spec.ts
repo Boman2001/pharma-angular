@@ -20,6 +20,8 @@ describe("ConsultVisitBiometricsComponent", () => {
     fixture = TestBed.createComponent(ConsultVisitBiometricsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    // TODO TESTS SCHRIJVEN
   });
 
   it("should create", () => {

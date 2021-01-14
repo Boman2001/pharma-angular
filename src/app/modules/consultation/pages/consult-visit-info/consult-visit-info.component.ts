@@ -19,7 +19,7 @@ export class ConsultVisitInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.map = "https://www.google.com/maps/embed/v1/place?key=AIzaSyCLsoYzJ84PGUrhtghT1CPJPGAYZQDdRnw&q=" + this.address;
+    this.map = "https://www.google.com/maps/embed/v1/place?key=AIzaSyCBVzozETyDe794IpgWsIe7zi5iFwCPP54&q=" + this.address;
   }
 
 }

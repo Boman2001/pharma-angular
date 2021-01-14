@@ -61,61 +61,79 @@
       </div>
     </div>
     <div class="d-flex p-3 flex-column flex-md-row">
-      <form class="col-12 col-md-6">
+      <form class="col-12 col-md-6" #consultPolicyMedicineForm="ngForm" name="form" [formGroup]="medicineForm">
         <div class="form-group d-flex">
           <div class="form-group w-50 mr-2">
             <label>Start datum</label>
             <div class="d-flex">
               <input class="form-control" placeholder="yyyy-mm-dd"
-                     name="dp" [(ngModel)]="medicineStartDate" ngbDatepicker #mStart="ngbDatepicker">
+                     name="dp" formControlName="startDate" ngbDatepicker #mStart="ngbDatepicker">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="mStart.toggle()" type="button"></button>
               </div>
+            </div>
+            <div *ngIf="medicineForm.controls['startDate'].getError('incorrect')">
+              <div class="alert-danger p-2 mt-2">Een begin datum is verplicht</div>
             </div>
           </div>
           <div class="form-group w-50 ml-4">
             <label>Eind datum</label>
             <div class="d-flex">
               <input class="form-control" placeholder="yyyy-mm-dd"
-                     name="dp" [(ngModel)]="medicineEndDate" ngbDatepicker #mEnd="ngbDatepicker">
+                     name="dp" formControlName="endDate" ngbDatepicker #mEnd="ngbDatepicker">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="mEnd.toggle()" type="button"></button>
               </div>
             </div>
+            <div *ngIf="medicineForm.controls['endDate'].getError('incorrect')">
+              <div class="alert-danger p-2 mt-2">Een eind datum is verplicht</div>
+            </div>
           </div>
         </div>
         <div class="form-group">
-          <textarea class="form-control" placeholder="Omschrijving"></textarea>
+          <textarea class="form-control" placeholder="Omschrijving" formControlName="comment"></textarea>
+          <div *ngIf="medicineForm.controls['comment'].getError('incorrect')">
+            <div class="alert-danger p-2 mt-2">Een opmerking is verplicht</div>
+          </div>
         </div>
-        <input type="submit" class="btn btn-primary float-right" value="Voeg medicatie toe">
+        <input type="submit" class="btn btn-primary float-right" value="Voeg medicatie toe" (click)="submitMedicine()">
       </form>
-      <form class="col-12 col-md-6 mt-5 mt-md-0">
+      <form class="col-12 col-md-6 mt-5 mt-md-0" #consultPolicyIntoleranceForm="ngForm" name="form" [formGroup]="intoleranceForm">
         <div class="form-group d-flex">
           <div class="form-group w-50 mr-2">
             <label>Start datum</label>
             <div class="d-flex">
               <input class="form-control" placeholder="yyyy-mm-dd"
-                     name="dp" [(ngModel)]="intoleranceStartDate" ngbDatepicker #iStart="ngbDatepicker">
+                     name="dp" formControlName="startDate" ngbDatepicker #mStart="ngbDatepicker">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="iStart.toggle()" type="button"></button>
+                <button class="btn btn-outline-secondary calendar" (click)="mStart.toggle()" type="button"></button>
               </div>
             </div>
+            <div *ngIf="intoleranceForm.controls['startDate'].getError('incorrect')">
+              <div class="alert-danger p-2 mt-2">Een begin datum is verplicht</div>
+            </div>
           </div>
-          <div class="form-group w-50 ml-2">
+          <div class="form-group w-50 ml-4">
             <label>Eind datum</label>
             <div class="d-flex">
               <input class="form-control" placeholder="yyyy-mm-dd"
-                     name="dp" [(ngModel)]="intoleranceEndDate" ngbDatepicker #iEnd="ngbDatepicker">
+                     name="dp" formControlName="endDate" ngbDatepicker #mEnd="ngbDatepicker">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="iEnd.toggle()" type="button"></button>
+                <button class="btn btn-outline-secondary calendar" (click)="mEnd.toggle()" type="button"></button>
               </div>
+            </div>
+            <div *ngIf="intoleranceForm.controls['endDate'].getError('incorrect')">
+              <div class="alert-danger p-2 mt-2">Een eind datum is verplicht</div>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <textarea class="form-control" placeholder="Omschrijving"></textarea>
+          <textarea class="form-control" placeholder="Omschrijving" formControlName="comment"></textarea>
+          <div *ngIf="intoleranceForm.controls['comment'].getError('incorrect')">
+            <div class="alert-danger p-2 mt-2">Een opmerking is verplicht</div>
+          </div>
         </div>
-        <input type="submit" class="btn btn-primary float-right" value="voeg intolerantie toe">
+        <input type="submit" class="btn btn-primary float-right" value="Voeg medicatie toe" (click)="submitIntolerance()">
       </form>
     </div>
   </div>

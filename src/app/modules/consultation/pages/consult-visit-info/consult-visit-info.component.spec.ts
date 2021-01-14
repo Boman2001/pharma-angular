@@ -17,6 +17,8 @@ describe("ConsultVisitInfoComponent", () => {
     fixture = TestBed.createComponent(ConsultVisitInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    // TODO TESTS SCHRIJVEN
   });
 
   it("should create", () => {
