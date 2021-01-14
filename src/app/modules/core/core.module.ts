@@ -23,7 +23,8 @@ import { NgbdSortableHeaderDirective } from "./directives/sortable.directive";
 
 
 @NgModule({
-  declarations: [GoogleMapsComponent,
+  declarations: [
+    GoogleMapsComponent,
     DatatableComponent,
     NgbdSortableHeaderDirective,
     DeleteModalComponent
@@ -42,7 +43,8 @@ import { NgbdSortableHeaderDirective } from "./directives/sortable.directive";
   ],
   exports: [
     DatatableComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    GoogleMapsComponent
   ],
   providers: [
     StorageService
