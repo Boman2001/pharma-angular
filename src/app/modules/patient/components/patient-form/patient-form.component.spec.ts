@@ -2,6 +2,9 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormBuilder } from "@angular/forms";
 
 import { PatientFormComponent } from "./patient-form.component";
+import { PatientService } from "../../services/patient.service";
+import { StorageService } from "../../../core/services/storage.service";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe("PatientFormComponent", () => {
   let component: PatientFormComponent;
@@ -9,8 +12,13 @@ describe("PatientFormComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule ],
       declarations: [ PatientFormComponent ],
-      providers: [ FormBuilder ]
+      providers: [
+        FormBuilder,
+        PatientService,
+        StorageService
+      ]
     })
     .compileComponents();
   });

@@ -10,7 +10,7 @@
         <h2>Dokter</h2>
       </div>
       <div class="col-md-6 text-right">
-        <button class="btn btn-primary" (click)="delete()">Verwijderen</button>
+        <button class="btn btn-primary" (click)="userEmitter.next(user)">Verwijderen</button>
         <button routerLink="edit" class="btn btn-primary">Bewerken</button>
       </div>
     </div>
@@ -33,5 +33,6 @@
         <app-datatable-component [service]="consultationService" [retrievalParameters]="[user.id]" [show]="tableHeaders" [actions]="tableActions"></app-datatable-component>
       </div>
     </div>
+    <app-delete-modal [deleteEntity]="deleteEntity" [service]="userService" (deleteComplete)="onDeleteComplete($event)"></app-delete-modal>
   </div>
 </ng-template>
