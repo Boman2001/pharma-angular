@@ -4,6 +4,7 @@ import { ConsultCreateComponent } from "./consult-create.component";
 import { FormBuilder } from "@angular/forms";
 import { HttpClient, HttpHandler } from "@angular/common/http";
 import { StorageService } from "../../../core/core.module";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe("ConsultCreateComponent", () => {
   let component: ConsultCreateComponent;
@@ -12,10 +13,13 @@ describe("ConsultCreateComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConsultCreateComponent ],
+      imports: [
+        HttpClientTestingModule
+      ],
+      declarations: [
+        ConsultCreateComponent
+      ],
       providers: [
-        HttpClient,
-        HttpHandler,
         StorageService,
         FormBuilder
       ]
@@ -45,8 +49,8 @@ describe("ConsultCreateComponent", () => {
 
   it("should return form is valid", () => {
     form.date.setValue("2021-01-06");
-    form.patient.setValue("1");
-    form.doctor.setValue("1");
+    form.patientId.setValue("1");
+    form.doctorId.setValue("1");
     form.comment.setValue("test");
     expect(component.form.valid).toBeTruthy();
   });

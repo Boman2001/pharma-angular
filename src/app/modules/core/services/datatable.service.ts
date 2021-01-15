@@ -36,7 +36,7 @@ export class TableService<T> {
     return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
   }
 
-  private async refresh(): Promise<void> {
+  public async refresh(): Promise<void> {
 
     this.entities = new BehaviorSubject<T[]>(await this.service[this.retrievalMethod](...this.retrievalParameters).toPromise() || []);
 

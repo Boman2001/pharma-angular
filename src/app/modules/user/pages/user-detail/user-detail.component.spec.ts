@@ -3,12 +3,11 @@ import { UserDetailComponent } from "./user-detail.component";
 import { ActivatedRoute, convertToParamMap } from "@angular/router";
 import { UserService } from "../../services/user.service";
 import { of } from "rxjs";
-import { HttpClient, HttpHandler } from "@angular/common/http";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ConsultationService } from "../../../consultation/consultation.module";
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
-import { environment } from "../../../../../environments/environment";
 import { User } from "../../models/user.model";
+
 
 const mockData: User = {
   id: "44b64f8b-fe1b-44e3-9e0e-7be935660951", // Random ID
@@ -42,8 +41,6 @@ describe("UserDetailComponent", () => {
       providers: [
         UserService,
         ConsultationService,
-        HttpClient,
-        HttpHandler,
         {
           provide: ActivatedRoute,
           useValue: { paramMap: of(convertToParamMap({ id: 1 })) }
