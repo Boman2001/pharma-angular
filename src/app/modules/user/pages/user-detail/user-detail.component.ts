@@ -2,9 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "../../models/user.model";
 import { UserService } from "../../services/user.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { TableHeader, TableAction, BaseEntity } from "../../../core/core.module";
+import {TableHeader, TableAction, BaseEntity, Gender} from "../../../core/core.module";
 import { ConsultationService } from "../../../consultation/services/consultation.service";
 import { Observable } from "rxjs";
+import { environment } from "../../../../../environments/environment";
+import { DomSanitizer } from "@angular/platform-browser";
 
 
 @Component({
@@ -24,6 +26,7 @@ export class UserDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public userService: UserService,
+    public sanitizer: DomSanitizer,
     private router: Router,
     public consultationService: ConsultationService
   )
@@ -41,6 +44,40 @@ export class UserDetailComponent implements OnInit {
 
     await this.userService.Delete(this.user.id).toPromise();
     await this.router.navigate(["doctors"]);
+  }
+
+  get map(): string {
+    return `https://www.google.com/maps/embed/v1/place?key=${ environment.googleKey }&q=${this.addressString}`;
+  }
+
+  get addressString(): string {
+    if (this.user?.id == null) {
+      return null;
+    }
+
+    return `${this.user.street} ${this.user.houseNumber}${this.user.houseNumberAddon},${this.user.city},${this.user.country}`;
+  }
+
+  public get age(): number {
+    // @TODO: !!! ACTUAL RELIABLE AGE CALCULATION !!!
+    return Math.floor((((new Date().valueOf() - new Date(this.user.dob).valueOf()) / (24 * 60 * 60 * 1000)) / 365.242));
+  }
+
+  public get dob(): Date {
+    return new Date(this.user.dob);
+  }
+
+  public get gender(): string {
+    switch (this.user.gender) {
+      case Gender.MALE:
+        return "Man";
+
+      case Gender.FEMALE:
+        return "Vrouw";
+
+      default:
+        return "Overige";
+    }
   }
 
   private retrieveUserData(id: string): void {
