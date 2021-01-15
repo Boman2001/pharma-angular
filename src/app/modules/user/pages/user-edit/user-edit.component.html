@@ -1,4 +1,12 @@
 <div class="page container-fluid">
-    <h2>Dokter Wijzigen</h2>
-    <app-user-form buttonName="Wijzigen"></app-user-form>
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Dokter Wijzigen</h2>
+    </div>
+    <div class="col-md-6 text-right">
+      <button *ngIf="form.editMode" class="btn btn-primary" name="Delete" id="Delete" (click)="deleteUserEmitter.next(form.user)">Verwijderen</button>
+    </div>
+  </div>
+  <app-user-form #form buttonName="Wijzigen" (saveComplete)="onSaveComplete($event)" [initialUser]="user"></app-user-form>\
+  <app-delete-modal [deleteEntity]="deleteEntity" [service]="userService" (deleteComplete)="onDeleteComplete($event)"></app-delete-modal>
 </div>

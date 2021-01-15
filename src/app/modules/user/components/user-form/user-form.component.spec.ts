@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormBuilder } from "@angular/forms";
-
 import { UserFormComponent } from "./user-form.component";
+import { UserService } from "../../services/user.service";
+import { RouterTestingModule } from "@angular/router/testing";
+import { HttpClient, HttpHandler } from "@angular/common/http";
+
 
 describe("UserFormComponent", () => {
   let component: UserFormComponent;
@@ -10,8 +13,14 @@ describe("UserFormComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ RouterTestingModule ],
       declarations: [ UserFormComponent ],
-      providers: [ FormBuilder ]
+      providers: [
+        UserService,
+        HttpClient,
+        HttpHandler,
+        FormBuilder
+      ]
     })
     .compileComponents();
   });
@@ -33,19 +42,18 @@ describe("UserFormComponent", () => {
   });
 
   it("should return form is valid", () => {
-    userForm.name.setValue("Test");
-    userForm.bsn.setValue("123");
+    userForm.id.setValue("1");
+    userForm.name.setValue("Test Test");
     userForm.email.setValue("test@test.com");
-    userForm.dob.setValue("2021-01-01");
+    userForm.dob.setValue("01-01-2021");
     userForm.gender.setValue("male");
-    userForm.phone.setValue("0612345678");
+    userForm.phoneNumber.setValue("0612345678");
     userForm.street.setValue("MyStreet");
-    userForm.housenumber.setValue(15);
-    userForm.additional.setValue("a");
+    userForm.houseNumber.setValue(15);
+    userForm.houseNumberAddon.setValue("a");
     userForm.city.setValue("Roosendaal");
-    userForm.postalcode.setValue("1234AB");
+    userForm.postalCode.setValue("1234AB");
     userForm.country.setValue("NL");
-    userForm.username.setValue("Test");
     userForm.password.setValue("test");
     userForm.passwordCheck.setValue("test");
 

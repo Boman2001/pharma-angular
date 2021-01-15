@@ -10,37 +10,37 @@
   <form #consultCreateForm="ngForm" name="form" [formGroup]="form">
     <div class="form-group">
       <div class="input-group">
-        <input id="date" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" formControlName="date" required>
+        <input id="date" class="form-control" [ngClass]="form.controls['date'].invalid && form.controls['date'].touched ? 'input-validation-error' : ''" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" formControlName="date" required>
         <div class="input-group-append">
           <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
         </div>
       </div>
       <div *ngIf="form.controls['date'].invalid && form.controls['date'].touched">
-        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['date'].errors.required">Een datum is verplicht</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['date'].errors.required">Een datum is verplicht</div>
       </div>
     </div>
     <div class="form-group">
-      <select class="form-control" name="patient" id="patient" formControlName="patient" required>
+      <select class="form-control" [ngClass]="form.controls['patientId'].invalid && form.controls['patientId'].touched ? 'input-validation-error' : ''" name="patientId" id="patientId" formControlName="patientId" required>
         <option value="">Kies een patient</option>
-        <option value="1">Jules Mons</option>
+        <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.name }}</option>
       </select>
-      <div *ngIf="form.controls['patient'].invalid && form.controls['patient'].touched">
-        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['patient'].errors.required">Een patient is verplicht</div>
+      <div *ngIf="form.controls['patientId'].invalid && form.controls['patientId'].touched">
+        <div class="input-validation-error-text" *ngIf="form.controls['patientId'].errors.required">Een patient is verplicht</div>
       </div>
     </div>
     <div class="form-group">
-      <select class="form-control" name="doctor" id="doctor" formControlName="doctor" required>
+      <select class="form-control" [ngClass]="form.controls['doctorId'].invalid && form.controls['doctorId'].touched ? 'input-validation-error' : ''" name="doctorId" id="doctorId" formControlName="doctorId" required>
         <option value="">Kies een dokter</option>
-        <option value="1">Youri van der Sande</option>
+        <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
       </select>
-      <div *ngIf="form.controls['doctor'].invalid && form.controls['doctor'].touched">
-        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['doctor'].errors.required">Een dokter is verplicht</div>
+      <div *ngIf="form.controls['doctorId'].invalid && form.controls['doctorId'].touched">
+        <div class="input-validation-error-text" *ngIf="form.controls['doctorId'].errors.required">Een dokter is verplicht</div>
       </div>
     </div>
     <div class="form-group">
-      <textarea class="form-control" name="comment" id="comment" rows="5" placeholder="Opmerkingen" formControlName="comment"></textarea>
+      <textarea class="form-control" [ngClass]="form.controls['comment'].invalid && form.controls['comment'].touched ? 'input-validation-error' : ''" name="comment" id="comment" rows="5" placeholder="Opmerkingen" formControlName="comment"></textarea>
       <div *ngIf="form.controls['comment'].invalid && form.controls['comment'].touched">
-        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['comment'].errors.required">Een opmerking is verplicht</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['comment'].errors.required">Een opmerking is verplicht</div>
       </div>
     </div>
   </form>

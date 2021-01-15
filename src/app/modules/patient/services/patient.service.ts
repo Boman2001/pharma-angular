@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { GenericHttpService } from "../../core/core.module";
+import {GenericHttpService, StorageService} from "../../core/core.module";
 import { HttpClient } from "@angular/common/http";
 import { Patient } from "../models/patient.model";
 
@@ -9,7 +9,7 @@ import { Patient } from "../models/patient.model";
 })
 export class PatientService extends GenericHttpService<Patient> {
 
-  constructor(protected http: HttpClient) {
-    super("patient", http);
+  constructor(protected http: HttpClient, protected storage: StorageService) {
+    super("Patients", http, storage);
   }
 }

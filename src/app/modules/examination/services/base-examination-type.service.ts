@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { GenericHttpService } from "../../core/core.module";
+import {GenericHttpService, StorageService} from "../../core/core.module";
 import { HttpClient } from "@angular/common/http";
 import {BaseExaminationType} from "../models/base-examination-type.model";
 
@@ -9,7 +9,7 @@ import {BaseExaminationType} from "../models/base-examination-type.model";
 })
 export class BaseExaminationTypeService extends GenericHttpService<BaseExaminationType> {
 
-  constructor(protected http: HttpClient) {
-    super("base-examination-type", http);
+  constructor(protected http: HttpClient, protected storage: StorageService) {
+    super("BaseExaminationTypes", http, storage);
   }
 }

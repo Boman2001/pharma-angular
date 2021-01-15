@@ -3,20 +3,23 @@
     <div class="img-container pb-5">
       <img src="/assets/img/pharmapartners-logo.svg" alt="logo" />
     </div>
-    <form method="post" class="w-100" #loginForm="ngForm" [formGroup]="form" (ngSubmit)="loginForm.form.valid && onSubmit()">
+    <form method="post" class="w-100" #loginForm="ngForm" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
-        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['email'].errors.required">Email is required</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.email">Email is invalid</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.required">Email is required</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.incorrect">The email and/or password are invalid.</div>
       </div>
       <div class="form-group w-100">
-        <input type="text" class="form-control" name="email" id="email" placeholder="email" formControlName="email" />
+        <input type="text" [class.input-validation-error]="form.controls['email'].invalid && form.controls['email'].touched" class="form-control" name="email" id="email" placeholder="email" formControlName="email" />
       </div>
       <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
-        <div class="alert-danger p-2 mt-2" *ngIf="form.controls['password'].errors.required">Password is required</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['password'].errors.required">Password is required</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['password'].errors.incorrect">The email and/or password are invalid.</div>
       </div>
       <div class="form-group w-100">
-        <input type="password" class="form-control" name="password" placeholder="password" formControlName="password" />
+        <input [class.input-validation-error]="form.controls['password'].invalid && form.controls['password'].touched" type="password" class="form-control" name="password" placeholder="password" formControlName="password" />
       </div>
-      <button type="submit" id="login-submit-btn" class="btn btn-success float-right" [disabled]="!loginForm.valid">
+      <button type="submit" id="login-submit-btn" class="btn btn-primary float-right">
         Login
       </button>
     </form>

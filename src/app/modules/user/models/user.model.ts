@@ -2,14 +2,18 @@ import { BaseEntity, Gender } from "../../core/core.module";
 
 
 export class User extends BaseEntity {
-  Name: string;
-  Email: string;
-  Dob: Date;
-  Gender: Gender;
-  PhoneNumber: string;
-  City: string;
-  Street: string;
-  HouseNumber: string;
-  HouseNumberAddon: string;
-  PostalCode: string;
+  name: string;
+  username: string;
+  password?: string;
+  passwordCheck?: string;
+  email: string;
+  dob: Date;
+  gender: Gender;
+  phoneNumber: string;
+  city: string;
+  street: string;
+  country: string;
+  houseNumber: string;
+  houseNumberAddon: string;
+  postalCode: string;
 }

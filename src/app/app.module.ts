@@ -7,6 +7,9 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgDynamicBreadcrumbModule } from "ng-dynamic-breadcrumb";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CoreModule } from "./modules/core/core.module";
+import { CommonModule } from "@angular/common";
+import { FontAwesomeModule, FaIconLibrary } from "@fortawesome/angular-fontawesome";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 
 // Components
 import { AppComponent } from "./app.component";
@@ -21,16 +24,22 @@ import { NotFoundComponent } from "./pages/not-found/not-found.component";
     NotFoundComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     NgbModule,
+    FontAwesomeModule,
     NgDynamicBreadcrumbModule,
     FormsModule,
     ReactiveFormsModule,
     CoreModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas);
+  }
+}

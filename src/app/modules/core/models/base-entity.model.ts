@@ -2,14 +2,14 @@ import { User } from "../../user/user.module";
 
 
 export class BaseEntity {
-  Id: number;
+  id?: string;
 
-  CreatedAt: Date;
-  CreatedBy: User;
+  createdAt?: Date;
+  createdBy?: User;
 
-  UpdatedAt: Date;
-  UpdatedBy: User;
+  updatedAt?: Date;
+  updatedBy?: User;
 
-  DeletedAt: Date;
-  DeletedBy: User;
+  deletedAt?: Date;
+  deletedBy?: User;
 }

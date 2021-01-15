@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { GenericHttpService } from "../../core/core.module";
+import {GenericHttpService, StorageService} from "../../core/core.module";
 import { HttpClient } from "@angular/common/http";
 import { ICPCCode } from "../models/icpccode.model";
 
@@ -9,7 +9,7 @@ import { ICPCCode } from "../models/icpccode.model";
 })
 export class ICPCCodeService extends GenericHttpService<ICPCCode> {
 
-  constructor(protected http: HttpClient) {
-    super("icpccode", http);
+  constructor(protected http: HttpClient, protected storage: StorageService) {
+    super("IcpcCodes", http, storage);
   }
 }

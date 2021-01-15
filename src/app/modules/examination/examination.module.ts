@@ -5,12 +5,27 @@ import { PhysicalExaminationService } from "./services/physical-examination.serv
 import { ExaminationTypeService } from "./services/examination-type.service";
 import { AdditionalExaminationTypeService } from "./services/additional-examination-type.service";
 import { BaseExaminationTypeService } from "./services/base-examination-type.service";
-
+import { ExaminationOverviewComponent } from "./pages/examination-overview/examination-overview.component";
+import { ExaminationCreateComponent } from "./pages/examination-create/examination-create.component";
+import { ExaminationEditComponent } from "./pages/examination-edit/examination-edit.component";
+import { ExaminationFormComponent } from "./components/examination-form/examination-form.component";
+import { ExaminationRoutingModule } from "./examination-routing.module";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CoreModule } from "../core/core.module";
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ExaminationCreateComponent,
+    ExaminationOverviewComponent,
+    ExaminationEditComponent,
+    ExaminationFormComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    ExaminationRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CoreModule
   ],
   providers: [
     AdditionalExaminationResultService,
@@ -18,6 +33,12 @@ import { BaseExaminationTypeService } from "./services/base-examination-type.ser
     PhysicalExaminationService,
     ExaminationTypeService,
     AdditionalExaminationTypeService
+  ],
+  exports: [
+    ExaminationCreateComponent,
+    ExaminationOverviewComponent,
+    ExaminationEditComponent,
+    ExaminationFormComponent
   ]
 })
 export class ExaminationModule { }
