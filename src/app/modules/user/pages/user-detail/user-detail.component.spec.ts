@@ -7,6 +7,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { ConsultationService } from "../../../consultation/consultation.module";
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { User } from "../../models/user.model";
+import { DomSanitizer } from "@angular/platform-browser";
 
 
 const mockData: User = {
@@ -41,6 +42,7 @@ describe("UserDetailComponent", () => {
       providers: [
         UserService,
         ConsultationService,
+        DomSanitizer,
         {
           provide: ActivatedRoute,
           useValue: { paramMap: of(convertToParamMap({ id: 1 })) }
