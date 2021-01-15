@@ -102,7 +102,7 @@ export class ConsultOverviewComponent implements OnInit {
     }
   }
 
-  onCreateComplete(result: boolean) {
+  onCreateComplete(result: boolean): void {
     this.dataTable.tableService.refresh();
   }
 }
