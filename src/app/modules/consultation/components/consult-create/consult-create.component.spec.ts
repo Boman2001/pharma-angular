@@ -49,8 +49,8 @@ describe("ConsultCreateComponent", () => {
 
   it("should return form is valid", () => {
     form.date.setValue("2021-01-06");
-    form.patient.setValue("1");
-    form.doctor.setValue("1");
+    form.patientId.setValue("1");
+    form.doctorId.setValue("1");
     form.comment.setValue("test");
     expect(component.form.valid).toBeTruthy();
   });
