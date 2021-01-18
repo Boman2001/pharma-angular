@@ -1,17 +1,18 @@
 // Modules
-import {NgModule} from "@angular/core";
-import {RouterModule, Routes} from "@angular/router";
-
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
 // Components
-import {MasterComponent} from "./layout/master/master.component";
-import {NotFoundComponent} from "./pages/not-found/not-found.component";
+import { MasterComponent } from "./layout/master/master.component";
+import { NotFoundComponent } from "./pages/not-found/not-found.component";
+import { LoginGuard } from "./modules/auth/guards/login.guard";
 
 
 const routes: Routes = [
   {
     path: "",
     component: MasterComponent,
+    canActivate: [ LoginGuard ],
     children: [
       {
         path: "",
@@ -37,12 +38,12 @@ const routes: Routes = [
       {
         path: "examinations",
         loadChildren: () =>
-          import("./modules/examination/examination.module").then((m) => m.ExaminationModule),
+          import("./modules/examination/examination.module").then(m => m.ExaminationModule),
       },
       {
         path: "prescriptions",
         loadChildren: () =>
-          import("./modules/prescription/prescription.module").then((m) => m.PrescriptionModule),
+          import("./modules/prescription/prescription.module").then(m => m.PrescriptionModule),
       },
     ],
   },

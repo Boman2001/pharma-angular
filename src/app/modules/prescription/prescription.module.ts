@@ -9,6 +9,9 @@ import { PrescriptionService } from "./services/prescription.service";
 import { PrescriptionOverviewComponent } from "./pages/prescription-overview/prescription-overview.component";
 import { PrescriptionDetailComponent } from "./pages/prescription-detail/prescription-detail.component";
 import { PrescriptionRoutingModule } from "./prescription-routing.module";
+import { CoreModule } from "../core/core.module";
+import { FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 
 
 @NgModule({
@@ -18,7 +21,9 @@ import { PrescriptionRoutingModule } from "./prescription-routing.module";
   ],
   imports: [
     CommonModule,
-    PrescriptionRoutingModule
+    PrescriptionRoutingModule,
+    CoreModule,
+    FontAwesomeModule
   ],
   providers: [
     PrescriptionService
@@ -28,7 +33,11 @@ import { PrescriptionRoutingModule } from "./prescription-routing.module";
     PrescriptionDetailComponent
   ]
 })
-export class PrescriptionModule { }
+export class PrescriptionModule {
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas);
+  }
+}
 
 // Models
 export * from "./models/prescription.model";

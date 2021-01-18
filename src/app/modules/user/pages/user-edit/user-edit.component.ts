@@ -1,8 +1,9 @@
 import { Component } from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { User } from "../../models/user.model";
 import { UserService } from "../../services/user.service";
 import { Observable } from "rxjs";
+
 
 @Component({
   selector: "app-user-edit",
@@ -11,21 +12,27 @@ import { Observable } from "rxjs";
 })
 export class UserEditComponent {
 
-  user: Observable<User>;
+  public user: Observable<User>;
+  public deleteEntity: Observable<User>;
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
+  public deleteUserEmitter;
+  public userEmitter;
+
+  constructor(public userService: UserService, private route: ActivatedRoute, private router: Router) {
+    this.deleteEntity = new Observable(e => this.deleteUserEmitter = e);
+
+    this.user = new Observable<User>(e => this.userEmitter = e);
     this.route.paramMap.subscribe(params => {
-      this.user = this.userService.Get(params.get("id"));
-
-      // If user is not retrieved...
-      this.user.toPromise()
+      this.userService.Get(params.get("id")).toPromise()
       .then(async (u: User) => {
-        if (u == null || u.Id == null) {
+        if (u == null || u.id == null) {
           // @TODO: Global modal service, ToastService?
           console.error("User could not be found...");
           await router.navigate(["doctors"]);
           return;
         }
+
+        this.userEmitter.next(u);
       })
       .catch(async (e) => {
         console.error("API could not be reached...");
@@ -37,12 +44,15 @@ export class UserEditComponent {
   }
 
   async onSaveComplete(saveResult: boolean): Promise<void> {
+    // @TODO: GlobalModalService or ToastService
     if (saveResult)
     {
-      await this.router.navigate(["users"]);
+      await this.router.navigate(["doctors"]);
       return;
     }
+  }
 
-    // @TODO: GlobalModalService or ToastService
+  async onDeleteComplete(success): Promise<void> {
+    await this.router.navigate(["doctors"]);
   }
 }

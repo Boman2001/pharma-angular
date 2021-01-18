@@ -4,9 +4,8 @@ import { Patient } from "../../patient/patient.module";
 
 
 export class AdditionalExaminationResult extends BaseEntity {
-
-  Consultation: Consultation;
-  Patient: Patient;
-  Value: string;
-  Time: Date;
+  consultation: Consultation;
+  patient: Patient;
+  value: string;
+  time: Date;
 }

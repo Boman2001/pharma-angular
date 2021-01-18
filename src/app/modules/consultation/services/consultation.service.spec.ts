@@ -4,6 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from "@angular/common/
 import { environment } from "../../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { StorageService } from "../../core/core.module";
+import { Consultation } from "../models/consultation.model";
 
 
 const mockData = [
@@ -16,17 +17,11 @@ const mockData = [
 ];
 
 const date = new Date();
-const mockEntity = {
-  Id: "1",
-  CreatedAt: date,
-  CreatedBy: null,
-  Date: date,
-  DeletedAt: date,
-  DeletedBy: null,
-  Doctor: null,
-  Patient: null,
-  UpdatedAt: date,
-  UpdatedBy: null
+const mockEntity: Consultation = {
+  id: "1",
+  date,
+  doctor: null,
+  patient: null
 };
 
 
@@ -85,7 +80,7 @@ describe("ConsultationService (GenericHttpService)", () => {
 
   it("should return the consultation with ID 1", () => {
     service.Get("1").subscribe(consultation => {
-      expect(consultation.Id).toBe("1");
+      expect(consultation.id).toBe("1");
     });
 
     const request = http.expectOne(req => req.method === "GET" && req.url === `${environment.apiUrl}/Consultations/1`);

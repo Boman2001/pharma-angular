@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { ExaminationFormComponent } from "./examination-form.component";
 import { FormBuilder } from "@angular/forms";
+
 
 describe("ExaminationFormComponent", () => {
   let component: ExaminationFormComponent;
   let fixture: ComponentFixture<ExaminationFormComponent>;
-  let form;
+  let formControls;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -21,8 +21,7 @@ describe("ExaminationFormComponent", () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    form = component.form.controls;
-
+    formControls = component.form.controls;
   });
 
   it("should create", () => {
@@ -34,8 +33,8 @@ describe("ExaminationFormComponent", () => {
   });
 
   it("should return form is valid", () => {
-    form.name.setValue("Systolische Bloeddruk");
-    form.unit.setValue("mmHg");
+    formControls.name.setValue("Systolische Bloeddruk");
+    formControls.unit.setValue("mmHg");
 
     expect(component.form.valid).toBeTruthy();
   });

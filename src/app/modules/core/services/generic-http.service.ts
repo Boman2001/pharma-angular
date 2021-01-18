@@ -33,12 +33,12 @@ export class GenericHttpService<T> extends HttpService implements IRepository<T>
     return this.http.get<T>(`${this.basePath}/${ id }`, this.baseOptions);
   }
 
-  public GetByFilter(filter: (i: T) => boolean): Observable<T>
+  public GetByFilter(filter: (i: T) => boolean): Observable<T[]>
   {
     // TODO: replace with API side filters when that's ready. Query params?
-    return this.http.get<T>(this.basePath, this.baseOptions).pipe(
-      map(data => {
-        return filter(data) ? data : null;
+    return this.GetAll().pipe(
+      map((items) => {
+        return items.filter(filter);
       })
     );
   }

@@ -1,0 +1,39 @@
+<div class="d-flex flex-wrap col-sm-flex-column p-3">
+  <div class="col-12 col-md-6">
+    <h3>Patient</h3>
+    <ul class="list-group">
+      <li class="list-group-item bold d-flex justify-content-between w-100"><span>Naam:</span><span>Max Bogaers (Man, 19)</span></li>
+      <li class="list-group-item d-flex justify-content-between w-100"><span>Geboortedatum:</span><span>20-01-2001</span></li>
+      <li class="list-group-item d-flex justify-content-between w-100"><span>Email:</span><span>max@example.com</span></li>
+      <li class="list-group-item d-flex justify-content-between w-100"><span>Bsn:</span><span>123456789</span></li>
+      <li class="list-group-item d-flex justify-content-between w-100"><span>Telefoon nummer:</span><span>+31 6 12345678</span></li>
+    </ul>
+  </div>
+  <div class="col-sm-12 col-md-6 mt-3 mt-md-0">
+    <h3>Dokter</h3>
+    <ul class="list-group">
+      <li class="list-group-item bold d-flex justify-content-between w-100"><span>Naam:</span><span>Jules Mons (Man, 18)</span></li>
+      <li class="list-group-item d-flex justify-content-between w-100"><span>Geboortedatum:</span><span>21-06-2002</span></li>
+      <li class="list-group-item d-flex justify-content-between w-100"><span>Email:</span><span>jules@example.com</span></li>
+      <li class="list-group-item d-flex justify-content-between w-100"><span>Telefoon nummer:</span><span>+31 6 12345678</span></li>
+    </ul>
+  </div>
+</div>
+<div class="d-flex flex-column flex-md-row px-3 pt-3">
+  <div class="col-md-6 col-12 d-flex flex-column">
+    <textarea class="form-control mb-3" disabled>Max heeft last van zijn knie</textarea>
+    <iframe
+      title="Patiënt adres"
+      class="mt-2 flex-grow-1"
+      width="100%"
+      style="border:0"
+      [src]="sanitizer.bypassSecurityTrustResourceUrl(map)" allowfullscreen>
+    </iframe>
+  </div>
+  <div class="col-md-6 col-12 d-flex justify-content-between mt-3 mt-md-0">
+    <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+    <div class="h-100 d-flex justify-content-center align-items-center time flex-grow-1">
+      <span>15:00</span>
+    </div>
+  </div>
+</div>

@@ -1,367 +1,391 @@
-<form method="POST" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
-  
-  <div class="form-group">
-    <label for="patient-name">Naam</label>
-    <input class="form-control" [ngClass]="form.controls['name'].invalid && form.controls['name'].touched ? 'input-validation-error' : ''" type="text" name="patient-name" id="patient-name" placeholder="Naam" formControlName="name">
-    <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
-      <div class="input-validation-error-text" *ngIf="form.controls['name'].errors.required">Naam is een verplicht veld.</div>
-    </div>
+<div class="form-spinner" *ngIf="(editMode && !patient?.id); else patientForm">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
   </div>
+</div>
+<ng-template #patientForm>
+  <form method="POST" [formGroup]="form" (ngSubmit)="save()">
 
-  <div class="form-group">
-    <label for="bsn">BSN</label>
-    <input class="form-control" [ngClass]="form.controls['bsn'].invalid && form.controls['bsn'].touched ? 'input-validation-error' : ''" type="text" name="bsn" id="bsn" placeholder="BSN" formControlName="bsn">
-    <div *ngIf="form.controls['bsn'].invalid && form.controls['bsn'].touched">
-      <div class="input-validation-error-text" *ngIf="form.controls['bsn'].errors.required">BSN is een verplicht veld.</div>
-    </div>
-  </div>
+    <input type="hidden" name="id" id="patient-id" formControlName="id">
 
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input class="form-control" [ngClass]="form.controls['email'].invalid && form.controls['email'].touched ? 'input-validation-error' : ''" type="email" name="email" id="email" placeholder="Email" formControlName="email">
-    <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
-      <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.required">Email is een verplicht veld.</div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="dob">Geboortedatum</label>
-    <input class="form-control" [ngClass]="form.controls['dob'].invalid && form.controls['dob'].touched ? 'input-validation-error' : ''" type="date" name="dob" id="dob" placeholder="Geboortedatum" formControlName="dob"/>
-    <div *ngIf="form.controls['dob'].invalid && form.controls['dob'].touched">
-      <div class="input-validation-error-text" *ngIf="form.controls['dob'].errors.required">Geboortedatum is een verplicht veld.</div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="custom-radio">Geslacht</label>
-    <div class="custom-control custom-radio">
-      <input type="radio" id="male" name="gender" class="custom-control-input" value="male" formControlName="gender">
-      <label class="custom-control-label" for="male">Man</label>
+    <div class="form-group">
+      <label for="patient-name">Naam</label>
+      <input class="form-control" [class.input-validation-error]="form.controls['name'].invalid && form.controls['name'].touched" type="text" name="patient-name" id="patient-name" placeholder="Naam" formControlName="name">
+      <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+        <div class="input-validation-error-text" *ngIf="form.controls['name'].errors.required">Naam is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['name'].errors.maxlength">Naam is te lang.</div>
+      </div>
     </div>
 
-    <div class="custom-control custom-radio">
-      <input type="radio" id="female" name="gender" class="custom-control-input" value="female" formControlName="gender">
-      <label class="custom-control-label" for="female">Vrouw</label>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input class="form-control" [class.input-validation-error]="form.controls['email'].invalid && form.controls['email'].touched" type="email" name="email" id="email" placeholder="Email" formControlName="email">
+      <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.required">email is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.maxlength">email is te lang.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.email">email is ongeldig.</div>
+      </div>
     </div>
 
-    <div class="custom-control custom-radio">
-      <input type="radio" id="other" name="gender" class="custom-control-input" value="other" formControlName="gender">
-      <label class="custom-control-label" for="other">Overige</label>
+    <div class="form-group">
+      <label for="bsn">BSN</label>
+      <input class="form-control" [class.input-validation-error]="form.controls['bsn'].invalid && form.controls['bsn'].touched" type="text" name="bsn" id="bsn" placeholder="BSN" formControlName="bsn">
+      <div *ngIf="form.controls['bsn'].invalid && form.controls['bsn'].touched">
+        <div class="input-validation-error-text" *ngIf="form.controls['bsn'].errors.required">BSN is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['bsn'].errors.minlength">BSN is te kort.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['bsn'].errors.maxlength">BSN is te lang.</div>
+      </div>
     </div>
 
-    <div *ngIf="form.controls['gender'].invalid && form.controls['gender'].touched">
-      <div class="input-validation-error-text" *ngIf="form.controls['gender'].errors.required">Geslacht is een verplicht veld.</div>
+    <div class="form-group">
+      <label for="dob">Geboortedatum</label>
+      <input class="form-control" [class.input-validation-error]="form.controls['dob'].invalid && form.controls['dob'].touched" type="date" name="dob" id="dob" placeholder="Geboortedatum" formControlName="dob"/>
+      <div *ngIf="form.controls['dob'].invalid && form.controls['dob'].touched">
+        <div class="input-validation-error-text" *ngIf="form.controls['dob'].errors.required">Geboortedatum is een verplicht veld.</div>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label for="phone-number">Telefoonnummer</label>
-    <input class="form-control" [ngClass]="form.controls['phone'].invalid && form.controls['phone'].touched ? 'input-validation-error' : ''" type="text" name="phone-number" id="phone-number" placeholder="Telefoonnummer" formControlName="phone">
-    <div *ngIf="form.controls['phone'].invalid && form.controls['phone'].touched">
-      <div class="input-validation-error-text" *ngIf="form.controls['phone'].errors.required">Telefoonnummer is een verplicht veld.</div>
+    <div class="form-group">
+      <label>Geslacht</label>
+      <div class="custom-control custom-radio">
+        <input type="radio" id="patient-gender-male" [class.input-validation-error]="form.controls['gender'].invalid && form.controls['gender'].touched" name="gender" class="custom-control-input" [value]="0" formControlName="gender">
+        <label class="custom-control-label" for="patient-gender-male">Man</label>
+      </div>
+
+      <div class="custom-control custom-radio">
+        <input type="radio" id="patient-gender-female" [class.input-validation-error]="form.controls['gender'].invalid && form.controls['gender'].touched" name="gender" class="custom-control-input" [value]="1" formControlName="gender">
+        <label class="custom-control-label" for="patient-gender-female">Vrouw</label>
+      </div>
+
+      <div class="custom-control custom-radio">
+        <input type="radio" id="patient-gender-other" [class.input-validation-error]="form.controls['gender'].invalid && form.controls['gender'].touched" name="gender" class="custom-control-input" [value]="2" formControlName="gender">
+        <label class="custom-control-label" for="patient-gender-other">Overige</label>
+      </div>
+
+      <div id="gender-alert" *ngIf="form.controls['gender'].invalid && form.controls['gender'].touched">
+        <div class="input-validation-error-text" *ngIf="form.controls['gender'].errors.required">Geslacht is een verplicht veld.</div>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <div class="form-row">
-      <div class="col-6">
-        <label for="street">Straatnaam</label>
-        <input class="form-control" [ngClass]="form.controls['street'].invalid && form.controls['street'].touched ? 'input-validation-error' : ''" type="text" name="street" id="street" placeholder="Straatnaam" formControlName="street">
-        <div *ngIf="form.controls['street'].invalid && form.controls['street'].touched">
-          <div class="input-validation-error-text" *ngIf="form.controls['street'].errors.required">Straatnaam is een verplicht veld.</div>
+    <div class="form-group">
+      <label for="phoneNumber-number">Telefoonnummer</label>
+      <input class="form-control" [class.input-validation-error]="form.controls['phoneNumber'].invalid && form.controls['phoneNumber'].touched" type="text" name="phoneNumber-number" id="phoneNumber-number" placeholder="Telefoonnummer" formControlName="phoneNumber">
+      <div *ngIf="form.controls['phoneNumber'].invalid && form.controls['phoneNumber'].touched">
+        <div class="input-validation-error-text" *ngIf="form.controls['phoneNumber'].errors.required">Telefoonnummer is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['phoneNumber'].errors.maxlength">Telefoonnummer is te lang.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-6">
+          <label for="street">Straatnaam</label>
+          <input class="form-control" [class.input-validation-error]="form.controls['street'].invalid && form.controls['street'].touched" type="text" name="street" id="street" placeholder="Straatnaam" formControlName="street">
+          <div *ngIf="form.controls['street'].invalid && form.controls['street'].touched">
+            <div class="input-validation-error-text" *ngIf="form.controls['street'].errors.required">Straatnaam is een verplicht veld.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['street'].errors.maxlength">Straatnaam is te lang.</div>
+          </div>
         </div>
-      </div>
-      <div class="col-3">
-        <label for="house-number">Huisnummer</label>
-        <input class="form-control" [ngClass]="form.controls['housenumber'].invalid && form.controls['housenumber'].touched ? 'input-validation-error' : ''" type="number" name="house-number" id="house-number" placeholder="Huisnummer" formControlName="housenumber">
-        <div *ngIf="form.controls['housenumber'].invalid && form.controls['housenumber'].touched">
-          <div class="input-validation-error-text" *ngIf="form.controls['housenumber'].errors.required">Huisnummer is een verplicht veld.</div>
+        <div class="col-3">
+          <label for="house-number">Huisnummer</label>
+          <input class="form-control" [class.input-validation-error]="form.controls['houseNumber'].invalid && form.controls['houseNumber'].touched" type="text" name="house-number" id="house-number" placeholder="Huisnummer" formControlName="houseNumber">
+          <div *ngIf="form.controls['houseNumber'].invalid && form.controls['houseNumber'].touched">
+            <div class="input-validation-error-text" *ngIf="form.controls['houseNumber'].errors.required">Huisnummer is een verplicht veld.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['houseNumber'].errors.maxlength">Huisnummer is te lang.</div>
+          </div>
         </div>
-      </div>
-      <div class="col-3">
-        <label for="addition">Toevoeging</label>
-        <input class="form-control" type="text" name="addition" id="addition" placeholder="Toevoeging">
-      </div>
-    </div>    
-  </div>
-
-  <div class="form-group">
-    <div class="form-row">
-      <div class="col-6">
-        <label for="city">Stad</label>
-        <input class="form-control" [ngClass]="form.controls['city'].invalid && form.controls['city'].touched ? 'input-validation-error' : ''" type="text" id="city" name="city" placeholder="Stad" formControlName="city">
-        <div *ngIf="form.controls['city'].invalid && form.controls['city'].touched">
-          <div class="input-validation-error-text" *ngIf="form.controls['city'].errors.required">Stad is een verplicht veld.</div>
-        </div>
-      </div>
-      <div class="col-2">
-        <label for="postal-code">Postcode</label>
-        <input class="form-control" [ngClass]="form.controls['postalcode'].invalid && form.controls['postalcode'].touched ? 'input-validation-error' : ''" type="text" name="postal-code" id="postal-code" placeholder="Postcode" formControlName="postalcode">
-        <div *ngIf="form.controls['postalcode'].invalid && form.controls['postalcode'].touched">
-          <div class="input-validation-error-text" *ngIf="form.controls['postalcode'].errors.required">Postcode is een verplicht veld.</div>
-        </div>
-      </div>
-      <div class="col-4">
-        <label for="country">Land</label>
-        <select class="custom-select" id="country" name="country" formControlName="country">
-          <option value="AF">Afghanistan</option>
-          <option value="AX">&Aring;land</option>
-          <option value="AL">Albani&euml;</option>
-          <option value="DZ">Algerije</option>
-          <option value="VI">Amerikaanse Maagdeneilanden</option>
-          <option value="AS">Amerikaans-Samoa</option>
-          <option value="AD">Andorra</option>
-          <option value="AO">Angola</option>
-          <option value="AI">Anguilla</option>
-          <option value="AQ">Antarctica</option>
-          <option value="AG">Antigua en Barbuda</option>
-          <option value="AR">Argentini&euml;</option>
-          <option value="AM">Armeni&euml;</option>
-          <option value="AW">Aruba</option>
-          <option value="AU">Australi&euml;</option>
-          <option value="AZ">Azerbeidzjan</option>
-          <option value="BS">Bahama's</option>
-          <option value="BH">Bahrein</option>
-          <option value="BD">Bangladesh</option>
-          <option value="BB">Barbados</option>
-          <option value="BE">Belgi&euml;</option>
-          <option value="BZ">Belize</option>
-          <option value="BJ">Benin</option>
-          <option value="BM">Bermuda</option>
-          <option value="BT">Bhutan</option>
-          <option value="BO">Bolivia</option>
-          <option value="BQ">Bonaire, Sint Eustatius en Saba</option>
-          <option value="BA">Bosni&euml; en Herzegovina</option>
-          <option value="BW">Botswana</option>
-          <option value="BV">Bouveteiland</option>
-          <option value="BR">Brazili&euml;</option>
-          <option value="VG">Britse Maagdeneilanden</option>
-          <option value="IO">Brits Indische Oceaanterritorium</option>
-          <option value="BN">Brunei</option>
-          <option value="BG">Bulgarije</option>
-          <option value="BF">Burkina Faso</option>
-          <option value="BI">Burundi</option>
-          <option value="KH">Cambodja</option>
-          <option value="CA">Canada</option>
-          <option value="CF">Centraal-Afrikaanse Republiek</option>
-          <option value="CL">Chili</option>
-          <option value="CN">China</option>
-          <option value="CX">Christmaseiland</option>
-          <option value="CC">Cocoseilanden</option>
-          <option value="CO">Colombia</option>
-          <option value="KM">Comoren</option>
-          <option value="CG">Congo-Brazzaville</option>
-          <option value="CD">Congo-Kinshasa</option>
-          <option value="CK">Cookeilanden</option>
-          <option value="CR">Costa Rica</option>
-          <option value="CU">Cuba</option>
-          <option value="CW">Cura&ccedil;ao</option>
-          <option value="CY">Cyprus</option>
-          <option value="DK">Denemarken</option>
-          <option value="DJ">Djibouti</option>
-          <option value="DM">Dominica</option>
-          <option value="DO">Dominicaanse Republiek</option>
-          <option value="DE">Duitsland</option>
-          <option value="EC">Ecuador</option>
-          <option value="EG">Egypte</option>
-          <option value="SV">El Salvador</option>
-          <option value="GQ">Equatoriaal-Guinea</option>
-          <option value="ER">Eritrea</option>
-          <option value="EE">Estland</option>
-          <option value="ET">Ethiopi&euml;</option>
-          <option value="FO">Faer&ouml;er</option>
-          <option value="FK">Falklandeilanden</option>
-          <option value="FJ">Fiji</option>
-          <option value="PH">Filipijnen</option>
-          <option value="FI">Finland</option>
-          <option value="FR">Frankrijk</option>
-          <option value="TF">Franse Zuidelijke en Antarctische Gebieden</option>
-          <option value="GF">Frans-Guyana</option>
-          <option value="PF">Frans-Polynesi&euml;</option>
-          <option value="GA">Gabon</option>
-          <option value="GM">Gambia</option>
-          <option value="GE">Georgi&euml;</option>
-          <option value="GH">Ghana</option>
-          <option value="GI">Gibraltar</option>
-          <option value="GD">Grenada</option>
-          <option value="GR">Griekenland</option>
-          <option value="GL">Groenland</option>
-          <option value="GP">Guadeloupe</option>
-          <option value="GU">Guam</option>
-          <option value="GT">Guatemala</option>
-          <option value="GG">Guernsey</option>
-          <option value="GN">Guinee</option>
-          <option value="GW">Guinee-Bissau</option>
-          <option value="GY">Guyana</option>
-          <option value="HT">Ha&iuml;ti</option>
-          <option value="HM">Heard en McDonaldeilanden</option>
-          <option value="HN">Honduras</option>
-          <option value="HU">Hongarije</option>
-          <option value="HK">Hongkong</option>
-          <option value="IE">Ierland</option>
-          <option value="IS">IJsland</option>
-          <option value="IN">India</option>
-          <option value="ID">Indonesi&euml;</option>
-          <option value="IQ">Irak</option>
-          <option value="IR">Iran</option>
-          <option value="IL">Isra&euml;l</option>
-          <option value="IT">Itali&euml;</option>
-          <option value="CI">Ivoorkust</option>
-          <option value="JM">Jamaica</option>
-          <option value="JP">Japan</option>
-          <option value="YE">Jemen</option>
-          <option value="JE">Jersey</option>
-          <option value="JO">Jordani&euml;</option>
-          <option value="KY">Kaaimaneilanden</option>
-          <option value="CV">Kaapverdi&euml;</option>
-          <option value="CM">Kameroen</option>
-          <option value="KZ">Kazachstan</option>
-          <option value="KE">Kenia</option>
-          <option value="KG">Kirgizi&euml;</option>
-          <option value="KI">Kiribati</option>
-          <option value="UM">Kleine Pacifische eilanden van de V.S.</option>
-          <option value="KW">Koeweit</option>
-          <option value="HR">Kroati&euml;</option>
-          <option value="LA">Laos</option>
-          <option value="LS">Lesotho</option>
-          <option value="LV">Letland</option>
-          <option value="LB">Libanon</option>
-          <option value="LR">Liberia</option>
-          <option value="LY">Libi&euml;</option>
-          <option value="LI">Liechtenstein</option>
-          <option value="LT">Litouwen</option>
-          <option value="LU">Luxemburg</option>
-          <option value="MO">Macau</option>
-          <option value="MK">Macedoni&euml;</option>
-          <option value="MG">Madagaskar</option>
-          <option value="MW">Malawi</option>
-          <option value="MV">Maldiven</option>
-          <option value="MY">Maleisi&euml;</option>
-          <option value="ML">Mali</option>
-          <option value="MT">Malta</option>
-          <option value="IM">Man</option>
-          <option value="MA">Marokko</option>
-          <option value="MH">Marshalleilanden</option>
-          <option value="MQ">Martinique</option>
-          <option value="MR">Mauritani&euml;</option>
-          <option value="MU">Mauritius</option>
-          <option value="YT">Mayotte</option>
-          <option value="MX">Mexico</option>
-          <option value="FM">Micronesia</option>
-          <option value="MD">Moldavi&euml;</option>
-          <option value="MC">Monaco</option>
-          <option value="MN">Mongoli&euml;</option>
-          <option value="ME">Montenegro</option>
-          <option value="MS">Montserrat</option>
-          <option value="MZ">Mozambique</option>
-          <option value="MM">Myanmar</option>
-          <option value="NA">Namibi&euml;</option>
-          <option value="NR">Nauru</option>
-          <option value="NL">Nederland</option>
-          <option value="NP">Nepal</option>
-          <option value="NI">Nicaragua</option>
-          <option value="NC">Nieuw-Caledoni&euml;</option>
-          <option value="NZ">Nieuw-Zeeland</option>
-          <option value="NE">Niger</option>
-          <option value="NG">Nigeria</option>
-          <option value="NU">Niue</option>
-          <option value="MP">Noordelijke Marianen</option>
-          <option value="KP">Noord-Korea</option>
-          <option value="NO">Noorwegen</option>
-          <option value="NF">Norfolk</option>
-          <option value="UG">Oeganda</option>
-          <option value="UA">Oekra&iuml;ne</option>
-          <option value="UZ">Oezbekistan</option>
-          <option value="OM">Oman</option>
-          <option value="AT">Oostenrijk</option>
-          <option value="TL">Oost-Timor</option>
-          <option value="PK">Pakistan</option>
-          <option value="PW">Palau</option>
-          <option value="PS">Palestina</option>
-          <option value="PA">Panama</option>
-          <option value="PG">Papoea-Nieuw-Guinea</option>
-          <option value="PY">Paraguay</option>
-          <option value="PE">Peru</option>
-          <option value="PN">Pitcairneilanden</option>
-          <option value="PL">Polen</option>
-          <option value="PT">Portugal</option>
-          <option value="PR">Puerto Rico</option>
-          <option value="QA">Qatar</option>
-          <option value="RE">R&eacute;union</option>
-          <option value="RO">Roemeni&euml;</option>
-          <option value="RU">Rusland</option>
-          <option value="RW">Rwanda</option>
-          <option value="BL">Saint-Barth&eacute;lemy</option>
-          <option value="KN">Saint Kitts en Nevis</option>
-          <option value="LC">Saint Lucia</option>
-          <option value="PM">Saint-Pierre en Miquelon</option>
-          <option value="VC">Saint Vincent en de Grenadines</option>
-          <option value="SB">Salomonseilanden</option>
-          <option value="WS">Samoa</option>
-          <option value="SM">San Marino</option>
-          <option value="SA">Saoedi-Arabi&euml;</option>
-          <option value="ST">Sao Tom&eacute; en Principe</option>
-          <option value="SN">Senegal</option>
-          <option value="RS">Servi&euml;</option>
-          <option value="SC">Seychellen</option>
-          <option value="SL">Sierra Leone</option>
-          <option value="SG">Singapore</option>
-          <option value="SH">Sint-Helena, Ascension en Tristan da Cunha</option>
-          <option value="MF">Sint-Maarten</option>
-          <option value="SX">Sint Maarten</option>
-          <option value="SI">Sloveni&euml;</option>
-          <option value="SK">Slowakije</option>
-          <option value="SD">Soedan</option>
-          <option value="SO">Somali&euml;</option>
-          <option value="ES">Spanje</option>
-          <option value="SJ">Spitsbergen en Jan Mayen</option>
-          <option value="LK">Sri Lanka</option>
-          <option value="SR">Suriname</option>
-          <option value="SZ">Swaziland</option>
-          <option value="SY">Syri&euml;</option>
-          <option value="TJ">Tadzjikistan</option>
-          <option value="TW">Taiwan</option>
-          <option value="TZ">Tanzania</option>
-          <option value="TH">Thailand</option>
-          <option value="TG">Togo</option>
-          <option value="TK">Tokelau</option>
-          <option value="TO">Tonga</option>
-          <option value="TT">Trinidad en Tobago</option>
-          <option value="TD">Tsjaad</option>
-          <option value="CZ">Tsjechi&euml;</option>
-          <option value="TN">Tunesi&euml;</option>
-          <option value="TR">Turkije</option>
-          <option value="TM">Turkmenistan</option>
-          <option value="TC">Turks- en Caicoseilanden</option>
-          <option value="TV">Tuvalu</option>
-          <option value="UY">Uruguay</option>
-          <option value="VU">Vanuatu</option>
-          <option value="VA">Vaticaanstad</option>
-          <option value="VE">Venezuela</option>
-          <option value="AE">Verenigde Arabische Emiraten</option>
-          <option value="US">Verenigde Staten</option>
-          <option value="GB">Verenigd Koninkrijk</option>
-          <option value="VN">Vietnam</option>
-          <option value="WF">Wallis en Futuna</option>
-          <option value="EH">Westelijke Sahara</option>
-          <option value="BY">Wit-Rusland</option>
-          <option value="ZM">Zambia</option>
-          <option value="ZW">Zimbabwe</option>
-          <option value="ZA">Zuid-Afrika</option>
-          <option value="GS">Zuid-Georgia en de Zuidelijke Sandwicheilanden</option>
-          <option value="KR">Zuid-Korea</option>
-          <option value="SS">Zuid-Soedan</option>
-          <option value="SE">Zweden</option>
-          <option value="CH">Zwitserland</option>
-        </select>
-        <div *ngIf="form.controls['country'].invalid && form.controls['country'].touched">
-          <div class="input-validation-error-text" *ngIf="form.controls['country'].errors.required">Land is een verplicht veld.</div>
+        <div class="col-3">
+          <label for="houseNumberAddon">Toevoeging</label>
+          <input [class.input-validation-error]="form.controls['houseNumberAddon'].invalid && form.controls['houseNumberAddon'].touched" class="form-control" type="text" name="houseNumberAddon" id="houseNumberAddon" placeholder="Toevoeging" formControlName="houseNumberAddon">
+          <div id="patient-houseNumberAddon-alert" *ngIf="form.controls['houseNumberAddon'].invalid && form.controls['houseNumberAddon'].touched">
+            <div class="input-validation-error-text" *ngIf="form.controls['houseNumberAddon'].errors.maxlength">Toevoeging is te lang.</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="form-group pt-3 text-right">
-      <button class="btn btn-primary" type="submit">{{ buttonName }}</button>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-6">
+          <label for="city">Stad</label>
+          <input class="form-control" [class.input-validation-error]="form.controls['city'].invalid && form.controls['city'].touched" type="text" id="city" name="city" placeholder="Stad" formControlName="city">
+          <div *ngIf="form.controls['city'].invalid && form.controls['city'].touched">
+            <div class="input-validation-error-text" *ngIf="form.controls['city'].errors.required">Stad is een verplicht veld.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['city'].errors.maxlength">Stad is te lang.</div>
+          </div>
+        </div>
+        <div class="col-2">
+          <label for="postal-code">Postcode</label>
+          <input class="form-control" [class.input-validation-error]="form.controls['postalCode'].invalid && form.controls['postalCode'].touched" type="text" name="postal-code" id="postal-code" placeholder="Postcode" formControlName="postalCode">
+          <div *ngIf="form.controls['postalCode'].invalid && form.controls['postalCode'].touched">
+            <div class="input-validation-error-text" *ngIf="form.controls['postalCode'].errors.required">Postcode is een verplicht veld.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['postalCode'].errors.minlength">Postcode is te kort.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['postalCode'].errors.maxlength">Postcode is te lang.</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <label for="country">Land</label>
+          <select class="custom-select" id="country" [class.input-validation-error]="form.controls['country'].invalid && form.controls['country'].touched" name="country" formControlName="country">
+            <option value="AF">Afghanistan</option>
+            <option value="AX">&Aring;land</option>
+            <option value="AL">Albani&euml;</option>
+            <option value="DZ">Algerije</option>
+            <option value="VI">Amerikaanse Maagdeneilanden</option>
+            <option value="AS">Amerikaans-Samoa</option>
+            <option value="AD">Andorra</option>
+            <option value="AO">Angola</option>
+            <option value="AI">Anguilla</option>
+            <option value="AQ">Antarctica</option>
+            <option value="AG">Antigua en Barbuda</option>
+            <option value="AR">Argentini&euml;</option>
+            <option value="AM">Armeni&euml;</option>
+            <option value="AW">Aruba</option>
+            <option value="AU">Australi&euml;</option>
+            <option value="AZ">Azerbeidzjan</option>
+            <option value="BS">Bahama's</option>
+            <option value="BH">Bahrein</option>
+            <option value="BD">Bangladesh</option>
+            <option value="BB">Barbados</option>
+            <option value="BE">Belgi&euml;</option>
+            <option value="BZ">Belize</option>
+            <option value="BJ">Benin</option>
+            <option value="BM">Bermuda</option>
+            <option value="BT">Bhutan</option>
+            <option value="BO">Bolivia</option>
+            <option value="BQ">Bonaire, Sint Eustatius en Saba</option>
+            <option value="BA">Bosni&euml; en Herzegovina</option>
+            <option value="BW">Botswana</option>
+            <option value="BV">Bouveteiland</option>
+            <option value="BR">Brazili&euml;</option>
+            <option value="VG">Britse Maagdeneilanden</option>
+            <option value="IO">Brits Indische Oceaanterritorium</option>
+            <option value="BN">Brunei</option>
+            <option value="BG">Bulgarije</option>
+            <option value="BF">Burkina Faso</option>
+            <option value="BI">Burundi</option>
+            <option value="KH">Cambodja</option>
+            <option value="CA">Canada</option>
+            <option value="CF">Centraal-Afrikaanse Republiek</option>
+            <option value="CL">Chili</option>
+            <option value="CN">China</option>
+            <option value="CX">Christmaseiland</option>
+            <option value="CC">Cocoseilanden</option>
+            <option value="CO">Colombia</option>
+            <option value="KM">Comoren</option>
+            <option value="CG">Congo-Brazzaville</option>
+            <option value="CD">Congo-Kinshasa</option>
+            <option value="CK">Cookeilanden</option>
+            <option value="CR">Costa Rica</option>
+            <option value="CU">Cuba</option>
+            <option value="CW">Cura&ccedil;ao</option>
+            <option value="CY">Cyprus</option>
+            <option value="DK">Denemarken</option>
+            <option value="DJ">Djibouti</option>
+            <option value="DM">Dominica</option>
+            <option value="DO">Dominicaanse Republiek</option>
+            <option value="DE">Duitsland</option>
+            <option value="EC">Ecuador</option>
+            <option value="EG">Egypte</option>
+            <option value="SV">El Salvador</option>
+            <option value="GQ">Equatoriaal-Guinea</option>
+            <option value="ER">Eritrea</option>
+            <option value="EE">Estland</option>
+            <option value="ET">Ethiopi&euml;</option>
+            <option value="FO">Faer&ouml;er</option>
+            <option value="FK">Falklandeilanden</option>
+            <option value="FJ">Fiji</option>
+            <option value="PH">Filipijnen</option>
+            <option value="FI">Finland</option>
+            <option value="FR">Frankrijk</option>
+            <option value="TF">Franse Zuidelijke en Antarctische Gebieden</option>
+            <option value="GF">Frans-Guyana</option>
+            <option value="PF">Frans-Polynesi&euml;</option>
+            <option value="GA">Gabon</option>
+            <option value="GM">Gambia</option>
+            <option value="GE">Georgi&euml;</option>
+            <option value="GH">Ghana</option>
+            <option value="GI">Gibraltar</option>
+            <option value="GD">Grenada</option>
+            <option value="GR">Griekenland</option>
+            <option value="GL">Groenland</option>
+            <option value="GP">Guadeloupe</option>
+            <option value="GU">Guam</option>
+            <option value="GT">Guatemala</option>
+            <option value="GG">Guernsey</option>
+            <option value="GN">Guinee</option>
+            <option value="GW">Guinee-Bissau</option>
+            <option value="GY">Guyana</option>
+            <option value="HT">Ha&iuml;ti</option>
+            <option value="HM">Heard en McDonaldeilanden</option>
+            <option value="HN">Honduras</option>
+            <option value="HU">Hongarije</option>
+            <option value="HK">Hongkong</option>
+            <option value="IE">Ierland</option>
+            <option value="IS">IJsland</option>
+            <option value="IN">India</option>
+            <option value="ID">Indonesi&euml;</option>
+            <option value="IQ">Irak</option>
+            <option value="IR">Iran</option>
+            <option value="IL">Isra&euml;l</option>
+            <option value="IT">Itali&euml;</option>
+            <option value="CI">Ivoorkust</option>
+            <option value="JM">Jamaica</option>
+            <option value="JP">Japan</option>
+            <option value="YE">Jemen</option>
+            <option value="JE">Jersey</option>
+            <option value="JO">Jordani&euml;</option>
+            <option value="KY">Kaaimaneilanden</option>
+            <option value="CV">Kaapverdi&euml;</option>
+            <option value="CM">Kameroen</option>
+            <option value="KZ">Kazachstan</option>
+            <option value="KE">Kenia</option>
+            <option value="KG">Kirgizi&euml;</option>
+            <option value="KI">Kiribati</option>
+            <option value="UM">Kleine Pacifische eilanden van de V.S.</option>
+            <option value="KW">Koeweit</option>
+            <option value="HR">Kroati&euml;</option>
+            <option value="LA">Laos</option>
+            <option value="LS">Lesotho</option>
+            <option value="LV">Letland</option>
+            <option value="LB">Libanon</option>
+            <option value="LR">Liberia</option>
+            <option value="LY">Libi&euml;</option>
+            <option value="LI">Liechtenstein</option>
+            <option value="LT">Litouwen</option>
+            <option value="LU">Luxemburg</option>
+            <option value="MO">Macau</option>
+            <option value="MK">Macedoni&euml;</option>
+            <option value="MG">Madagaskar</option>
+            <option value="MW">Malawi</option>
+            <option value="MV">Maldiven</option>
+            <option value="MY">Maleisi&euml;</option>
+            <option value="ML">Mali</option>
+            <option value="MT">Malta</option>
+            <option value="IM">Man</option>
+            <option value="MA">Marokko</option>
+            <option value="MH">Marshalleilanden</option>
+            <option value="MQ">Martinique</option>
+            <option value="MR">Mauritani&euml;</option>
+            <option value="MU">Mauritius</option>
+            <option value="YT">Mayotte</option>
+            <option value="MX">Mexico</option>
+            <option value="FM">Micronesia</option>
+            <option value="MD">Moldavi&euml;</option>
+            <option value="MC">Monaco</option>
+            <option value="MN">Mongoli&euml;</option>
+            <option value="ME">Montenegro</option>
+            <option value="MS">Montserrat</option>
+            <option value="MZ">Mozambique</option>
+            <option value="MM">Myanmar</option>
+            <option value="NA">Namibi&euml;</option>
+            <option value="NR">Nauru</option>
+            <option value="NL">Nederland</option>
+            <option value="NP">Nepal</option>
+            <option value="NI">Nicaragua</option>
+            <option value="NC">Nieuw-Caledoni&euml;</option>
+            <option value="NZ">Nieuw-Zeeland</option>
+            <option value="NE">Niger</option>
+            <option value="NG">Nigeria</option>
+            <option value="NU">Niue</option>
+            <option value="MP">Noordelijke Marianen</option>
+            <option value="KP">Noord-Korea</option>
+            <option value="NO">Noorwegen</option>
+            <option value="NF">Norfolk</option>
+            <option value="UG">Oeganda</option>
+            <option value="UA">Oekra&iuml;ne</option>
+            <option value="UZ">Oezbekistan</option>
+            <option value="OM">Oman</option>
+            <option value="AT">Oostenrijk</option>
+            <option value="TL">Oost-Timor</option>
+            <option value="PK">Pakistan</option>
+            <option value="PW">Palau</option>
+            <option value="PS">Palestina</option>
+            <option value="PA">Panama</option>
+            <option value="PG">Papoea-Nieuw-Guinea</option>
+            <option value="PY">Paraguay</option>
+            <option value="PE">Peru</option>
+            <option value="PN">Pitcairneilanden</option>
+            <option value="PL">Polen</option>
+            <option value="PT">Portugal</option>
+            <option value="PR">Puerto Rico</option>
+            <option value="QA">Qatar</option>
+            <option value="RE">R&eacute;union</option>
+            <option value="RO">Roemeni&euml;</option>
+            <option value="RU">Rusland</option>
+            <option value="RW">Rwanda</option>
+            <option value="BL">Saint-Barth&eacute;lemy</option>
+            <option value="KN">Saint Kitts en Nevis</option>
+            <option value="LC">Saint Lucia</option>
+            <option value="PM">Saint-Pierre en Miquelon</option>
+            <option value="VC">Saint Vincent en de Grenadines</option>
+            <option value="SB">Salomonseilanden</option>
+            <option value="WS">Samoa</option>
+            <option value="SM">San Marino</option>
+            <option value="SA">Saoedi-Arabi&euml;</option>
+            <option value="ST">Sao Tom&eacute; en Principe</option>
+            <option value="SN">Senegal</option>
+            <option value="RS">Servi&euml;</option>
+            <option value="SC">Seychellen</option>
+            <option value="SL">Sierra Leone</option>
+            <option value="SG">Singapore</option>
+            <option value="SH">Sint-Helena, Ascension en Tristan da Cunha</option>
+            <option value="MF">Sint-Maarten</option>
+            <option value="SX">Sint Maarten</option>
+            <option value="SI">Sloveni&euml;</option>
+            <option value="SK">Slowakije</option>
+            <option value="SD">Soedan</option>
+            <option value="SO">Somali&euml;</option>
+            <option value="ES">Spanje</option>
+            <option value="SJ">Spitsbergen en Jan Mayen</option>
+            <option value="LK">Sri Lanka</option>
+            <option value="SR">Suriname</option>
+            <option value="SZ">Swaziland</option>
+            <option value="SY">Syri&euml;</option>
+            <option value="TJ">Tadzjikistan</option>
+            <option value="TW">Taiwan</option>
+            <option value="TZ">Tanzania</option>
+            <option value="TH">Thailand</option>
+            <option value="TG">Togo</option>
+            <option value="TK">Tokelau</option>
+            <option value="TO">Tonga</option>
+            <option value="TT">Trinidad en Tobago</option>
+            <option value="TD">Tsjaad</option>
+            <option value="CZ">Tsjechi&euml;</option>
+            <option value="TN">Tunesi&euml;</option>
+            <option value="TR">Turkije</option>
+            <option value="TM">Turkmenistan</option>
+            <option value="TC">Turks- en Caicoseilanden</option>
+            <option value="TV">Tuvalu</option>
+            <option value="UY">Uruguay</option>
+            <option value="VU">Vanuatu</option>
+            <option value="VA">Vaticaanstad</option>
+            <option value="VE">Venezuela</option>
+            <option value="AE">Verenigde Arabische Emiraten</option>
+            <option value="US">Verenigde Staten</option>
+            <option value="GB">Verenigd Koninkrijk</option>
+            <option value="VN">Vietnam</option>
+            <option value="WF">Wallis en Futuna</option>
+            <option value="EH">Westelijke Sahara</option>
+            <option value="BY">Wit-Rusland</option>
+            <option value="ZM">Zambia</option>
+            <option value="ZW">Zimbabwe</option>
+            <option value="ZA">Zuid-Afrika</option>
+            <option value="GS">Zuid-Georgia en de Zuidelijke Sandwicheilanden</option>
+            <option value="KR">Zuid-Korea</option>
+            <option value="SS">Zuid-Soedan</option>
+            <option value="SE">Zweden</option>
+            <option value="CH">Zwitserland</option>
+          </select>
+          <div *ngIf="form.controls['country'].invalid && form.controls['country'].touched">
+            <div class="input-validation-error-text" *ngIf="form.controls['country'].errors.required">Land is een verplicht veld.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['country'].errors.maxlength">Land is te lang.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group pt-3 text-right">
+        <button class="btn btn-primary" type="submit">{{ buttonName }}</button>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+</ng-template>

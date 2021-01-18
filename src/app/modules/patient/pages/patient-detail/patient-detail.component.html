@@ -1,101 +1,127 @@
-<div class="page container-fluid">
-    <div class="row">
-        <div class="col-md-6">
-            <h2>Patiënt</h2>
-        </div>
-        <div class="col-md-6 text-right">
-            <button class="btn btn-primary">Verwijderen</button>
-            <button routerLink="edit" class="btn btn-primary ml-3">Bewerken</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            <h5>Informatie</h5>
-            <div>Max Bogaers (Man, 19)</div>
-            <div>00000000000</div>
-            <div>20-01-2001</div>
-            <div>max@example.com</div>
-            <div>+31612345678</div>
-            <div>Maxstraat 64B</div>
-            <div>1234AB Made, Nederland</div>
-        </div>
-        <div class="col-md-5">
-            <h5>Alle medicatie</h5>
-            <table class="table table-striped">
-                <caption>Een tabel van de medicatie van de huidige patiënt.</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Omschrijving</th>
-                        <th scope="col">Startdatum</th>
-                        <th scope="col">Einddatum</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Morfine 22mg tweemaals daags 1 tablet</td>
-                        <td>17-12-2020</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h5>Alle intoleranties</h5>
-            <table class="table table-striped">
-                <caption>Een tabel van alle intoleranties van de huidige patiënt.</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Omschrijving</th>
-                        <th scope="col">Startdatum</th>
-                        <th scope="col">Einddatum</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Parfum</td>
-                        <td>20-01-2001</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-5">
-            <h5>Huidige klachten</h5>
-            <table class="table table-striped">
-                <caption>Een tabel met de huidige klachten van de huidige patiënt.</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Datum</th>
-                        <th scope="col">Klacht/Probleem</th>
-                        <th scope="col">ICPC</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>02-02-2020</td>
-                        <td>roken: 15 sig/dag</td>
-                        <td>P17</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h5>Voorgeschiedenis</h5>
-            <table class="table table-striped">
-                <caption>Een tabel met de voorgeschiedenis van de huidige patiënt.</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Datum</th>
-                        <th scope="col">Klacht/Probleem</th>
-                        <th scope="col">ICPC</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>02-06-1999</td>
-                        <td>rugpijn</td>
-                        <td>Z12</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<div class="form-spinner" *ngIf="(!patient?.id); else patientDetail">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
 </div>
+<ng-template #patientDetail>
+  <div class="page container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Patiënt</h2>
+      </div>
+      <div class="col-md-6 text-right">
+        <button (click)="patientEmitter.next(patient)" class="btn btn-primary">Verwijderen</button>
+        <button routerLink="edit" class="btn btn-primary ml-3">Bewerken</button>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col-md-6">
+        <div class="form-group">
+          <h3>Informatie</h3>
+          <ul class="list-group">
+            <li class="list-group-item bold d-flex justify-content-between w-100"><span>Naam:</span><span>{{ patient.name }} ({{ gender }}, {{ age }})</span></li>
+            <li class="list-group-item d-flex justify-content-between w-100"><span>Geboortedatum:</span><span>{{ this.dob.toDateString() }}</span></li>
+            <li class="list-group-item d-flex justify-content-between w-100"><span>Email:</span><span>{{ this.patient.email }}</span></li>
+            <li class="list-group-item d-flex justify-content-between w-100"><span>Bsn:</span><span>{{ this.patient.bsn }}</span></li>
+            <li class="list-group-item d-flex justify-content-between w-100"><span>Telefoon nummer:</span><span>{{ this.patient.phoneNumber }}</span></li>
+            <li class="list-group-item d-flex justify-content-between w-100"><span>Adres:</span><span>{{ this.patient.street }} {{ this.patient.houseNumber }}{{ this.patient.houseNumberAddon }}</span></li>
+            <li class="list-group-item d-flex justify-content-between w-100"><span>Postcode en Land:</span><span>{{ this.patient.postalCode }} {{ this.patient.city }}, {{ this.patient.country }}</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group h-100 d-flex flex-column">
+          <h3>Locatie</h3>
+          <iframe
+            title="Patiënt adres"
+            class="mb-3 flex-grow-1"
+            width="100%"
+            style="border:0"
+            [src]="sanitizer.bypassSecurityTrustResourceUrl(map)" allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col-md-6">
+        <h3>Alle medicatie</h3>
+        <table class="table table-striped" aria-label="Een tabel van de medicatie van de huidige patiënt.">
+          <thead>
+          <tr>
+            <th scope="col">Omschrijving</th>
+            <th scope="col">Startdatum</th>
+            <th scope="col">Einddatum</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Morfine 22mg tweemaals daags 1 tablet</td>
+            <td>17-12-2020</td>
+            <td></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <h3>Huidige klachten</h3>
+        <table class="table table-striped" aria-label="Een tabel met de huidige klachten van de huidige patiënt.">
+          <thead>
+          <tr>
+            <th scope="col">Datum</th>
+            <th scope="col">Klacht/Probleem</th>
+            <th scope="col">ICPC</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>02-02-2020</td>
+            <td>roken: 15 sig/dag</td>
+            <td>P17</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row py-3">
+      <div class="col-md-6">
+        <h3>Alle intoleranties</h3>
+        <table class="table table-striped" aria-label="Een tabel van alle intoleranties van de huidige patiënt.">
+          <thead>
+          <tr>
+            <th scope="col">Omschrijving</th>
+            <th scope="col">Startdatum</th>
+            <th scope="col">Einddatum</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Parfum</td>
+            <td>20-01-2001</td>
+            <td></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <h3>Voorgeschiedenis</h3>
+        <table class="table table-striped" aria-label="Een tabel met de voorgeschiedenis van de huidige patiënt.">
+          <thead>
+          <tr>
+            <th scope="col">Datum</th>
+            <th scope="col">Klacht/Probleem</th>
+            <th scope="col">ICPC</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>02-06-1999</td>
+            <td>rugpijn</td>
+            <td>Z12</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <app-delete-modal [deleteEntity]="deleteEntity" [service]="patientService" (deleteComplete)="onDeleteComplete($event)"></app-delete-modal>
+  </div>
+</ng-template>

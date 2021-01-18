@@ -2,6 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "../../models/user.model";
 import { UserService } from "../../services/user.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { TableHeader, TableAction, BaseEntity } from "../../../core/core.module";
+import { ConsultationService } from "../../../consultation/services/consultation.service";
+import { Observable } from "rxjs";
+
 
 @Component({
   selector: "app-user-detail",
@@ -10,9 +14,22 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class UserDetailComponent implements OnInit {
 
+  public userEmitter;
+  public deleteEntity: Observable<BaseEntity>;
   user: User;
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) { }
+  tableHeaders: TableHeader[] = [];
+  tableActions: TableAction[] = [];
+
+  constructor(
+    private route: ActivatedRoute,
+    public userService: UserService,
+    private router: Router,
+    public consultationService: ConsultationService
+  )
+  {
+    this.deleteEntity = new Observable(e => this.userEmitter = e);
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -20,10 +37,16 @@ export class UserDetailComponent implements OnInit {
     });
   }
 
+  public async delete(): Promise<void> {
+
+    await this.userService.Delete(this.user.id).toPromise();
+    await this.router.navigate(["doctors"]);
+  }
+
   private retrieveUserData(id: string): void {
     this.userService.Get(id).toPromise()
       .then(async (u: User) => {
-        if (u == null || u.Id == null) {
+        if (u == null || u.id == null) {
           // @TODO: Global modal service, ToastService?
           console.error("User could not be found...");
           try {
@@ -43,10 +66,14 @@ export class UserDetailComponent implements OnInit {
         try {
           await this.router.navigate(["doctors"]);
         }
-        catch (e) {
+        catch (ex) {
           // @TODO: Global modal/Toast??
         }
         return;
       });
+  }
+
+  async onDeleteComplete(success): Promise<void> {
+    await this.router.navigate(["doctors"]);
   }
 }
