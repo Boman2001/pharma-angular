@@ -1,23 +1,31 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { ExaminationFormComponent } from "./examination-form.component";
+import { ExaminationTypeFormComponent } from "./examination-type-form.component";
 import { FormBuilder } from "@angular/forms";
+import { ExaminationTypeService } from "../../services/examination-type.service";
+import { StorageService } from "../../../core/services/storage.service";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 
-describe("ExaminationFormComponent", () => {
-  let component: ExaminationFormComponent;
-  let fixture: ComponentFixture<ExaminationFormComponent>;
+describe("ExaminationTypeFormComponent", () => {
+  let component: ExaminationTypeFormComponent;
+  let fixture: ComponentFixture<ExaminationTypeFormComponent>;
   let formControls;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExaminationFormComponent ],
-      providers: [ FormBuilder ]
+      imports: [ HttpClientTestingModule ],
+      declarations: [ ExaminationTypeFormComponent ],
+      providers: [
+        FormBuilder,
+        ExaminationTypeService,
+        StorageService
+      ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExaminationFormComponent);
+    fixture = TestBed.createComponent(ExaminationTypeFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
 

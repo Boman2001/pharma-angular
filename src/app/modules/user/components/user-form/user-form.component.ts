@@ -2,9 +2,9 @@ import { Component, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
 import { UserService } from "../../services/user.service";
 import { User } from "../../models/user.model";
-import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { EventEmitter } from "@angular/core";
+
 
 @Component({
   selector: "app-user-form",
@@ -20,7 +20,7 @@ export class UserFormComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private router: Router, private userService: UserService, private fb: FormBuilder) {}
+  constructor(private userService: UserService, private fb: FormBuilder) {}
 
   private passwordCheckValidator: ValidatorFn = (fg: FormGroup): ValidationErrors | null => {
     const password = fg.get("password");
