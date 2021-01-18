@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Observable, of } from "rxjs";
+import { catchError, map } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../../environments/environment";
 import { HttpService } from "./http.service";
@@ -30,6 +30,13 @@ export class GenericHttpService<T> extends HttpService implements IRepository<T>
           this.authService.Logout();
           this.router.navigate(["/auth/login"]);
         }
+      },
+      {
+        statusCode: 403,
+        hook: (e) => {
+          // @TODO: Create a generic error page.
+          this.router.navigate(["/"]);
+        }
       }
     ]
   )
@@ -44,34 +51,12 @@ export class GenericHttpService<T> extends HttpService implements IRepository<T>
 
   public GetAll(httpHooks: HttpHook[] = null): Observable<T[]>
   {
-    try {
-      return this.http.get<T[]>(this.basePath, this.baseOptions);
-    }
-    catch (e) {
-      for (const hookConfig of [ ...this.httpStatusHooks, ...(httpHooks || []) ]) {
-        if (e.statusCode === hookConfig.statusCode) {
-          hookConfig.hook(e);
-        }
-      }
-
-      throw e;
-    }
+    return this.wrapHooks(this.http.get<T[]>(this.basePath, this.baseOptions));
   }
 
   public Get(id: string, httpHooks: HttpHook[] = null): Observable<T>
   {
-    try {
-      return this.http.get<T>(`${ this.basePath }/${ id }`, this.baseOptions);
-    }
-    catch (e) {
-      for (const hookConfig of [ ...this.httpStatusHooks, ...(httpHooks || []) ]) {
-        if (e.statusCode === hookConfig.statusCode) {
-          hookConfig.hook(e);
-        }
-      }
-
-      throw e;
-    }
+    return this.wrapHooks(this.http.get<T>(`${ this.basePath }/${ id }`, this.baseOptions));
   }
 
   public GetByFilter(filter: (i: T) => boolean): Observable<T[]>
@@ -86,49 +71,30 @@ export class GenericHttpService<T> extends HttpService implements IRepository<T>
 
   public Add(entity: T, httpHooks: HttpHook[] = null): Observable<boolean>
   {
-    try {
-      return this.http.post<boolean>(this.basePath, entity, this.baseOptions);
-    }
-    catch (e) {
-      for (const hookConfig of [ ...this.httpStatusHooks, ...(httpHooks || []) ]) {
-        if (e.statusCode === hookConfig.statusCode) {
-          hookConfig.hook(e);
-        }
-      }
-
-      throw e;
-    }
+    return this.wrapHooks(this.http.post<boolean>(this.basePath, entity, this.baseOptions));
   }
 
   public Update(id, entity: T, httpHooks: HttpHook[] = null): Observable<boolean>
   {
-    try {
-      return this.http.put<boolean>(`${ this.basePath }/${ id }`, entity, this.baseOptions);
-    }
-    catch (e) {
-      for (const hookConfig of [ ...this.httpStatusHooks, ...(httpHooks || []) ]) {
-        if (e.statusCode === hookConfig.statusCode) {
-          hookConfig.hook(e);
-        }
-      }
-
-      throw e;
-    }
+    return this.wrapHooks(this.http.put<boolean>(`${ this.basePath }/${ id }`, entity, this.baseOptions));
   }
 
   public Delete(id: string, httpHooks: HttpHook[] = null): Observable<boolean>
   {
-    try {
-      return this.http.delete<boolean>(`${ this.basePath }/${ id }`, this.baseOptions);
-    }
-    catch (e) {
-      for (const hookConfig of [ ...this.httpStatusHooks, ...(httpHooks || []) ]) {
-        if (e.statusCode === hookConfig.statusCode) {
-          hookConfig.hook(e);
-        }
-      }
+    return this.wrapHooks(this.http.delete<boolean>(`${ this.basePath }/${ id }`, this.baseOptions));
+  }
 
-      throw e;
-    }
+  private wrapHooks(observable: Observable<any>, httpHooks: HttpHook[] = null): Observable<any> {
+    return observable.pipe(
+      catchError((err) => {
+        for (const hookConfig of [ ...this.httpStatusHooks, ...(httpHooks || []) ]) {
+          if (err.status === hookConfig.statusCode) {
+            hookConfig.hook(err);
+          }
+        }
+
+        return of(null);
+      })
+    );
   }
 }
