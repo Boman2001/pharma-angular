@@ -6,6 +6,9 @@ import { environment } from "../../../../environments/environment";
 import { HttpService } from "./http.service";
 import { IRepository } from "../lib/IRepository";
 import { StorageService } from "./storage.service";
+import { AuthService } from "../../auth/services/auth.service";
+import { Router } from "@angular/router";
+import { HttpHook } from "../lib/HttpHook";
 
 
 @Injectable({
@@ -14,7 +17,23 @@ import { StorageService } from "./storage.service";
 
 export class GenericHttpService<T> extends HttpService implements IRepository<T> {
 
-  constructor(private readonly entityPath: string, protected http: HttpClient, protected storage: StorageService) {
+  constructor(
+    private readonly entityPath: string,
+    protected http: HttpClient,
+    protected storage: StorageService,
+    protected authService: AuthService,
+    protected router: Router,
+    private httpStatusHooks: HttpHook[] = [
+      {
+        statusCode: 401,
+        hook: (e) => {
+          this.authService.Logout();
+          this.router.navigate(["/auth/login"]);
+        }
+      }
+    ]
+  )
+  {
     super(http, storage);
   }
 
@@ -23,14 +42,36 @@ export class GenericHttpService<T> extends HttpService implements IRepository<T>
     return `${environment.apiUrl}/${this.entityPath}`;
   }
 
-  public GetAll(): Observable<T[]>
+  public GetAll(httpHooks: HttpHook[] = null): Observable<T[]>
   {
-    return this.http.get<T[]>(this.basePath, this.baseOptions);
+    try {
+      return this.http.get<T[]>(this.basePath, this.baseOptions);
+    }
+    catch (e) {
+      for (const hookConfig of [ ...this.httpStatusHooks, ...(httpHooks || []) ]) {
+        if (e.statusCode === hookConfig.statusCode) {
+          hookConfig.hook(e);
+        }
+      }
+
+      throw e;
+    }
   }
 
-  public Get(id: string): Observable<T>
+  public Get(id: string, httpHooks: HttpHook[] = null): Observable<T>
   {
-    return this.http.get<T>(`${this.basePath}/${ id }`, this.baseOptions);
+    try {
+      return this.http.get<T>(`${ this.basePath }/${ id }`, this.baseOptions);
+    }
+    catch (e) {
+      for (const hookConfig of [ ...this.httpStatusHooks, ...(httpHooks || []) ]) {
+        if (e.statusCode === hookConfig.statusCode) {
+          hookConfig.hook(e);
+        }
+      }
+
+      throw e;
+    }
   }
 
   public GetByFilter(filter: (i: T) => boolean): Observable<T[]>
@@ -43,18 +84,51 @@ export class GenericHttpService<T> extends HttpService implements IRepository<T>
     );
   }
 
-  public Add(entity: T): Observable<boolean>
+  public Add(entity: T, httpHooks: HttpHook[] = null): Observable<boolean>
   {
-    return this.http.post<boolean>(this.basePath, entity, this.baseOptions);
+    try {
+      return this.http.post<boolean>(this.basePath, entity, this.baseOptions);
+    }
+    catch (e) {
+      for (const hookConfig of [ ...this.httpStatusHooks, ...(httpHooks || []) ]) {
+        if (e.statusCode === hookConfig.statusCode) {
+          hookConfig.hook(e);
+        }
+      }
+
+      throw e;
+    }
   }
 
-  public Update(id, entity: T): Observable<boolean>
+  public Update(id, entity: T, httpHooks: HttpHook[] = null): Observable<boolean>
   {
-    return this.http.put<boolean>(`${this.basePath}/${ id }`, entity, this.baseOptions);
+    try {
+      return this.http.put<boolean>(`${ this.basePath }/${ id }`, entity, this.baseOptions);
+    }
+    catch (e) {
+      for (const hookConfig of [ ...this.httpStatusHooks, ...(httpHooks || []) ]) {
+        if (e.statusCode === hookConfig.statusCode) {
+          hookConfig.hook(e);
+        }
+      }
+
+      throw e;
+    }
   }
 
-  public Delete(id: string): Observable<boolean>
+  public Delete(id: string, httpHooks: HttpHook[] = null): Observable<boolean>
   {
-    return this.http.delete<boolean>(`${this.basePath}/${ id }`, this.baseOptions);
+    try {
+      return this.http.delete<boolean>(`${ this.basePath }/${ id }`, this.baseOptions);
+    }
+    catch (e) {
+      for (const hookConfig of [ ...this.httpStatusHooks, ...(httpHooks || []) ]) {
+        if (e.statusCode === hookConfig.statusCode) {
+          hookConfig.hook(e);
+        }
+      }
+
+      throw e;
+    }
   }
 }

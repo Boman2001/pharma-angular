@@ -4,7 +4,6 @@ import { HttpService, StorageService } from "../../core/core.module";
 import { User } from "../../user/user.module";
 import { HttpClient } from "@angular/common/http";
 import { LoginResponse } from "../models/LoginResponse.model";
-import { BehaviorSubject } from "rxjs";
 
 
 @Injectable({
@@ -26,14 +25,14 @@ export class AuthService extends HttpService {
     return this.token != null;
   }
 
-  public get user(): BehaviorSubject<User>
+  public get user(): User
   {
-    return new BehaviorSubject<User>(this.storage.GetItem("user"));
+    return this.storage.GetItem("user");
   }
 
-  public set user(value: BehaviorSubject<User>)
+  public set user(value: User)
   {
-    this.storage.SetItem("user", value.getValue());
+    this.storage.SetItem("user", value);
   }
 
   public get token(): string
@@ -70,7 +69,7 @@ export class AuthService extends HttpService {
     }
 
     this.token = loginResponse.token;
-    this.user = new BehaviorSubject<User>(loginResponse.user);
+    this.user = loginResponse.user;
 
     return true;
   }
