@@ -47,6 +47,7 @@ export class PrescriptionOverviewComponent {
   actionsArray: TableAction[] = [
     {
       id: "prescription-detail",
+      name: "Detail",
       classes: ["btn", "btn-primary"],
       icon: `eye`,
       action: (entity: BaseEntity) => {
