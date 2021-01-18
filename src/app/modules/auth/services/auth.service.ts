@@ -4,6 +4,7 @@ import { HttpService, StorageService } from "../../core/core.module";
 import { User } from "../../user/user.module";
 import { HttpClient } from "@angular/common/http";
 import { LoginResponse } from "../models/LoginResponse.model";
+import {TwoFactorResponse} from "../models/TwoFactorResponse.model";
 
 
 @Injectable({
@@ -40,6 +41,33 @@ export class AuthService extends HttpService {
   {
     this.storage.SetItem("token", value);
   }
+  public async getTwoFactor(email: string): Promise<TwoFactorResponse>
+  {
+    const twoFactorResponse = await this.http.post<TwoFactorResponse>(
+      `${this.basePath}/login/twofactor`,
+      {
+        email
+      },
+      this.baseOptions
+    )
+      .toPromise();
+
+    if
+    (
+      twoFactorResponse == null
+      || twoFactorResponse.token == null
+      || twoFactorResponse.user == null
+      || twoFactorResponse.user.Id == null
+    )
+    {
+      return null;
+    }
+
+    this.token = twoFactorResponse.token;
+    this.user = twoFactorResponse.user;
+
+    return twoFactorResponse;
+  }
 
   public async Login(email: string, password: string): Promise<LoginResponse>
   {
@@ -56,16 +84,12 @@ export class AuthService extends HttpService {
     if
     (
       loginResponse == null
-      || loginResponse.token == null
-      || loginResponse.user == null
-      || loginResponse.user.Id == null
+      || loginResponse.email
+      || loginResponse.twoFactorUrl
     )
     {
       return null;
     }
-
-    this.token = loginResponse.token;
-    this.user = loginResponse.user;
 
     return loginResponse;
   }

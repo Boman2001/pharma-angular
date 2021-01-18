@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void{
-    this.router.navigate(["/consult"]);
+    this.router.navigate(["/auth/login/twofactor"]);
   }
 
 
