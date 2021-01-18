@@ -23,6 +23,7 @@ export class ExaminationTypeOverviewComponent {
   actionsArray: TableAction[] = [
     {
       id: "prescription-edit",
+      name: "Aanpassen",
       classes: ["btn", "btn-warning"],
       icon: `pencil-alt`,
       action: (entity: BaseEntity) => {
@@ -31,6 +32,7 @@ export class ExaminationTypeOverviewComponent {
     },
     {
       id: "prescription-delete",
+      name: "Delete",
       classes: ["btn", "btn-danger"],
       icon: `trash-alt`,
       action: (entity: BaseEntity) => {
