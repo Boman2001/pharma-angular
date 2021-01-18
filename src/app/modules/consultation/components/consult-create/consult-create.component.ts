@@ -33,6 +33,7 @@ export class ConsultCreateComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       date: new FormControl("", [ Validators.required ]),
+      time: new FormControl("", [ Validators.required ]),
       patient: new FormControl("", [ Validators.required ]),
       doctor: new FormControl("", [ Validators.required ]),
       comment: new FormControl("", [ Validators.required ])

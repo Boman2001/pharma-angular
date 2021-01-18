@@ -8,15 +8,23 @@
   </div>
 <div class="modal-body px-5 py-3">
   <form #consultCreateForm="ngForm" name="form" [formGroup]="form">
-    <div class="form-group">
-      <div class="input-group">
-        <input id="date" class="form-control" [ngClass]="form.controls['date'].invalid && form.controls['date'].touched ? 'input-validation-error' : ''" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" formControlName="date" required>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+    <div class="d-flex justify-content-between">
+      <div class="form-group d-flex flex-column justify-content-center mr-2">
+        <div class="input-group">
+          <input id="date" class="form-control" [ngClass]="form.controls['date'].invalid && form.controls['date'].touched ? 'input-validation-error' : ''" placeholder="dd-mm-yyyy" name="dp" ngbDatepicker #dp="ngbDatepicker" formControlName="date" required>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+          </div>
+        </div>
+        <div *ngIf="form.controls['date'].invalid && form.controls['date'].touched">
+          <div class="input-validation-error-text" *ngIf="form.controls['date'].errors.required">Een datum is verplicht</div>
         </div>
       </div>
-      <div *ngIf="form.controls['date'].invalid && form.controls['date'].touched">
-        <div class="input-validation-error-text" *ngIf="form.controls['date'].errors.required">Een datum is verplicht</div>
+      <div class="form-group">
+        <ngb-timepicker formControlName="time"></ngb-timepicker>
+        <div *ngIf="form.controls['time'].invalid && form.controls['time'].touched">
+          <div class="input-validation-error-text" *ngIf="form.controls['date'].errors.required">Een tijd is verplicht</div>
+        </div>
       </div>
     </div>
     <div class="form-group">
