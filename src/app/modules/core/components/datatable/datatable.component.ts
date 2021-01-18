@@ -2,9 +2,12 @@ import { Component, Input, OnInit, QueryList, ViewChildren } from "@angular/core
 import { DecimalPipe } from "@angular/common";
 import { TableService } from "../../services/datatable.service";
 import { IRepository } from "../../lib/IRepository";
-import { BaseEntity, NgbdSortableHeaderDirective, TableAction, TableHeader } from "../../core.module";
 import { ISortEvent } from "../../lib/ISortEvent";
 import { forwardRef } from "@angular/core";
+import { TableHeader } from "../../lib/TableHeader";
+import { TableAction } from "../../lib/TableAction";
+import { NgbdSortableHeaderDirective } from "../../directives/sortable.directive";
+import { BaseEntity } from "../../models/base-entity.model";
 
 
 @Component({

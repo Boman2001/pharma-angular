@@ -1,4 +1,4 @@
-import { BaseEntity } from "./base-entity.model";
+import { BaseEntity } from "../../../models/base-entity.model";
 
 export class Country extends BaseEntity {
 

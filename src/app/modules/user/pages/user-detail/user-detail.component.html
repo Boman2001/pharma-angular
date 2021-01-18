@@ -10,24 +10,31 @@
         <h2>Dokter</h2>
       </div>
       <div class="col-md-6 text-right">
-        <button class="btn btn-primary" (click)="delete()">Verwijderen</button>
-        <button routerLink="edit" class="btn btn-primary">Bewerken</button>
+        <button class="btn btn-primary" (click)="userEmitter.next(user)">Verwijderen</button>
+        <button routerLink="edit" class="btn btn-primary ml-3">Bewerken</button>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-2">
-        <h5>Informatie</h5>
-        <div>{{ user.name }}</div>
-        <div>{{ user.username }}</div>
-        <div>{{ user.dob }}</div>
-        <div>{{ user.email }}</div>
-        <div>{{ user.phoneNumber }}</div>
-        <div>{{ user.street }} {{ user.houseNumber }}{{ user.houseNumberAddon }}</div>
-        <div>{{ user.postalCode }} {{ user.city }}, {{ user.country }}</div>
+    <div class="row py-3">
+      <div class="col-md-6">
+        <div class="form-group">
+          <h3>Informatie</h3>
+          <ul class="list-group">
+              <li class="list-group-item bold d-flex justify-content-between w-100"><span>Naam:</span><span>{{ user.name }} ({{ user.gender }}, 19)</span></li>
+              <li class="list-group-item d-flex justify-content-between w-100"><span>Gebruikersnaam:</span><span>{{ user.username }}</span></li>
+              <li class="list-group-item d-flex justify-content-between w-100"><span>Geboortedatum:</span><span>{{ user.dob }}</span></li>
+              <li class="list-group-item d-flex justify-content-between w-100"><span>Email:</span><span>{{ user.email }}</span></li>
+              <li class="list-group-item d-flex justify-content-between w-100"><span>Telefoonnummer:</span><span>{{ user.phoneNumber }}</span></li>
+              <li class="list-group-item d-flex justify-content-between w-100"><span>Adres:</span><span>{{ user.street }} {{ user.houseNumber }}{{ user.houseNumberAddon }}</span></li>
+              <li class="list-group-item d-flex justify-content-between w-100"><span>Postcode en Land:</span><span>{{ user.postalCode }} {{ user.city }}, {{ user.country }}</span></li>
+          </ul>
+        </div>
       </div>
-      <div class="col-md-10">
+    </div>
+    <div class="row py-3">
+      <div class="col">
         <app-datatable-component [service]="consultationService" [retrievalParameters]="[user.id]" [show]="tableHeaders" [actions]="tableActions"></app-datatable-component>
-      </div>
+      </div>      
     </div>
+    <app-delete-modal [deleteEntity]="deleteEntity" [service]="userService" (deleteComplete)="onDeleteComplete($event)"></app-delete-modal>
   </div>
 </ng-template>

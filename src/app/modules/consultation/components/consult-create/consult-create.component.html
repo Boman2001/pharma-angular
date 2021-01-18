@@ -28,21 +28,21 @@
       </div>
     </div>
     <div class="form-group">
-      <select class="form-control" [ngClass]="form.controls['patient'].invalid && form.controls['patient'].touched ? 'input-validation-error' : ''" name="patient" id="patient" formControlName="patient" required>
+      <select class="form-control" [ngClass]="form.controls['patientId'].invalid && form.controls['patientId'].touched ? 'input-validation-error' : ''" name="patientId" id="patientId" formControlName="patientId" required>
         <option value="">Kies een patient</option>
-        <option value="1">Jules Mons</option>
+        <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.name }}</option>
       </select>
-      <div *ngIf="form.controls['patient'].invalid && form.controls['patient'].touched">
-        <div class="input-validation-error-text" *ngIf="form.controls['patient'].errors.required">Een patient is verplicht</div>
+      <div *ngIf="form.controls['patientId'].invalid && form.controls['patientId'].touched">
+        <div class="input-validation-error-text" *ngIf="form.controls['patientId'].errors.required">Een patient is verplicht</div>
       </div>
     </div>
     <div class="form-group">
-      <select class="form-control" [ngClass]="form.controls['doctor'].invalid && form.controls['doctor'].touched ? 'input-validation-error' : ''" name="doctor" id="doctor" formControlName="doctor" required>
+      <select class="form-control" [ngClass]="form.controls['doctorId'].invalid && form.controls['doctorId'].touched ? 'input-validation-error' : ''" name="doctorId" id="doctorId" formControlName="doctorId" required>
         <option value="">Kies een dokter</option>
-        <option value="1">Youri van der Sande</option>
+        <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
       </select>
-      <div *ngIf="form.controls['doctor'].invalid && form.controls['doctor'].touched">
-        <div class="input-validation-error-text" *ngIf="form.controls['doctor'].errors.required">Een dokter is verplicht</div>
+      <div *ngIf="form.controls['doctorId'].invalid && form.controls['doctorId'].touched">
+        <div class="input-validation-error-text" *ngIf="form.controls['doctorId'].errors.required">Een dokter is verplicht</div>
       </div>
     </div>
     <div class="form-group">

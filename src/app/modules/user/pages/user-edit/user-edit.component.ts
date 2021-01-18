@@ -1,8 +1,9 @@
 import { Component } from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { User } from "../../models/user.model";
 import { UserService } from "../../services/user.service";
 import { Observable } from "rxjs";
+
 
 @Component({
   selector: "app-user-edit",
@@ -11,10 +12,15 @@ import { Observable } from "rxjs";
 })
 export class UserEditComponent {
 
-  user: Observable<User>;
-  userEmitter;
+  public user: Observable<User>;
+  public deleteEntity: Observable<User>;
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
+  public deleteUserEmitter;
+  public userEmitter;
+
+  constructor(public userService: UserService, private route: ActivatedRoute, private router: Router) {
+    this.deleteEntity = new Observable(e => this.deleteUserEmitter = e);
+
     this.user = new Observable<User>(e => this.userEmitter = e);
     this.route.paramMap.subscribe(params => {
       this.userService.Get(params.get("id")).toPromise()
@@ -44,5 +50,9 @@ export class UserEditComponent {
       await this.router.navigate(["doctors"]);
       return;
     }
+  }
+
+  async onDeleteComplete(success): Promise<void> {
+    await this.router.navigate(["doctors"]);
   }
 }
