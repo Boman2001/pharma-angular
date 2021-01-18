@@ -1,0 +1,12 @@
+<div class="page container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Onderzoek Bewerken</h2>
+    </div>
+    <div class="col-md-6 text-right">
+      <button *ngIf="form.editMode" class="btn btn-primary" name="Delete" id="Delete" (click)="deleteExaminationTypeEmitter.next(form.examinationType)">Verwijderen</button>
+    </div>
+  </div>
+  <app-examination-type-form #form buttonName="Wijzigen" (saveComplete)="onSaveComplete($event)" [initialExaminationType]="examinationType"></app-examination-type-form>
+  <app-delete-modal [deleteEntity]="deleteEntity" [service]="examinationTypeService" (deleteComplete)="onDeleteComplete($event)"></app-delete-modal>
+</div>
