@@ -87,7 +87,7 @@ export class GenericHttpService<T> extends HttpService implements IRepository<T>
   private wrapHooks(observable: Observable<any>, httpHooks: HttpHook[] = null): Observable<any> {
     return observable.pipe(
       catchError((err) => {
-        for (const hookConfig of this.httpStatusHooks.concat(httpHooks)) {
+        for (const hookConfig of this.httpStatusHooks.concat(httpHooks || [])) {
           if (err.status === hookConfig.statusCode) {
             hookConfig.hook(err);
           }
