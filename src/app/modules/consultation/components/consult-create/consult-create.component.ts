@@ -1,6 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { NgbDateStruct, NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import {NgbCalendar, NgbDate, NgbDateStruct, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import { ConsultationService } from "../../services/consultation.service";
 import { UserService } from "../../../user/services/user.service";
 import { PatientService } from "../../../patient/services/patient.service";
@@ -36,6 +36,7 @@ export class ConsultCreateComponent implements OnInit {
     private consultationService: ConsultationService,
     private userService: UserService,
     private patientService: PatientService,
+    private calendar: NgbCalendar
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -83,10 +84,13 @@ export class ConsultCreateComponent implements OnInit {
   }
 
   set consultation(value: Consultation) {
+    const date = moment(value.date);
     this.form.patchValue({
       ...value,
-      date: {
-        day: 1
+      date: this.calendar.getNext(new NgbDate(date.years(), date.months() + 1, date.date() - 1)),
+      time: {
+        hour: date.hour(),
+        minute: date.minute()
       }
     });
   }
@@ -97,7 +101,14 @@ export class ConsultCreateComponent implements OnInit {
     }
     else{
       try {
-        const result = await this.consultationService.Add(this.consultation).toPromise();
+        let result;
+        if (!this.consultation.id){
+          result = await this.consultationService.Add(this.consultation).toPromise();
+        }
+        else{
+          result = await this.consultationService.Update(this.consultation.id, this.consultation).toPromise();
+        }
+
         this.createComplete.emit(result);
         this.modal.close();
       }

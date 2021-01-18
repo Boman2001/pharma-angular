@@ -6,4 +6,5 @@ export class Consultation extends BaseEntity {
   doctor: User;
   patient: Patient;
   date: string;
+  comment: string;
 }
