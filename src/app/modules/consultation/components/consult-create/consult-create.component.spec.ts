@@ -1,10 +1,15 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { ConsultCreateComponent } from "./consult-create.component";
 import { FormBuilder } from "@angular/forms";
-import { HttpClient, HttpHandler } from "@angular/common/http";
 import { StorageService } from "../../../core/core.module";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { AuthService } from "../../../auth/services/auth.service";
+import { ConsultationService } from "../../services/consultation.service";
+import { PatientService } from "../../../patient/services/patient.service";
+import { UserService } from "../../../user/services/user.service";
+import { RouterTestingModule } from "@angular/router/testing";
+
 
 describe("ConsultCreateComponent", () => {
   let component: ConsultCreateComponent;
@@ -14,14 +19,20 @@ describe("ConsultCreateComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        RouterTestingModule
       ],
       declarations: [
         ConsultCreateComponent
       ],
       providers: [
         StorageService,
-        FormBuilder
+        FormBuilder,
+        NgbModal,
+        AuthService,
+        ConsultationService,
+        PatientService,
+        UserService
       ]
     })
     .compileComponents();

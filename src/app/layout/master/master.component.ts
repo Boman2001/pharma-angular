@@ -15,8 +15,9 @@ export class MasterComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   get initials(): string {
-    const nameParts = this.authService.user.name.split(" ");
-    return nameParts[0].substr(0, 1) + nameParts[(nameParts.length - 1)].substr(0, 1);
+    const nameParts = this.authService.user?.name?.split(" ") || [];
+
+    return nameParts?.length ? nameParts[0].substr(0, 1) + nameParts[(nameParts.length - 1)].substr(0, 1) : "-";
   }
 
   logout(): void {
