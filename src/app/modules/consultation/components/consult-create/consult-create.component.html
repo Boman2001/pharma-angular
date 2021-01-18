@@ -22,8 +22,8 @@
       </div>
       <div class="form-group">
         <ngb-timepicker formControlName="time"></ngb-timepicker>
-        <div *ngIf="form.controls['time'].invalid && form.controls['time'].touched">
-          <div class="input-validation-error-text" *ngIf="form.controls['date'].errors.required">Een tijd is verplicht</div>
+        <div *ngIf="form.controls['time'].getError('incorrect')">
+          <div class="input-validation-error-text" *ngIf="form.controls['time'].errors.required">Een tijd is verplicht</div>
         </div>
       </div>
     </div>

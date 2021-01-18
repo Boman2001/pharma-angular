@@ -6,6 +6,7 @@ import { BaseEntity, TableAction, TableHeader } from "src/app/modules/core/core.
 import { ConsultationService } from "../../services/consultation.service";
 import { User } from "../../../user/user.module";
 import { Patient } from "../../../patient/models/patient.model";
+import * as moment from "moment";
 
 
 @Component({
@@ -26,7 +27,7 @@ export class ConsultOverviewComponent implements OnInit {
       key: "date",
       text: "Datum",
       transform: (date: string) => {
-        return new Date(date).toDateString();
+        return moment(date).format("LLL");
       }
     },
     {

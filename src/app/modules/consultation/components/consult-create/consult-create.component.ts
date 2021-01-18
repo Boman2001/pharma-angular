@@ -7,6 +7,7 @@ import { PatientService } from "../../../patient/services/patient.service";
 import { Patient } from "../../../patient/models/patient.model";
 import { User } from "../../../user/models/user.model";
 import { Consultation } from "../../models/consultation.model";
+import * as moment from "moment";
 
 
 @Component({
@@ -52,9 +53,13 @@ export class ConsultCreateComponent implements OnInit {
 
   get consultation(): Consultation {
     const date: NgbDateStruct = this.form.getRawValue().date;
+    const time = this.form.getRawValue().time;
     return {
       ...this.form.getRawValue(),
-      date: new Date(date.year, date.month, date.day).toISOString()
+      date: moment({
+        ...date,
+        ...time
+      }).format("YYYY-MM-DD HH:mm:ss")
     };
   }
 
@@ -67,14 +72,18 @@ export class ConsultCreateComponent implements OnInit {
   }
 
   async submit(): Promise<void> {
-
-    try {
-      const result = await this.consultationService.Add(this.consultation).toPromise();
-      this.createComplete.emit(result);
-      this.modal.close();
+    if (this.form.controls.time.invalid){
+      this.form.controls.time.setErrors({incorrect: true});
     }
-    catch (e) {
-      // @TODO GlobalModalService / ToastService?
+    else{
+      try {
+        const result = await this.consultationService.Add(this.consultation).toPromise();
+        this.createComplete.emit(result);
+        this.modal.close();
+      }
+      catch (e) {
+        // @TODO GlobalModalService / ToastService?
+      }
     }
   }
 }
