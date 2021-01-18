@@ -19,9 +19,8 @@
         <div class="form-group">
           <h3>Informatie</h3>
           <ul class="list-group">
-              <li class="list-group-item bold d-flex justify-content-between w-100"><span>Naam:</span><span>{{ user.name }} ({{ user.gender }}, 19)</span></li>
-              <li class="list-group-item d-flex justify-content-between w-100"><span>Gebruikersnaam:</span><span>{{ user.username }}</span></li>
-              <li class="list-group-item d-flex justify-content-between w-100"><span>Geboortedatum:</span><span>{{ user.dob }}</span></li>
+              <li class="list-group-item bold d-flex justify-content-between w-100"><span>Naam:</span><span>{{ user.name }} ({{ gender }}, {{ age }})</span></li>
+              <li class="list-group-item d-flex justify-content-between w-100"><span>Geboortedatum:</span><span>{{ dob }}</span></li>
               <li class="list-group-item d-flex justify-content-between w-100"><span>Email:</span><span>{{ user.email }}</span></li>
               <li class="list-group-item d-flex justify-content-between w-100"><span>Telefoonnummer:</span><span>{{ user.phoneNumber }}</span></li>
               <li class="list-group-item d-flex justify-content-between w-100"><span>Adres:</span><span>{{ user.street }} {{ user.houseNumber }}{{ user.houseNumberAddon }}</span></li>
@@ -29,11 +28,23 @@
           </ul>
         </div>
       </div>
+      <div class="col-md-6">
+        <div class="form-group h-100 d-flex flex-column">
+          <h3>Locatie</h3>
+          <iframe
+            title="Patiënt adres"
+            class="mb-3 flex-grow-1"
+            width="100%"
+            style="border:0"
+            [src]="sanitizer.bypassSecurityTrustResourceUrl(map)" allowfullscreen>
+          </iframe>
+        </div>
+      </div>
     </div>
     <div class="row py-3">
       <div class="col">
         <app-datatable-component [service]="consultationService" [retrievalParameters]="[user.id]" [show]="tableHeaders" [actions]="tableActions"></app-datatable-component>
-      </div>      
+      </div>
     </div>
     <app-delete-modal [deleteEntity]="deleteEntity" [service]="userService" (deleteComplete)="onDeleteComplete($event)"></app-delete-modal>
   </div>
