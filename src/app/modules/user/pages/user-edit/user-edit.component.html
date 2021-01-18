@@ -7,6 +7,6 @@
       <button *ngIf="form.editMode" class="btn btn-primary" name="Delete" id="Delete" (click)="deleteUserEmitter.next(form.user)">Verwijderen</button>
     </div>
   </div>
-  <app-user-form #form buttonName="Wijzigen" (saveComplete)="onSaveComplete($event)" [initialUser]="user"></app-user-form>\
+  <app-user-form #form buttonName="Wijzigen" (saveComplete)="onSaveComplete($event)" [initialUser]="user"></app-user-form>
   <app-delete-modal [deleteEntity]="deleteEntity" [service]="userService" (deleteComplete)="onDeleteComplete($event)"></app-delete-modal>
 </div>

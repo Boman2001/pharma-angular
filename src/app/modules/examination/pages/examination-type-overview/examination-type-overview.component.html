@@ -1,0 +1,12 @@
+<div class="page container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Onderzoeken</h2>
+    </div>
+    <div class="col-md-6 text-right">
+      <button routerLink="new" class="btn btn-primary">+ Aanmaken</button>
+    </div>
+  </div>
+  <app-datatable-component #examinationTypeTable [show]="headerArray" [actions]="actionsArray" [service]="examinationTypeService"></app-datatable-component>
+  <app-delete-modal [deleteEntity]="deleteEntity" [service]="examinationTypeService" (deleteComplete)="onDeleteComplete($event)"></app-delete-modal>
+</div>

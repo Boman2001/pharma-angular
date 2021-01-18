@@ -1,24 +1,23 @@
-import { Component } from "@angular/core";
+import {Component, ViewChild} from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
-import {BaseEntity, TableAction, TableHeader} from "src/app/modules/core/core.module";
+import { BaseEntity, TableAction, TableHeader } from "src/app/modules/core/core.module";
 import { ExaminationTypeService } from "../../services/examination-type.service";
 
 
 @Component({
-  selector: "app-examination-overview",
-  templateUrl: "./examination-overview.component.html",
-  styleUrls: ["./examination-overview.component.css"]
+  selector: "app-examination-type-overview",
+  templateUrl: "./examination-type-overview.component.html",
+  styleUrls: ["./examination-type-overview.component.css"]
 })
-export class ExaminationOverviewComponent {
+export class ExaminationTypeOverviewComponent {
 
   private examinationEmitter;
   public deleteEntity: Observable<BaseEntity>;
 
   headerArray: TableHeader[] = [
-    { key: "consultation", text: "Consult" },
-    { key: "patient", text: "Patiënt" },
-    { key: "value", text: "Waarde" }
+    { key: "name", text: "Naam" },
+    { key: "unit", text: "Eenheid" },
   ];
 
   actionsArray: TableAction[] = [
@@ -42,7 +41,17 @@ export class ExaminationOverviewComponent {
     },
   ];
 
-  constructor(public examinationService: ExaminationTypeService, public router: Router) {
+  @ViewChild("examinationTypeTable") table;
+
+  constructor(public examinationTypeService: ExaminationTypeService, public router: Router) {
     this.deleteEntity = new Observable(e => this.examinationEmitter = e);
+  }
+
+  onDeleteComplete(success): void {
+    // @TODO: The API doesn't return true;
+    // if (success) {
+    //   this.table.tableService.refresh();
+    // }
+    this.table.tableService.refresh();
   }
 }
