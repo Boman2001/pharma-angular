@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       if (await this.authService.Login(this.form.controls.email.value, this.form.controls.password.value))
       {
         await this.router.navigate(["consultation"]);
+        await this.router.navigate(["auth/login/twofactor"]);
       }
       else
       {

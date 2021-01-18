@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { TwoFactorComponent } from "./two-factor.component";
+import {AuthModule} from "../../auth.module";
+import {RouterTestingModule} from "@angular/router/testing";
+import {HttpClient, HttpHandler} from "@angular/common/http";
+import {StorageService} from "../../../core/services/storage.service";
+import {FormBuilder} from "@angular/forms";
 
 describe("TwoFactorComponent", () => {
   let component: TwoFactorComponent;
@@ -8,9 +13,19 @@ describe("TwoFactorComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TwoFactorComponent ]
+      declarations: [ TwoFactorComponent ],
+      imports: [
+        AuthModule,
+        RouterTestingModule
+      ],
+      providers: [
+        HttpClient,
+        HttpHandler,
+        StorageService,
+        FormBuilder
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

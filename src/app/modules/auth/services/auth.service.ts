@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { environment } from "../../../../environments/environment";
-import { HttpService, StorageService } from "../../core/core.module";
-import { User } from "../../user/user.module";
-import { HttpClient } from "@angular/common/http";
-import { LoginResponse } from "../models/LoginResponse.model";
+import {Injectable} from "@angular/core";
+import {environment} from "../../../../environments/environment";
+import {HttpService, StorageService} from "../../core/core.module";
+import {User} from "../../user/user.module";
+import {HttpClient} from "@angular/common/http";
+import {LoginResponse} from "../models/LoginResponse.model";
 import {TwoFactorResponse} from "../models/TwoFactorResponse.model";
-import { BehaviorSubject } from "rxjs";
+import {BehaviorSubject} from "rxjs";
 
 
 @Injectable({
@@ -13,13 +13,11 @@ import { BehaviorSubject } from "rxjs";
 })
 export class AuthService extends HttpService {
 
-  constructor(protected http: HttpClient, protected storage: StorageService)
-  {
+  constructor(protected http: HttpClient, protected storage: StorageService) {
     super(http, storage);
   }
 
-  public get basePath(): string
-  {
+  public get basePath(): string {
     return `${environment.apiUrl}/Auth`;
   }
 
@@ -27,38 +25,68 @@ export class AuthService extends HttpService {
     return this.token != null;
   }
 
-  public get user(): BehaviorSubject<User>
-  {
+  public get user(): BehaviorSubject<User> {
     return new BehaviorSubject<User>(this.storage.GetItem("user"));
   }
 
-  public set user(value: BehaviorSubject<User>)
-  {
+  public set user(value: BehaviorSubject<User>) {
     this.storage.SetItem("user", value.getValue());
   }
 
-  public get token(): string
-  {
+  public get token(): string {
     return this.storage.GetItem("token");
   }
 
-  public set token(value: string)
-  {
+  public set token(value: string) {
     this.storage.SetItem("token", value);
   }
-  public async getTwoFactor(email: string): Promise<TwoFactorResponse>
-  {
+
+  public get email(): string {
+    return this.storage.GetItem("email");
+  }
+
+  public set email(value: string) {
+    this.storage.SetItem("email", value);
+  }
+
+  public set TwoFactorUrl(value: string) {
+    this.storage.SetItem("url", value);
+  }
+
+  public get TwoFactorUrl(): string {
+   return  this.storage.GetItem("url");
+  }
+
+
+  public async TwoFactor(email: string, code: string): Promise<boolean> {
     const twoFactorResponse = await this.http.post<TwoFactorResponse>(
       `${this.basePath}/login/twofactor`,
       {
-        email
+        email,
+        code
       },
       this.baseOptions
     )
       .toPromise();
 
-  public async Login(email: string, password: string): Promise<boolean>
-  {
+    if
+    (
+      twoFactorResponse == null
+      || twoFactorResponse.token == null
+      || twoFactorResponse.user == null
+      || twoFactorResponse.user.id == null
+    ) {
+      return false;
+    }
+
+    this.token = twoFactorResponse.token;
+    this.user = new BehaviorSubject<User>(twoFactorResponse.user);
+    this.storage.RemoveItem("email");
+    this.storage.RemoveItem("url");
+    return true;
+  }
+
+  public async Login(email: string, password: string): Promise<boolean> {
     const loginResponse = await this.http.post<LoginResponse>(
       `${this.basePath}/login`,
       {
@@ -67,27 +95,22 @@ export class AuthService extends HttpService {
       },
       this.baseOptions
     )
-    .toPromise();
+      .toPromise();
 
     if
     (
       loginResponse == null
-      || loginResponse.token == null
-      || loginResponse.user == null
-      || loginResponse.user.id == null
-    )
-    {
+      || loginResponse.twoFactorUrl == null
+      || loginResponse.email == null
+    ) {
       return false;
     }
-
-    this.token = loginResponse.token;
-    this.user = new BehaviorSubject<User>(loginResponse.user);
-
+    this.email = loginResponse.email;
+    this.TwoFactorUrl = loginResponse.twoFactorUrl;
     return true;
   }
 
-  public Logout(): void
-  {
+  public Logout(): void {
     this.storage.RemoveItem("user");
     this.storage.RemoveItem("token");
   }
