@@ -9,7 +9,6 @@ import { User } from "../../../user/models/user.model";
 import { Consultation } from "../../models/consultation.model";
 import * as moment from "moment";
 import { Observable } from "rxjs";
-import {BaseEntity} from "../../../core/models/base-entity.model";
 
 
 @Component({
@@ -87,7 +86,7 @@ export class ConsultCreateComponent implements OnInit {
     const date = moment(value.date);
     this.form.patchValue({
       ...value,
-      date: this.calendar.getNext(new NgbDate(date.years(), date.months() + 1, date.date() - 1)),
+      date: this.calendar.getNext(new NgbDate(date.year(), date.month() + 1, date.date() - 1)),
       time: {
         hour: date.hour(),
         minute: date.minute()
