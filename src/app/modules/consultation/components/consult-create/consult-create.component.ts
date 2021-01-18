@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import {NgbDateStruct, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import { NgbDateStruct, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ConsultationService } from "../../services/consultation.service";
 import { UserService } from "../../../user/services/user.service";
 import { PatientService } from "../../../patient/services/patient.service";
@@ -8,6 +8,8 @@ import { Patient } from "../../../patient/models/patient.model";
 import { User } from "../../../user/models/user.model";
 import { Consultation } from "../../models/consultation.model";
 import * as moment from "moment";
+import { Observable } from "rxjs";
+import {BaseEntity} from "../../../core/models/base-entity.model";
 
 
 @Component({
@@ -17,7 +19,10 @@ import * as moment from "moment";
 })
 export class ConsultCreateComponent implements OnInit {
 
+  @Input() initialConsultation: Observable<Consultation>;
   @Output() createComplete = new EventEmitter<boolean>();
+
+  @ViewChild("modalContent") public content: ElementRef;
 
   form: FormGroup;
   modal;
@@ -30,16 +35,22 @@ export class ConsultCreateComponent implements OnInit {
     private modalService: NgbModal,
     private consultationService: ConsultationService,
     private userService: UserService,
-    private patientService: PatientService
+    private patientService: PatientService,
   ) {}
 
   async ngOnInit(): Promise<void> {
     this.form = this.fb.group({
+      id: new FormControl("", []),
       date: new FormControl("", [ Validators.required ]),
       time: new FormControl("", [ Validators.required ]),
       patientId: new FormControl("", [ Validators.required ]),
       doctorId: new FormControl("", [ Validators.required ]),
       comment: new FormControl("", [ Validators.required ])
+    });
+
+    this.initialConsultation?.subscribe((c: Consultation) => {
+      this.consultation = c;
+      this.open();
     });
 
     try {
@@ -49,6 +60,14 @@ export class ConsultCreateComponent implements OnInit {
     catch (e) {
       // @TODO: GlobalModalService / ToastService?
     }
+  }
+
+  public open(): void {
+    this.modal = this.modalService.open(this.content, { ariaLabelledBy: "modal-create-consultation" });
+  }
+
+  public close(): void {
+    this.modal.close();
   }
 
   get consultation(): Consultation {
@@ -64,11 +83,12 @@ export class ConsultCreateComponent implements OnInit {
   }
 
   set consultation(value: Consultation) {
-    this.form.patchValue(value);
-  }
-
-  open(content): void {
-    this.modal = this.modalService.open(content, {ariaLabelledBy: "modal-create-consult"});
+    this.form.patchValue({
+      ...value,
+      date: {
+        day: 1
+      }
+    });
   }
 
   async submit(): Promise<void> {

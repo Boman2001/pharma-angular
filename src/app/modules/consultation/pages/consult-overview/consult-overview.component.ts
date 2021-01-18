@@ -7,6 +7,7 @@ import { ConsultationService } from "../../services/consultation.service";
 import { User } from "../../../user/user.module";
 import { Patient } from "../../../patient/models/patient.model";
 import * as moment from "moment";
+import {Consultation} from "../../models/consultation.model";
 
 
 @Component({
@@ -19,8 +20,11 @@ export class ConsultOverviewComponent implements OnInit {
 
   @ViewChild("dataTable") dataTable;
 
-  private consultEmitter;
+  public consultDeleteEmitter;
   public deleteEntity: Observable<BaseEntity>;
+
+  public consultCreateEmitter;
+  public consultCreate: Observable<Consultation>;
 
   headerArray: TableHeader[] = [
     {
@@ -60,7 +64,7 @@ export class ConsultOverviewComponent implements OnInit {
       classes: ["btn", "btn-warning"],
       icon: `pencil-alt`,
       action: (entity: BaseEntity) => {
-        this.router.navigate([`/consultation/${entity.id}/edit`]);
+        this.consultCreateEmitter.next(entity);
       }
     },
     {
@@ -68,13 +72,14 @@ export class ConsultOverviewComponent implements OnInit {
       classes: ["btn", "btn-danger"],
       icon: `trash-alt`,
       action: (entity: BaseEntity) => {
-        this.consultEmitter.next(entity);
+        this.consultDeleteEmitter.next(entity);
       }
     }
   ];
 
   constructor(private calendar: NgbCalendar, public consultService: ConsultationService, public router: Router) {
-    this.deleteEntity = new Observable(e => this.consultEmitter = e);
+    this.deleteEntity = new Observable(e => this.consultDeleteEmitter = e);
+    this.consultCreate = new Observable<Consultation>(e => this.consultCreateEmitter = e);
   }
 
   ngOnInit(): void {
