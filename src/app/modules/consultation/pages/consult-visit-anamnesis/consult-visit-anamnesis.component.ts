@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import {NgbCalendar} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, ParamMap} from "@angular/router";
+import {switchMap} from "rxjs/operators";
 
 @Component({
   selector: "app-consult-visit-anamnesis",
@@ -13,7 +15,7 @@ export class ConsultVisitAnamnesisComponent implements OnInit {
     Validators.required
   ];
 
-  constructor(private calendar: NgbCalendar, private fb: FormBuilder) {}
+  constructor(private calendar: NgbCalendar, private fb: FormBuilder, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
