@@ -7,6 +7,9 @@ import {switchMap} from "rxjs/operators";
 import {Consultation} from "../../models/consultation.model";
 import {Observable} from "rxjs";
 import * as moment from "moment";
+import {Gender} from "../../../core/enums/gender.enum";
+import {User} from "../../../user/models/user.model";
+import {Patient} from "../../../patient/models/patient.model";
 
 @Component({
   selector: "app-consult-visit-info",
@@ -18,6 +21,7 @@ export class ConsultVisitInfoComponent implements OnInit {
   time: string;
   consultation$: Observable<Consultation>;
   map: string;
+  moment = moment;
 
   constructor(public sanitizer: DomSanitizer,
               private route: ActivatedRoute,
@@ -34,9 +38,24 @@ export class ConsultVisitInfoComponent implements OnInit {
     this.consultation$.subscribe(c => {
       const date = moment(c.date);
       this.model = this.calendar.getNext(new NgbDate(date.year(), date.month() + 1, date.date() - 1));
-      this.time = date.format("HH:MM");
+      this.time = date.format("HH:mm");
       this.map = `https://www.google.com/maps/embed/v1/place?key=AIzaSyCBVzozETyDe794IpgWsIe7zi5iFwCPP54&q=${c.patient.street} ${c.patient.houseNumber}${c.patient.houseNumberAddon},${c.patient.city},${c.patient.country}`;
     });
   }
 
+  getGender(gender: Gender): string{
+    switch (gender) {
+      case Gender.MALE:
+        return "Man";
+        break;
+
+      case Gender.FEMALE:
+        return "Vrouw";
+        break;
+
+      default:
+        return "Overige";
+        break;
+    }
+  }
 }
