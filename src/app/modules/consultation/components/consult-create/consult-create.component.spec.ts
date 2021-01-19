@@ -43,10 +43,6 @@ describe("ConsultCreateComponent", () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    spyOn(component, "open");
-    const button = fixture.debugElement.nativeElement.querySelector("#create-consult-btn");
-    button.click();
-
     form = component.form.controls;
   });
 
@@ -59,7 +55,8 @@ describe("ConsultCreateComponent", () => {
   });
 
   it("should return form is valid", () => {
-    form.date.setValue("2021-01-06");
+    form.date.setValue({year: 2020, month: 2});
+    form.time.setValue({hour: 7, minute: 20});
     form.patientId.setValue("1");
     form.doctorId.setValue("1");
     form.comment.setValue("test");

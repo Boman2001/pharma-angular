@@ -1,6 +1,6 @@
 // Modules
 import { NgModule } from "@angular/core";
-import { NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
+import {NgbDatepickerModule, NgbTimepickerModule} from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
@@ -39,14 +39,15 @@ import { CoreModule } from "../core/core.module";
   providers: [
     ConsultationService
   ],
-  imports: [
-    CommonModule,
-    ConsultationRoutingModule,
-    NgbDatepickerModule,
-    FormsModule,
-    ReactiveFormsModule,
-    CoreModule
-  ],
+    imports: [
+        CommonModule,
+        ConsultationRoutingModule,
+        NgbDatepickerModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CoreModule,
+        NgbTimepickerModule
+    ],
   exports: [
     ConsultOverviewComponent,
     ConsultCreateComponent

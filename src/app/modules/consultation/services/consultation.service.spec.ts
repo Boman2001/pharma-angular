@@ -21,9 +21,10 @@ const mockData = [
 const date = new Date();
 const mockEntity: Consultation = {
   id: "1",
-  date,
+  date: date.toISOString(),
   doctor: null,
-  patient: null
+  patient: null,
+  comment: "test"
 };
 
 
