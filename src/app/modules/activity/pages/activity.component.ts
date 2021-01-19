@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, ViewChild} from "@angular/core";
 import {Observable} from "rxjs";
 import {BaseEntity} from "../../core/models/base-entity.model";
 import {TableHeader} from "../../core/lib/TableHeader";
