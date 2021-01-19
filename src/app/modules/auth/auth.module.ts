@@ -10,11 +10,14 @@ import { AuthService } from "./services/auth.service";
 
 // Components
 import { LoginComponent } from "./pages/login/login.component";
+import { TwoFactorComponent } from "./pages/two-factor/two-factor.component";
+import {QRCodeModule} from "angularx-qrcode";
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    TwoFactorComponent
   ],
   providers: [
     AuthService,
@@ -24,7 +27,8 @@ import { LoginComponent } from "./pages/login/login.component";
     FormsModule,
     AuthRoutingModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    QRCodeModule
   ],
   exports: [
     LoginComponent

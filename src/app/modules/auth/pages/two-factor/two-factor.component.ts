@@ -1,26 +1,28 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
-import { AuthService } from "../../services/auth.service";
+import {AuthService} from "../../services/auth.service";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  selector: "app-two-factor",
+  templateUrl: "./two-factor.component.html",
+  styleUrls: ["./two-factor.component.css"]
 })
-export class LoginComponent implements OnInit {
+export class TwoFactorComponent implements OnInit {
   form: FormGroup;
+  url: string;
+  email: string;
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.url = this.authService.TwoFactorUrl;
+    this.email = this.authService.email;
     this.form = this.fb.group({
-      email: new FormControl("", [ Validators.required, Validators.email ]),
-      password: new FormControl("", [ Validators.required ])
+      authCode: new FormControl("", [ Validators.required])
     });
   }
 
   async onSubmit(): Promise<void> {
-
     for (const i in this.form.controls) {
       if (this.form.controls.hasOwnProperty(i)) {
         this.form.controls[i]?.markAsTouched();
@@ -34,10 +36,9 @@ export class LoginComponent implements OnInit {
     }
 
     try {
-      if (await this.authService.Login(this.form.controls.email.value, this.form.controls.password.value))
+      if (await this.authService.TwoFactor(this.authService.email, this.form.controls.authCode.value))
       {
         await this.router.navigate(["consultation"]);
-        await this.router.navigate(["auth/login/twofactor"]);
       }
       else
       {
@@ -50,8 +51,7 @@ export class LoginComponent implements OnInit {
     }
     catch (e) {
       console.error(e);
-      this.form.controls.email.setErrors({ incorrect: true });
-      this.form.controls.password.setErrors({ incorrect: true });
+      this.form.controls.authCode.setErrors({ incorrect: true });
     }
   }
 }
