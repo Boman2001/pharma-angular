@@ -5,5 +5,6 @@ import { Patient } from "../../patient/patient.module";
 export class Consultation extends BaseEntity {
   doctor: User;
   patient: Patient;
-  date: Date;
+  date: string;
+  comment: string;
 }
