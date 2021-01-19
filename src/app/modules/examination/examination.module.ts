@@ -5,20 +5,20 @@ import { PhysicalExaminationService } from "./services/physical-examination.serv
 import { ExaminationTypeService } from "./services/examination-type.service";
 import { AdditionalExaminationTypeService } from "./services/additional-examination-type.service";
 import { BaseExaminationTypeService } from "./services/base-examination-type.service";
-import { ExaminationOverviewComponent } from "./pages/examination-overview/examination-overview.component";
-import { ExaminationCreateComponent } from "./pages/examination-create/examination-create.component";
-import { ExaminationEditComponent } from "./pages/examination-edit/examination-edit.component";
-import { ExaminationFormComponent } from "./components/examination-form/examination-form.component";
+import { ExaminationTypeOverviewComponent } from "./pages/examination-type-overview/examination-type-overview.component";
+import { ExaminationTypeCreateComponent } from "./pages/examination-type-create/examination-type-create.component";
+import { ExaminationTypeEditComponent } from "./pages/examination-type-edit/examination-type-edit.component";
+import { ExaminationTypeFormComponent } from "./components/examination-type-form/examination-type-form.component";
 import { ExaminationRoutingModule } from "./examination-routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CoreModule } from "../core/core.module";
 
 @NgModule({
   declarations: [
-    ExaminationCreateComponent,
-    ExaminationOverviewComponent,
-    ExaminationEditComponent,
-    ExaminationFormComponent
+    ExaminationTypeCreateComponent,
+    ExaminationTypeOverviewComponent,
+    ExaminationTypeEditComponent,
+    ExaminationTypeFormComponent
   ],
   imports: [
     CommonModule,
@@ -35,10 +35,10 @@ import { CoreModule } from "../core/core.module";
     AdditionalExaminationTypeService
   ],
   exports: [
-    ExaminationCreateComponent,
-    ExaminationOverviewComponent,
-    ExaminationEditComponent,
-    ExaminationFormComponent
+    ExaminationTypeCreateComponent,
+    ExaminationTypeOverviewComponent,
+    ExaminationTypeEditComponent,
+    ExaminationTypeFormComponent
   ]
 })
 export class ExaminationModule { }
