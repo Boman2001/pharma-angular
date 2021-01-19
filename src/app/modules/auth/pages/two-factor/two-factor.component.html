@@ -3,19 +3,26 @@
     <div class="img-container pb-5">
       <img src="/assets/img/pharmapartners-logo.svg" alt="logo" />
     </div>
-    <qrcode [qrdata]="url" [width]="256" [errorCorrectionLevel]="'M'" [elementType]="'svg'"></qrcode>
-    <p>Scan deze code met microsoft authenticator </p>
 
-    <form method="post" class="w-100" #loginForm="ngForm" [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div *ngIf="form.controls['authCode'].invalid && form.controls['authCode'].touched">
-        <div class="input-validation-error-text" *ngIf="form.controls['authCode'].errors.required">Code is verplicht</div>
+    <ng-template [ngIf]="twoFactorData?.twoFactorUrl">
+      <div class="two-factor-qr">
+        <h3>Scan deze QR-code met een 2FA Applicatie</h3>
+        <p>Bijvoorbeeld met Microsoft Authenticator, Google Authenticator, etc.</p>
+        <qrcode [qrdata]="twoFactorData.twoFactorUrl" [width]="256" [errorCorrectionLevel]="'M'" [elementType]="'svg'"></qrcode>
       </div>
+    </ng-template>
+
+    <form method="post" class="w-100" [formGroup]="form" (ngSubmit)="twoFactor()">
+
       <div class="form-group w-100">
-        <input type="text" [class.input-validation-error]="form.controls['authCode'].invalid && form.controls['authCode'].touched" class="form-control" name="authCode" id="authCode" placeholder="Authenticator Code" formControlName="authCode" />
+        <input type="text" [class.input-validation-error]="form.controls['code'].invalid && form.controls['code'].touched" class="form-control" name="code" id="code" placeholder="Authenticator Code" formControlName="code"/>
       </div>
-      <button type="submit" id="login-submit-btn" class="btn btn-primary float-right">
-        Login
-      </button>
+      <div *ngIf="form.controls['code'].invalid && form.controls['code'].touched">
+        <div class="input-validation-error-text" *ngIf="form.controls['code'].errors.required">Code is verplicht</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['code'].errors.incorrect">Code is incorrect</div>
+      </div>
+
+      <button type="submit" id="login-submit-btn" class="btn btn-primary float-right">Login</button>
     </form>
   </div>
 </div>
