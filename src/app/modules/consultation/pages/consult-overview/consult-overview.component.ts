@@ -53,6 +53,7 @@ export class ConsultOverviewComponent implements OnInit {
   actionsArray: TableAction[] = [
     {
       id: "consult-detail",
+      name: "Detail",
       classes: ["btn", "btn-primary"],
       icon: `eye`,
       action: (entity: BaseEntity) => {
@@ -61,6 +62,7 @@ export class ConsultOverviewComponent implements OnInit {
     },
     {
       id: "consult-edit",
+      name: "Aanpassen",
       classes: ["btn", "btn-warning"],
       icon: `pencil-alt`,
       action: (entity: BaseEntity) => {
@@ -69,6 +71,7 @@ export class ConsultOverviewComponent implements OnInit {
     },
     {
       id: "consult-delete",
+      name: "Delete",
       classes: ["btn", "btn-danger"],
       icon: `trash-alt`,
       action: (entity: BaseEntity) => {

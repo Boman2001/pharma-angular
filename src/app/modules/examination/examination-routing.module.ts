@@ -1,14 +1,15 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { ExaminationOverviewComponent } from "./pages/examination-overview/examination-overview.component";
-import { ExaminationCreateComponent } from "./pages/examination-create/examination-create.component";
-import { ExaminationEditComponent } from "./pages/examination-edit/examination-edit.component";
+import { ExaminationTypeOverviewComponent } from "./pages/examination-type-overview/examination-type-overview.component";
+import { ExaminationTypeCreateComponent } from "./pages/examination-type-create/examination-type-create.component";
+import { ExaminationTypeEditComponent } from "./pages/examination-type-edit/examination-type-edit.component";
+
 
 const routes: Routes = [
   {
     path: "",
     pathMatch: "full",
-    component: ExaminationOverviewComponent,
+    component: ExaminationTypeOverviewComponent,
     data: {
       title: "Onderzoeken",
       breadcrumb: [
@@ -22,7 +23,7 @@ const routes: Routes = [
   {
     path: "new",
     pathMatch: "full",
-    component: ExaminationCreateComponent,
+    component: ExaminationTypeCreateComponent,
     data: {
       title: "Onderzoek Aanmaken",
       breadcrumb: [
@@ -40,7 +41,7 @@ const routes: Routes = [
   {
     path: ":id/edit",
     pathMatch: "full",
-    component: ExaminationEditComponent,
+    component: ExaminationTypeEditComponent,
     data: {
       title: "Onderzoek Bewerken",
       breadcrumb: [
