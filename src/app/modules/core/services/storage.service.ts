@@ -21,7 +21,16 @@ export class StorageService {
       return null;
     }
 
-    return JSON.parse(CryptoJS.AES.decrypt(potentialItem, environment.appKey).toString(CryptoJS.enc.Utf8));
+    try {
+      return JSON.parse(CryptoJS.AES.decrypt(potentialItem, environment.appKey).toString(CryptoJS.enc.Utf8));
+    }
+    catch (e) {
+      // Auto-Remove invalid records...
+      console.error(`INVALID STORAGE RECORD '${key}':`, e);
+      this.RemoveItem(key);
+
+      return null;
+    }
   }
 
   public GetItems(keys: string[]): { key: string, value: any }[] {

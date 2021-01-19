@@ -4,9 +4,13 @@
       <img class="w-100" src="/assets/img/pharmapartners-logo.svg" alt="Logo" />
     </div>
     <div id="profile-btn" class="rounded-circle position-relative border border-dark">
-      <div class="w-100 h-100 d-flex justify-content-center align-items-center" (click)="profileClick()">JD</div>
-      <div class="popup position-absolute p-2 border bg-white" *ngIf="profile">
-        <a (click)="logout()">Logout</a>
+      <div ngbDropdown container="body" #profileDropdown class="w-100 h-100">
+        <div class="w-100 h-100 d-flex justify-content-center align-items-center profile-dropdown" ngbDropdownToggle>{{ initials }}</div>
+        <div ngbDropdownMenu>
+          <button ngbDropdownItem (click)="logout()">
+            <fa-icon icon="sign-out-alt"></fa-icon> Logout
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -49,7 +53,7 @@
                 [routerLinkActive]="['nav-active']"
                 [routerLinkActiveOptions]="{ exact: true }"
               >
-                Doktoren
+                Artsen
               </a>
             </li>
             <li class="list-group-item border-0 p-0">

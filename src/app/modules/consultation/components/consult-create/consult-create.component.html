@@ -1,27 +1,37 @@
-<button class="btn btn-primary" id="create-consult-btn" (click)="open(content)">+ Aanmaken</button>
-<ng-template #content let-modal>
+<ng-template #modalContent>
   <div class="modal-header px-4 py-3">
     <h4 class="modal-title" id="modal-create-consult">Consult aanmaken</h4>
-    <button type="button" class="close border-0" (click)="modal.close('Cross click')">
+    <button type="button" class="close border-0" (click)="close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
 <div class="modal-body px-5 py-3">
-  <form #consultCreateForm="ngForm" name="form" [formGroup]="form">
-    <div class="form-group">
-      <div class="input-group">
-        <input id="date" class="form-control" [ngClass]="form.controls['date'].invalid && form.controls['date'].touched ? 'input-validation-error' : ''" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" formControlName="date" required>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+  <form name="form" [formGroup]="form">
+
+    <input type="hidden" name="id" id="consultation-id" formControlName="id">
+
+    <div class="d-flex justify-content-between">
+      <div class="form-group d-flex flex-column justify-content-center mr-2">
+        <div class="input-group">
+          <input id="date" class="form-control" [ngClass]="form.controls['date'].invalid && form.controls['date'].touched ? 'input-validation-error' : ''" placeholder="dd-mm-yyyy" name="dp" ngbDatepicker #dp="ngbDatepicker" formControlName="date" required>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+          </div>
+        </div>
+        <div *ngIf="form.controls['date'].invalid && form.controls['date'].touched">
+          <div class="input-validation-error-text" *ngIf="form.controls['date'].errors.required">Een datum is verplicht</div>
         </div>
       </div>
-      <div *ngIf="form.controls['date'].invalid && form.controls['date'].touched">
-        <div class="input-validation-error-text" *ngIf="form.controls['date'].errors.required">Een datum is verplicht</div>
+      <div class="form-group">
+        <ngb-timepicker formControlName="time"></ngb-timepicker>
+        <div *ngIf="form.controls['time'].getError('incorrect')">
+          <div class="input-validation-error-text" *ngIf="form.controls['time'].errors.required">Een tijd is verplicht</div>
+        </div>
       </div>
     </div>
     <div class="form-group">
       <select class="form-control" [ngClass]="form.controls['patientId'].invalid && form.controls['patientId'].touched ? 'input-validation-error' : ''" name="patientId" id="patientId" formControlName="patientId" required>
-        <option value="">Kies een patient</option>
+        <option value="">Kies een patiënt</option>
         <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.name }}</option>
       </select>
       <div *ngIf="form.controls['patientId'].invalid && form.controls['patientId'].touched">
@@ -30,11 +40,11 @@
     </div>
     <div class="form-group">
       <select class="form-control" [ngClass]="form.controls['doctorId'].invalid && form.controls['doctorId'].touched ? 'input-validation-error' : ''" name="doctorId" id="doctorId" formControlName="doctorId" required>
-        <option value="">Kies een dokter</option>
+        <option value="">Kies een arts</option>
         <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
       </select>
       <div *ngIf="form.controls['doctorId'].invalid && form.controls['doctorId'].touched">
-        <div class="input-validation-error-text" *ngIf="form.controls['doctorId'].errors.required">Een dokter is verplicht</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['doctorId'].errors.required">Een arts is verplicht</div>
       </div>
     </div>
     <div class="form-group">
@@ -47,6 +57,6 @@
 </div>
 <div class="modal-footer d-flex justify-content-between px-4 py-3">
   <button type="button" class="btn btn-outline-danger" (click)="modal.close('Cancel click')">Annuleren</button>
-  <button type="button" class="btn btn-outline-primary" (click)="submit()" [disabled]="!consultCreateForm.valid">Aanmaken</button>
+  <button type="button" id="modal-create-consultation" class="btn btn-outline-primary" (click)="submit()" [disabled]="!form.valid">Aanmaken</button>
 </div>
 </ng-template>
