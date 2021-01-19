@@ -5,9 +5,9 @@
       <div class="mr-2 mb-2">
         <span>Lengte</span>
         <ul class="list-group">
-          <li class="list-group-item border-0">16-12-2020 193</li>
-          <li class="list-group-item border-0">16-12-2020 193</li>
-          <li class="list-group-item border-0">16-12-2020 193</li>
+          <li class="list-group-item border-0">16-12-2020 193cm</li>
+          <li class="list-group-item border-0">16-12-2020 193cm</li>
+          <li class="list-group-item border-0">16-12-2020 193cm</li>
         </ul>
       </div>
       <div class="mr-2 mb-2">
@@ -30,8 +30,11 @@
   </div>
   <form #consultBiometricsForm="ngForm" name="form" [formGroup]="form">
     <div class="form-group">
-      <select class="form-control" formControlName="examination">
-        <option value="">Onderzoek</option>
+      <select class="form-control" formControlName="examination" (change)="SelectChange($event.target.value)">
+        <option disabled [selected]=true value="">Onderzoeken</option>
+        <option value="lengte">Lengte</option>
+        <option value="gewicht">Gewicht</option>
+        <option value="gewichtqi">Gewicht bij QI</option>
       </select>
       <div *ngIf="form.controls['examination'].getError('incorrect')">
         <div class="input-validation-error-text">Een datum is verplicht</div>
@@ -53,7 +56,9 @@
       <div class="form-group w-50 pl-2">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Waarde" formControlName="value">
-          <label class="my-0 ml-2">KG</label>
+          <div class="input-group-append">
+            <span class="input-group-text">{{ labelText }}</span>
+          </div>
         </div>
         <div *ngIf="form.controls['value'].getError('incorrect')">
           <div class="input-validation-error-text">Een datum is verplicht</div>
