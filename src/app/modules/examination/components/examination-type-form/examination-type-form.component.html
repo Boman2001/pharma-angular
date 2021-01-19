@@ -10,7 +10,7 @@
 
     <div class="form-group">
       <label for="name">Naam</label>
-      <input class="form-control" [class.input-validation-error]="form.controls['name'].invalid && form.controls['name'].touched" type="text" name="name" id="name" placeholder="Identifier eenheid" formControlName="name">
+      <input class="form-control" [class.input-validation-error]="form.controls['name'].invalid && form.controls['name'].touched" type="text" name="name" id="name" placeholder="Naam" formControlName="name">
 
       <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
         <div class="input-validation-error-text" *ngIf="form.controls['name'].errors.required">Naam is een verplicht veld.</div>

@@ -31,7 +31,7 @@
     </div>
     <div class="form-group">
       <select class="form-control" [ngClass]="form.controls['patientId'].invalid && form.controls['patientId'].touched ? 'input-validation-error' : ''" name="patientId" id="patientId" formControlName="patientId" required>
-        <option value="">Kies een patient</option>
+        <option value="">Kies een patiënt</option>
         <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.name }}</option>
       </select>
       <div *ngIf="form.controls['patientId'].invalid && form.controls['patientId'].touched">
@@ -40,11 +40,11 @@
     </div>
     <div class="form-group">
       <select class="form-control" [ngClass]="form.controls['doctorId'].invalid && form.controls['doctorId'].touched ? 'input-validation-error' : ''" name="doctorId" id="doctorId" formControlName="doctorId" required>
-        <option value="">Kies een dokter</option>
+        <option value="">Kies een arts</option>
         <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
       </select>
       <div *ngIf="form.controls['doctorId'].invalid && form.controls['doctorId'].touched">
-        <div class="input-validation-error-text" *ngIf="form.controls['doctorId'].errors.required">Een dokter is verplicht</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['doctorId'].errors.required">Een arts is verplicht</div>
       </div>
     </div>
     <div class="form-group">
