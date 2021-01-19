@@ -4,6 +4,8 @@ import { FormBuilder } from "@angular/forms";
 import { ExaminationTypeService } from "../../services/examination-type.service";
 import { StorageService } from "../../../core/services/storage.service";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { AuthService } from "../../../auth/services/auth.service";
+import { RouterTestingModule } from "@angular/router/testing";
 
 
 describe("ExaminationTypeFormComponent", () => {
@@ -13,12 +15,18 @@ describe("ExaminationTypeFormComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
-      declarations: [ ExaminationTypeFormComponent ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
+      declarations: [
+        ExaminationTypeFormComponent
+      ],
       providers: [
         FormBuilder,
         ExaminationTypeService,
-        StorageService
+        StorageService,
+        AuthService
       ]
     })
     .compileComponents();
