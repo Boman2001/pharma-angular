@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { AuthService } from "../../modules/auth/auth.module";
 import { Router } from "@angular/router";
 
@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 })
 export class MasterComponent {
   navBar = false;
-  profile = false;
+  @ViewChild("profileDropdown") profileDropdown;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -24,10 +24,6 @@ export class MasterComponent {
 
     this.authService.Logout();
     this.router.navigate(["/auth/login"]);
-  }
-
-  profileClick(): void {
-    this.profile = !this.profile;
   }
 
   toggleNavBar(): void{
