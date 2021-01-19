@@ -75,7 +75,7 @@ describe("AuthService", () => {
   });
 
   it("should have a working user getter", () => {
-    service.user = new BehaviorSubject<User>(mockUser);
-    expect(service.user.getValue().id).toBe(mockUser.id);
+    service.user = mockUser;
+    expect(service.user.id).toBe(mockUser.id);
   });
 });

@@ -25,12 +25,14 @@ export class AuthService extends HttpService {
     return this.token != null;
   }
 
-  public get user(): BehaviorSubject<User> {
-    return new BehaviorSubject<User>(this.storage.GetItem("user"));
+  public get user(): User
+  {
+    return this.storage.GetItem("user");
   }
 
-  public set user(value: BehaviorSubject<User>) {
-    this.storage.SetItem("user", value.getValue());
+  public set user(value: User)
+  {
+    this.storage.SetItem("user", value);
   }
 
   public get token(): string {
@@ -107,6 +109,7 @@ export class AuthService extends HttpService {
     }
     this.email = loginResponse.email;
     this.TwoFactorUrl = loginResponse.twoFactorUrl;
+
     return true;
   }
 

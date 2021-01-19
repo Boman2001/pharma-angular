@@ -5,6 +5,8 @@ import { environment } from "../../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { StorageService } from "../../core/core.module";
 import { Consultation } from "../models/consultation.model";
+import { AuthService } from "../../auth/services/auth.service";
+import { RouterTestingModule } from "@angular/router/testing";
 
 
 const mockData = [
@@ -32,10 +34,13 @@ describe("ConsultationService (GenericHttpService)", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
       providers: [
-        HttpClient,
-        StorageService
+        StorageService,
+        AuthService
       ]
     });
 
