@@ -82,7 +82,6 @@ export class AuthService extends HttpService {
     }
 
     this.token = twoFactorResponse.token;
-    this.user = new BehaviorSubject<User>(twoFactorResponse.user);
     this.storage.RemoveItem("email");
     this.storage.RemoveItem("url");
     return true;
