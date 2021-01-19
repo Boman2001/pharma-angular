@@ -47,6 +47,7 @@ export class PatientOverviewComponent {
   actionsArray: TableAction[] = [
     {
       id: "patient-detail",
+      name: "Detail",
       classes: ["btn", "btn-primary"],
       icon: `eye`,
       action: (entity: BaseEntity) => {
@@ -55,6 +56,7 @@ export class PatientOverviewComponent {
     },
     {
       id: "patient-edit",
+      name: "Aanpassen",
       classes: ["btn", "btn-warning"],
       icon: `pencil-alt`,
       action: (entity: BaseEntity) => {
@@ -63,6 +65,7 @@ export class PatientOverviewComponent {
     },
     {
       id: "patient-delete",
+      name: "Delete",
       classes: ["btn", "btn-danger"],
       icon: `trash-alt`,
       action: (entity: BaseEntity) => {

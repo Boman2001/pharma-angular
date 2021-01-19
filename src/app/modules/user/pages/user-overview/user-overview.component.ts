@@ -45,6 +45,7 @@ export class UserOverviewComponent {
   actionsArray: TableAction[] = [
     {
       id: "user-detail",
+      name: "Detail",
       classes: ["btn", "btn-primary"],
       icon: `eye`,
       action: (entity: BaseEntity) => {
@@ -53,6 +54,7 @@ export class UserOverviewComponent {
     },
     {
       id: "user-edit",
+      name: "Aanpassen",
       classes: ["btn", "btn-warning"],
       icon: `pencil-alt`,
       action: (entity: BaseEntity) => {
@@ -61,6 +63,7 @@ export class UserOverviewComponent {
     },
     {
       id: "user-delete",
+      name: "Delete",
       classes: ["btn", "btn-danger"],
       icon: `trash-alt`,
       action: (entity: BaseEntity) => {
