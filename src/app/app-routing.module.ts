@@ -45,6 +45,11 @@ const routes: Routes = [
         loadChildren: () =>
           import("./modules/prescription/prescription.module").then(m => m.PrescriptionModule),
       },
+      {
+        path: "activities",
+        loadChildren: () =>
+          import("./modules/activity/activity.module").then(m => m.ActivityModule),
+      },
     ],
   },
   {
