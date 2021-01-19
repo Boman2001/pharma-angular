@@ -21,9 +21,9 @@
       <label for="user-email">Email</label>
       <input class="form-control" type="email" name="email" id="user-email" [class.input-validation-error]="form.controls['email'].invalid && form.controls['email'].touched" placeholder="Email" formControlName="email">
       <div id="email-alert" *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
-        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.required">email is een verplicht veld.</div>
-        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.maxlength">email is te lang.</div>
-        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.email">email is ongeldig.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.required">Email is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.maxlength">Email is te lang.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.email">Email is ongeldig.</div>
       </div>
     </div>
 
