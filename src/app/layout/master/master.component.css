@@ -2,6 +2,10 @@ header .img-container, .sidebar{
   width: 250px;
 }
 
+.profile-dropdown:after {
+  display: none;
+}
+
 .main-content, .header-sidebar {
   width: calc(100% - 250px);
 }
