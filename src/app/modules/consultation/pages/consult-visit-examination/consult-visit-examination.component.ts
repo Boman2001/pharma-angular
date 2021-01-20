@@ -1,12 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import {ActivatedRoute, ParamMap} from "@angular/router";
-import {ConsultationService} from "../../services/consultation.service";
-import {map, switchMap} from "rxjs/operators";
-import {Observable} from "rxjs";
-import {Consultation} from "../../models/consultation.model";
-import {AdditionalExaminationResultService} from "../../../examination/services/additional-examination-result.service";
-import {AdditionalExaminationResult} from "../../../examination/models/additional-examination-result.model";
-import {HttpParams} from "@angular/common/http";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { ConsultationService } from "../../services/consultation.service";
+import { map, switchMap } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { Consultation } from "../../models/consultation.model";
+import { AdditionalExaminationResultService } from "../../../examination/services/additional-examination-result.service";
+import { HttpParams } from "@angular/common/http";
 import * as moment from "moment";
 
 @Component({
