@@ -1,11 +1,11 @@
-import {Injectable} from "@angular/core";
-import {environment} from "../../../../environments/environment";
-import {HttpService, StorageService} from "../../core/core.module";
-import {User} from "../../user/user.module";
-import {HttpClient} from "@angular/common/http";
-import {LoginResponse} from "../models/LoginResponse.model";
-import {TwoFactorResponse} from "../models/TwoFactorResponse.model";
-import {BehaviorSubject} from "rxjs";
+import { Injectable } from "@angular/core";
+import { environment } from "../../../../environments/environment";
+import { HttpService, StorageService } from "../../core/core.module";
+import { User } from "../../user/user.module";
+import { HttpClient } from "@angular/common/http";
+import { LoginResponse } from "../models/LoginResponse.model";
+import { TwoFactorResponse } from "../models/TwoFactorResponse.model";
+import { TwoFactorData } from "../types/TwoFactorData";
 
 
 @Injectable({
@@ -43,23 +43,6 @@ export class AuthService extends HttpService {
     this.storage.SetItem("token", value);
   }
 
-  public get email(): string {
-    return this.storage.GetItem("email");
-  }
-
-  public set email(value: string) {
-    this.storage.SetItem("email", value);
-  }
-
-  public set TwoFactorUrl(value: string) {
-    this.storage.SetItem("url", value);
-  }
-
-  public get TwoFactorUrl(): string {
-   return  this.storage.GetItem("url");
-  }
-
-
   public async TwoFactor(email: string, code: string): Promise<boolean> {
     const twoFactorResponse = await this.http.post<TwoFactorResponse>(
       `${this.basePath}/login/twofactor`,
@@ -69,26 +52,23 @@ export class AuthService extends HttpService {
       },
       this.baseOptions
     )
-      .toPromise();
+    .toPromise();
 
-    if
-    (
-      twoFactorResponse == null
-      || twoFactorResponse.token == null
-      || twoFactorResponse.user == null
-      || twoFactorResponse.user.id == null
-    ) {
+    if (twoFactorResponse?.token == null || twoFactorResponse.user?.id == null)
+    {
       return false;
     }
 
     this.token = twoFactorResponse.token;
-    this.storage.RemoveItem("email");
-    this.storage.RemoveItem("url");
+    this.user = twoFactorResponse.user;
+
     return true;
   }
 
-  public async Login(email: string, password: string): Promise<boolean> {
-    const loginResponse = await this.http.post<LoginResponse>(
+  public async Login(email: string, password: string): Promise<TwoFactorData> {
+
+    // Login
+    const loginResponse = await this.http.post<TwoFactorData>(
       `${this.basePath}/login`,
       {
         email,
@@ -96,20 +76,13 @@ export class AuthService extends HttpService {
       },
       this.baseOptions
     )
-      .toPromise();
+    .toPromise();
 
-    if
-    (
-      loginResponse == null
-      || loginResponse.twoFactorUrl == null
-      || loginResponse.email == null
-    ) {
-      return false;
+    if (loginResponse?.email == null) {
+      return null;
     }
-    this.email = loginResponse.email;
-    this.TwoFactorUrl = loginResponse.twoFactorUrl;
 
-    return true;
+    return loginResponse;
   }
 
   public Logout(): void {
