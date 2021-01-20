@@ -85,10 +85,6 @@ export class ConsultVisitResumeComponent implements OnInit {
 
       this.prescriptions$ = this.prescriptionService.GetAll(null, new HttpParams().set("patientId", data.patient.id));
       this.intolerances$ = this.intoleranceService.GetAll(null, new HttpParams().set("patientId", data.patient.id));
-
-      this.intolerances$.subscribe(items => {
-        console.log(items);
-      });
     });
   }
 
