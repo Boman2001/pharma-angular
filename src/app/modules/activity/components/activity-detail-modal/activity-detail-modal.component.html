@@ -1,0 +1,18 @@
+<ng-template #modalContent let-modal>
+    <div class="modal-header px-4 py-3">
+      <h4 class="modal-title" id="modal-confirm-delete">{{ activity.description }} {{ activityType }}</h4>
+      <button type="button" class="close border-0" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <div class="modal-body px-5 py-3">
+    <pre><code mwlHighlightJs [source]="activityProperties" language="json"></code></pre>
+  </div>
+  <div class="modal-footer d-flex justify-content-between px-4 py-3">
+    <h3>Gewijzigd door:</h3>
+    <ul class="list-group w-100" >
+      <li class="list-group-item d-flex justify-content-between w-100"><span>Naam:  </span><span> {{ editor.name }} ({{ editorGender }}, {{ editorAge }})</span></li>
+      <li class="list-group-item d-flex justify-content-between w-100"><span>Email:</span><span> {{ editor.email }}</span></li>
+    </ul>
+  </div>
+</ng-template>
