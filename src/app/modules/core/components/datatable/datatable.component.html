@@ -3,7 +3,7 @@
     Zoeken: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="tableService.searchTerm"/>
 
     <div *ngIf="tableService.loading$ | async" class="spinner-border ml-2" role="status">
-      <span class="sr-only">Loading...</span>
+      <span class="sr-only">Laden...</span>
     </div>
   </div>
 
@@ -33,9 +33,9 @@
           </td>
           <td *ngIf="actions?.length != 0">
             <div ngbDropdown container="body" #actionDropdown="ngbDropdown">
-              <button class="btn btn-primary" ngbDropdownToggle> Opties </button>
+              <fa-icon icon="ellipsis-v" class="dropdown" ngbDropdownToggle></fa-icon>
               <div ngbDropdownMenu>
-                <button ngbDropdownItem *ngFor="let a of actions" [id]="a.id" (click)="a.action(entity)" [class]="a.classes.concat(['datatable-button'])">
+                <button ngbDropdownItem *ngFor="let a of actions" [id]="a.id" (click)="a.action(entity)" class="icon" [class]="a.classes.concat(['datatable-button'])">
                   <fa-icon [icon]="a.icon"></fa-icon> {{ a.name }}
                 </button>
               </div>
@@ -43,7 +43,10 @@
           </td>
         </tr>
       </ng-template>
+<<<<<<< HEAD
       
+=======
+>>>>>>> 51de2ff242846e2282c191488b1945e475ecbe79
       </tbody>
     </table>
   </div>

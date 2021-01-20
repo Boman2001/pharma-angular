@@ -8,8 +8,6 @@ import {Consultation} from "../../models/consultation.model";
 import {Observable} from "rxjs";
 import * as moment from "moment";
 import {Gender} from "../../../core/enums/gender.enum";
-import {User} from "../../../user/models/user.model";
-import {Patient} from "../../../patient/models/patient.model";
 
 @Component({
   selector: "app-consult-visit-info",
