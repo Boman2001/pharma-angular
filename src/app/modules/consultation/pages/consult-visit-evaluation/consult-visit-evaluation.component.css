@@ -1,3 +1,11 @@
-label{
-  margin-bottom: 3px;
+.consult-evaluation {
+  min-height: 75vh;
+  max-height: 75vh;
+  height: 75vh;
+  overflow: hidden;
+}
+
+.evaluation-top {
+  overflow-y: auto;
+  overflow-x: hidden;
 }
