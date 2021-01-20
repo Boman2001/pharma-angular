@@ -59,7 +59,7 @@ describe("ConsultCreateComponent", () => {
     form.time.setValue({hour: 7, minute: 20});
     form.patientId.setValue("1");
     form.doctorId.setValue("1");
-    form.comment.setValue("test");
+    form.comments.setValue("test");
     expect(component.form.valid).toBeTruthy();
   });
 });

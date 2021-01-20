@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { DeleteModalComponent } from "./delete-modal.component";
+import { DeleteModalComponent } from "../../../core/core.module";
 
 
 describe("DeleteModalComponent", () => {
