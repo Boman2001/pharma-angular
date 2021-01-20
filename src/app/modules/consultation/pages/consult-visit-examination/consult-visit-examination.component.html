@@ -1,29 +1,11 @@
-<div class="page container-fluid d-flex flex-column">
+<div class="page container-fluid d-flex flex-column" *ngIf="examinations$ | async as examinations">
   <h3 class="p-3">Aanvullend onderzoek</h3>
   <div class="flex-grow-1 overflow-auto">
     <div class="d-flex flex-wrap p-3">
-      <div class="mr-2 mb-2">
+      <div class="mr-2 mb-2" *ngFor="let examinationTypes of examinations">
         <span>Cholesterol Totaal</span>
         <ul class="list-group">
-          <li class="list-group-item border-0">16-12-2018 6.4 mmol / L</li>
-          <li class="list-group-item border-0">16-12-2018 6.4 mmol / L</li>
-          <li class="list-group-item border-0">16-12-2018 6.4 mmol / L</li>
-        </ul>
-      </div>
-      <div class="mr-2 mb-2">
-        <span>HDL-Cholesterol</span>
-        <ul class="list-group">
-          <li class="list-group-item border-0">16-12-2018 0.9 mmol / L</li>
-          <li class="list-group-item border-0">16-12-2018 0.9 mmol / L</li>
-          <li class="list-group-item border-0">16-12-2018 0.9 mmol / L</li>
-        </ul>
-      </div>
-      <div class="mr-2 mb-2">
-        <span>LDL-Cholesterol</span>
-        <ul class="list-group">
-          <li class="list-group-item border-0">16-12-2018 4.9 mmol / L</li>
-          <li class="list-group-item border-0">16-12-2018 4.9 mmol / L</li>
-          <li class="list-group-item border-0">16-12-2018 4.9 mmol / L</li>
+          <li class="list-group-item border-0" *ngFor="let examination of examinationTypes">{{moment(examination.date).format("LL")}} {{examination.value}}</li>
         </ul>
       </div>
     </div>

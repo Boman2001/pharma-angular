@@ -25,7 +25,7 @@ export class ConsultVisitBiometricsComponent implements OnInit {
   model: NgbDateStruct;
   date: { year: number, month: number };
 
-  labelText: string = "";
+  labelText = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -58,9 +58,7 @@ export class ConsultVisitBiometricsComponent implements OnInit {
   collectExamination(id: string) {
     this.examinationType$ = this.examinationTypeService.GetAll();
   }
-
-
-  submit(): void{
+  submit(): void {
     if (this.form.invalid){
       if (this.form.controls.date.invalid){
         this.form.controls.date.setErrors({incorrect: true});

@@ -8,6 +8,8 @@ import { Observable } from "rxjs";
 import { environment } from "../../../../../environments/environment";
 import { DomSanitizer } from "@angular/platform-browser";
 import * as moment from "moment";
+import { HttpParams } from "@angular/common/http";
+import { Patient } from "../../../patient/models/patient.model";
 
 
 @Component({
@@ -21,9 +23,43 @@ export class UserDetailComponent implements OnInit {
   public userEmitter;
   public deleteEntity: Observable<BaseEntity>;
   user: User;
+  consultationParams: HttpParams;
 
-  tableHeaders: TableHeader[] = [];
-  tableActions: TableAction[] = [];
+  tableHeaders: TableHeader[] = [
+    {
+      key: "date",
+      text: "Datum",
+      transform: (date: string) => {
+        return moment(date).format("LLL");
+      }
+    },
+    {
+      key: "doctor",
+      text: "Arts",
+      transform: (d: User) => {
+        return d?.name || "-";
+      }
+    },
+    {
+      key: "patient",
+      text: "Patiënt",
+      transform: (p: Patient) => {
+        return p?.name || "-";
+      }
+    },
+  ];
+
+  tableActions: TableAction[] = [
+    {
+      id: "consult-detail",
+      name: "Detail",
+      classes: ["btn", "btn-primary"],
+      icon: `eye`,
+      action: (entity: BaseEntity) => {
+        this.router.navigate([`/consultation/${entity.id}`]);
+      }
+    },
+  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -96,7 +132,9 @@ export class UserDetailComponent implements OnInit {
           }
           return;
         }
+
         this.user = u;
+        this.consultationParams = new HttpParams().set("userId", this.user.id);
       })
       .catch(async (e) => {
         console.error("API could not be reached...");
