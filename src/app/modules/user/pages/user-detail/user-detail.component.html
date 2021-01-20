@@ -19,8 +19,8 @@
         <div class="form-group">
           <h3>Informatie</h3>
           <ul class="list-group">
-              <li class="list-group-item bold d-flex justify-content-between w-100"><span>Naam:</span><span>{{ user.name }} ({{ gender }}, {{ age }})</span></li>
-              <li class="list-group-item d-flex justify-content-between w-100"><span>Geboortedatum:</span><span>{{ dob }}</span></li>
+              <li class="list-group-item bold d-flex justify-content-between w-100"><span>Naam:</span><span>{{ user.name }} ({{ gender }}, {{ moment().diff(user.dob, 'years') }})</span></li>
+              <li class="list-group-item d-flex justify-content-between w-100"><span>Geboortedatum:</span><span>{{ moment(user.dob).format("LL") }}</span></li>
               <li class="list-group-item d-flex justify-content-between w-100"><span>Email:</span><span>{{ user.email }}</span></li>
               <li class="list-group-item d-flex justify-content-between w-100"><span>Telefoonnummer:</span><span>{{ user.phoneNumber }}</span></li>
               <li class="list-group-item d-flex justify-content-between w-100"><span>Adres:</span><span>{{ user.street }} {{ user.houseNumber }}{{ user.houseNumberAddon }}</span></li>

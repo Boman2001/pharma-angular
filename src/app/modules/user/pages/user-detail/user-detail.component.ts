@@ -7,6 +7,7 @@ import { ConsultationService } from "../../../consultation/services/consultation
 import { Observable } from "rxjs";
 import { environment } from "../../../../../environments/environment";
 import { DomSanitizer } from "@angular/platform-browser";
+import * as moment from "moment";
 
 
 @Component({
@@ -16,6 +17,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class UserDetailComponent implements OnInit {
 
+  public moment = moment;
   public userEmitter;
   public deleteEntity: Observable<BaseEntity>;
   user: User;
