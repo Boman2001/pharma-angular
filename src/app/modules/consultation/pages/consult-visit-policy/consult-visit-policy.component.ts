@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {NgbCalendar, NgbDate, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
+import {NgbCalendar, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {switchMap} from "rxjs/operators";
 import {ActivatedRoute, ParamMap} from "@angular/router";

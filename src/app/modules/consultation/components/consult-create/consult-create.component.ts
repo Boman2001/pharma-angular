@@ -72,11 +72,12 @@ export class ConsultCreateComponent implements OnInit {
 
   get consultation(): Consultation {
     const date: NgbDateStruct = this.form.getRawValue().date;
+    const gooddate: NgbDateStruct = new NgbDate(date.year, date.month - 1, date.day);
     const time = this.form.getRawValue().time;
     return {
       ...this.form.getRawValue(),
       date: moment({
-        ...date,
+        ...gooddate,
         ...time
       }).format("YYYY-MM-DD HH:mm:ss")
     };

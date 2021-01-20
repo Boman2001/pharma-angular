@@ -3,81 +3,61 @@
     <h3 class="p-3">Huidige klachten/problemen</h3>
     <div class="flex-grow-1">
       <div class="table-wrapper overflow-auto mb-4">
-        <table class="table table-striped" aria-label="Een tabel van de huidige klachten/problemen">
+        <table class="table table-striped" aria-label="Een tabel van de huidige klachten/problemen" *ngIf="currentEpisodes$ | async as currEpisodes">
           <thead>
           <tr>
-            <th scope="col">Datum</th>
+            <th scope="col">Startdatum</th>
             <th scope="col">Klacht/Probleem</th>
             <th scope="col">ICPC</th>
             <th scope="col">Acties</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>21-06-2002</td>
-            <td>Roken: 15/dag</td>
-            <td>P17</td>
-            <td><button class="btn btn-primary">Beëindig</button></td>
-          </tr>
-          <tr>
-            <td>21-06-2003</td>
-            <td>Hooikoorts/allergische rhinitis; boom+;gras+</td>
-            <td>R97</td>
-            <td><button class="btn btn-primary">Beëindig</button></td>
-          </tr>
-          <tr>
-            <td>21-06-2004</td>
-            <td>cvrm</td>
-            <td>K49.01</td>
-            <td><button class="btn btn-primary">Beëindig</button></td>
-          </tr>
-          <tr>
-            <td>21-06-2002</td>
-            <td>Roken: 15/dag</td>
-            <td>P17</td>
-            <td><button class="btn btn-primary">Beëindig</button></td>
-          </tr>
-          <tr>
-            <td>21-06-2003</td>
-            <td>Hooikoorts/allergische rhinitis; boom+;gras+</td>
-            <td>R97</td>
-            <td><button class="btn btn-primary">Beëindig</button></td>
-          </tr>
-          <tr>
-            <td>21-06-2004</td>
-            <td>cvrm</td>
-            <td>K49.01</td>
-            <td><button class="btn btn-primary">Beëindig</button></td>
-          </tr>
+              <tr *ngFor="let episode of currEpisodes">
+                <td>{{ episode.startDate }}</td>
+                <td>{{ episode.description }}</td>
+                <td>{{ episode.icpcCode.code }}</td>
+                <td><button class="btn btn-primary" (click)="setEpisodeEndDate(episode.id)">Beëindig</button></td>
+              </tr>
           </tbody>
         </table>
       </div>
       <div>
-        <form #consultAnamnesisForm="ngForm" name="form" [formGroup]="form">
+        <form #consultAnamnesisForm="ngForm" name="form" [formGroup]="form" *ngIf="icpcCodes$ | async as icpcCodes">
           <div class="form-group d-flex">
             <div class="form-group w-50 pr-2">
+              <label for="startDate">Startdatum</label>
               <div class="input-group">
                 <input class="form-control" placeholder="yyyy-mm-dd"
-                       name="dp" formControlName="date" ngbDatepicker #d="ngbDatepicker">
+                       name="dp" formControlName="startDate" ngbDatepicker #d="ngbDatepicker">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
                 </div>
               </div>
-              <div *ngIf="form.controls['date'].getError('incorrect')">
-                <div class="input-validation-error-text">Een datum is verplicht</div>
+              <div *ngIf="form.controls['startDate'].getError('incorrect')">
+                <div class="input-validation-error-text">Een datum is verplicht.</div>
               </div>
             </div>
             <div class="form-group w-50 pl-2">
-              <input type="text" class="form-control" formControlName="icpc" placeholder="ICPC">
-              <div *ngIf="form.controls['icpc'].getError('incorrect')">
-                <div class="input-validation-error-text">Een ICPC is verplicht</div>
+              <label for="icpc">ICPC code</label>
+              <select class="custom-select" id="icpc" name="icpc" formControlName="icpcCodeId">
+                <option selected value="">
+                  Selecteer een ICPC Code
+                </option>
+                <option *ngFor="let icpcCode of icpcCodes" value="{{icpcCode.id}}">
+                  {{ icpcCode.code }}
+                </option>
+              </select>
+              <div *ngIf="form.controls['icpcCodeId'].getError('incorrect')">
+                <div class="input-validation-error-text">Een ICPC is verplicht.</div>
               </div>
             </div>
           </div>
           <div class="form-group">
-            <textarea class="form-control" name="comment" formControlName="comment" placeholder="Klacht/Probleem"></textarea>
-            <div *ngIf="form.controls['comment'].getError('incorrect')">
-              <div class="input-validation-error-text">Een klacht of probleem is verplicht</div>
+            <label for="description">Klacht/Probleem</label>
+            <textarea class="form-control" name="comment" formControlName="description" placeholder="Klacht/Probleem"></textarea>
+            <div *ngIf="form.controls['description'].getError('incorrect')">
+              <div class="input-validation-error-text">Een klacht of probleem is verplicht.</div>
             </div>
           </div>
           <input type="submit" class="btn btn-primary float-right" value="Toevoegen" id="add-anamnese" (click)="submit()">
@@ -89,84 +69,19 @@
     <h3 class="pb-3">Voorgeschiedenis</h3>
     <div class="flex-grow-1">
       <div class="big-table-wrapper overflow-auto">
-        <table class="table table-striped" aria-label="Een tabel van de voorgeschiedenis van de klachten/problemen">
+        <table class="table table-striped" aria-label="Een tabel van de voorgeschiedenis van de klachten/problemen" *ngIf="expiredEpisodes$ | async as exEpisodes">
           <thead>
           <tr>
-            <th scope="col">Datum</th>
+            <th scope="col">Startdatum</th>
             <th scope="col">Klacht/Probleem</th>
             <th scope="col">ICPC</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>21-06-2002</td>
-            <td>Roken: 15/dag</td>
-            <td>P17</td>
-          </tr>
-          <tr>
-            <td>21-06-2003</td>
-            <td>Hooikoorts/allergische rhinitis; boom+;gras+</td>
-            <td>R97</td>
-          </tr>
-          <tr>
-            <td>21-06-2004</td>
-            <td>cvrm</td>
-            <td>K49.01</td>
-          </tr>
-          <tr>
-            <td>21-06-2002</td>
-            <td>Roken: 15/dag</td>
-            <td>P17</td>
-          </tr>
-          <tr>
-            <td>21-06-2003</td>
-            <td>Hooikoorts/allergische rhinitis; boom+;gras+</td>
-            <td>R97</td>
-          </tr>
-          <tr>
-            <td>21-06-2004</td>
-            <td>cvrm</td>
-            <td>K49.01</td>
-          </tr>
-          <tr>
-            <td>21-06-2002</td>
-            <td>Roken: 15/dag</td>
-            <td>P17</td>
-          </tr>
-          <tr>
-            <td>21-06-2003</td>
-            <td>Hooikoorts/allergische rhinitis; boom+;gras+</td>
-            <td>R97</td>
-          </tr>
-          <tr>
-            <td>21-06-2004</td>
-            <td>cvrm</td>
-            <td>K49.01</td>
-          </tr>
-          <tr>
-            <td>21-06-2002</td>
-            <td>Roken: 15/dag</td>
-            <td>P17</td>
-          </tr>
-          <tr>
-            <td>21-06-2003</td>
-            <td>Hooikoorts/allergische rhinitis; boom+;gras+</td>
-            <td>R97</td>
-          </tr>
-          <tr>
-            <td>21-06-2004</td>
-            <td>cvrm</td>
-            <td>K49.01</td>
-          </tr>
-          <tr>
-            <td>21-06-2003</td>
-            <td>Hooikoorts/allergische rhinitis; boom+;gras+</td>
-            <td>R97</td>
-          </tr>
-          <tr>
-            <td>21-06-2004</td>
-            <td>cvrm</td>
-            <td>K49.01</td>
+          <tr *ngFor="let episode of exEpisodes">
+            <td>{{ episode.startDate }}</td>
+            <td>{{ episode.description }}</td>
+            <td>{{ episode.icpcCode.code }}</td>
           </tr>
           </tbody>
         </table>
