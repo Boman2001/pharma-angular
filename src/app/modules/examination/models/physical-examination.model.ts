@@ -7,4 +7,5 @@ export class PhysicalExamination extends BaseEntity {
   consultation: Consultation;
   patient: Patient;
   value: string;
+  date: string;
 }

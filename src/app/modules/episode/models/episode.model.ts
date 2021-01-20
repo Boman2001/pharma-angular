@@ -12,6 +12,7 @@ export class Episode extends BaseEntity {
   startDate: string;
   endDate: string;
   description: string;
+  date: string;
   icpc: ICPCCode;
   priority: number;
 }
