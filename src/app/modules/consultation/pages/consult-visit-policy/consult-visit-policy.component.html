@@ -20,7 +20,7 @@
                   <td>{{moment(prescription.startDate).format("LL")}}</td>
                   <div *ngIf="prescription.endDate != null; then thenBlock else elseBlock"></div>
                   <ng-template #thenBlock><td>{{moment(prescription.endDate).format("LL")}}</td></ng-template>
-                  <ng-template #elseBlock><td>NN</td></ng-template>
+                  <ng-template #elseBlock><td>-</td></ng-template>
                   <td><button class="btn btn-primary" (click)="endPrescription(prescription.id)">Beëindig</button></td>
                 </tr>
               </tbody>
@@ -45,7 +45,7 @@
                 <td>{{moment(intolerance.startDate).format("LL")}}</td>
                 <div *ngIf="intolerance.endDate != null; then thenBlock else elseBlock"></div>
                 <ng-template #thenBlock><td>{{moment(intolerance.endDate).format("LL")}}</td></ng-template>
-                <ng-template #elseBlock><td>NN</td></ng-template>
+                <ng-template #elseBlock><td>-</td></ng-template>
                 <td><button class="btn btn-primary" (click)="endIntolerance(intolerance.id)">Beëindig</button></td>
               </tr>
             </tbody>
