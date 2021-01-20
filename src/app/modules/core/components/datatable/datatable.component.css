@@ -45,3 +45,35 @@ th.sortable.desc:after {
 .active {
     background-color: #cbe5fd !important;
 }
+
+.dropdown {
+  color: #3D6C99;
+}
+
+.dropdown:hover {
+  color:#003E79;
+}
+
+.dropdown:hover {
+  color:#003E79;
+}
+
+.dropdown:active {
+  color:#003E79;
+}
+
+.dropdown:after {
+  display: none !important;
+}
+
+.icon {
+  color: #3D6C99;
+}
+
+.icon:hover {
+  color:#003E79;
+}
+
+.icon:active {
+  color:#003E79;
+}
