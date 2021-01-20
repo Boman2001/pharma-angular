@@ -58,7 +58,7 @@ export class PatientFormComponent implements OnInit {
     this.form.patchValue(value);
   }
 
-  async save(): Promise<void> {
+  async save(): Promise<boolean> {
     for (const i in this.form.controls) {
       if (this.form.controls.hasOwnProperty(i)) {
         this.form.controls[i]?.markAsTouched();
@@ -71,7 +71,7 @@ export class PatientFormComponent implements OnInit {
       return;
     }
 
-    let result;
+    let result = false;
     try {
       if (this.patient.id != null && this.patient.id !== "")
       {
