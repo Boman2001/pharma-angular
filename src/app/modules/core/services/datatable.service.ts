@@ -6,6 +6,7 @@ import { SortDirection } from "../lib/SortDirection";
 import { IRepository } from "../lib/IRepository";
 import { ITableState } from "../lib/ITableState";
 import { ISearchResult } from "../lib/ISearchResult";
+import { TableHeader } from "../lib/TableHeader";
 
 export class TableService<T> {
   private loading = new BehaviorSubject<boolean>(true);
@@ -26,7 +27,8 @@ export class TableService<T> {
     private service: IRepository<any>,
     private pipe: DecimalPipe,
     private retrievalMethod: string = "GetAll",
-    private retrievalParameters: any[] = []
+    private retrievalParameters: any[] = [],
+    public tableShow: TableHeader[] = []
   )
   {
     this.refresh();
@@ -125,8 +127,19 @@ export class TableService<T> {
 
     for (const [key, value] of Object.entries(entity)) {
 
-      if ((typeof (value) === "number" ? pipe.transform(value) : value)?.toLowerCase().includes(searchTerm.toLowerCase())) {
+      const transformFunction = (
+        this.tableShow.find((h: TableHeader) => h.key === key)
+      )
+      ?.transform
 
+      const searchValue = transformFunction != null ? transformFunction(value) : value;
+
+      if 
+      (
+        (typeof (searchValue) === "number" ? pipe.transform(searchValue) : searchValue)
+        ?.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      {
         matched = true;
       }
     }
