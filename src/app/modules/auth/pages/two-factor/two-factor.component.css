@@ -1,0 +1,22 @@
+.two-factor-qr {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+
+  margin-bottom: 5%;
+}
+
+.two-factor-qr-info {
+  margin-right: 2.5%;
+}
+
+@media (max-width: 1024px) {
+  .two-factor-qr {
+    flex-direction: column;
+  }
+
+  .two-factor-qr-info {
+    margin-right: 0;
+  }
+}
