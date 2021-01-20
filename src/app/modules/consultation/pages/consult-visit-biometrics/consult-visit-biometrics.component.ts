@@ -18,7 +18,7 @@ export class ConsultVisitBiometricsComponent implements OnInit {
   model: NgbDateStruct;
   date: { year: number, month: number };
 
-  labelText: string = ""; 
+  labelText = "";
 
   constructor(private route: ActivatedRoute, private calendar: NgbCalendar, private fb: FormBuilder, public examinationTypeService: ExaminationTypeService) {
     this.model = this.calendar.getToday();
@@ -31,7 +31,7 @@ export class ConsultVisitBiometricsComponent implements OnInit {
       value: new FormControl("", this.validators)
     });
   }
-  submit(): void{
+  submit(): void {
     if (this.form.invalid){
       if (this.form.controls.date.invalid){
         this.form.controls.date.setErrors({incorrect: true});
@@ -47,13 +47,12 @@ export class ConsultVisitBiometricsComponent implements OnInit {
     }
   }
 
-  SelectChange(Index) {
-    if(Index === "lengte") {
-      this.labelText = "CM"
+  SelectChange(Index): void {
+    if (Index === "lengte") {
+      this.labelText = "CM";
     }
     else {
       this.labelText = "KG";
     }
   }
-
 }

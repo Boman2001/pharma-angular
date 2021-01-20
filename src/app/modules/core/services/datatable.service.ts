@@ -130,14 +130,14 @@ export class TableService<T> {
       const transformFunction = (
         this.tableShow.find((h: TableHeader) => h.key === key)
       )
-      ?.transform
+      ?.transform;
 
       const searchValue = transformFunction != null ? transformFunction(value) : value;
 
-      if 
+      if
       (
         (typeof (searchValue) === "number" ? pipe.transform(searchValue) : searchValue)
-        ?.toLowerCase().includes(searchTerm.toLowerCase())
+        ?.toString().toLowerCase().includes(searchTerm.toLowerCase())
       )
       {
         matched = true;

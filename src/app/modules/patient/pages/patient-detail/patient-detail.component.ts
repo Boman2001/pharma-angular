@@ -7,6 +7,7 @@ import { environment } from "../../../../../environments/environment";
 import { Gender } from "../../../core/enums/gender.enum";
 import { Observable } from "rxjs";
 import { BaseEntity } from "../../../core/models/base-entity.model";
+import * as moment from "moment";
 
 
 @Component({
@@ -16,6 +17,7 @@ import { BaseEntity } from "../../../core/models/base-entity.model";
 })
 export class PatientDetailComponent implements OnInit {
 
+  public moment = moment;
   public patientEmitter;
   public deleteEntity: Observable<BaseEntity>;
   patient: Patient;
@@ -46,16 +48,6 @@ export class PatientDetailComponent implements OnInit {
     }
 
     return `${this.patient.street} ${this.patient.houseNumber}${this.patient.houseNumberAddon},${this.patient.city},${this.patient.country}`;
-  }
-
-  public get age(): number {
-
-    // @TODO: !!! ACTUAL RELIABLE AGE CALCULATION !!!
-    return Math.floor((((new Date().valueOf() - new Date(this.patient.dob).valueOf()) / (24 * 60 * 60 * 1000)) / 365.242));
-  }
-
-  public get dob(): Date {
-    return new Date(this.patient.dob);
   }
 
   public get gender(): string {

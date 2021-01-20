@@ -41,19 +41,16 @@ export class ConsultVisitInfoComponent implements OnInit {
     });
   }
 
-  getGender(gender: Gender): string{
+  getGender(gender: Gender): string {
     switch (gender) {
       case Gender.MALE:
         return "Man";
-        break;
 
       case Gender.FEMALE:
         return "Vrouw";
-        break;
 
       default:
         return "Overige";
-        break;
     }
   }
 }

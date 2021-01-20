@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import {NgbCalendar} from "@ng-bootstrap/ng-bootstrap";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, ParamMap} from "@angular/router";
-import {switchMap} from "rxjs/operators";
+import { NgbCalendar } from "@ng-bootstrap/ng-bootstrap";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
+
 
 @Component({
   selector: "app-consult-visit-anamnesis",

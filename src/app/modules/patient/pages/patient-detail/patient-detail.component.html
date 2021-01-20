@@ -19,8 +19,8 @@
         <div class="form-group">
           <h3>Informatie</h3>
           <ul class="list-group">
-            <li class="list-group-item bold d-flex justify-content-between w-100"><span>Naam:</span><span>{{ patient.name }} ({{ gender }}, {{ age }})</span></li>
-            <li class="list-group-item d-flex justify-content-between w-100"><span>Geboortedatum:</span><span>{{ this.dob.toDateString() }}</span></li>
+            <li class="list-group-item bold d-flex justify-content-between w-100"><span>Naam:</span><span>{{ patient.name }} ({{ gender }}, {{ moment().diff(patient.dob, 'years') }})</span></li>
+            <li class="list-group-item d-flex justify-content-between w-100"><span>Geboortedatum:</span><span>{{ moment(patient.dob).format("LL") }}</span></li>
             <li class="list-group-item d-flex justify-content-between w-100"><span>Email:</span><span>{{ this.patient.email }}</span></li>
             <li class="list-group-item d-flex justify-content-between w-100"><span>BSN:</span><span>{{ this.patient.bsn }}</span></li>
             <li class="list-group-item d-flex justify-content-between w-100"><span>Telefoon nummer:</span><span>{{ this.patient.phoneNumber }}</span></li>
