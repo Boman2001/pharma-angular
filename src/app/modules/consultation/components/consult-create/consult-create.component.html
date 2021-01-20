@@ -48,9 +48,9 @@
       </div>
     </div>
     <div class="form-group">
-      <textarea class="form-control" [ngClass]="form.controls['comment'].invalid && form.controls['comment'].touched ? 'input-validation-error' : ''" name="comment" id="comment" rows="5" placeholder="Opmerkingen" formControlName="comment"></textarea>
-      <div *ngIf="form.controls['comment'].invalid && form.controls['comment'].touched">
-        <div class="input-validation-error-text" *ngIf="form.controls['comment'].errors.required">Een opmerking is verplicht</div>
+      <textarea class="form-control" [ngClass]="form.controls['comments'].invalid && form.controls['comments'].touched ? 'input-validation-error' : ''" name="comments" id="comments" rows="5" placeholder="Opmerkingen" formControlName="comments"></textarea>
+      <div *ngIf="form.controls['comments'].invalid && form.controls['comments'].touched">
+        <div class="input-validation-error-text" *ngIf="form.controls['comments'].errors.required">Een opmerking is verplicht</div>
       </div>
     </div>
   </form>
