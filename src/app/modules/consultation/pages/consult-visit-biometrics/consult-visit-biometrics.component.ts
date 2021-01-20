@@ -76,7 +76,7 @@ export class ConsultVisitBiometricsComponent implements OnInit {
 
   SelectChange(index) {
     this.examinationType$.subscribe(e => {
-      this.labelText = e.find(item => item.name === index).unit.toLocaleUpperCase();
+      this.labelText = e.find(item => item.name === index).unit.toUpperCase();
     })
   }
 }
