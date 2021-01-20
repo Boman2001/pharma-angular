@@ -3,8 +3,13 @@ import { User } from "../../user/user.module";
 import { Patient } from "../../patient/patient.module";
 
 export class Consultation extends BaseEntity {
-  doctor: User;
-  patient: Patient;
+
+  doctorId: string;
+  doctor?: User;
+
+  patientId: number;
+  patient?: Patient;
+
   date: string;
-  comment: string;
+  comments: string;
 }
