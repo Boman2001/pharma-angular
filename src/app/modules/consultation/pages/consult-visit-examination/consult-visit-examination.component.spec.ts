@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { ConsultVisitExaminationComponent } from "./consult-visit-examination.component";
 import { AdditionalExaminationResultService } from "../../../examination/services/additional-examination-result.service";
 import { HttpClientTestingModule } from "@angular/common/http/testing";

@@ -72,7 +72,7 @@ export class UserFormComponent implements OnInit {
     this.form.patchValue(value);
   }
 
-  async save(): Promise<void> {
+  async save(): Promise<boolean> {
 
     for (const i in this.form.controls) {
       if (this.form.controls.hasOwnProperty(i)) {
@@ -86,7 +86,7 @@ export class UserFormComponent implements OnInit {
       return;
     }
 
-    let result;
+    let result = false;
     try {
       if (this.user.id != null && this.user.id !== "")
       {

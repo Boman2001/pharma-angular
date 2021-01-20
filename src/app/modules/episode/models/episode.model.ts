@@ -6,8 +6,13 @@ import { ICPCCode } from "../../icpc/icpc.module";
 
 export class Episode extends BaseEntity {
   consultation: Consultation;
+  consultationId: number;
   patient: Patient;
+  patientId: number;
+  startDate: string;
+  endDate: string;
   description: string;
   date: string;
   icpc: ICPCCode;
+  priority: number;
 }
