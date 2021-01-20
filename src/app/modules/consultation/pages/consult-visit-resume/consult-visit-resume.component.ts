@@ -18,6 +18,7 @@ import {Prescription} from "../../../prescription/models/prescription.model";
 import {PrescriptionService} from "../../../prescription/services/prescription.service";
 import {Intolerance} from "../../../intolerance/models/intolerance.model";
 import {IntoleranceService} from "../../../intolerance/services/intolerance.service";
+import { UserJournalType } from "../../enums/UserJournalType.enum"
 
 @Component({
   selector: "app-consult-visit-resume",
@@ -34,6 +35,7 @@ export class ConsultVisitResumeComponent implements OnInit {
   prescriptions$: Observable<Prescription[]>;
   intolerances$: Observable<Intolerance[]>;
   moment = moment;
+  UserJournalType = UserJournalType;
 
   constructor(private route: ActivatedRoute,
               private consultService: ConsultationService,
