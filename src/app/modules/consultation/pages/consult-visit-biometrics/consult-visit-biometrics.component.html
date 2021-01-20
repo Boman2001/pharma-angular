@@ -28,7 +28,7 @@
       </div>
     </div>
   </div>
-  <form #consultBiometricsForm="ngForm" name="form" [formGroup]="form">
+  <form name="form" [formGroup]="form">
     <div class="form-group">
       <select class="form-control" formControlName="examination" (change)="SelectChange($event.target.value)">
         <option disabled [selected]=true value="">Onderzoeken</option>
