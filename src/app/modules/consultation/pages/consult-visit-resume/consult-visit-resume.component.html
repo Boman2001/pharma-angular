@@ -119,7 +119,7 @@
           <ng-container *ngFor="let userJournalItems of userJournals;">
             <tr *ngFor="let userJournal of userJournalItems; let i = index" [attr.data-index]="i">
               <td>{{i == 0 ? moment(userJournal.createdAt).format("LL") : ""}}</td>
-              <td>{{userJournal.property}}</td>
+              <td>{{ UserJournalType[userJournal.property] }}</td>
               <td>{{userJournal.description}}</td>
             </tr>
           </ng-container>
