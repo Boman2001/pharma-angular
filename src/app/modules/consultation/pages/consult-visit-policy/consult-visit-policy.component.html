@@ -5,35 +5,24 @@
       <div class="col-12 col-md-6 d-flex flex-column">
         <h4>Medicatie</h4>
           <div class="overflow-auto table-wrapper">
-            <table class="table table-striped" aria-label="Een tabel van de medicatie">
+            <table class="table table-striped" aria-label="Een tabel van de medicatie" *ngIf="prescriptions$ | async let prescriptions">
               <thead>
               <tr>
                 <th scope="col">Omschrijving</th>
                 <th scope="col">Start datum</th>
                 <th scope="col">Eind datum</th>
+                <th scope="col">Acties</th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>Morfine 22mg tweemaal daags 1 tablet</td>
-                <td>17-12-2020</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Morfine 22mg tweemaal daags 1 tablet</td>
-                <td>17-12-2020</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Morfine 22mg tweemaal daags 1 tablet</td>
-                <td>17-12-2020</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Morfine 22mg tweemaal daags 1 tablet</td>
-                <td>17-12-2020</td>
-                <td></td>
-              </tr>
+                <tr *ngFor="let prescription of prescriptions">
+                  <td>{{prescription.description}}</td>
+                  <td>{{moment(prescription.startDate).format("LL")}}</td>
+                  <div *ngIf="prescription.endDate != null; then thenBlock else elseBlock"></div>
+                  <ng-template #thenBlock><td>{{moment(prescription.endDate).format("LL")}}</td></ng-template>
+                  <ng-template #elseBlock><td>-</td></ng-template>
+                  <td><button class="btn btn-primary" (click)="endPrescription(prescription.id)">Beëindig</button></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -41,27 +30,31 @@
       <div class="col-12 col-md-6 mt-5 mt-md-0 d-flex flex-column">
         <h4>Intoleranties</h4>
         <div class="table-wrapper overflow-auto">
-          <table class="table table-striped" aria-label="Een tabel van de voorgeschiedenis van de intoleranties">
+          <table class="table table-striped" aria-label="Een tabel van de voorgeschiedenis van de intoleranties" *ngIf="intolerances$ | async let intolerances">
             <thead>
             <tr>
               <th scope="col">Omschrijving</th>
               <th scope="col">Start datum</th>
               <th scope="col">Eind datum</th>
+              <th scope="col">Acties</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>Lactose intolerantie</td>
-              <td>17-12-2020</td>
-              <td></td>
-            </tr>
+              <tr *ngFor="let intolerance of intolerances">
+                <td>{{intolerance.description}}</td>
+                <td>{{moment(intolerance.startDate).format("LL")}}</td>
+                <div *ngIf="intolerance.endDate != null; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock><td>{{moment(intolerance.endDate).format("LL")}}</td></ng-template>
+                <ng-template #elseBlock><td>-</td></ng-template>
+                <td><button class="btn btn-primary" (click)="endIntolerance(intolerance.id)">Beëindig</button></td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
     <div class="d-flex p-3 flex-column flex-md-row">
-      <form class="col-12 col-md-6" #consultPolicyMedicineForm="ngForm" name="form" [formGroup]="medicineForm">
+      <form class="col-12 col-md-6"  name="form" [formGroup]="medicineForm">
         <div class="form-group d-flex">
           <div class="form-group w-50 mr-2">
             <label>Start datum</label>
@@ -91,22 +84,22 @@
           </div>
         </div>
         <div class="form-group">
-          <textarea class="form-control" placeholder="Omschrijving" formControlName="comment"></textarea>
-          <div *ngIf="medicineForm.controls['comment'].getError('incorrect')">
+          <textarea class="form-control" placeholder="Omschrijving" formControlName="description"></textarea>
+          <div *ngIf="medicineForm.controls['description'].getError('incorrect')">
             <div class="input-validation-error-text">Een opmerking is verplicht</div>
           </div>
         </div>
         <input type="submit" class="btn btn-primary float-right" value="Voeg medicatie toe" (click)="submitMedicine()">
       </form>
-      <form class="col-12 col-md-6 mt-5 mt-md-0" #consultPolicyIntoleranceForm="ngForm" name="form" [formGroup]="intoleranceForm">
+      <form class="col-12 col-md-6 mt-5 mt-md-0" name="form" [formGroup]="intoleranceForm">
         <div class="form-group d-flex">
           <div class="form-group w-50 mr-2">
             <label>Start datum</label>
             <div class="d-flex">
               <input class="form-control" placeholder="yyyy-mm-dd"
-                     name="dp" formControlName="startDate" ngbDatepicker #mStart="ngbDatepicker">
+                     name="dp" formControlName="startDate" ngbDatepicker #mStartI="ngbDatepicker">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="mStart.toggle()" type="button"></button>
+                <button class="btn btn-outline-secondary calendar" (click)="mStartI.toggle()" type="button"></button>
               </div>
             </div>
             <div *ngIf="intoleranceForm.controls['startDate'].getError('incorrect')">
@@ -117,9 +110,9 @@
             <label>Eind datum</label>
             <div class="d-flex">
               <input class="form-control" placeholder="yyyy-mm-dd"
-                     name="dp" formControlName="endDate" ngbDatepicker #mEnd="ngbDatepicker">
+                     name="dp" formControlName="endDate" ngbDatepicker #mEndI="ngbDatepicker">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="mEnd.toggle()" type="button"></button>
+                <button class="btn btn-outline-secondary calendar" (click)="mEndI.toggle()" type="button"></button>
               </div>
             </div>
             <div *ngIf="intoleranceForm.controls['endDate'].getError('incorrect')">
@@ -128,12 +121,12 @@
           </div>
         </div>
         <div class="form-group">
-          <textarea class="form-control" placeholder="Omschrijving" formControlName="comment"></textarea>
-          <div *ngIf="intoleranceForm.controls['comment'].getError('incorrect')">
+          <textarea class="form-control" placeholder="Omschrijving" formControlName="description"></textarea>
+          <div *ngIf="intoleranceForm.controls['description'].getError('incorrect')">
             <div class="input-validation-error-text">Een opmerking is verplicht</div>
           </div>
         </div>
-        <input type="submit" class="btn btn-primary float-right" value="Voeg medicatie toe" (click)="submitIntolerance()">
+        <input type="submit" class="btn btn-primary float-right" value="Voeg intolerantie toe" (click)="submitIntolerance()">
       </form>
     </div>
   </div>

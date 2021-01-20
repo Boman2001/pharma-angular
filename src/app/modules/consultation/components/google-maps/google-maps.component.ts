@@ -1,5 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { AgmInfoWindow } from "@agm/core";
+import { ConsultationService } from "../../services/consultation.service";
+import {Consultation} from "../../models/consultation.model";
+import {HttpParams} from "@angular/common/http";
+import * as moment from "moment";
 
 
 @Component({
@@ -9,6 +13,8 @@ import { AgmInfoWindow } from "@agm/core";
 })
 
 export class GoogleMapsComponent implements OnInit {
+
+  public selectedDate;
 
   // center = { lat: 52.092876, lng: 5.104480 }; // UTRECHT
   center = { lat: 0 , lng: 0};
@@ -21,20 +27,30 @@ export class GoogleMapsComponent implements OnInit {
   currentIW: AgmInfoWindow;
   previousIW: AgmInfoWindow;
 
-  consultations: any[] = [
-    {id: 1, date: "14-01-2021 09:00:00", patient: {name: "Dion Rodie", phoneNumber: "06123456789", postalCode: "4835GC", city: "Breda", country: "NL", street: "Kerkhofweg", houseNumber: 66, houseNumberAddon: "", latitude: 51.567720, longitude: 4.792250 }},
-    {id: 1, date: "14-01-2021 10:00:00", patient: {name: "Max Bogaers", phoneNumber: "06123456789", postalCode: "4921ZB", city: "Made", country: "NL", street: "Dreef", houseNumber: 4, houseNumberAddon: "", latitude: 51.680240, longitude: 4.791620 }},
-    {id: 1, date: "14-01-2021 11:00:00", patient: {name: "Maarten Donkersloot", phoneNumber: "06123456789", postalCode: "4273CV", city: "Hank", country: "NL", street: "Lepelaarstraat", houseNumber: 20, houseNumberAddon: "", latitude: 51.739650 , longitude: 4.899030}},
-    {id: 1, date: "14-01-2021 12:00:00", patient: {name: "Dion Rodie V2", phoneNumber: "06123456789", postalCode: "4814RS", city: "Breda", country: "NL", street: "Neerloopweg", houseNumber: 4, houseNumberAddon: "A", latitude: 51.590423 , longitude: 4.738946}},
-    {id: 1, date: "14-01-2021 16:00:00", patient: {name: "Dion Rodie V3", phoneNumber: "06123456789", postalCode: "9711CK", city: "Groningen", country: "NL", street: "Grote Raamstraat", houseNumber: 9, houseNumberAddon: "", latitude: 53.214340 , longitude: 6.568120}},
-  ];
+  consultations: Consultation[];
+  constructor(protected consultationService: ConsultationService) {
+    this.selectedDate = moment();
+  }
 
-  constructor() { }
+  async nextDay(): Promise<void> {
+    this.selectedDate.add(1, "day");
+    await this.refresh();
+  }
 
-  ngOnInit(): void {
+  async previousDay(): Promise<void> {
+    this.selectedDate.subtract(1, "day");
+    await this.refresh();
+  }
+
+  async refresh(): Promise<void> {
+    this.consultations = await this.consultationService.GetAll(null, new HttpParams().set("date", this.selectedDate.toISOString())).toPromise();
     this.origin = this.initial;
     this.calculateCenter();
     this.setDestinations();
+  }
+
+  async ngOnInit(): Promise<void> {
+    await this.refresh();
   }
 
   clickedMarker(index: number, infoWindow: any): void {
