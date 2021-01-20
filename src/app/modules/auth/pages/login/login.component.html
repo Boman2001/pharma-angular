@@ -8,8 +8,8 @@
         <div class="form-group w-100">
           <input type="text" [class.input-validation-error]="form.controls['email'].invalid && form.controls['email'].touched" class="form-control" name="email" id="email" placeholder="Email" formControlName="email" />
           <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
-            <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.email">Email is niet correct.</div>
-            <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.required">Email is verplicht.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.email">E-mailadres is niet correct.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.required">E-mailadres is verplicht.</div>
             <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.incorrect">Het e-mailadres en/of het wachtwoord zijn incorrect.</div>
           </div>
         </div>
@@ -17,11 +17,11 @@
           <input [class.input-validation-error]="form.controls['password'].invalid && form.controls['password'].touched" type="password" class="form-control" name="password" placeholder="Password" formControlName="password" />
           <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
             <div class="input-validation-error-text" *ngIf="form.controls['password'].errors.required">Wachtwoord is verplicht.</div>
-            <div class="input-validation-error-text" *ngIf="form.controls['password'].errors.incorrect">Het email en/of wachtwoord zijn incorrect.</div>
+            <div class="input-validation-error-text" *ngIf="form.controls['password'].errors.incorrect">Het e-mailadres en/of wachtwoord zijn incorrect.</div>
           </div>
         </div>
         <button type="submit" id="login-submit-btn" class="btn btn-primary float-right">
-          Log in
+          Inloggen
         </button>
       </form>
     </div>
