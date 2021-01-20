@@ -43,7 +43,7 @@
     </div>
     <div class="row py-3">
       <div class="col">
-        <app-datatable-component [service]="consultationService" [retrievalParameters]="[user.id]" [show]="tableHeaders" [actions]="tableActions"></app-datatable-component>
+        <app-datatable-component *ngIf="consultationParams" [service]="consultationService" [retrievalParameters]="[null, consultationParams]" [show]="tableHeaders" [actions]="tableActions"></app-datatable-component>
       </div>
     </div>
     <app-delete-modal [deleteEntity]="deleteEntity" [service]="userService" (deleteComplete)="onDeleteComplete($event)"></app-delete-modal>
