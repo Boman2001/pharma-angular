@@ -8,11 +8,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { StorageService } from "./services/storage.service";
 import { FormsModule } from "@angular/forms";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { AgmCoreModule } from "@agm/core";
-import { GoogleMapsComponent } from "./components/google-maps/google-maps.component";
-import { AgmDirectionModule } from "agm-direction";
 import { RouterModule } from "@angular/router";
-import { environment } from "../../../environments/environment";
 
 // Components
 import { DatatableComponent } from "./components/datatable/datatable.component";
@@ -24,17 +20,12 @@ import { NgbdSortableHeaderDirective } from "./directives/sortable.directive";
 
 @NgModule({
   declarations: [
-    GoogleMapsComponent,
     DatatableComponent,
     NgbdSortableHeaderDirective,
     DeleteModalComponent
   ],
   imports: [
     CommonModule,
-    AgmCoreModule.forRoot({
-      apiKey: environment.googleKey
-    }),
-    AgmDirectionModule,
     RouterModule,
     CommonModule,
     FormsModule,
@@ -43,8 +34,7 @@ import { NgbdSortableHeaderDirective } from "./directives/sortable.directive";
   ],
   exports: [
     DatatableComponent,
-    DeleteModalComponent,
-    GoogleMapsComponent
+    DeleteModalComponent
   ],
   providers: [
     StorageService
@@ -76,7 +66,7 @@ export * from "./enums/gender.enum";
 export * from "./directives/sortable.directive";
 
 // Components
-export * from "./components/google-maps/google-maps.component";
+export * from "../consultation/components/google-maps/google-maps.component";
 
 // Types
 export * from "./lib/TableHeader";

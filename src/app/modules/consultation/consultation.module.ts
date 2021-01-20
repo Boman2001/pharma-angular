@@ -3,6 +3,8 @@ import { NgModule } from "@angular/core";
 import {NgbDatepickerModule, NgbTimepickerModule} from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { AgmCoreModule } from "@agm/core";
+import { AgmDirectionModule } from "agm-direction";
 
 import { ConsultationRoutingModule } from "./consultation-routing.module";
 
@@ -21,6 +23,10 @@ import {ConsultVisitExaminationComponent} from "./pages/consult-visit-examinatio
 import {ConsultVisitEvaluationComponent} from "./pages/consult-visit-evaluation/consult-visit-evaluation.component";
 import {ConsultVisitPolicyComponent} from "./pages/consult-visit-policy/consult-visit-policy.component";
 import {ConsultVisitResumeComponent} from "./pages/consult-visit-resume/consult-visit-resume.component";
+import { GoogleMapsComponent } from "./components/google-maps/google-maps.component";
+import { environment } from "../../../environments/environment";
+import { FontAwesomeModule, FaIconLibrary } from "@fortawesome/angular-fontawesome";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 
 
 @NgModule({
@@ -34,26 +40,37 @@ import {ConsultVisitResumeComponent} from "./pages/consult-visit-resume/consult-
     ConsultVisitExaminationComponent,
     ConsultVisitEvaluationComponent,
     ConsultVisitPolicyComponent,
-    ConsultVisitResumeComponent
+    ConsultVisitResumeComponent,
+    GoogleMapsComponent
   ],
   providers: [
     ConsultationService
   ],
   imports: [
-      CommonModule,
-      ConsultationRoutingModule,
-      NgbDatepickerModule,
-      FormsModule,
-      ReactiveFormsModule,
-      CoreModule,
-      NgbTimepickerModule
+    CommonModule,
+    ConsultationRoutingModule,
+    NgbDatepickerModule,
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CoreModule,
+    NgbTimepickerModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.googleKey
+    }),
+    AgmDirectionModule,
   ],
   exports: [
     ConsultOverviewComponent,
-    ConsultCreateComponent
+    ConsultCreateComponent,
+    GoogleMapsComponent
   ],
 })
-export class ConsultationModule { }
+export class ConsultationModule {
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas);
+  }
+}
 
 // Models
 export * from "./models/consultation.model";
@@ -64,3 +81,4 @@ export * from "./services/consultation.service";
 // Components
 export * from "./pages/consult-overview/consult-overview.component";
 export * from "./components/consult-create/consult-create.component";
+export * from "./components/google-maps/google-maps.component";
