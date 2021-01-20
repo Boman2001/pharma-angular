@@ -1,12 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import {NgbCalendar, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import { ExaminationType, ExaminationTypeService } from "src/app/modules/examination/examination.module";
+import { ExaminationType, ExaminationTypeService, PhysicalExamination, PhysicalExaminationService } from "src/app/modules/examination/examination.module";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { switchMap } from "rxjs/operators";
 import { ConsultationService } from "../../services/consultation.service";
 import { Observable } from "rxjs/internal/Observable";
 import { Consultation } from "../../consultation.module";
+import { HttpParams } from "@angular/common/http";
+import { text } from "@fortawesome/fontawesome-svg-core";
+import * as moment from "moment";
 
 @Component({
   selector: "app-consult-visit-biometrics",
@@ -20,7 +23,12 @@ export class ConsultVisitBiometricsComponent implements OnInit {
   ];
 
   consult$: Observable<Consultation>;
+  physicalExamination$: Observable<PhysicalExamination[]>;
   examinationType$: Observable<ExaminationType[]>;
+
+  consultId: string;
+  examinationTypeId: string;
+  patientId: string;
 
   model: NgbDateStruct;
   date: { year: number, month: number };
@@ -32,6 +40,7 @@ export class ConsultVisitBiometricsComponent implements OnInit {
     private calendar: NgbCalendar,
     private fb: FormBuilder,
     public consultationService: ConsultationService,
+    public physicalExaminationService: PhysicalExaminationService,
     public examinationTypeService: ExaminationTypeService
   ) {
     this.model = this.calendar.getToday();
@@ -49,16 +58,24 @@ export class ConsultVisitBiometricsComponent implements OnInit {
       )
     );
 
+    
+
     this.consult$.subscribe(c => {
-      let patientId = c.patient.id;
-      this.collectExamination(patientId);
-    });
+      this.consultId = c.id;
+      this.patientId = c.patient.id;
+      this.getData(this.patientId);
+    })    
   }
 
-  collectExamination(id: string) {
+  //const test = this.physicalExaminationService.GetAll(null, new HttpParams().set("patientId", patientId)).toPromise();
+  //this.examinationType$ = this.examinationTypeService.GetAll();
+
+  async getData(id: string) {
+    this.physicalExamination$ = this.physicalExaminationService.GetAll(null, new HttpParams().set("patientId", id));
     this.examinationType$ = this.examinationTypeService.GetAll();
   }
-  submit(): void {
+
+  async submit(): Promise<void> {
     if (this.form.invalid){
       if (this.form.controls.date.invalid){
         this.form.controls.date.setErrors({incorrect: true});
@@ -72,11 +89,25 @@ export class ConsultVisitBiometricsComponent implements OnInit {
         this.form.controls.value.setErrors({incorrect: true});
       }
     }
+
+    await this.physicalExaminationService.Add({
+      date: moment(this.form.controls['date'].value).toISOString(),
+      consultationId: this.consultId,
+      consultation: null,
+      patientId: this.patientId,
+      patient: null,
+      examinationTypeId: this.examinationTypeId,
+      value: this.form.controls["value"].value
+    }).toPromise();
+
+    this.getData(this.patientId);
+    this.form.reset();
   }
 
   SelectChange(index) {
     this.examinationType$.subscribe(e => {
       this.labelText = e.find(item => item.name === index).unit.toUpperCase();
+      this.examinationTypeId = e.find( item => item.name === index).id;
     })
   }
 }

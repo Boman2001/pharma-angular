@@ -4,7 +4,11 @@ import { Patient } from "../../patient/patient.module";
 
 
 export class PhysicalExamination extends BaseEntity {
-  consultation: Consultation;
-  patient: Patient;
+  date: string;
+  consultationId: string;
+  consultation?: Consultation;
+  patientId: string;
+  patient?: Patient;
+  examinationTypeId: string;
   value: string;
 }
