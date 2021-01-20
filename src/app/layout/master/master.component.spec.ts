@@ -42,6 +42,6 @@ describe("MasterComponent", () => {
   it("should have 5 nav items", () => {
     const compiled = fixture.debugElement.nativeElement;
     const nav = compiled.querySelector(".sidebar ul");
-    expect(nav.children.length).toEqual(5);
+    expect(nav.children.length).toEqual(6);
   });
 });

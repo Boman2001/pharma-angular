@@ -45,7 +45,7 @@ export class ConsultCreateComponent implements OnInit {
       time: new FormControl("", [ Validators.required ]),
       patientId: new FormControl("", [ Validators.required ]),
       doctorId: new FormControl("", [ Validators.required ]),
-      comment: new FormControl("", [ Validators.required ])
+      comments: new FormControl("", [ Validators.required ])
     });
 
     this.initialConsultation?.subscribe((c: Consultation) => {
