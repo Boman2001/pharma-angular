@@ -8,5 +8,6 @@ export class Episode extends BaseEntity {
   consultation: Consultation;
   patient: Patient;
   description: string;
-  icpc: ICPCCode;
+  icpcCodeId: number;
+  icpcCode?: ICPCCode;
 }
