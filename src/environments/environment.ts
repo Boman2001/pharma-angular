@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   appKey: "U%m2Ayh#JyS&y6SN-M^#J35gM@NhWA6?",
-  // apiUrl: "https://localhost:5001/api",
-  apiUrl: "http://25.87.222.144:5000/api",
+  apiUrl: "https://localhost:5001/api",
+  // apiUrl: "http://25.87.222.144:5000/api",
   googleKey: "AIzaSyCBVzozETyDe794IpgWsIe7zi5iFwCPP54"
 };
 
