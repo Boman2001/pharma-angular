@@ -3,7 +3,7 @@ import {NgbCalendar, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import { ExaminationType, ExaminationTypeService, PhysicalExamination, PhysicalExaminationService } from "src/app/modules/examination/examination.module";
 import { ActivatedRoute, ParamMap } from "@angular/router";
-import { switchMap } from "rxjs/operators";
+import { map, switchMap, tap } from "rxjs/operators";
 import { ConsultationService } from "../../services/consultation.service";
 import { Observable } from "rxjs/internal/Observable";
 import { Consultation } from "../../consultation.module";
@@ -24,16 +24,18 @@ export class ConsultVisitBiometricsComponent implements OnInit {
 
   consult$: Observable<Consultation>;
   physicalExamination$: Observable<PhysicalExamination[]>;
-  examinationType$: Observable<ExaminationType[]>;
+  examinationTypes: ExaminationType[];
 
   consultId: string;
-  examinationTypeId: string;
+  selectedExaminationType: ExaminationType;
   patientId: string;
 
   model: NgbDateStruct;
   date: { year: number, month: number };
+  moment = moment;
 
   labelText = "";
+  defaultSelect: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -53,26 +55,53 @@ export class ConsultVisitBiometricsComponent implements OnInit {
       value: new FormControl("", this.validators)
     });
 
+    this.defaultSelect = this.form.controls.examination.value;
+
     this.consult$ = this.route.paramMap.pipe(switchMap((params: ParamMap) =>
         this.consultationService.Get(params.get("id"))
       )
     );
 
-    
-
     this.consult$.subscribe(c => {
       this.consultId = c.id;
       this.patientId = c.patient.id;
-      this.getData(this.patientId);
-    })    
+      this.getData(c.patient.id);
+    });
   }
 
-  //const test = this.physicalExaminationService.GetAll(null, new HttpParams().set("patientId", patientId)).toPromise();
-  //this.examinationType$ = this.examinationTypeService.GetAll();
+  // const test = this.physicalExaminationService.GetAll(null, new HttpParams().set("patientId", patientId)).toPromise();
+  // this.examinationType$ = this.examinationTypeService.GetAll();
 
-  async getData(id: string) {
-    this.physicalExamination$ = this.physicalExaminationService.GetAll(null, new HttpParams().set("patientId", id));
-    this.examinationType$ = this.examinationTypeService.GetAll();
+  async getData(id: string): Promise<void> {
+    this.examinationTypes = await this.examinationTypeService.GetAll().toPromise();
+    this.physicalExamination$ = this.physicalExaminationService.GetAll(null, new HttpParams().set("patientId", id))
+    .pipe(
+      map(items => {
+        for (const i of items) {
+          i.examinationType = this.examinationTypes?.find((et) => et.id === i.examinationTypeId);
+        }
+        return this.bioGroupBy(items, item => item.examinationTypeId);
+      })
+    );
+  }
+
+  bioGroupBy(list, keyGetter): any[] {
+    let grouped = [];
+    list.forEach((item) => {
+      const key = keyGetter(item);
+      const collection = grouped[key];
+      if (!collection) {
+        grouped[key] = [item];
+      } else {
+        collection.push(item);
+      }
+    });
+
+    grouped = grouped.filter(el => {
+      return el != null;
+    });
+
+    return grouped;
   }
 
   async submit(): Promise<void> {
@@ -91,23 +120,23 @@ export class ConsultVisitBiometricsComponent implements OnInit {
     }
 
     await this.physicalExaminationService.Add({
-      date: moment(this.form.controls['date'].value).toISOString(),
+      date: moment(this.form.controls.date.value).toISOString(),
       consultationId: this.consultId,
       consultation: null,
       patientId: this.patientId,
       patient: null,
-      examinationTypeId: this.examinationTypeId,
-      value: this.form.controls["value"].value
+      examinationTypeId: this.selectedExaminationType?.id,
+      value: this.form.controls.value.value
     }).toPromise();
 
     this.getData(this.patientId);
-    this.form.reset();
+    this.form.controls.date.reset();
+    this.form.controls.value.reset();
+    this.form.controls.examination.setValue("");
   }
 
-  SelectChange(index) {
-    this.examinationType$.subscribe(e => {
-      this.labelText = e.find(item => item.name === index).unit.toUpperCase();
-      this.examinationTypeId = e.find( item => item.name === index).id;
-    })
+  SelectChange(et: ExaminationType): void {
+    this.selectedExaminationType = et;
+    this.labelText = et.unit.toUpperCase();
   }
 }

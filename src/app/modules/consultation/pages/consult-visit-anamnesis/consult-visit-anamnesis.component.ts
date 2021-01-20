@@ -59,12 +59,12 @@ export class ConsultVisitAnamnesisComponent implements OnInit {
       startDate: moment({
         ...gooddate
       }).format("YYYY-MM-DD"),
-      icpcCodeId: parseInt(this.form.getRawValue().icpcCodeId),
+      icpcCodeId: parseInt(this.form.getRawValue().icpcCodeId, 10),
       consultationId: this.currentConsult.id,
       patientId: this.currentConsult.patient.id,
       priority: 1
-    }
-  } 
+    };
+  }
 
   async submit(): Promise<void>{
     if (this.form.invalid){
@@ -110,14 +110,14 @@ export class ConsultVisitAnamnesisComponent implements OnInit {
 
       this.currentEpisodes$.subscribe((e) => {
         console.log(e);
-      })
+      });
     });
   }
 
   async setEpisodeEndDate(episodeId: number): Promise<void>{
-    const episode = await this.episodeService.Get(episodeId.toString()).toPromise()
+    const episode = await this.episodeService.Get(episodeId.toString()).toPromise();
     episode.endDate = moment().toISOString();
-      
+
     await this.episodeService.Update(episodeId, episode).toPromise();
 
     this.getEpisodes();
