@@ -1,6 +1,7 @@
 // Modules
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { AdminGuard } from "../auth/guards/admin.guard";
 
 // Components
 import { UserOverviewComponent } from "./pages/user-overview/user-overview.component";
@@ -27,6 +28,7 @@ const routes: Routes = [
   {
     path: "new",
     pathMatch: "full",
+    canActivate: [ AdminGuard ],
     component: UserCreateComponent,
     data: {
       title: "Dokter Aanmaken",
@@ -45,6 +47,7 @@ const routes: Routes = [
   {
     path: ":id",
     pathMatch: "full",
+    canActivate: [ AdminGuard ],
     component: UserDetailComponent,
     data: {
       title: "Dokter",
@@ -63,6 +66,7 @@ const routes: Routes = [
   {
     path: ":id/edit",
     pathMatch: "full",
+    canActivate: [ AdminGuard ],
     component: UserEditComponent,
     data: {
       title: "Dokter Bewerken",

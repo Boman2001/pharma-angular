@@ -3,6 +3,9 @@ import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { BaseEntity, TableAction, TableHeader } from "src/app/modules/core/core.module";
 import { UserService } from "../../services/user.service";
+import { AuthService } from "../../../auth/services/auth.service";
+import { UserRoleEnum } from "../../../auth/enums/UserRole.enum";
+
 
 @Component({
   selector: "app-user-overview",
@@ -11,6 +14,7 @@ import { UserService } from "../../services/user.service";
 })
 export class UserOverviewComponent {
 
+  public UserRoleEnum = UserRoleEnum;
   private userEmitter;
   public deleteEntity: Observable<BaseEntity>;
 
@@ -74,7 +78,7 @@ export class UserOverviewComponent {
 
   @ViewChild("userTable") table;
 
-  constructor(public userService: UserService, public router: Router) {
+  constructor(public userService: UserService, public router: Router, public authService: AuthService) {
     this.deleteEntity = new Observable(e => this.userEmitter = e);
   }
 

@@ -4,9 +4,9 @@
             <h2>Artsen</h2>
         </div>
         <div class="col-md-6 text-right">
-            <button routerLink="new" class="btn btn-primary">+ Aanmaken</button>
+            <button *ngIf="authService.user.roles.includes(UserRoleEnum.ADMIN)" routerLink="new" class="btn btn-primary">+ Aanmaken</button>
         </div>
     </div>
     <app-datatable-component #userTable [show]="headerArray" [actions]="actionsArray" [service]="userService"></app-datatable-component>
-    <app-delete-modal [deleteEntity]="deleteEntity" [service]="userService" (deleteComplete)="onDeleteComplete($event)"></app-delete-modal>
+    <app-delete-modal *ngIf="authService.user.roles.includes(UserRoleEnum.ADMIN)" [deleteEntity]="deleteEntity" [service]="userService" (deleteComplete)="onDeleteComplete($event)"></app-delete-modal>
 </div>
