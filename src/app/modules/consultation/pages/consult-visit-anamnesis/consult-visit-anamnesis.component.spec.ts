@@ -4,6 +4,7 @@ import { NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { ConsultationModule } from "../../consultation.module";
 import { FormBuilder } from "@angular/forms";
 import { RouterTestingModule } from "@angular/router/testing";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 
 describe("ConsultVisitAnamnesisComponent", () => {
@@ -15,7 +16,8 @@ describe("ConsultVisitAnamnesisComponent", () => {
       imports: [
         ConsultationModule,
         NgbDatepickerModule,
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientTestingModule
       ],
       declarations: [ ConsultVisitAnamnesisComponent ],
       providers: [FormBuilder]
