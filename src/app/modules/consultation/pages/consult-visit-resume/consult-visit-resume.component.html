@@ -27,7 +27,7 @@
           <tr *ngFor="let episode of episodes">
             <td>{{moment(episode.startDate).format("LL")}}</td>
             <td class="w-50">{{episode.description}}</td>
-            <td>P17</td>
+            <td>{{ episode.icpcCode?.code || " - " }}</td>
           </tr>
           </tbody>
         </table>
@@ -50,7 +50,7 @@
           <tr *ngFor="let episode of episodes">
             <td>{{moment(episode.startDate).format("LL")}}</td>
             <td class="w-50">{{episode.description}}</td>
-            <td>P17</td>
+            <td>{{ episode.icpcCode?.code || " - " }}</td>
           </tr>
           </tbody>
         </table>

@@ -48,6 +48,13 @@ export class ConsultOverviewComponent implements OnInit {
         return p?.name || "-";
       }
     },
+    {
+      key: "completed",
+      text: "Afgerond",
+      transform: (c: Consultation) => {
+        return c.completed ? "Ja" : "Nee";
+      }
+    },
   ];
 
   actionsArray: TableAction[] = [

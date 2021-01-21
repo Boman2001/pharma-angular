@@ -74,7 +74,7 @@ export class ConsultVisitEvaluationComponent implements OnInit {
     }));
 
     this.filterParams = new HttpParams()
-      .set("consultationId", this.consultation.id);
+      .set("patientId", this.consultation.patientId.toString());
   }
 
   get userJournal(): UserJournal {

@@ -11,6 +11,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 
 
 const mockData: User = {
+  roles: [],
   id: "44b64f8b-fe1b-44e3-9e0e-7be935660951", // Random ID
   name: "Test Test",
   email: "test@example.com",
@@ -23,7 +24,7 @@ const mockData: User = {
   phoneNumber: "+31612345678",
   postalCode: "1234AB",
   street: "Teststraat",
-  username: "test",
+  username: "test"
 };
 
 describe("UserDetailComponent", () => {
