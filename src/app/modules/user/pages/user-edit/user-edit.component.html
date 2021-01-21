@@ -4,7 +4,7 @@
       <h2>Arts Wijzigen</h2>
     </div>
     <div class="col-md-6 text-right">
-      <button *ngIf="form.editMode" class="btn btn-primary" name="Delete" id="Delete" (click)="deleteUserEmitter.next(form.user)">Verwijderen</button>
+      <button class="btn btn-primary" name="Delete" id="Delete" (click)="deleteUserEmitter.next(form.user)">Verwijderen</button>
     </div>
   </div>
   <app-user-form #form buttonName="Wijzigen" (saveComplete)="onSaveComplete($event)" [initialUser]="user"></app-user-form>
