@@ -107,10 +107,6 @@ export class ConsultVisitAnamnesisComponent implements OnInit {
 
       this.currentEpisodes$ = this.episodeService.GetAll(null, currentEpisodeQueryParams);
       this.expiredEpisodes$ = this.episodeService.GetAll(null, expiredEpisodeQueryParams);
-
-      this.currentEpisodes$.subscribe((e) => {
-        console.log(e);
-      });
     });
   }
 
