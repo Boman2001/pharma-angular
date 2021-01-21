@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 import { Patient } from "../../models/patient.model";
 import { Observable } from "rxjs";
 import { PatientService } from "../../services/patient.service";
+import { NgbCalendar, NgbDate } from "@ng-bootstrap/ng-bootstrap";
+import * as moment from "moment";
 
 
 @Component({
@@ -20,7 +22,9 @@ export class PatientFormComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private patientService: PatientService) {}
+  constructor(private fb: FormBuilder, 
+              private patientService: PatientService,
+              private calendar: NgbCalendar) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -55,7 +59,11 @@ export class PatientFormComponent implements OnInit {
   }
 
   set patient(value: Patient) {
-    this.form.patchValue(value);
+    const date = moment(value.dob);
+    this.form.patchValue({
+      ...value,
+      dob: this.calendar.getNext(new NgbDate(date.year(), date.month() + 1, date.date() - 1))
+    });
   }
 
   async save(): Promise<boolean> {
