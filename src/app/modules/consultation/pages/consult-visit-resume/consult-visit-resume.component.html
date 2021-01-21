@@ -70,9 +70,9 @@
           <tbody>
           <ng-container *ngFor="let physicalExaminationTypes of physicalExaminations;">
             <tr *ngFor="let physicalExamination of physicalExaminationTypes; let i = index" [attr.data-index]="i">
-              <td>{{i == 0 ? physicalExamination.id : ""}}</td>
+              <td>{{i == 0 ? physicalExamination["examinationType"]["name"] : ""}}</td>
               <td>{{moment(physicalExamination.date).format("LL")}}</td>
-              <td>{{physicalExamination.value}}</td>
+              <td>{{physicalExamination.value}} {{physicalExamination["examinationType"]["unit"]}}</td>
             </tr>
           </ng-container>
           </tbody>
@@ -95,9 +95,9 @@
           <tbody>
           <ng-container *ngFor="let additionalExaminationTypes of additionalExaminations;">
             <tr *ngFor="let additionalExamination of additionalExaminationTypes; let i = index" [attr.data-index]="i">
-              <td>{{i == 0 ? additionalExamination.additionalExaminationType.name : ""}}</td>
+              <td>{{i == 0 ? additionalExamination["additionalExaminationType"]["name"] : ""}}</td>
               <td>{{moment(additionalExamination.date).format("LL")}}</td>
-              <td>{{additionalExamination.value}}</td>
+              <td>{{additionalExamination.value}} {{additionalExamination["additionalExaminationType"]["unit"]}}</td>
             </tr>
           </ng-container>
           </tbody>

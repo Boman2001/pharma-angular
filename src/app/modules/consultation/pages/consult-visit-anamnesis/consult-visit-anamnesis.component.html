@@ -1,6 +1,6 @@
 <div class="d-flex flex-column-reverse flex-lg-row anamnesis">
   <div class="col-lg-6 col-12 d-flex flex-column">
-    <h3 class="p-3">Huidige klachten/problemen</h3>
+    <h3 class="py-3">Huidige klachten/problemen</h3>
     <div class="flex-grow-1">
       <div class="table-wrapper overflow-auto mb-4">
         <table class="table table-striped" aria-label="Een tabel van de huidige klachten/problemen" *ngIf="currentEpisodes$ | async as currEpisodes">
@@ -28,7 +28,7 @@
             <div class="form-group w-50 pr-2">
               <label for="startDate">Startdatum</label>
               <div class="input-group">
-                <input class="form-control" placeholder="yyyy-mm-dd"
+                <input class="form-control" id="startDate" placeholder="yyyy-mm-dd"
                        name="dp" formControlName="startDate" ngbDatepicker #d="ngbDatepicker">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
@@ -55,7 +55,7 @@
           </div>
           <div class="form-group">
             <label for="description">Klacht/Probleem</label>
-            <textarea class="form-control" name="comment" formControlName="description" placeholder="Klacht/Probleem"></textarea>
+            <textarea class="form-control" id="description" name="description" formControlName="description" placeholder="Klacht/Probleem"></textarea>
             <div *ngIf="form.controls['description'].getError('incorrect')">
               <div class="input-validation-error-text">Een klacht of probleem is verplicht.</div>
             </div>

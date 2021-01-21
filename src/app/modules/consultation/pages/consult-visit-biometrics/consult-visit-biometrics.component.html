@@ -5,7 +5,7 @@
       <div class="mr-2 mb-2" *ngFor="let examinationTypes of physicalExamination">
         <span>{{ examinationTypes[0]["examinationType"]["name"] }} ({{examinationTypes[0]["examinationType"]["unit"]}})</span>
         <ul class="list-group">
-          <li class="list-group-item border-0" *ngFor="let examination of examinationTypes">{{moment(examination.date).format("LL")}} {{examination.value}}{{examination["examinationType"]["unit"]}}</li>
+          <li class="list-group-item border-0" *ngFor="let examination of examinationTypes">{{moment(examination.date).format("LL")}} {{examination.value}} {{examination["examinationType"]["unit"]}}</li>
         </ul>
       </div>
     </div>
