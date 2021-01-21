@@ -14,7 +14,7 @@ describe("UserFormComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ 
+      imports: [
         RouterTestingModule,
         NgbDatepickerModule
       ],
