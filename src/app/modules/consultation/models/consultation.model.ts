@@ -7,7 +7,7 @@ export class Consultation extends BaseEntity {
   doctorId: string;
   doctor?: User;
 
-  patientId: number;
+  patientId: string;
   patient?: Patient;
 
   completed?: boolean;
