@@ -34,9 +34,9 @@ export class ConsultVisitExaminationComponent implements OnInit {
       this.examinations$ = this.additionalExaminationResultService.GetAll(null, new HttpParams().set("patientId", data.patient.id))
         .pipe(
           map(items => {
-            if(items.length > 0){
+            if (items.length > 0){
               this.empty = false;
-            }            
+            }
             return this.groupBy(items, item => item.additionalExaminationTypeId);
           })
         );

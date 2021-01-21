@@ -39,9 +39,9 @@ describe("MasterComponent", () => {
     expect(img).toBeTruthy();
   });
 
-  it("should have 5 nav items", () => {
+  it("should have 7 nav items", () => {
     const compiled = fixture.debugElement.nativeElement;
     const nav = compiled.querySelector(".sidebar ul");
-    expect(nav.children.length).toEqual(6);
+    expect(nav.children.length).toEqual(7);
   });
 });
