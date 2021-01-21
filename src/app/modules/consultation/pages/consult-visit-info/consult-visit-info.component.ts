@@ -1,7 +1,7 @@
 import {Component, OnInit } from "@angular/core";
 import {DomSanitizer} from "@angular/platform-browser";
 import {NgbCalendar, NgbDate, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import {ConsultationService} from "../../services/consultation.service";
 import {switchMap} from "rxjs/operators";
 import {Consultation} from "../../models/consultation.model";
@@ -24,7 +24,8 @@ export class ConsultVisitInfoComponent implements OnInit {
   constructor(public sanitizer: DomSanitizer,
               private route: ActivatedRoute,
               private service: ConsultationService,
-              private calendar: NgbCalendar) {
+              private calendar: NgbCalendar,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -34,6 +35,12 @@ export class ConsultVisitInfoComponent implements OnInit {
     );
 
     this.consultation$.subscribe(c => {
+
+      if (c == null) {
+        this.router.navigate(["/"]);
+        return;
+      }
+
       const date = moment(c.date);
       this.model = this.calendar.getNext(new NgbDate(date.year(), date.month() + 1, date.date() - 1));
       this.time = date.format("HH:mm");

@@ -20,7 +20,7 @@ import * as moment from "moment";
 export class ConsultVisitEvaluationComponent implements OnInit {
 
   @ViewChild("userJournalTable") private userJournalTable;
-  private consultation: Consultation;
+  public consultation: Consultation;
   form: FormGroup;
 
   public filterParams: HttpParams;

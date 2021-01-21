@@ -22,7 +22,7 @@ export class PatientFormComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, 
+  constructor(private fb: FormBuilder,
               private patientService: PatientService,
               private calendar: NgbCalendar) {}
 

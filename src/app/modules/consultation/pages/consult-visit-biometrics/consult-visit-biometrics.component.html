@@ -13,43 +13,59 @@
     </ng-container>
     <p class="p-3" *ngIf="empty">Er zijn geen fysieke onderzoeken</p>
   </div>
-  <form name="form" [formGroup]="form">
-    <div class="form-group">
-      <select class="form-control" formControlName="examination" (change)="SelectChange($event.target.value)">
-        <option id="default" disabled [selected]=true value="">Onderzoeken</option>
-        <ng-container>
-          <option  *ngFor="let examType of examinationTypes" [value]="examType.id">{{ examType.name }}</option>
-        </ng-container>
-      </select>
-      <div *ngIf="form.controls['examination'].getError('incorrect')">
-        <div class="input-validation-error-text">Een onderzoek is verplicht</div>
+  <ng-template [ngIf]="!(consult$ | async)?.completed">
+    <form name="form" [formGroup]="form">
+      <div class="form-group">
+        <select class="form-control" formControlName="examination" (change)="SelectChange($event.target.value)">
+          <option id="default" disabled [selected]=true value="">Onderzoeken</option>
+          <ng-container>
+            <option  *ngFor="let examType of examinationTypes" [value]="examType.id">{{ examType.name }}</option>
+          </ng-container>
+        </select>
+        <div *ngIf="form.controls['examination'].getError('incorrect')">
+          <div class="input-validation-error-text">Een onderzoek is verplicht</div>
+        </div>
       </div>
-    </div>
-    <div class="form-group d-flex">
-      <div class="form-group w-50 pr-2">
-        <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd"
-                 name="dp" formControlName="date" ngbDatepicker #d="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+      <div class="form-group d-flex">
+        <div class="form-group w-50 pr-2">
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                   name="dp" formControlName="date" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+            </div>
+          </div>
+          <div *ngIf="form.controls['date'].getError('incorrect')">
+            <div class="input-validation-error-text">Een datum is verplicht</div>
           </div>
         </div>
-        <div *ngIf="form.controls['date'].getError('incorrect')">
-          <div class="input-validation-error-text">Een datum is verplicht</div>
-        </div>
-      </div>
-      <div class="form-group w-50 pl-2">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Waarde" formControlName="value">
-          <div class="input-group-append">
-            <span class="input-group-text">{{ labelText }}</span>
+        <div class="form-group d-flex">
+          <div class="form-group w-50 pr-2">
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                     name="dp" formControlName="date" ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+              </div>
+            </div>
+            <div *ngIf="form.controls['date'].getError('incorrect')">
+              <div class="input-validation-error-text">Een datum is verplicht</div>
+            </div>
+          </div>
+          <div class="form-group w-50 pl-2">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Waarde" formControlName="value">
+              <div class="input-group-append">
+                <span class="input-group-text">{{ labelText }}</span>
+              </div>
+            </div>
+            <div *ngIf="form.controls['value'].getError('incorrect')">
+              <div class="input-validation-error-text">Een waarde is verplicht</div>
+            </div>
           </div>
         </div>
-        <div *ngIf="form.controls['value'].getError('incorrect')">
-          <div class="input-validation-error-text">Een waarde is verplicht</div>
-        </div>
+        <input type="submit" class="btn btn-primary float-right mb-3" value="Toevoegen" (click)="submit()">
       </div>
-    </div>
-    <input type="submit" class="btn btn-primary float-right mb-3" value="Toevoegen" (click)="submit()">
-  </form>
+    </form>
+  </ng-template>
 </div>
