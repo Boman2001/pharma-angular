@@ -95,7 +95,7 @@
           <tbody>
           <ng-container *ngFor="let additionalExaminationTypes of additionalExaminations;">
             <tr *ngFor="let additionalExamination of additionalExaminationTypes; let i = index" [attr.data-index]="i">
-              <td>{{i == 0 ? additionalExamination.id : ""}}</td>
+              <td>{{i == 0 ? additionalExamination.additionalExaminationType.name : ""}}</td>
               <td>{{moment(additionalExamination.date).format("LL")}}</td>
               <td>{{additionalExamination.value}}</td>
             </tr>
