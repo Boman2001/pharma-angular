@@ -80,7 +80,7 @@ export class ConsultCreateComponent implements OnInit {
       doctor: null,
       doctorId: "",
       patient: null,
-      patientId: "",
+      patientId: null,
       comments: null
     };
 
