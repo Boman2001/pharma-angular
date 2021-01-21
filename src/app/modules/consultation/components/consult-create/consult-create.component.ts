@@ -52,6 +52,9 @@ export class ConsultCreateComponent implements OnInit {
     this.formType = "Aanmaken";
 
     this.initialConsultation?.subscribe((c: Consultation) => {
+
+      this.clear();
+
       this.consultation = c;
 
       if (c.id != null){
@@ -70,11 +73,31 @@ export class ConsultCreateComponent implements OnInit {
     }
   }
 
+  public clear(): void {
+
+    this.consultation = {
+      date: null,
+      doctor: null,
+      doctorId: "",
+      patient: null,
+      patientId: "",
+      comments: null
+    };
+
+    for (const i in this.form.controls) {
+      if (this.form.controls.hasOwnProperty(i)) {
+        this.form.controls[i]?.markAsUntouched();
+      }
+    }
+  }
+
   public open(): void {
+
     this.modal = this.modalService.open(this.content, { ariaLabelledBy: "modal-create-consultation" });
   }
 
   public close(): void {
+
     this.modal.close();
   }
 
@@ -127,22 +150,7 @@ export class ConsultCreateComponent implements OnInit {
       }
 
       this.createComplete.emit(result);
-      this.modal.close();
-
-      this.consultation = {
-        date: null,
-        doctor: null,
-        doctorId: null,
-        patient: null,
-        patientId: null,
-        comments: null
-      };
-
-      for (const i in this.form.controls) {
-        if (this.form.controls.hasOwnProperty(i)) {
-          this.form.controls[i]?.markAsUntouched();
-        }
-      }
+      this.close();
     }
     catch (e) {
       // @TODO GlobalModalService / ToastService?
