@@ -8,6 +8,7 @@ import { ConsultationService } from "../../services/consultation.service";
 import { Observable } from "rxjs/internal/Observable";
 import { Consultation } from "../../consultation.module";
 import { HttpParams } from "@angular/common/http";
+import { text } from "@fortawesome/fontawesome-svg-core";
 import * as moment from "moment";
 
 @Component({
@@ -35,6 +36,7 @@ export class ConsultVisitBiometricsComponent implements OnInit {
 
   labelText = "";
   defaultSelect: string;
+
   empty = true;
 
   constructor(
@@ -69,6 +71,9 @@ export class ConsultVisitBiometricsComponent implements OnInit {
     });
   }
 
+  // const test = this.physicalExaminationService.GetAll(null, new HttpParams().set("patientId", patientId)).toPromise();
+  // this.examinationType$ = this.examinationTypeService.GetAll();
+
   async getData(id: string): Promise<void> {
     this.examinationTypes = await this.examinationTypeService.GetAll().toPromise();
     this.physicalExamination$ = this.physicalExaminationService.GetAll(null, new HttpParams().set("patientId", id))
@@ -76,6 +81,9 @@ export class ConsultVisitBiometricsComponent implements OnInit {
       map(items => {
         if(items.length > 0){
           this.empty = false;
+          for (const i of items) {
+            i.examinationType = this.examinationTypes?.find((et) => et.id === i.examinationTypeId);
+          }
         }
         return this.bioGroupBy(items, item => item.examinationTypeId);
       })
@@ -97,6 +105,7 @@ export class ConsultVisitBiometricsComponent implements OnInit {
     grouped = grouped.filter(el => {
       return el != null;
     });
+
     return grouped;
   }
 
@@ -131,8 +140,8 @@ export class ConsultVisitBiometricsComponent implements OnInit {
     this.form.controls.examination.setValue("");
   }
 
-  SelectChange(et: ExaminationType): void {
-    this.selectedExaminationType = et;
-    this.labelText = et.unit.toUpperCase();
+  SelectChange(et: string): void {
+    this.selectedExaminationType = this.examinationTypes.find(item => item.id.toString() === et);
+    this.labelText = this.selectedExaminationType.unit.toUpperCase();
   }
 }
