@@ -47,7 +47,7 @@ export class UserFormComponent implements OnInit {
         city: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
         postalCode: new FormControl("", [ Validators.required, Validators.minLength(6), Validators.maxLength(6) ]),
         country: new FormControl("NL", [ Validators.required, Validators.maxLength(255) ]),
-        password: new FormControl("", this.editMode ? [] : [ Validators.required ]),
+        password: new FormControl("", this.editMode ? [] : [ Validators.required, Validators.minLength(4) ]),
         passwordCheck: new FormControl("", this.editMode ? [] : [ Validators.required ]),
       },
       {
@@ -69,7 +69,13 @@ export class UserFormComponent implements OnInit {
   }
 
   get user(): User {
-    return this.form.getRawValue();
+    const raw = this.form.getRawValue();
+    return {
+      ...raw,
+      dob: moment(raw.dob).toISOString(),
+      password: raw.password !== "" ? raw.password : null,
+      passwordCheck: raw.passwordCheck !== "" ? raw.passwordCheck : null,
+    };
   }
 
   set user(value: User) {

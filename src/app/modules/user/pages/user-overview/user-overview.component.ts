@@ -3,6 +3,9 @@ import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { BaseEntity, TableAction, TableHeader } from "src/app/modules/core/core.module";
 import { UserService } from "../../services/user.service";
+import { AuthService } from "../../../auth/services/auth.service";
+import { UserRoleEnum } from "../../../auth/enums/UserRole.enum";
+
 
 @Component({
   selector: "app-user-overview",
@@ -11,6 +14,7 @@ import { UserService } from "../../services/user.service";
 })
 export class UserOverviewComponent {
 
+  public UserRoleEnum = UserRoleEnum;
   private userEmitter;
   public deleteEntity: Observable<BaseEntity>;
 
@@ -42,39 +46,42 @@ export class UserOverviewComponent {
     },
     { key: "phoneNumber", text: "Telefoonnummer" },
   ];
-  actionsArray: TableAction[] = [
-    {
-      id: "user-detail",
-      name: "Detail",
-      classes: ["btn", "btn-primary"],
-      icon: `eye`,
-      action: (entity: BaseEntity) => {
-        this.router.navigate([`/doctors/${entity.id}`]);
-      }
-    },
-    {
-      id: "user-edit",
-      name: "Aanpassen",
-      classes: ["btn", "btn-warning"],
-      icon: `pencil-alt`,
-      action: (entity: BaseEntity) => {
-        this.router.navigate([`/doctors/${entity.id}/edit`]);
-      }
-    },
-    {
-      id: "user-delete",
-      name: "Delete",
-      classes: ["btn", "btn-danger"],
-      icon: `trash-alt`,
-      action: (entity: BaseEntity) => {
-        this.userEmitter.next(entity);
-      }
-    }
-  ];
+  actionsArray: TableAction[] =
+    this.authService.user?.roles?.includes(UserRoleEnum.ADMIN)
+      ? [
+          {
+            id: "user-detail",
+            name: "Detail",
+            classes: ["btn", "btn-primary"],
+            icon: `eye`,
+            action: (entity: BaseEntity) => {
+              this.router.navigate([`/doctors/${entity.id}`]);
+            }
+          },
+          {
+            id: "user-edit",
+            name: "Aanpassen",
+            classes: ["btn", "btn-warning"],
+            icon: `pencil-alt`,
+            action: (entity: BaseEntity) => {
+              this.router.navigate([`/doctors/${entity.id}/edit`]);
+            }
+          },
+          {
+            id: "user-delete",
+            name: "Delete",
+            classes: ["btn", "btn-danger"],
+            icon: `trash-alt`,
+            action: (entity: BaseEntity) => {
+              this.userEmitter.next(entity);
+            }
+          }
+        ]
+      : [];
 
   @ViewChild("userTable") table;
 
-  constructor(public userService: UserService, public router: Router) {
+  constructor(public userService: UserService, public router: Router, public authService: AuthService) {
     this.deleteEntity = new Observable(e => this.userEmitter = e);
   }
 

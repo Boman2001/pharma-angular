@@ -48,6 +48,13 @@ export class ConsultOverviewComponent implements OnInit {
         return p?.name || "-";
       }
     },
+    {
+      key: "completed",
+      text: "Afgerond",
+      transform: (completed: boolean) => {
+        return completed ? "Ja" : "Nee";
+      }
+    },
   ];
 
   actionsArray: TableAction[] = [
@@ -107,7 +114,10 @@ export class ConsultOverviewComponent implements OnInit {
 
   changeDate(date: NgbDateStruct): void {
     if (this.dataTable != null) {
-      this.dataTable.tableService.searchTerm = this.date.year + "-" + this.date.month + "-" + this.date.day;
+      this.dataTable.tableService.searchTerm = moment({
+        ...this.date,
+        month: this.date.month - 1
+      }).format("LL");
     }
   }
 

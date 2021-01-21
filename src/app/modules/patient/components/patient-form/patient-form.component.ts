@@ -29,7 +29,7 @@ export class PatientFormComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       id: new FormControl("", []),
-      bsn: new FormControl("", [ Validators.required, Validators.minLength(11), Validators.maxLength(11) ]),
+      bsn: new FormControl("", [ Validators.required, Validators.minLength(9), Validators.maxLength(9) ]),
       name: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
       email: new FormControl("", [ Validators.required, Validators.maxLength(255), Validators.email ]),
       dob: new FormControl("", [ Validators.required ]),
@@ -55,7 +55,11 @@ export class PatientFormComponent implements OnInit {
   }
 
   get patient(): Patient {
-    return this.form.getRawValue();
+    const raw = this.form.getRawValue();
+    return {
+      ...raw,
+      dob: moment(raw.dob).toISOString()
+    };
   }
 
   set patient(value: Patient) {
@@ -75,7 +79,6 @@ export class PatientFormComponent implements OnInit {
 
     if (!this.form.valid)
     {
-      // @TODO: Toast? GlobalModal??
       return;
     }
 
@@ -89,11 +92,9 @@ export class PatientFormComponent implements OnInit {
       {
         result = await this.patientService.Add(this.patient).toPromise();
       }
-      // @TODO: Toast? GlobalModal??
       this.saveComplete.emit(result);
     }
     catch (e) {
-      // @TODO: Toast? GlobalModal??
       this.saveError.emit(e);
     }
 

@@ -16,7 +16,6 @@ export class GoogleMapsComponent implements OnInit {
 
   public selectedDate;
 
-  // center = { lat: 52.092876, lng: 5.104480 }; // UTRECHT
   center = { lat: 0 , lng: 0};
   initial = { lat: 51.578980, lng: 4.790310 }; // Eggestraat 3, Breda (HUISARTSENPOST)
   renderOptions = { suppressMarkers: true };
@@ -27,7 +26,8 @@ export class GoogleMapsComponent implements OnInit {
   currentIW: AgmInfoWindow;
   previousIW: AgmInfoWindow;
 
-  consultations: Consultation[];
+  consultations: Consultation[] = [];
+
   constructor(protected consultationService: ConsultationService) {
     this.selectedDate = moment();
   }
@@ -43,8 +43,29 @@ export class GoogleMapsComponent implements OnInit {
   }
 
   async refresh(): Promise<void> {
-    this.consultations = await this.consultationService.GetAll(null, new HttpParams().set("date", this.selectedDate.toISOString())).toPromise();
+
+    try {
+      await this.previousIW?.close();
+      await this.currentIW?.close();
+    }
+    catch (e) {
+      // @TODO: GlobalModalService // ToastService?
+      console.error(e);
+    }
+
+    this.showMap = false;
+    this.origin = null;
+    this.destination = null;
+    this.destinations = [];
+
+    this.consultations = await this.consultationService.GetAll(
+      null,
+      new HttpParams()
+        .set("date", this.selectedDate.toISOString())
+    )
+    .toPromise();
     this.origin = this.initial;
+
     this.calculateCenter();
     this.setDestinations();
   }
@@ -53,13 +74,10 @@ export class GoogleMapsComponent implements OnInit {
     await this.refresh();
   }
 
-  clickedMarker(index: number, infoWindow: any): void {
+  async clickedMarker(index: number, infoWindow: any): Promise<void> {
 
-    if (this.previousIW) {
-      this.currentIW = infoWindow;
-      this.previousIW.close();
-    }
-    this.previousIW = infoWindow;
+    await this.previousIW?.close();
+    this.currentIW = infoWindow;
 
     this.showMap = true;
     this.getDestination(index);

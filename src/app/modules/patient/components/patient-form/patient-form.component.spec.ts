@@ -50,7 +50,7 @@ describe("PatientFormComponent", () => {
   it("should return form is valid", () => {
     component.form.controls.name.setValue("Test");
     component.form.controls.email.setValue("test@test.com");
-    component.form.controls.bsn.setValue("12345678911");
+    component.form.controls.bsn.setValue("123456789");
     component.form.controls.dob.setValue("2021-01-01");
     component.form.controls.gender.setValue("male");
     component.form.controls.phoneNumber.setValue("0612345678");

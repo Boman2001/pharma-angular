@@ -1,6 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 import { AuthService } from "../../modules/auth/auth.module";
 import { Router } from "@angular/router";
+import { UserRoleEnum } from "../../modules/auth/enums/UserRole.enum";
 
 
 @Component({
@@ -9,10 +10,12 @@ import { Router } from "@angular/router";
   styleUrls: ["./master.component.css"]
 })
 export class MasterComponent {
+
+  UserRoleEnum = UserRoleEnum;
   navBar = false;
   @ViewChild("profileDropdown") profileDropdown;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
   get initials(): string {
     const nameParts = this.authService.user?.name?.split(" ") || [];

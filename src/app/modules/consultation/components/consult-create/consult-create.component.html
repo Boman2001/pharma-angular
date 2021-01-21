@@ -10,7 +10,7 @@
 
     <input type="hidden" name="id" id="consultation-id" formControlName="id">
 
-    <div class="d-flex justify-content-between">
+    <div class="d-flex flex-column flex-sm-row justify-content-between">
       <div class="form-group d-flex flex-column justify-content-center mr-2">
         <div class="input-group">
           <input id="date" class="form-control" [ngClass]="form.controls['date'].invalid && form.controls['date'].touched ? 'input-validation-error' : ''" placeholder="dd-mm-yyyy" name="dp" ngbDatepicker #dp="ngbDatepicker" formControlName="date" required>
@@ -31,7 +31,7 @@
     </div>
     <div class="form-group">
       <select class="form-control" [ngClass]="form.controls['patientId'].invalid && form.controls['patientId'].touched ? 'input-validation-error' : ''" name="patientId" id="patientId" formControlName="patientId" required>
-        <option value="">Kies een patiënt</option>
+        <option value="0">Kies een patiënt</option>
         <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.name }}</option>
       </select>
       <div *ngIf="form.controls['patientId'].invalid && form.controls['patientId'].touched">

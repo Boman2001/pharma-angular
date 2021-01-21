@@ -5,13 +5,13 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {User} from "../../user/user.module";
 import {Gender, StorageService} from "../../core/core.module";
-import {BehaviorSubject} from "rxjs";
 
 const mockToken = "ey1234.test.test.test";
 
 const date = new Date();
 
 const mockUser: User = {
+  roles: [],
   id: "1",
   name: "Mock User",
   username: "testuser",

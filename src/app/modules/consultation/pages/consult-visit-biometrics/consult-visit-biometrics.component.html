@@ -39,20 +39,7 @@
             <div class="input-validation-error-text">Een datum is verplicht</div>
           </div>
         </div>
-        <div class="form-group d-flex">
-          <div class="form-group w-50 pr-2">
-            <div class="input-group">
-              <input class="form-control" placeholder="yyyy-mm-dd"
-                     name="dp" formControlName="date" ngbDatepicker #d="ngbDatepicker">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-              </div>
-            </div>
-            <div *ngIf="form.controls['date'].getError('incorrect')">
-              <div class="input-validation-error-text">Een datum is verplicht</div>
-            </div>
-          </div>
-          <div class="form-group w-50 pl-2">
+        <div class="form-group w-50 pl-2">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Waarde" formControlName="value">
               <div class="input-group-append">
@@ -65,7 +52,6 @@
           </div>
         </div>
         <input type="submit" class="btn btn-primary float-right mb-3" value="Toevoegen" (click)="submit()">
-      </div>
     </form>
   </ng-template>
 </div>

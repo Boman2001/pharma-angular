@@ -42,6 +42,8 @@ describe("MasterComponent", () => {
   it("should have 7 nav items", () => {
     const compiled = fixture.debugElement.nativeElement;
     const nav = compiled.querySelector(".sidebar ul");
-    expect(nav.children.length).toEqual(7);
+
+    // Minimum of 6, when the user is an admin the activities item will be shown.
+    expect(nav.children.length).toBeGreaterThanOrEqual(6);
   });
 });
