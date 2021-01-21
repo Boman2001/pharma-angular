@@ -5,6 +5,7 @@ import { Prescription } from "../../models/prescription.model";
 import {Gender} from "../../../core/enums/gender.enum";
 import {Patient} from "../../../patient/models/patient.model";
 import {User} from "../../../user/models/user.model";
+import * as moment from "moment";
 
 
 @Component({
@@ -14,6 +15,7 @@ import {User} from "../../../user/models/user.model";
 })
 export class PrescriptionDetailComponent implements OnInit {
 
+  public moment = moment;
   prescription: Prescription;
 
   constructor(
@@ -26,23 +28,6 @@ export class PrescriptionDetailComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.retrievePrescriptionData(params.get("id"));
     });
-  }
-
-  public getAge(entity: User | Patient): number {
-    if (!entity) {
-      return null;
-    }
-
-    // @TODO: !!! ACTUAL RELIABLE AGE CALCULATION !!!
-    return Math.floor((((new Date().valueOf() - new Date(entity.dob).valueOf()) / (24 * 60 * 60 * 1000)) / 365.242));
-  }
-
-  public getDob(entity: User | Patient): Date {
-    if (!entity) {
-      return null;
-    }
-
-    return new Date(entity.dob);
   }
 
   public getGender(entity: User | Patient): string {

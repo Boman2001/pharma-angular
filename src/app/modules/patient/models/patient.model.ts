@@ -6,7 +6,7 @@ export class Patient extends BaseEntity {
   name: string;
   bsn: string;
   email: string;
-  dob: Date;
+  dob: string;
   gender: Gender;
   phoneNumber: string;
   city: string;
@@ -15,4 +15,6 @@ export class Patient extends BaseEntity {
   houseNumberAddon: string;
   country: string;
   postalCode: string;
+  longitude: number;
+  latitude: number;
 }

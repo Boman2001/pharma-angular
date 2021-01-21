@@ -1,11 +1,12 @@
 // Modules
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AdminGuard } from "./modules/auth/guards/admin.guard";
+import { LoginGuard } from "./modules/auth/guards/login.guard";
 
 // Components
 import { MasterComponent } from "./layout/master/master.component";
 import { NotFoundComponent } from "./pages/not-found/not-found.component";
-import { LoginGuard } from "./modules/auth/guards/login.guard";
 
 
 const routes: Routes = [
@@ -44,6 +45,12 @@ const routes: Routes = [
         path: "prescriptions",
         loadChildren: () =>
           import("./modules/prescription/prescription.module").then(m => m.PrescriptionModule),
+      },
+      {
+        path: "activities",
+        canActivate: [ AdminGuard ],
+        loadChildren: () =>
+          import("./modules/activity/activity.module").then(m => m.ActivityModule),
       },
     ],
   },

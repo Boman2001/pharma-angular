@@ -1,17 +1,24 @@
 <div class="wrapper d-flex flex-column">
   <header class="d-flex w-100 pr-4 justify-content-between align-items-center border-bottom">
     <div class="img-container p-3">
-      <img class="w-100" src="/assets/img/pharmapartners-logo.svg" alt="Logo" />
+      <a
+        routerLink="/consultation">
+        <img class="w-100" src="/assets/img/pharmapartners-logo.svg" alt="Logo" />
+      </a>
     </div>
     <div id="profile-btn" class="rounded-circle position-relative border border-dark">
-      <div class="w-100 h-100 d-flex justify-content-center align-items-center" (click)="profileClick()">JD</div>
-      <div class="popup position-absolute p-2 border bg-white" *ngIf="profile">
-        <a (click)="logout()">Logout</a>
+      <div ngbDropdown container="body" #profileDropdown class="w-100 h-100">
+        <div class="w-100 h-100 d-flex justify-content-center align-items-center profile-dropdown" ngbDropdownToggle>{{ initials }}</div>
+        <div ngbDropdownMenu>
+          <button ngbDropdownItem (click)="logout()">
+            <fa-icon icon="sign-out-alt"></fa-icon> Logout
+          </button>
+        </div>
       </div>
     </div>
   </header>
   <div class="d-flex flex-grow-1">
-    <div class="p-3 sidebar border-right h-100">
+    <div class="p-3 sidebar border-right h-lg-100">
       <nav class="navbar navbar-expand-lg">
         <button class="navbar-toggler" type="button" (click)="toggleNavBar()">
           <div id="navBars">
@@ -35,6 +42,16 @@
             <li class="list-group-item border-0 p-0">
               <a
                 class="w-100 h-100 p-2 d-block text-decoration-none"
+                routerLink="/consultation/route"
+                [routerLinkActive]="['nav-active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                Mijn route
+              </a>
+            </li>
+            <li class="list-group-item border-0 p-0">
+              <a
+                class="w-100 h-100 p-2 d-block text-decoration-none"
                 routerLink="/patients"
                 [routerLinkActive]="['nav-active']"
                 [routerLinkActiveOptions]="{ exact: true }"
@@ -49,7 +66,7 @@
                 [routerLinkActive]="['nav-active']"
                 [routerLinkActiveOptions]="{ exact: true }"
               >
-                Doktoren
+                Artsen
               </a>
             </li>
             <li class="list-group-item border-0 p-0">
@@ -70,6 +87,16 @@
                 [routerLinkActiveOptions]="{ exact: true }"
               >
                 Onderzoeken
+              </a>
+            </li>
+            <li class="list-group-item border-0 p-0" *ngIf="authService.user?.roles?.includes(UserRoleEnum.ADMIN)">
+              <a
+                class="w-100 h-100 p-2 d-block text-decoration-none"
+                routerLink="/activities"
+                [routerLinkActive]="['nav-active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                Activiteiten
               </a>
             </li>
           </ul>

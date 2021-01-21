@@ -10,6 +10,7 @@ export class User extends BaseEntity {
   dob: Date;
   gender: Gender;
   phoneNumber: string;
+  roles: string[];
   city: string;
   street: string;
   country: string;

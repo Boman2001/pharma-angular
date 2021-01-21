@@ -1,65 +1,57 @@
 <div class="page container-fluid d-flex flex-column">
   <h3 class="p-3">Biometrie</h3>
   <div class="flex-grow-1 overflow-auto">
-    <div class="d-flex flex-wrap p-3">
-      <div class="mr-2 mb-2">
-        <span>Lengte</span>
-        <ul class="list-group">
-          <li class="list-group-item border-0">16-12-2020 193</li>
-          <li class="list-group-item border-0">16-12-2020 193</li>
-          <li class="list-group-item border-0">16-12-2020 193</li>
-        </ul>
+    <ng-container *ngIf="physicalExamination$ | async as physicalExamination">
+      <div class="d-flex flex-wrap p-3" *ngIf="!empty">
+        <div class="mr-2 mb-2" *ngFor="let examinationTypes of physicalExamination">
+          <span>{{ examinationTypes[0]["examinationType"]["name"] }} ({{examinationTypes[0]["examinationType"]["unit"]}})</span>
+          <ul class="list-group">
+            <li class="list-group-item border-0" *ngFor="let examination of examinationTypes">{{moment(examination.date).format("LL")}} {{examination.value}} {{examination["examinationType"]["unit"]}}</li>
+          </ul>
+        </div>
       </div>
-      <div class="mr-2 mb-2">
-        <span>Gewicht</span>
-        <ul class="list-group">
-          <li class="list-group-item border-0">16-12-2020 74kg</li>
-          <li class="list-group-item border-0">16-12-2020 74kg</li>
-          <li class="list-group-item border-0">16-12-2020 74kg</li>
-        </ul>
-      </div>
-      <div class="mr-2 mb-2">
-        <span>Gewicht bijQI=27</span>
-        <ul class="list-group">
-          <li class="list-group-item border-0">16-12-2020 85,5kg</li>
-          <li class="list-group-item border-0">16-12-2020 85,5kg</li>
-          <li class="list-group-item border-0">16-12-2020 85,5kg</li>
-        </ul>
-      </div>
-    </div>
+    </ng-container>
+    <p class="p-3" *ngIf="empty">Er zijn geen fysieke onderzoeken</p>
   </div>
-  <form #consultBiometricsForm="ngForm" name="form" [formGroup]="form">
-    <div class="form-group">
-      <select class="form-control" formControlName="examination">
-        <option value="">Onderzoek</option>
-      </select>
-      <div *ngIf="form.controls['examination'].getError('incorrect')">
-        <div class="input-validation-error-text">Een datum is verplicht</div>
+  <ng-template [ngIf]="!(consult$ | async)?.completed">
+    <form name="form" [formGroup]="form">
+      <div class="form-group">
+        <select class="form-control" formControlName="examination" (change)="SelectChange($event.target.value)">
+          <option id="default" disabled [selected]=true value="">Onderzoeken</option>
+          <ng-container>
+            <option  *ngFor="let examType of examinationTypes" [value]="examType.id">{{ examType.name }}</option>
+          </ng-container>
+        </select>
+        <div *ngIf="form.controls['examination'].getError('incorrect')">
+          <div class="input-validation-error-text">Een onderzoek is verplicht</div>
+        </div>
       </div>
-    </div>
-    <div class="form-group d-flex">
-      <div class="form-group w-50 pr-2">
-        <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd"
-                 name="dp" formControlName="date" ngbDatepicker #d="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+      <div class="form-group d-flex">
+        <div class="form-group w-50 pr-2">
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                   name="dp" formControlName="date" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+            </div>
+          </div>
+          <div *ngIf="form.controls['date'].getError('incorrect')">
+            <div class="input-validation-error-text">Een datum is verplicht</div>
           </div>
         </div>
-        <div *ngIf="form.controls['date'].getError('incorrect')">
-          <div class="input-validation-error-text">Een datum is verplicht</div>
+        <div class="form-group w-50 pl-2">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Waarde" formControlName="value">
+              <div class="input-group-append">
+                <span class="input-group-text">{{ labelText }}</span>
+              </div>
+            </div>
+            <div *ngIf="form.controls['value'].getError('incorrect')">
+              <div class="input-validation-error-text">Een waarde is verplicht</div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="form-group w-50 pl-2">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="waarde" formControlName="value">
-          <label class="my-0 ml-2">KG</label>
-        </div>
-        <div *ngIf="form.controls['value'].getError('incorrect')">
-          <div class="input-validation-error-text">Een datum is verplicht</div>
-        </div>
-      </div>
-    </div>
-    <input type="submit" class="btn btn-primary float-right mb-3" value="Toevoegen" (click)="submit()">
-  </form>
+        <input type="submit" class="btn btn-primary float-right mb-3" value="Toevoegen" (click)="submit()">
+    </form>
+  </ng-template>
 </div>

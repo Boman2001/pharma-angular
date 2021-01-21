@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 import { Patient } from "../../models/patient.model";
 import { Observable } from "rxjs";
 import { PatientService } from "../../services/patient.service";
+import { NgbCalendar, NgbDate } from "@ng-bootstrap/ng-bootstrap";
+import * as moment from "moment";
 
 
 @Component({
@@ -20,12 +22,14 @@ export class PatientFormComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private patientService: PatientService) {}
+  constructor(private fb: FormBuilder,
+              private patientService: PatientService,
+              private calendar: NgbCalendar) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
       id: new FormControl("", []),
-      bsn: new FormControl("", [ Validators.required, Validators.minLength(11), Validators.maxLength(11) ]),
+      bsn: new FormControl("", [ Validators.required, Validators.minLength(9), Validators.maxLength(9) ]),
       name: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
       email: new FormControl("", [ Validators.required, Validators.maxLength(255), Validators.email ]),
       dob: new FormControl("", [ Validators.required ]),
@@ -51,14 +55,22 @@ export class PatientFormComponent implements OnInit {
   }
 
   get patient(): Patient {
-    return this.form.getRawValue();
+    const raw = this.form.getRawValue();
+    return {
+      ...raw,
+      dob: moment(raw.dob).toISOString()
+    };
   }
 
   set patient(value: Patient) {
-    this.form.patchValue(value);
+    const date = moment(value.dob);
+    this.form.patchValue({
+      ...value,
+      dob: this.calendar.getNext(new NgbDate(date.year(), date.month() + 1, date.date() - 1))
+    });
   }
 
-  async save(): Promise<void> {
+  async save(): Promise<boolean> {
     for (const i in this.form.controls) {
       if (this.form.controls.hasOwnProperty(i)) {
         this.form.controls[i]?.markAsTouched();
@@ -67,11 +79,10 @@ export class PatientFormComponent implements OnInit {
 
     if (!this.form.valid)
     {
-      // @TODO: Toast? GlobalModal??
       return;
     }
 
-    let result;
+    let result = false;
     try {
       if (this.patient.id != null && this.patient.id !== "")
       {
@@ -81,11 +92,9 @@ export class PatientFormComponent implements OnInit {
       {
         result = await this.patientService.Add(this.patient).toPromise();
       }
-      // @TODO: Toast? GlobalModal??
       this.saveComplete.emit(result);
     }
     catch (e) {
-      // @TODO: Toast? GlobalModal??
       this.saveError.emit(e);
     }
 

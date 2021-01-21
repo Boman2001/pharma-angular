@@ -39,9 +39,11 @@ describe("MasterComponent", () => {
     expect(img).toBeTruthy();
   });
 
-  it("should have 5 nav items", () => {
+  it("should have 7 nav items", () => {
     const compiled = fixture.debugElement.nativeElement;
     const nav = compiled.querySelector(".sidebar ul");
-    expect(nav.children.length).toEqual(5);
+
+    // Minimum of 6, when the user is an admin the activities item will be shown.
+    expect(nav.children.length).toBeGreaterThanOrEqual(6);
   });
 });

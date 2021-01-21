@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import {Consultation} from "../../models/consultation.model";
+import { ActivatedRoute } from "@angular/router";
+import { map } from "rxjs/operators";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-consult-visit",
@@ -7,18 +9,21 @@ import {Consultation} from "../../models/consultation.model";
   styleUrls: ["./consult-visit.component.css"]
 })
 export class ConsultVisitComponent implements OnInit {
-  consult: Consultation;
+  id$: Observable<any>;
   steps = false;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.consult = new Consultation();
-    this.consult.id = "1";
+
+    this.id$ = this.route.paramMap.pipe(
+      map((params) => {
+        return params.get("id");
+      })
+    );
   }
 
-  toggleSteps(): void{
+  toggleSteps(): void {
     this.steps = !this.steps;
-}
-
+  }
 }

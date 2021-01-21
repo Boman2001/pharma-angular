@@ -5,6 +5,9 @@ import { PatientFormComponent } from "./patient-form.component";
 import { PatientService } from "../../services/patient.service";
 import { StorageService } from "../../../core/services/storage.service";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import { AuthService } from "../../../auth/services/auth.service";
+import { RouterTestingModule } from "@angular/router/testing";
+import {NgbDatepickerModule} from "@ng-bootstrap/ng-bootstrap";
 
 describe("PatientFormComponent", () => {
   let component: PatientFormComponent;
@@ -12,12 +15,19 @@ describe("PatientFormComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
-      declarations: [ PatientFormComponent ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        NgbDatepickerModule
+      ],
+      declarations: [
+        PatientFormComponent
+      ],
       providers: [
         FormBuilder,
         PatientService,
-        StorageService
+        StorageService,
+        AuthService
       ]
     })
     .compileComponents();
@@ -40,7 +50,7 @@ describe("PatientFormComponent", () => {
   it("should return form is valid", () => {
     component.form.controls.name.setValue("Test");
     component.form.controls.email.setValue("test@test.com");
-    component.form.controls.bsn.setValue("12345678911");
+    component.form.controls.bsn.setValue("123456789");
     component.form.controls.dob.setValue("2021-01-01");
     component.form.controls.gender.setValue("male");
     component.form.controls.phoneNumber.setValue("0612345678");

@@ -4,7 +4,8 @@ import { HttpService, StorageService } from "../../core/core.module";
 import { User } from "../../user/user.module";
 import { HttpClient } from "@angular/common/http";
 import { LoginResponse } from "../models/LoginResponse.model";
-import { BehaviorSubject } from "rxjs";
+import { TwoFactorResponse } from "../models/TwoFactorResponse.model";
+import { TwoFactorData } from "../types/TwoFactorData";
 
 
 @Injectable({
@@ -12,13 +13,11 @@ import { BehaviorSubject } from "rxjs";
 })
 export class AuthService extends HttpService {
 
-  constructor(protected http: HttpClient, protected storage: StorageService)
-  {
+  constructor(protected http: HttpClient, protected storage: StorageService) {
     super(http, storage);
   }
 
-  public get basePath(): string
-  {
+  public get basePath(): string {
     return `${environment.apiUrl}/Auth`;
   }
 
@@ -26,29 +25,50 @@ export class AuthService extends HttpService {
     return this.token != null;
   }
 
-  public get user(): BehaviorSubject<User>
+  public get user(): User
   {
-    return new BehaviorSubject<User>(this.storage.GetItem("user"));
+    return this.storage.GetItem("user");
   }
 
-  public set user(value: BehaviorSubject<User>)
+  public set user(value: User)
   {
-    this.storage.SetItem("user", value.getValue());
+    this.storage.SetItem("user", value);
   }
 
-  public get token(): string
-  {
+  public get token(): string {
     return this.storage.GetItem("token");
   }
 
-  public set token(value: string)
-  {
+  public set token(value: string) {
     this.storage.SetItem("token", value);
   }
 
-  public async Login(email: string, password: string): Promise<boolean>
-  {
-    const loginResponse = await this.http.post<LoginResponse>(
+  public async TwoFactor(email: string, code: string): Promise<boolean> {
+    const twoFactorResponse = await this.http.post<TwoFactorResponse>(
+      `${this.basePath}/login/twofactor`,
+      {
+        email,
+        code
+      },
+      this.baseOptions
+    )
+    .toPromise();
+
+    if (twoFactorResponse?.token == null || twoFactorResponse.user?.id == null)
+    {
+      return false;
+    }
+
+    this.token = twoFactorResponse.token;
+    this.user = twoFactorResponse.user;
+
+    return true;
+  }
+
+  public async Login(email: string, password: string): Promise<TwoFactorData> {
+
+    // Login
+    const loginResponse = await this.http.post<TwoFactorData>(
       `${this.basePath}/login`,
       {
         email,
@@ -58,25 +78,14 @@ export class AuthService extends HttpService {
     )
     .toPromise();
 
-    if
-    (
-      loginResponse == null
-      || loginResponse.token == null
-      || loginResponse.user == null
-      || loginResponse.user.id == null
-    )
-    {
-      return false;
+    if (loginResponse?.email == null) {
+      return null;
     }
 
-    this.token = loginResponse.token;
-    this.user = new BehaviorSubject<User>(loginResponse.user);
-
-    return true;
+    return loginResponse;
   }
 
-  public Logout(): void
-  {
+  public Logout(): void {
     this.storage.RemoveItem("user");
     this.storage.RemoveItem("token");
   }

@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { ConsultVisitBiometricsComponent } from "./consult-visit-biometrics.component";
-import {ConsultationModule} from "../../consultation.module";
-import {NgbDatepickerModule} from "@ng-bootstrap/ng-bootstrap";
+import { NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
+import { RouterTestingModule } from "@angular/router/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { FormBuilder } from "@angular/forms";
+
 
 describe("ConsultVisitBiometricsComponent", () => {
   let component: ConsultVisitBiometricsComponent;
@@ -10,8 +12,17 @@ describe("ConsultVisitBiometricsComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConsultVisitBiometricsComponent ],
-      imports: [ConsultationModule, NgbDatepickerModule]
+      imports: [
+        HttpClientTestingModule,
+        NgbDatepickerModule,
+        RouterTestingModule
+      ],
+      providers: [
+        FormBuilder
+      ],
+      declarations: [
+        ConsultVisitBiometricsComponent
+      ]
     })
     .compileComponents();
   });

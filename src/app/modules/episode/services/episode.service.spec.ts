@@ -1,8 +1,9 @@
 import { TestBed } from "@angular/core/testing";
 import { EpisodeService } from "./episode.service";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { HttpClient } from "@angular/common/http";
 import { StorageService } from "../../core/core.module";
+import { RouterTestingModule } from "@angular/router/testing";
+import { AuthService } from "../../auth/services/auth.service";
 
 
 describe("EpisodeService", () => {
@@ -10,10 +11,13 @@ describe("EpisodeService", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
       providers: [
-        HttpClient,
-        StorageService
+        StorageService,
+        AuthService
       ]
     });
 

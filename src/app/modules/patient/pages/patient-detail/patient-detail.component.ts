@@ -7,6 +7,14 @@ import { environment } from "../../../../../environments/environment";
 import { Gender } from "../../../core/enums/gender.enum";
 import { Observable } from "rxjs";
 import { BaseEntity } from "../../../core/models/base-entity.model";
+import { HttpParams } from "@angular/common/http";
+import { PrescriptionService } from "../../../prescription/services/prescription.service";
+import { TableHeader } from "../../../core/lib/TableHeader";
+import { TableAction } from "../../../core/lib/TableAction";
+import { EpisodeService } from "../../../episode/services/episode.service";
+import { IntoleranceService } from "../../../intolerance/services/intolerance.service";
+import * as moment from "moment";
+import { ICPCCode } from "../../../icpc/models/icpccode.model";
 
 
 @Component({
@@ -16,15 +24,100 @@ import { BaseEntity } from "../../../core/models/base-entity.model";
 })
 export class PatientDetailComponent implements OnInit {
 
+  public moment = moment;
   public patientEmitter;
   public deleteEntity: Observable<BaseEntity>;
   patient: Patient;
+
+  prescriptionParams: HttpParams;
+  prescriptionTableHeaders: TableHeader[] = [
+    {
+      key: "description",
+      text: "Omschrijving"
+    },
+    {
+      key: "startDate",
+      text: "Startdatum",
+      transform: (d: string) => {
+        return moment(d).format("LL");
+      }
+    },
+    {
+      key: "endDate",
+      text: "Einddatum",
+      transform: (d: string) => {
+        return d != null ? moment(d).format("LL") : "-";
+      }
+    }
+  ];
+  prescriptionTableActions: TableAction[] = [];
+
+  intoleranceParams: HttpParams;
+  intoleranceTableHeaders: TableHeader[] = [
+    {
+      key: "description",
+      text: "Omschrijving"
+    },
+    {
+      key: "startDate",
+      text: "Startdatum",
+      transform: (d: string) => {
+        return moment(d).format("LL");
+      }
+    },
+    {
+      key: "endDate",
+      text: "Einddatum",
+      transform: (d: string) => {
+        return d != null ? moment(d).format("LL") : "-";
+      }
+    }
+  ];
+  intoleranceTableActions: TableAction[] = [];
+
+  episodeTableHeaders: TableHeader[] = [
+    {
+      key: "startDate",
+      text: "Startdatum",
+      transform: (d: string) => {
+        return moment(d).format("LL");
+      }
+    },
+    {
+      key: "endDate",
+      text: "Einddatum",
+      transform: (d: string) => {
+        return moment(d).format("LL");
+      }
+    },
+    {
+      key: "description",
+      text: "Klacht/Probleem"
+    },
+    {
+      key: "icpcCode",
+      text: "ICPC",
+      transform: (i: ICPCCode) => {
+        return i?.code ?? " - ";
+      }
+    },
+  ];
+
+  currentEpisodeParams: HttpParams;
+  currentEpisodeTableActions: TableAction[] = [];
+
+  expiredEpisodeParams: HttpParams;
+  expiredEpisodeTableActions: TableAction[] = [];
+
 
   constructor(
     public sanitizer: DomSanitizer,
     public patientService: PatientService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public episodeService: EpisodeService,
+    public intoleranceService: IntoleranceService,
+    public prescriptionService: PrescriptionService
   )
   {
     this.deleteEntity = new Observable(e => this.patientEmitter = e);
@@ -46,16 +139,6 @@ export class PatientDetailComponent implements OnInit {
     }
 
     return `${this.patient.street} ${this.patient.houseNumber}${this.patient.houseNumberAddon},${this.patient.city},${this.patient.country}`;
-  }
-
-  public get age(): number {
-
-    // @TODO: !!! ACTUAL RELIABLE AGE CALCULATION !!!
-    return Math.floor((((new Date().valueOf() - new Date(this.patient.dob).valueOf()) / (24 * 60 * 60 * 1000)) / 365.242));
-  }
-
-  public get dob(): Date {
-    return new Date(this.patient.dob);
   }
 
   public get gender(): string {
@@ -85,7 +168,23 @@ export class PatientDetailComponent implements OnInit {
           }
           return;
         }
+
         this.patient = p;
+
+        this.prescriptionParams = new HttpParams()
+          .set("patientId", p.id);
+
+        this.currentEpisodeParams = new HttpParams()
+          .set("patientId", p.id)
+          .set("consultDate", moment().toISOString());
+
+        this.intoleranceParams = new HttpParams()
+          .set("patientId", p.id);
+
+        this.expiredEpisodeParams = new HttpParams()
+          .set("patientId", p.id)
+          .set("consultDate", moment().toISOString())
+          .set("expired", "true");
       })
       .catch(async (e) => {
         console.error("API could not be reached...");

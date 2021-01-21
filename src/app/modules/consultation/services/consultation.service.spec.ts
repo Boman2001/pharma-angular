@@ -2,9 +2,10 @@ import { TestBed } from "@angular/core/testing";
 import { ConsultationService } from "./consultation.service";
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { environment } from "../../../../environments/environment";
-import { HttpClient } from "@angular/common/http";
 import { StorageService } from "../../core/core.module";
 import { Consultation } from "../models/consultation.model";
+import { AuthService } from "../../auth/services/auth.service";
+import { RouterTestingModule } from "@angular/router/testing";
 
 
 const mockData = [
@@ -18,10 +19,13 @@ const mockData = [
 
 const date = new Date();
 const mockEntity: Consultation = {
+  doctorId: "1",
+  patientId: 10,
   id: "1",
-  date,
+  date: date.toISOString(),
   doctor: null,
-  patient: null
+  patient: null,
+  comments: "test"
 };
 
 
@@ -31,10 +35,14 @@ describe("ConsultationService (GenericHttpService)", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
       providers: [
-        HttpClient,
-        StorageService
+        StorageService,
+        AuthService,
+        HttpClientTestingModule
       ]
     });
 

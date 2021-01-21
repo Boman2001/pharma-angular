@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { ConsultVisitInfoComponent } from "./consult-visit-info.component";
+import { RouterTestingModule } from "@angular/router/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+
 
 describe("ConsultVisitInfoComponent", () => {
   let component: ConsultVisitInfoComponent;
@@ -8,6 +10,10 @@ describe("ConsultVisitInfoComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
       declarations: [ ConsultVisitInfoComponent ]
     })
     .compileComponents();
@@ -17,8 +23,6 @@ describe("ConsultVisitInfoComponent", () => {
     fixture = TestBed.createComponent(ConsultVisitInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
-    // TODO TESTS SCHRIJVEN
   });
 
   it("should create", () => {

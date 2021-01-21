@@ -2,9 +2,11 @@ import { Component, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
 import { UserService } from "../../services/user.service";
 import { User } from "../../models/user.model";
-import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { EventEmitter } from "@angular/core";
+import * as moment from "moment";
+import { NgbCalendar, NgbDate } from "@ng-bootstrap/ng-bootstrap";
+
 
 @Component({
   selector: "app-user-form",
@@ -20,7 +22,9 @@ export class UserFormComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private router: Router, private userService: UserService, private fb: FormBuilder) {}
+  constructor(private userService: UserService,
+              private fb: FormBuilder,
+              private calendar: NgbCalendar) {}
 
   private passwordCheckValidator: ValidatorFn = (fg: FormGroup): ValidationErrors | null => {
     const password = fg.get("password");
@@ -43,7 +47,7 @@ export class UserFormComponent implements OnInit {
         city: new FormControl("", [ Validators.required, Validators.maxLength(255) ]),
         postalCode: new FormControl("", [ Validators.required, Validators.minLength(6), Validators.maxLength(6) ]),
         country: new FormControl("NL", [ Validators.required, Validators.maxLength(255) ]),
-        password: new FormControl("", this.editMode ? [] : [ Validators.required ]),
+        password: new FormControl("", this.editMode ? [] : [ Validators.required, Validators.minLength(4) ]),
         passwordCheck: new FormControl("", this.editMode ? [] : [ Validators.required ]),
       },
       {
@@ -65,14 +69,24 @@ export class UserFormComponent implements OnInit {
   }
 
   get user(): User {
-    return this.form.getRawValue();
+    const raw = this.form.getRawValue();
+    return {
+      ...raw,
+      dob: moment(raw.dob).toISOString(),
+      password: raw.password !== "" ? raw.password : null,
+      passwordCheck: raw.passwordCheck !== "" ? raw.passwordCheck : null,
+    };
   }
 
   set user(value: User) {
-    this.form.patchValue(value);
+    const date = moment(value.dob);
+    this.form.patchValue({
+      ...value,
+      dob: this.calendar.getNext(new NgbDate(date.year(), date.month() + 1, date.date() - 1))
+    });
   }
 
-  async save(): Promise<void> {
+  async save(): Promise<boolean> {
 
     for (const i in this.form.controls) {
       if (this.form.controls.hasOwnProperty(i)) {
@@ -86,7 +100,7 @@ export class UserFormComponent implements OnInit {
       return;
     }
 
-    let result;
+    let result = false;
     try {
       if (this.user.id != null && this.user.id !== "")
       {

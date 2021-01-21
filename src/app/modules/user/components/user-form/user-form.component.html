@@ -21,15 +21,20 @@
       <label for="user-email">Email</label>
       <input class="form-control" type="email" name="email" id="user-email" [class.input-validation-error]="form.controls['email'].invalid && form.controls['email'].touched" placeholder="Email" formControlName="email">
       <div id="email-alert" *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
-        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.required">email is een verplicht veld.</div>
-        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.maxlength">email is te lang.</div>
-        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.email">email is ongeldig.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.required">Email is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.maxlength">Email is te lang.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['email'].errors.email">Email is ongeldig.</div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="user-dob">Geboortedatum</label>
-      <input class="form-control" type="date" name="dob" id="user-dob" [class.input-validation-error]="form.controls['dob'].invalid && form.controls['dob'].touched" placeholder="Geboortedatum" formControlName="dob"/>
+      <div class="input-group">
+        <input class="form-control" name="dp" ngbDatepicker #dp="ngbDatepicker" id="user-dob" [class.input-validation-error]="form.controls['dob'].invalid && form.controls['dob'].touched" placeholder="yyyy-mm-dd" formControlName="dob"/>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+        </div>
+      </div>
       <div id="dob-alert" *ngIf="form.controls['dob'].invalid && form.controls['dob'].touched">
         <div class="input-validation-error-text" *ngIf="form.controls['dob'].errors.required">Geboortedatum is een verplicht veld.</div>
       </div>
@@ -379,6 +384,7 @@
       <input class="form-control" type="password" name="password" id="password" [class.input-validation-error]="form.controls['password'].invalid && form.controls['password'].touched" placeholder="Wachtwoord" formControlName="password">
       <div id="user-password-alert" *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
         <div class="input-validation-error-text" *ngIf="form.controls['password'].errors.required">Wachtwoord is een verplicht veld.</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['password'].errors.minlength">Wachtwoord is te kort.</div>
       </div>
     </div>
 

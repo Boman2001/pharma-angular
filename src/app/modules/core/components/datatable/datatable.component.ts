@@ -35,7 +35,7 @@ export class DatatableComponent implements OnInit {
   constructor(private pipe: DecimalPipe) {}
 
   ngOnInit(): void {
-    this.tableService = new TableService<any>(this.service, this.pipe, this.retrievalMethod, this.retrievalParameters);
+    this.tableService = new TableService<any>(this.service, this.pipe, this.retrievalMethod, this.retrievalParameters, this.show);
   }
 
   onSort({ column, direction }: ISortEvent): void {

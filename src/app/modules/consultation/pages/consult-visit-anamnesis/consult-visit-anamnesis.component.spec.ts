@@ -1,9 +1,11 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { ConsultVisitAnamnesisComponent } from "./consult-visit-anamnesis.component";
-import {NgbDatepickerModule} from "@ng-bootstrap/ng-bootstrap";
-import {ConsultationModule} from "../../consultation.module";
-import {FormBuilder} from "@angular/forms";
+import { NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
+import { ConsultationModule } from "../../consultation.module";
+import { FormBuilder } from "@angular/forms";
+import { RouterTestingModule } from "@angular/router/testing";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+
 
 describe("ConsultVisitAnamnesisComponent", () => {
   let component: ConsultVisitAnamnesisComponent;
@@ -11,8 +13,13 @@ describe("ConsultVisitAnamnesisComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        ConsultationModule,
+        NgbDatepickerModule,
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
       declarations: [ ConsultVisitAnamnesisComponent ],
-      imports: [ConsultationModule, NgbDatepickerModule],
       providers: [FormBuilder]
     })
     .compileComponents();

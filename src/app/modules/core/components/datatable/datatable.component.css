@@ -10,13 +10,12 @@ th.sortable {
 
 th.sortable:after {
   content: '';
-  display: block;
   background: url("../../../../../assets/img/normalfilter.svg") no-repeat;
   background-size: 22px;
   width: 22px;
   height: 22px;
   float: right;
-  margin-left: -22px;
+  margin-right: -22px !important;
 }
 
 th.sortable.desc:after, th.sortable.asc:after {
@@ -45,4 +44,36 @@ th.sortable.desc:after {
 
 .active {
     background-color: #cbe5fd !important;
+}
+
+.dropdown {
+  color: #3D6C99;
+}
+
+.dropdown:hover {
+  color:#003E79;
+}
+
+.dropdown:hover {
+  color:#003E79;
+}
+
+.dropdown:active {
+  color:#003E79;
+}
+
+.dropdown:after {
+  display: none !important;
+}
+
+.icon {
+  color: #3D6C99;
+}
+
+.icon:hover {
+  color:#003E79;
+}
+
+.icon:active {
+  color:#003E79;
 }

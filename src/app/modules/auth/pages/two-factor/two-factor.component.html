@@ -1,0 +1,32 @@
+<div class="vh-100 vw-100 d-flex justify-content-center align-items-center">
+  <div class="col-md-4 col-xl-5">
+    <div class="img-container pb-5">
+      <img src="/assets/img/pharmapartners-logo.svg" alt="logo" />
+    </div>
+
+    <ng-template [ngIf]="twoFactorData?.twoFactorUrl">
+      <div class="two-factor-qr">
+        <div class="two-factor-qr-info">
+          <h3>Scan deze QR-code met een 2FA Applicatie</h3>
+          <p>Scannen kan bijvoorbeeld met Microsoft Authenticator, Google Authenticator of een andere 2FA app.</p>
+          <p>Na het scannen vul je de gegenereerde code in het onderstaande veld in. Deze QR code zal slechts een keer te scannen zijn.</p>
+          <strong>Zorg er dus voor dat je de 2FA app niet verwijderd!</strong>
+        </div>
+        <qrcode [qrdata]="twoFactorData.twoFactorUrl" [width]="256" [errorCorrectionLevel]="'M'" [elementType]="'svg'"></qrcode>
+      </div>
+    </ng-template>
+
+    <form method="post" class="w-100" [formGroup]="form" (ngSubmit)="twoFactor()">
+
+      <div class="form-group w-100">
+        <input type="text" [class.input-validation-error]="form.controls['code'].invalid && form.controls['code'].touched" class="form-control" name="code" id="code" placeholder="Authenticator Code" formControlName="code"/>
+      </div>
+      <div *ngIf="form.controls['code'].invalid && form.controls['code'].touched">
+        <div class="input-validation-error-text" *ngIf="form.controls['code'].errors.required">Code is verplicht</div>
+        <div class="input-validation-error-text" *ngIf="form.controls['code'].errors.incorrect">Code is incorrect</div>
+      </div>
+
+      <button type="submit" id="login-submit-btn" class="btn btn-primary float-right">Inloggen</button>
+    </form>
+  </div>
+</div>

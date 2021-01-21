@@ -1,17 +1,17 @@
-import { TestBed } from "@angular/core/testing";
-import { AuthService } from "./auth.service";
-import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../../../environments/environment";
-import { User } from "../../user/user.module";
-import { Gender, StorageService } from "../../core/core.module";
-import {BehaviorSubject} from "rxjs";
+import {TestBed} from "@angular/core/testing";
+import {AuthService} from "./auth.service";
+import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../environments/environment";
+import {User} from "../../user/user.module";
+import {Gender, StorageService} from "../../core/core.module";
 
 const mockToken = "ey1234.test.test.test";
 
 const date = new Date();
 
 const mockUser: User = {
+  roles: [],
   id: "1",
   name: "Mock User",
   username: "testuser",
@@ -39,7 +39,7 @@ describe("AuthService", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
+      imports: [HttpClientTestingModule],
       providers: [
         HttpClient,
         StorageService
@@ -58,11 +58,11 @@ describe("AuthService", () => {
     expect(service.basePath).toBe(`${environment.apiUrl}/Auth`);
   });
 
-  it("should return a login response", async () => {
-    service.Login("test@example.com", "test").then((result: boolean) => {
+  it("should return a 2fa response", async () => {
+    service.TwoFactor("test@example.com", "test").then((result: boolean) => {
       expect(result).toBeTrue();
     });
-    const request = http.expectOne(req => req.method === "POST" && req.url === `${environment.apiUrl}/Auth/login`);
+    const request = http.expectOne(req => req.method === "POST" && req.url === `${environment.apiUrl}/Auth/login/twofactor`);
     request.flush({
       token: mockToken,
       user: mockUser
@@ -75,7 +75,7 @@ describe("AuthService", () => {
   });
 
   it("should have a working user getter", () => {
-    service.user = new BehaviorSubject<User>(mockUser);
-    expect(service.user.getValue().id).toBe(mockUser.id);
+    service.user = mockUser;
+    expect(service.user.id).toBe(mockUser.id);
   });
 });

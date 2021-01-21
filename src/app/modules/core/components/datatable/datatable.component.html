@@ -3,43 +3,49 @@
     Zoeken: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="tableService.searchTerm"/>
 
     <div *ngIf="tableService.loading$ | async" class="spinner-border ml-2" role="status">
-      <span class="sr-only">Loading...</span>
+      <span class="sr-only">Laden...</span>
     </div>
   </div>
 
-  <table class="table table-striped table-hover">
-    <caption style="display: none"></caption>
-    <thead>
-    <tr>
-      <ng-container *ngFor="let header of show">
-        <th scope="col" appSortable class="sortable" (sort)="onSort($event)" [sortable]="header.key">
-          {{ header.text }}
-        </th>
-      </ng-container>
-      <th scope="col" *ngIf="actions?.length != 0">Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-
-    <tr *ngIf="(tableService.entities$ | async)?.length <= 0; else data">
-      <td [attr.colspan]="show?.length + 1" class="text-center"> Geen data beschikbaar...</td>
-    </tr>
-
-    <ng-template #data>
-      <tr *ngFor="let entity of (tableService.entities$ | async); let i = index" (click)="setActiveRow(i)" [class.active]=" i==selectedRow">
-        <td *ngFor="let entry of getVisibleEntityEntries(entity)">
-          <ngb-highlight [result]="entry.value" [term]="tableService.searchTerm"></ngb-highlight>
-        </td>
-        <td *ngIf="actions?.length != 0">
-          <button *ngFor="let a of actions" [id]="a.id" (click)="a.action(entity)" [class]="a.classes.concat(['datatable-button'])">
-            <fa-icon [icon]="a.icon"></fa-icon>
-          </button>
-        </td>
+  <div class="table-responsive-sm">
+    <table class="table table-striped table-hover">
+      <caption style="display: none"></caption>
+      <thead>
+        <tr>
+          <ng-container *ngFor="let header of show">
+            <th scope="col" appSortable class="sortable flex-fill col-auto" (sort)="onSort($event)" [sortable]="header.key">
+              {{ header.text }}
+            </th>
+          </ng-container>
+          <th scope="col" *ngIf="actions?.length != 0">Acties</th>
+        </tr>
+      </thead>
+      <tbody>
+  
+      <tr *ngIf="(tableService.entities$ | async)?.length <= 0; else data">
+        <td [attr.colspan]="show?.length + 1" class="text-center"> Geen data beschikbaar... </td>
       </tr>
-    </ng-template>
-
-    </tbody>
-  </table>
+  
+      <ng-template #data>
+        <tr *ngFor="let entity of (tableService.entities$ | async); let i = index" (click)="setActiveRow(i)" [class.active]=" i==selectedRow">
+          <td *ngFor="let entry of getVisibleEntityEntries(entity)">
+            <ngb-highlight [result]="entry.value" [term]="tableService.searchTerm"></ngb-highlight>
+          </td>
+          <td *ngIf="actions?.length != 0">
+            <div ngbDropdown container="body" #actionDropdown="ngbDropdown">
+              <fa-icon icon="ellipsis-v" class="dropdown" ngbDropdownToggle></fa-icon>
+              <div ngbDropdownMenu>
+                <button ngbDropdownItem *ngFor="let a of actions" [id]="a.id" (click)="a.action(entity)" class="icon" [class]="a.classes.concat(['datatable-button'])">
+                  <fa-icon [icon]="a.icon"></fa-icon> {{ a.name }}
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      </tbody>
+    </table>
+  </div>
 
   <div class="d-flex justify-content-between p-2">
     <ngb-pagination [collectionSize]="tableService.total$ | async" [(page)]="tableService.page" [pageSize]="tableService.pageSize">

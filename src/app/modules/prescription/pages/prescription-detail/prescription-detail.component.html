@@ -16,8 +16,8 @@
         <div class="border p3">
           <div class="row p-3">
             <div class="col-md-10">
-              <h6>{{ prescription?.patient?.name }} ({{ getGender(prescription?.patient) }}, {{ getAge(prescription?.patient) }})</h6>
-              <span>{{ getDob(prescription?.patient) }}</span><br>
+              <h6>{{ prescription?.patient?.name }} ({{ getGender(prescription?.patient) }}, {{ moment().diff(prescription?.patient.dob, 'years') }})</h6>
+              <span>{{ moment(prescription?.patient.dob).format("LL") }}</span><br>
               <span>{{ prescription?.patient?.email }}</span><br>
               <span>{{ prescription?.patient?.phoneNumber }}</span>
             </div>
@@ -34,12 +34,12 @@
         </div>
       </div>
       <div class="col-md-6">
-        <h5>Dokter</h5>
+        <h5>Arts</h5>
         <div class="border p3">
           <div class="row p-3">
             <div class="col-md-10">
-              <h6>{{ prescription?.consultation?.doctor?.name }} ({{ getGender(prescription?.consultation?.doctor) }}, {{ getAge(prescription?.consultation?.doctor) }})</h6>
-              <span>{{ getDob(prescription?.consultation?.doctor) }}</span><br>
+              <h6>{{ prescription?.consultation?.doctor?.name }} ({{ getGender(prescription?.consultation?.doctor) }}, {{ moment().diff(prescription?.consultation?.doctor.dob, 'years') }})</h6>
+              <span>{{ moment(prescription?.consultation?.doctor.dob).format("LL") }}</span><br>
               <span>{{ prescription?.consultation?.doctor?.email }}</span><br>
               <span>{{ prescription?.consultation?.doctor?.phoneNumber }}</span>
             </div>
