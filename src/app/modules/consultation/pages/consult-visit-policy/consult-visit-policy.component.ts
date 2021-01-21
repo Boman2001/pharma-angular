@@ -71,12 +71,16 @@ export class ConsultVisitPolicyComponent implements OnInit {
     const intolerance = await this.iservice.Get(id).toPromise();
     intolerance.endDate = moment().toISOString();
     await this.iservice.Update(intolerance.id, intolerance).toPromise();
+
+    this.setObservables();
   }
 
   async endPrescription(id: string): Promise<void>{
     const prescription =  await this.pservice.Get(id).toPromise();
     prescription.endDate = moment().toISOString();
-    await  this.pservice.Update(prescription.id, prescription);
+    await  this.pservice.Update(prescription.id, prescription).toPromise();
+
+    this.setObservables();
   }
 
   async submitMedicine(): Promise<void>{
