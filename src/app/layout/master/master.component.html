@@ -39,6 +39,16 @@
             <li class="list-group-item border-0 p-0">
               <a
                 class="w-100 h-100 p-2 d-block text-decoration-none"
+                routerLink="/consultation/route"
+                [routerLinkActive]="['nav-active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                Mijn route
+              </a>
+            </li>
+            <li class="list-group-item border-0 p-0">
+              <a
+                class="w-100 h-100 p-2 d-block text-decoration-none"
                 routerLink="/patients"
                 [routerLinkActive]="['nav-active']"
                 [routerLinkActiveOptions]="{ exact: true }"
