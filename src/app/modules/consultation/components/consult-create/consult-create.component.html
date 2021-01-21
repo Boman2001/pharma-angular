@@ -1,6 +1,6 @@
 <ng-template #modalContent>
   <div class="modal-header px-4 py-3">
-    <h4 class="modal-title" id="modal-create-consult">Consult aanmaken</h4>
+    <h4 class="modal-title" id="modal-create-consult">Consult {{ formType }}</h4>
     <button type="button" class="close border-0" (click)="close()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -57,6 +57,6 @@
 </div>
 <div class="modal-footer d-flex justify-content-between px-4 py-3">
   <button type="button" class="btn btn-outline-danger" (click)="modal.close('Cancel click')">Annuleren</button>
-  <button type="button" id="modal-create-consultation" class="btn btn-outline-primary" (click)="submit()" [disabled]="!form.valid">Aanmaken</button>
+  <button type="button" id="modal-create-consultation" class="btn btn-outline-primary" (click)="submit()" [disabled]="!form.valid">{{ formType }}</button>
 </div>
 </ng-template>
