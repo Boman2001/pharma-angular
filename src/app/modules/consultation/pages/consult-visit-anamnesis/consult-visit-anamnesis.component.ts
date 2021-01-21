@@ -72,12 +72,12 @@ export class ConsultVisitAnamnesisComponent implements OnInit {
         this.form.controls.date.setErrors({incorrect: true});
       }
 
-      if (this.form.controls.icpc.invalid){
-        this.form.controls.icpc.setErrors({incorrect: true});
+      if (this.form.controls.icpcCodeId.invalid){
+        this.form.controls.icpcCodeId.setErrors({incorrect: true});
       }
 
-      if (this.form.controls.comment.invalid){
-        this.form.controls.comment.setErrors({incorrect: true});
+      if (this.form.controls.description.invalid){
+        this.form.controls.description.setErrors({incorrect: true});
       }
     }
     else{
