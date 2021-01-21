@@ -10,6 +10,8 @@ export class Consultation extends BaseEntity {
   patientId: number;
   patient?: Patient;
 
+  completed?: boolean;
+
   date: string;
   comments: string;
 }

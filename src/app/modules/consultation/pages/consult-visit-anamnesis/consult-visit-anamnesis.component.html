@@ -22,7 +22,7 @@
           </tbody>
         </table>
       </div>
-      <div>
+      <ng-template [ngIf]="currentConsult && !currentConsult.completed">
         <form #consultAnamnesisForm="ngForm" name="form" [formGroup]="form" *ngIf="icpcCodes$ | async as icpcCodes">
           <div class="form-group d-flex">
             <div class="form-group w-50 pr-2">
@@ -62,7 +62,7 @@
           </div>
           <input type="submit" class="btn btn-primary float-right" value="Toevoegen" id="add-anamnese" (click)="submit()">
         </form>
-      </div>
+      </ng-template>
     </div>
   </div>
   <div class="col-lg-6 col-12 p-3 h-100 d-flex flex-column">

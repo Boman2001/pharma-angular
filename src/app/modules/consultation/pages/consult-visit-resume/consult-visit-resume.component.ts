@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import {ConsultationService} from "../../services/consultation.service";
 import {map, switchMap} from "rxjs/operators";
 import {Observable} from "rxjs";
@@ -18,7 +18,7 @@ import {Prescription} from "../../../prescription/models/prescription.model";
 import {PrescriptionService} from "../../../prescription/services/prescription.service";
 import {Intolerance} from "../../../intolerance/models/intolerance.model";
 import {IntoleranceService} from "../../../intolerance/services/intolerance.service";
-import { UserJournalType } from "../../enums/UserJournalType.enum"
+import { UserJournalType } from "../../enums/UserJournalType.enum";
 
 @Component({
   selector: "app-consult-visit-resume",
@@ -26,6 +26,7 @@ import { UserJournalType } from "../../enums/UserJournalType.enum"
   styleUrls: ["./consult-visit-resume.component.css"]
 })
 export class ConsultVisitResumeComponent implements OnInit {
+  consultation: Consultation;
   consultation$: Observable<Consultation>;
   currentEpisodes$: Observable<Episode[]>;
   expiredEpisodes$: Observable<Episode[]>;
@@ -44,7 +45,8 @@ export class ConsultVisitResumeComponent implements OnInit {
               private additionalExaminationResultService: AdditionalExaminationResultService,
               private userJournalService: UserJournalService,
               private prescriptionService: PrescriptionService,
-              private intoleranceService: IntoleranceService) { }
+              private intoleranceService: IntoleranceService,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.consultation$ = this.route.paramMap.pipe(switchMap((params: ParamMap) =>
@@ -53,6 +55,9 @@ export class ConsultVisitResumeComponent implements OnInit {
     );
 
     this.consultation$.subscribe(data => {
+
+      this.consultation = data;
+
       const currentEpisodeQueryParams: HttpParams = new HttpParams()
         .set("patientId", data.patient.id)
         .set("consultDate", data.date);
@@ -100,6 +105,31 @@ export class ConsultVisitResumeComponent implements OnInit {
 
       default:
         return "Overige";
+    }
+  }
+
+  public async completeConsult(): Promise<void> {
+
+    if (this.consultation.completed) {
+
+      // @TODO: GlobalModalService // ToastService ??
+      return;
+    }
+
+    try {
+
+      await this.consultService.Update(this.consultation.id, {
+        ...this.consultation,
+        completed: true
+      })
+      .toPromise();
+
+      await this.router.navigate(["/"]);
+    }
+    catch (e) {
+
+      console.error(e);
+      // @TODO: GlobalModalService // ToastService ??
     }
   }
 

@@ -172,4 +172,9 @@
       </div>
     </div>
   </div>
+  <ng-template [ngIf]="consultation && !consultation.completed">
+    <form (ngSubmit)="completeConsult()">
+      <button class="btn btn-primary float-right" type="submit">Consult Afronden</button>
+    </form>
+  </ng-template>
 </div>
