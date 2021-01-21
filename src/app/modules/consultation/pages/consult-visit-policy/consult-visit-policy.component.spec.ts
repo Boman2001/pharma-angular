@@ -3,6 +3,8 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ConsultVisitPolicyComponent } from "./consult-visit-policy.component";
 import {ConsultationModule} from "../../consultation.module";
 import {NgbDatepickerModule} from "@ng-bootstrap/ng-bootstrap";
+import {RouterTestingModule} from "@angular/router/testing";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe("ConsultVisitPolicyComponent", () => {
   let component: ConsultVisitPolicyComponent;
@@ -11,7 +13,7 @@ describe("ConsultVisitPolicyComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ConsultVisitPolicyComponent ],
-      imports: [ConsultationModule, NgbDatepickerModule]
+      imports: [ConsultationModule, NgbDatepickerModule, RouterTestingModule, HttpClientTestingModule]
     })
     .compileComponents();
   });

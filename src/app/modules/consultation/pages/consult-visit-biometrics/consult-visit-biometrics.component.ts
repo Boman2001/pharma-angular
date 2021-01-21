@@ -74,7 +74,7 @@ export class ConsultVisitBiometricsComponent implements OnInit {
     this.physicalExamination$ = this.physicalExaminationService.GetAll(null, new HttpParams().set("patientId", id))
     .pipe(
       map(items => {
-        if(items.length > 0){
+        if (items.length > 0){
           this.empty = false;
         }
         return this.bioGroupBy(items, item => item.examinationTypeId);

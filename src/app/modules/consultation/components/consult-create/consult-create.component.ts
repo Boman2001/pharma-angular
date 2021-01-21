@@ -54,7 +54,7 @@ export class ConsultCreateComponent implements OnInit {
     this.initialConsultation?.subscribe((c: Consultation) => {
       this.consultation = c;
 
-      if(c.id != null){
+      if (c.id != null){
         this.formType = "Wijzigen";
       }
 
