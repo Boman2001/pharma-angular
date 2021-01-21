@@ -8,7 +8,6 @@ import { ConsultationService } from "../../services/consultation.service";
 import { Observable } from "rxjs/internal/Observable";
 import { Consultation } from "../../consultation.module";
 import { HttpParams } from "@angular/common/http";
-import { text } from "@fortawesome/fontawesome-svg-core";
 import * as moment from "moment";
 
 @Component({
@@ -36,6 +35,7 @@ export class ConsultVisitBiometricsComponent implements OnInit {
 
   labelText = "";
   defaultSelect: string;
+  empty = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -69,16 +69,13 @@ export class ConsultVisitBiometricsComponent implements OnInit {
     });
   }
 
-  // const test = this.physicalExaminationService.GetAll(null, new HttpParams().set("patientId", patientId)).toPromise();
-  // this.examinationType$ = this.examinationTypeService.GetAll();
-
   async getData(id: string): Promise<void> {
     this.examinationTypes = await this.examinationTypeService.GetAll().toPromise();
     this.physicalExamination$ = this.physicalExaminationService.GetAll(null, new HttpParams().set("patientId", id))
     .pipe(
       map(items => {
-        for (const i of items) {
-          i.examinationType = this.examinationTypes?.find((et) => et.id === i.examinationTypeId);
+        if(items.length > 0){
+          this.empty = false;
         }
         return this.bioGroupBy(items, item => item.examinationTypeId);
       })
@@ -100,7 +97,6 @@ export class ConsultVisitBiometricsComponent implements OnInit {
     grouped = grouped.filter(el => {
       return el != null;
     });
-
     return grouped;
   }
 

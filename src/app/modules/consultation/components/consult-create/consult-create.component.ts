@@ -24,6 +24,7 @@ export class ConsultCreateComponent implements OnInit {
   @ViewChild("modalContent") public content: ElementRef;
 
   form: FormGroup;
+  formType: string;
   modal;
 
   private patients: Patient[];
@@ -48,8 +49,15 @@ export class ConsultCreateComponent implements OnInit {
       comments: new FormControl("", [ Validators.required ])
     });
 
+    this.formType = "Aanmaken";
+
     this.initialConsultation?.subscribe((c: Consultation) => {
       this.consultation = c;
+
+      if(c.id != null){
+        this.formType = "Wijzigen";
+      }
+
       this.open();
     });
 
