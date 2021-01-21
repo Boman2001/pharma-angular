@@ -7,6 +7,7 @@ import { StorageService } from "../../../core/services/storage.service";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import { AuthService } from "../../../auth/services/auth.service";
 import { RouterTestingModule } from "@angular/router/testing";
+import {NgbDatepickerModule} from "@ng-bootstrap/ng-bootstrap";
 
 describe("PatientFormComponent", () => {
   let component: PatientFormComponent;
@@ -16,7 +17,8 @@ describe("PatientFormComponent", () => {
     await TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule
+        RouterTestingModule,
+        NgbDatepickerModule
       ],
       declarations: [
         PatientFormComponent
