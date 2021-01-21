@@ -1,14 +1,17 @@
-<div class="page container-fluid d-flex flex-column" *ngIf="examinations$ | async as examinations">
+<div class="page container-fluid d-flex flex-column">
   <h3 class="p-3">Aanvullend onderzoek</h3>
-  <div class="flex-grow-1 overflow-auto">
-    <div class="d-flex flex-wrap p-3">
-      <div class="mr-2 mb-2" *ngFor="let examinationTypes of examinations">
-        <span>Cholesterol Totaal</span>
-        <ul class="list-group">
-          <li class="list-group-item border-0" *ngFor="let examination of examinationTypes">{{moment(examination.date).format("LL")}} {{examination.value}}</li>
-        </ul>
+  <ng-container *ngIf="examinations$ | async as examinations">
+    <div class="flex-grow-1 overflow-auto" *ngIf="!empty">
+      <div class="d-flex flex-wrap p-3">
+        <div class="mr-2 mb-2" *ngFor="let examinationTypes of examinations">
+          <span>{{examinationTypes[0]["additionalExaminationType"]["name"]}}</span>
+          <ul class="list-group">
+            <li class="list-group-item border-0" *ngFor="let examination of examinationTypes">{{moment(examination.date).format("LL")}} {{examination.value}} {{examination["additionalExaminationType"]["unit"]}}</li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
+  <p class="p-3" *ngIf="empty">Er zijn geen aanvullende onderzoeken</p>
 </div>
 

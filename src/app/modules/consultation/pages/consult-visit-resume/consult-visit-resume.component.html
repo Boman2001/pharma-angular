@@ -1,21 +1,21 @@
 <div class="p-3 overflow-auto">
   <h3 class="mb-3">Visite</h3>
   <div class="d-flex mb-5 flex-column flex-md-row">
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="consultation$ | async as consultation">
       <h4>Betreft patiënt</h4>
-      <ul class="list-group w-100">
-        <li class="list-group-item bold d-flex justify-content-between w-100"><span>Naam:</span><span>Max Bogaers (Man, 19)</span></li>
-        <li class="list-group-item d-flex justify-content-between w-100"><span>Geboorte datum:</span><span>20-01-2001</span></li>
-        <li class="list-group-item d-flex justify-content-between w-100"><span>Email:</span><span>max@example.com</span></li>
-        <li class="list-group-item d-flex justify-content-between w-100"><span>Adres:</span><span>ergens in made</span></li>
-        <li class="list-group-item d-flex justify-content-between w-100"><span>BSN:</span><span>123456789</span></li>
-        <li class="list-group-item d-flex justify-content-between w-100"><span>Telefoonnummer:</span><span>+31 6 12345678</span></li>
+      <ul class="list-group">
+        <li class="list-group-item bold d-flex justify-content-between w-100"><span>Naam:</span><span>{{consultation.patient.name}} ({{getGender(consultation.patient.gender)}}, {{moment().diff(consultation.patient.dob, "years")}})</span></li>
+        <li class="list-group-item d-flex justify-content-between w-100"><span>Geboortedatum:</span><span>{{moment(consultation.patient.dob).format("LL")}}</span></li>
+        <li class="list-group-item d-flex justify-content-between w-100"><span>Email:</span><span>{{consultation.patient.email}}</span></li>
+        <li class="list-group-item d-flex justify-content-between w-100"><span>Adres:</span><span>{{consultation.patient.street}} {{consultation.patient.houseNumber}}{{consultation.patient.houseNumberAddon}}, {{consultation.patient.city}}</span></li>
+        <li class="list-group-item d-flex justify-content-between w-100"><span>Bsn:</span><span>{{consultation.patient.bsn}}</span></li>
+        <li class="list-group-item d-flex justify-content-between w-100"><span>Telefoon nummer:</span><span>{{consultation.patient.phoneNumber}}</span></li>
       </ul>
     </div>
     <div class="col-md-6 mt-5 mt-md-0">
       <h4>Huidige klachten/problemen</h4>
       <div class="table-wrapper overflow-auto">
-        <table class="table table-striped" aria-label="Een tabel van de huidige klachten/problemen">
+        <table class="table table-striped" aria-label="Een tabel van de huidige klachten/problemen" *ngIf="currentEpisodes$ | async as episodes">
           <thead>
           <tr>
             <th scope="col">Datum</th>
@@ -24,35 +24,10 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>21-06-2002</td>
-            <td class="w-50">Roken: 15/dag</td>
+          <tr *ngFor="let episode of episodes">
+            <td>{{moment(episode.startDate).format("LL")}}</td>
+            <td class="w-50">{{episode.description}}</td>
             <td>P17</td>
-          </tr>
-          <tr>
-            <td>21-06-2003</td>
-            <td class="w-50">Hooikoorts/allergische rhinitis; boom+;gras+</td>
-            <td>R97</td>
-          </tr>
-          <tr>
-            <td>21-06-2004</td>
-            <td class="w-50">cvrm</td>
-            <td>K49.01</td>
-          </tr>
-          <tr>
-            <td>21-06-2002</td>
-            <td class="w-50">Roken: 15/dag</td>
-            <td>P17</td>
-          </tr>
-          <tr>
-            <td>21-06-2003</td>
-            <td class="w-50">Hooikoorts/allergische rhinitis; boom+;gras+</td>
-            <td>R97</td>
-          </tr>
-          <tr>
-            <td>21-06-2004</td>
-            <td class="w-50">cvrm</td>
-            <td>K49.01</td>
           </tr>
           </tbody>
         </table>
@@ -63,7 +38,7 @@
     <div class="col-md-6">
       <h4>Voorgeschiedenis</h4>
       <div class="table-wrapper overflow-auto">
-        <table class="table table-striped" aria-label="Een tabel van de voorgeschiedenis van de klachten/problemen">
+        <table class="table table-striped" aria-label="Een tabel van de huidige klachten/problemen" *ngIf="expiredEpisodes$ | async as episodes">
           <thead>
           <tr>
             <th scope="col">Datum</th>
@@ -72,35 +47,10 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>21-06-2002</td>
-            <td class="w-50">Roken: 15/dag</td>
+          <tr *ngFor="let episode of episodes">
+            <td>{{moment(episode.startDate).format("LL")}}</td>
+            <td class="w-50">{{episode.description}}</td>
             <td>P17</td>
-          </tr>
-          <tr>
-            <td>21-06-2003</td>
-            <td class="w-50">Hooikoorts/allergische rhinitis; boom+;gras+</td>
-            <td>R97</td>
-          </tr>
-          <tr>
-            <td>21-06-2004</td>
-            <td class="w-50">cvrm</td>
-            <td>K49.01</td>
-          </tr>
-          <tr>
-            <td>21-06-2002</td>
-            <td class="w-50">Roken: 15/dag</td>
-            <td>P17</td>
-          </tr>
-          <tr>
-            <td>21-06-2003</td>
-            <td class="w-50">Hooikoorts/allergische rhinitis; boom+;gras+</td>
-            <td>R97</td>
-          </tr>
-          <tr>
-            <td>21-06-2004</td>
-            <td class="w-50">cvrm</td>
-            <td>K49.01</td>
           </tr>
           </tbody>
         </table>
@@ -109,7 +59,7 @@
     <div class="col-md-6 mt-5 mt-md-0">
       <h4>Lichamelijk onderzoek</h4>
       <div class="table-wrapper overflow-auto">
-        <table class="table table-striped" aria-label="Een tabel van de lichamelijke onderzoeken">
+        <table class="table table-striped" aria-label="Een tabel van de lichamelijke onderzoeken" *ngIf="physicalExaminations$ | async as physicalExaminations">
           <thead>
           <tr>
             <th scope="col">Type</th>
@@ -118,31 +68,13 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>Lengte (cm)</td>
-            <td>21-06-2018</td>
-            <td>172 cm</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>21-06-2009</td>
-            <td>178 cm</td>
-          </tr>
-          <tr>
-            <td>Gewicht (kg)</td>
-            <td>21-06-2020</td>
-            <td>85 kg</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>21-06-2018</td>
-            <td>73 kg</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>21-06-2009</td>
-            <td>68 kg</td>
-          </tr>
+          <ng-container *ngFor="let physicalExaminationTypes of physicalExaminations;">
+            <tr *ngFor="let physicalExamination of physicalExaminationTypes; let i = index" [attr.data-index]="i">
+              <td>{{i == 0 ? physicalExamination["examinationType"]["name"] : ""}}</td>
+              <td>{{moment(physicalExamination.date).format("LL")}}</td>
+              <td>{{physicalExamination.value}} {{physicalExamination["examinationType"]["unit"]}}</td>
+            </tr>
+          </ng-container>
           </tbody>
         </table>
       </div>
@@ -152,7 +84,7 @@
     <div class="col-md-6">
       <h4>Resultaten aanvullend onderzoek</h4>
       <div class="table-wrapper overflow-auto">
-        <table class="table table-striped" aria-label="Een tabel van de aanvullende onderzoeken">
+        <table class="table table-striped" aria-label="Een tabel van de aanvullende onderzoeken" *ngIf="additionalExaminations$ | async as additionalExaminations">
           <thead>
           <tr>
             <th scope="col">Type</th>
@@ -161,26 +93,13 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>Cholesterol totaal</td>
-            <td>21-06-2018</td>
-            <td>6,4 mmol/L</td>
-          </tr>
-          <tr>
-            <td>HDL-Cholesterol</td>
-            <td>21-06-2020</td>
-            <td>0,9 mmol/L</td>
-          </tr>
-          <tr>
-            <td>LDL-Cholesterol</td>
-            <td>21-06-2020</td>
-            <td>4,2 mmol/L</td>
-          </tr>
-          <tr>
-            <td>Triglyceriden</td>
-            <td>21-06-2020</td>
-            <td>7 mmol/L</td>
-          </tr>
+          <ng-container *ngFor="let additionalExaminationTypes of additionalExaminations;">
+            <tr *ngFor="let additionalExamination of additionalExaminationTypes; let i = index" [attr.data-index]="i">
+              <td>{{i == 0 ? additionalExamination["additionalExaminationType"]["name"] : ""}}</td>
+              <td>{{moment(additionalExamination.date).format("LL")}}</td>
+              <td>{{additionalExamination.value}} {{additionalExamination["additionalExaminationType"]["unit"]}}</td>
+            </tr>
+          </ng-container>
           </tbody>
         </table>
       </div>
@@ -188,7 +107,7 @@
     <div class="col-md-6 mt-5 mt-md-0">
       <h4>Journaal</h4>
       <div class="table-wrapper overflow-auto">
-        <table class="table table-striped" aria-label="Een tabel van de journalen">
+        <table class="table table-striped" aria-label="Een tabel van de journalen" *ngIf="userJournal$ | async as userJournals">
           <thead>
           <tr>
             <th scope="col">Datum</th>
@@ -197,36 +116,13 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>21-06-2002</td>
-            <td>S</td>
-            <td class="w-50">Lorem ipsum dolor sit amet consectetuer adipiscing elit anean commodo ligula eget dolor</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>O</td>
-            <td class="w-50">Lorem ipsum dolor sit amet consectetuer adipiscing elit anean commodo ligula eget dolor</td>
-          </tr>
-          <tr>
-            <td>21-06-2003</td>
-            <td>S</td>
-            <td class="w-50">Lorem ipsum dolor sit amet consectetuer adipiscing elit anean commodo ligula eget dolor</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>O</td>
-            <td class="w-50">Lorem ipsum dolor sit amet consectetuer adipiscing elit anean commodo ligula eget dolor</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>P</td>
-            <td class="w-50">Lorem ipsum dolor sit amet consectetuer adipiscing elit anean commodo ligula eget dolor</td>
-          </tr>
-          <tr>
-            <td>21-06-2004</td>
-            <td>S</td>
-            <td class="w-50">Lorem ipsum dolor sit amet consectetuer adipiscing elit anean commodo ligula eget dolor</td>
-          </tr>
+          <ng-container *ngFor="let userJournalItems of userJournals;">
+            <tr *ngFor="let userJournal of userJournalItems; let i = index" [attr.data-index]="i">
+              <td>{{i == 0 ? moment(userJournal.createdAt).format("LL") : ""}}</td>
+              <td>{{ UserJournalType[userJournal.property] }}</td>
+              <td>{{userJournal.description}}</td>
+            </tr>
+          </ng-container>
           </tbody>
         </table>
       </div>
@@ -236,7 +132,7 @@
     <div class="col-md-6">
       <h4>Medicatie</h4>
       <div class="table-wrapper overflow-auto">
-        <table class="table table-striped" aria-label="Een tabel van de medicatie">
+        <table class="table table-striped" aria-label="Een tabel van de inroleranties" *ngIf="prescriptions$ | async as prescriptions">
           <thead>
           <tr>
             <th scope="col">Omschrijving</th>
@@ -245,15 +141,10 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>Morfine 22mg tweemaal daags 1 tablet</td>
-            <td>17-12-2020</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Morfine 22mg tweemaal daags 1 tablet</td>
-            <td>17-12-2020</td>
-            <td></td>
+          <tr *ngFor="let prescription of prescriptions">
+            <td>{{prescription.description}}</td>
+            <td>{{moment(prescription.startDate).format("LL")}}</td>
+            <td>{{moment(prescription.endDate).format("LL")}}</td>
           </tr>
           </tbody>
         </table>
@@ -262,7 +153,7 @@
     <div class="col-md-6 mt-5 mt-md-0">
       <h4>Intoleranties</h4>
       <div class="table-wrapper overflow-auto">
-        <table class="table table-striped" aria-label="Een tabel van de inroleranties">
+        <table class="table table-striped" aria-label="Een tabel van de inroleranties" *ngIf="intolerances$ | async as intolerances">
           <thead>
           <tr>
             <th scope="col">Omschrijving</th>
@@ -271,15 +162,19 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>Lactose intolerantie</td>
-            <td>17-12-2020</td>
-            <td></td>
+          <tr *ngFor="let intolerance of intolerances">
+            <td>{{intolerance.description}}</td>
+            <td>{{moment(intolerance.startDate).format("LL")}}</td>
+            <td>{{moment(intolerance.endDate).format("LL")}}</td>
           </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-  <button class="btn btn-primary float-right mb-3">Beëindig consult</button>
+  <ng-template [ngIf]="consultation && !consultation.completed">
+    <form (ngSubmit)="completeConsult()">
+      <button class="btn btn-primary float-right" type="submit">Consult Afronden</button>
+    </form>
+  </ng-template>
 </div>

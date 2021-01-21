@@ -4,6 +4,8 @@ import { UserService } from "../../services/user.service";
 import { User } from "../../models/user.model";
 import { Observable } from "rxjs";
 import { EventEmitter } from "@angular/core";
+import * as moment from "moment";
+import { NgbCalendar, NgbDate } from "@ng-bootstrap/ng-bootstrap";
 
 
 @Component({
@@ -20,7 +22,9 @@ export class UserFormComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private userService: UserService, private fb: FormBuilder) {}
+  constructor(private userService: UserService,
+              private fb: FormBuilder,
+              private calendar: NgbCalendar) {}
 
   private passwordCheckValidator: ValidatorFn = (fg: FormGroup): ValidationErrors | null => {
     const password = fg.get("password");
@@ -69,10 +73,14 @@ export class UserFormComponent implements OnInit {
   }
 
   set user(value: User) {
-    this.form.patchValue(value);
+    const date = moment(value.dob);
+    this.form.patchValue({
+      ...value,
+      dob: this.calendar.getNext(new NgbDate(date.year(), date.month() + 1, date.date() - 1))
+    });
   }
 
-  async save(): Promise<void> {
+  async save(): Promise<boolean> {
 
     for (const i in this.form.controls) {
       if (this.form.controls.hasOwnProperty(i)) {
@@ -86,7 +94,7 @@ export class UserFormComponent implements OnInit {
       return;
     }
 
-    let result;
+    let result = false;
     try {
       if (this.user.id != null && this.user.id !== "")
       {

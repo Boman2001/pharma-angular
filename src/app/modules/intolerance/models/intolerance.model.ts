@@ -5,9 +5,11 @@ import { Patient } from "../../patient/patient.module";
 
 export class Intolerance extends BaseEntity {
 
-  consultation: Consultation;
-  patient: Patient;
+  consultationId: string;
+  consultation?: Consultation;
+  patientId: string;
+  patient?: Patient;
   description: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
 }

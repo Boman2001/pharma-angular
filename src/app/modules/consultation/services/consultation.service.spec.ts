@@ -2,7 +2,6 @@ import { TestBed } from "@angular/core/testing";
 import { ConsultationService } from "./consultation.service";
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { environment } from "../../../../environments/environment";
-import { HttpClient } from "@angular/common/http";
 import { StorageService } from "../../core/core.module";
 import { Consultation } from "../models/consultation.model";
 import { AuthService } from "../../auth/services/auth.service";
@@ -20,11 +19,13 @@ const mockData = [
 
 const date = new Date();
 const mockEntity: Consultation = {
+  doctorId: "1",
+  patientId: 10,
   id: "1",
   date: date.toISOString(),
   doctor: null,
   patient: null,
-  comment: "test"
+  comments: "test"
 };
 
 
@@ -40,7 +41,8 @@ describe("ConsultationService (GenericHttpService)", () => {
       ],
       providers: [
         StorageService,
-        AuthService
+        AuthService,
+        HttpClientTestingModule
       ]
     });
 

@@ -44,82 +44,42 @@
     </div>
     <div class="row py-3">
       <div class="col-md-6">
-        <h3>Alle medicatie</h3>
-        <table class="table table-striped" aria-label="Een tabel van de medicatie van de huidige patiënt.">
-          <thead>
-          <tr>
-            <th scope="col">Omschrijving</th>
-            <th scope="col">Startdatum</th>
-            <th scope="col">Einddatum</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>Morfine 22mg tweemaals daags 1 tablet</td>
-            <td>17-12-2020</td>
-            <td></td>
-          </tr>
-          </tbody>
-        </table>
+        <h3>Alle recepten</h3>
+        <app-datatable-component
+          *ngIf="prescriptionParams"
+          [service]="prescriptionService" [retrievalParameters]="[null, prescriptionParams]"
+          [show]="prescriptionTableHeaders" [actions]="prescriptionTableActions"
+        >
+        </app-datatable-component>
       </div>
       <div class="col-md-6">
         <h3>Huidige klachten</h3>
-        <table class="table table-striped" aria-label="Een tabel met de huidige klachten van de huidige patiënt.">
-          <thead>
-          <tr>
-            <th scope="col">Datum</th>
-            <th scope="col">Klacht/Probleem</th>
-            <th scope="col">ICPC</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>02-02-2020</td>
-            <td>roken: 15 sig/dag</td>
-            <td>P17</td>
-          </tr>
-          </tbody>
-        </table>
+        <app-datatable-component
+          *ngIf="currentEpisodeParams"
+          [service]="episodeService" [retrievalParameters]="[null, currentEpisodeParams]"
+          [show]="episodeTableHeaders" [actions]="currentEpisodeTableActions"
+        >
+        </app-datatable-component>
       </div>
     </div>
     <div class="row py-3">
       <div class="col-md-6">
         <h3>Alle intoleranties</h3>
-        <table class="table table-striped" aria-label="Een tabel van alle intoleranties van de huidige patiënt.">
-          <thead>
-          <tr>
-            <th scope="col">Omschrijving</th>
-            <th scope="col">Startdatum</th>
-            <th scope="col">Einddatum</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>Parfum</td>
-            <td>20-01-2001</td>
-            <td></td>
-          </tr>
-          </tbody>
-        </table>
+        <app-datatable-component
+          *ngIf="intoleranceParams"
+          [service]="intoleranceService" [retrievalParameters]="[null, intoleranceParams]"
+          [show]="intoleranceTableHeaders" [actions]="intoleranceTableActions"
+        >
+        </app-datatable-component>
       </div>
       <div class="col-md-6">
         <h3>Voorgeschiedenis</h3>
-        <table class="table table-striped" aria-label="Een tabel met de voorgeschiedenis van de huidige patiënt.">
-          <thead>
-          <tr>
-            <th scope="col">Datum</th>
-            <th scope="col">Klacht/Probleem</th>
-            <th scope="col">ICPC</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>02-06-1999</td>
-            <td>rugpijn</td>
-            <td>Z12</td>
-          </tr>
-          </tbody>
-        </table>
+        <app-datatable-component
+          *ngIf="expiredEpisodeParams"
+          [service]="episodeService" [retrievalParameters]="[null, expiredEpisodeParams]"
+          [show]="episodeTableHeaders" [actions]="expiredEpisodeTableActions"
+        >
+        </app-datatable-component>
       </div>
     </div>
     <app-delete-modal [deleteEntity]="deleteEntity" [service]="patientService" (deleteComplete)="onDeleteComplete($event)"></app-delete-modal>

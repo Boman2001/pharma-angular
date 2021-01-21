@@ -24,6 +24,7 @@ export class ConsultCreateComponent implements OnInit {
   @ViewChild("modalContent") public content: ElementRef;
 
   form: FormGroup;
+  formType: string;
   modal;
 
   private patients: Patient[];
@@ -48,8 +49,15 @@ export class ConsultCreateComponent implements OnInit {
       comments: new FormControl("", [ Validators.required ])
     });
 
+    this.formType = "Aanmaken";
+
     this.initialConsultation?.subscribe((c: Consultation) => {
       this.consultation = c;
+
+      if (c.id != null){
+        this.formType = "Wijzigen";
+      }
+
       this.open();
     });
 
@@ -72,11 +80,12 @@ export class ConsultCreateComponent implements OnInit {
 
   get consultation(): Consultation {
     const date: NgbDateStruct = this.form.getRawValue().date;
+    const gooddate: NgbDateStruct = new NgbDate(date.year, date.month - 1, date.day);
     const time = this.form.getRawValue().time;
     return {
       ...this.form.getRawValue(),
       date: moment({
-        ...date,
+        ...gooddate,
         ...time
       }).format("YYYY-MM-DD HH:mm:ss")
     };
@@ -95,25 +104,48 @@ export class ConsultCreateComponent implements OnInit {
   }
 
   async submit(): Promise<void> {
-    if (this.form.controls.time.invalid){
-      this.form.controls.time.setErrors({incorrect: true});
-    }
-    else{
-      try {
-        let result;
-        if (!this.consultation.id){
-          result = await this.consultationService.Add(this.consultation).toPromise();
-        }
-        else{
-          result = await this.consultationService.Update(this.consultation.id, this.consultation).toPromise();
-        }
 
-        this.createComplete.emit(result);
-        this.modal.close();
+    for (const i in this.form.controls) {
+      if (this.form.controls.hasOwnProperty(i)) {
+        this.form.controls[i]?.markAsTouched();
       }
-      catch (e) {
-        // @TODO GlobalModalService / ToastService?
+    }
+
+    if (!this.form.valid)
+    {
+      // @TODO: Toast? GlobalModal??
+      return;
+    }
+
+    try {
+      let result;
+      if (!this.consultation.id){
+        result = await this.consultationService.Add(this.consultation).toPromise();
       }
+      else{
+        result = await this.consultationService.Update(this.consultation.id, this.consultation).toPromise();
+      }
+
+      this.createComplete.emit(result);
+      this.modal.close();
+
+      this.consultation = {
+        date: null,
+        doctor: null,
+        doctorId: null,
+        patient: null,
+        patientId: null,
+        comments: null
+      };
+
+      for (const i in this.form.controls) {
+        if (this.form.controls.hasOwnProperty(i)) {
+          this.form.controls[i]?.markAsUntouched();
+        }
+      }
+    }
+    catch (e) {
+      // @TODO GlobalModalService / ToastService?
     }
   }
 }

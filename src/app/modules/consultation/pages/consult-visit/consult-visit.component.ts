@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import {Consultation} from "../../models/consultation.model";
-import {ActivatedRoute, ParamMap} from "@angular/router";
-import {switchMap} from "rxjs/operators";
-import {Observable} from "rxjs";
+import { ActivatedRoute } from "@angular/router";
+import { map } from "rxjs/operators";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-consult-visit",
@@ -16,14 +15,15 @@ export class ConsultVisitComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.id$ = this.route.paramMap.pipe(switchMap((params: ParamMap) =>
-      params.get("id")
-      )
+
+    this.id$ = this.route.paramMap.pipe(
+      map((params) => {
+        return params.get("id");
+      })
     );
   }
 
-  toggleSteps(): void{
+  toggleSteps(): void {
     this.steps = !this.steps;
-}
-
+  }
 }

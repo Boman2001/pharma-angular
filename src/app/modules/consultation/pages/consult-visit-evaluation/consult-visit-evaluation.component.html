@@ -1,86 +1,56 @@
-<div class="h-50 d-flex flex-column p-3">
-  <h3>Evaluatie</h3>
-  <div class="flex-grow-1 overflow-auto">
-    <table class="table table-striped" aria-label="Een tabel van de evaluaties">
-      <thead>
-      <tr>
-        <th scope="col">Datum</th>
-        <th scope="col">Type</th>
-        <th scope="col"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>21-06-2002</td>
-        <td>S</td>
-        <td>Lorem ipsum dolor sit amet consectetuer adipiscing elit anean commodo ligula eget dolor</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>O</td>
-        <td>Lorem ipsum dolor sit amet consectetuer adipiscing elit anean commodo ligula eget dolor</td>
-      </tr>
-      <tr>
-        <td>21-06-2003</td>
-        <td>S</td>
-        <td>Lorem ipsum dolor sit amet consectetuer adipiscing elit anean commodo ligula eget dolor</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>O</td>
-        <td>Lorem ipsum dolor sit amet consectetuer adipiscing elit anean commodo ligula eget dolor</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>P</td>
-        <td>Lorem ipsum dolor sit amet consectetuer adipiscing elit anean commodo ligula eget dolor</td>
-      </tr>
-      <tr>
-        <td>21-06-2004</td>
-        <td>S</td>
-        <td>Lorem ipsum dolor sit amet consectetuer adipiscing elit anean commodo ligula eget dolor</td>
-      </tr>
-      </tbody>
-    </table>
+<div class="consult-evaluation d-flex flex-column p-3">
+  <div class="evaluation-top flex-grow-1">
+    <h3>Evaluatie</h3>
+    <app-datatable-component #userJournalTable
+       *ngIf="filterParams"
+       [show]="tableHeaders" [actions]="tableActions"
+       [retrievalParameters]="[null, filterParams]"
+       [service]="userJournalService"
+    >
+    </app-datatable-component>
   </div>
+  <ng-template [ngIf]="consultation && !consultation.completed">
+    <div class="evaluation-bottom">
+      <form class="mt-3" name="form" [formGroup]="form" (ngSubmit)="save()">
+        <div class="d-flex w-100">
+          <div class="form-group">
+            <div class="form-group d-flex align-items-center">
+              <input [class.input-validation-error]="form.controls['property'].invalid && form.controls['property'].touched" type="radio" id="soep-s" value="0" formControlName="property">
+              <div>
+                <label class="ml-2" for="soep-s">S</label>
+              </div>
+            </div>
+            <div class="form-group d-flex align-items-center">
+              <input [class.input-validation-error]="form.controls['property'].invalid && form.controls['property'].touched" type="radio" id="soep-o" value="1" formControlName="property">
+              <div>
+                <label class="ml-2" for="soep-o">O</label>
+              </div>
+            </div>
+            <div class="form-group d-flex align-items-center">
+              <input [class.input-validation-error]="form.controls['property'].invalid && form.controls['property'].touched" type="radio" id="soep-e" value="2" formControlName="property">
+              <div>
+                <label class="ml-2" for="soep-e">E</label>
+              </div>
+            </div>
+            <div class="form-group d-flex align-items-center">
+              <input [class.input-validation-error]="form.controls['property'].invalid && form.controls['property'].touched" type="radio" id="soep-p" value="3" formControlName="property">
+              <div>
+                <label class="ml-2" for="soep-p">P</label>
+              </div>
+            </div>
+            <div id="type-alert" *ngIf="form.controls['property'].invalid && form.controls['property'].touched">
+              <div class="input-validation-error-text" *ngIf="form.controls['property'].errors.required">Type is een verplicht veld.</div>
+            </div>
+          </div>
+          <div class="form-group flex-grow-1 ml-3 d-flex flex-column">
+            <textarea [class.input-validation-error]="form.controls['description'].invalid && form.controls['description'].touched" class="form-control flex-grow-1 w-100" formControlName="description" placeholder="Opmerking"></textarea>
+            <div id="description-alert" *ngIf="form.controls['description'].invalid && form.controls['description'].touched">
+              <div class="input-validation-error-text" *ngIf="form.controls['description'].errors.required">Opmerking is een verplicht veld.</div>
+            </div>
+          </div>
+        </div>
+        <input type="submit" class="btn btn-primary float-right" value="Toevoegen">
+      </form>
+    </div>
+  </ng-template>
 </div>
-<form class="mt-3" #consultEvaluationForm="ngForm" name="form" [formGroup]="form">
-  <div class="d-flex w-100">
-    <div class="form-group">
-      <div class="form-group d-flex align-items-center">
-        <input type="radio" id="soep-s" value="s" formControlName="type">
-        <div>
-          <label class="ml-2" for="soep-s">S</label>
-        </div>
-      </div>
-      <div class="form-group d-flex align-items-center">
-        <input type="radio" id="soep-o" value="o" formControlName="type">
-        <div>
-          <label class="ml-2" for="soep-o">O</label>
-        </div>
-      </div>
-      <div class="form-group d-flex align-items-center">
-        <input type="radio" id="soep-e" value="e" formControlName="type">
-        <div>
-          <label class="ml-2" for="soep-e">E</label>
-        </div>
-      </div>
-      <div class="form-group d-flex align-items-center">
-        <input type="radio" id="soep-p" value="p" formControlName="type">
-        <div>
-          <label class="ml-2" for="soep-p">P</label>
-        </div>
-      </div>
-      <div *ngIf="form.controls['type'].getError('incorrect')">
-        <div class="input-validation-error-text">Een type is verplicht</div>
-      </div>
-    </div>
-    <div class="form-group flex-grow-1 ml-3 d-flex flex-column">
-      <textarea class="form-control flex-grow-1 w-100" formControlName="comment" placeholder="Opmerking"></textarea>
-      <div *ngIf="form.controls['comment'].getError('incorrect')">
-        <div class="input-validation-error-text">Een opmerking is verplicht</div>
-      </div>
-    </div>
-  </div>
-  <input type="submit" class="btn btn-primary float-right" value="Toevoegen" (click)="submit()">
-</form>

@@ -5,8 +5,12 @@ import { Patient } from "../../patient/patient.module";
 
 export class UserJournal extends BaseEntity {
 
-  consultation: Consultation;
-  patient: Patient;
+  consultationId: string;
+  consultation?: Consultation;
+
+  patientId: string;
+  patient?: Patient;
+
   description: string;
   property: number;
 }

@@ -4,6 +4,7 @@ import { UserFormComponent } from "./user-form.component";
 import { UserService } from "../../services/user.service";
 import { RouterTestingModule } from "@angular/router/testing";
 import { HttpClient, HttpHandler } from "@angular/common/http";
+import { NgbDatepickerModule } from "@ng-bootstrap/ng-bootstrap";
 
 
 describe("UserFormComponent", () => {
@@ -13,7 +14,10 @@ describe("UserFormComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ],
+      imports: [
+        RouterTestingModule,
+        NgbDatepickerModule
+      ],
       declarations: [ UserFormComponent ],
       providers: [
         UserService,

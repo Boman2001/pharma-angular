@@ -1,7 +1,13 @@
 <div class="page container-fluid pb-4 d-flex flex-column">
-  <h3>Routes</h3>
+  <h3>Mijn route</h3>
+  <div class="day-controls d-flex justify-content-between w-md-25 w-sm-100 my-2">
+    <fa-icon icon="chevron-left" class="pink " (click)="previousDay()"></fa-icon>
+    <span>{{ selectedDate.format("DD-MM-YYYY") }}</span>
+    <fa-icon icon="chevron-right" class="pink" (click)="nextDay()"></fa-icon>
+  </div>
+
   <agm-map [fitBounds]="true" [latitude]="center.lat" [longitude]="center.lng">
-    <agm-marker [latitude]="initial.lat" [longitude]="initial.lng">
+    <agm-marker [agmFitBounds]="true" [latitude]="initial.lat" [longitude]="initial.lng">
       <agm-info-window>
         Arts Startpunt
       </agm-info-window>

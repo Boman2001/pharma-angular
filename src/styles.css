@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+textarea {
+  resize: none;
+}
+
 html, html body, html body .wrapper {
 
   min-width: 100vw;
