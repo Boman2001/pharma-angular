@@ -29,7 +29,12 @@
 
     <div class="form-group">
       <label for="user-dob">Geboortedatum</label>
-      <input class="form-control" type="date" name="dob" id="user-dob" [class.input-validation-error]="form.controls['dob'].invalid && form.controls['dob'].touched" placeholder="Geboortedatum" formControlName="dob"/>
+      <div class="input-group">
+        <input class="form-control" name="dp" ngbDatepicker #dp="ngbDatepicker" id="user-dob" [class.input-validation-error]="form.controls['dob'].invalid && form.controls['dob'].touched" placeholder="dd-mm-yyyy" formControlName="dob"/>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+        </div>
+      </div>      
       <div id="dob-alert" *ngIf="form.controls['dob'].invalid && form.controls['dob'].touched">
         <div class="input-validation-error-text" *ngIf="form.controls['dob'].errors.required">Geboortedatum is een verplicht veld.</div>
       </div>
