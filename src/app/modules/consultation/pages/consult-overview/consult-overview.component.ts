@@ -114,7 +114,7 @@ export class ConsultOverviewComponent implements OnInit {
 
   changeDate(date: NgbDateStruct): void {
     if (this.dataTable != null) {
-      this.dataTable.tableService.searchTerm = this.date.year + "-" + this.date.month + "-" + this.date.day;
+      this.dataTable.tableService.searchTerm = moment(this.date).format("LL");
     }
   }
 
