@@ -46,35 +46,38 @@ export class UserOverviewComponent {
     },
     { key: "phoneNumber", text: "Telefoonnummer" },
   ];
-  actionsArray: TableAction[] = [
-    {
-      id: "user-detail",
-      name: "Detail",
-      classes: ["btn", "btn-primary"],
-      icon: `eye`,
-      action: (entity: BaseEntity) => {
-        this.router.navigate([`/doctors/${entity.id}`]);
-      }
-    },
-    {
-      id: "user-edit",
-      name: "Aanpassen",
-      classes: ["btn", "btn-warning"],
-      icon: `pencil-alt`,
-      action: (entity: BaseEntity) => {
-        this.router.navigate([`/doctors/${entity.id}/edit`]);
-      }
-    },
-    {
-      id: "user-delete",
-      name: "Delete",
-      classes: ["btn", "btn-danger"],
-      icon: `trash-alt`,
-      action: (entity: BaseEntity) => {
-        this.userEmitter.next(entity);
-      }
-    }
-  ];
+  actionsArray: TableAction[] =
+    this.authService.user?.roles?.includes(UserRoleEnum.ADMIN)
+      ? [
+          {
+            id: "user-detail",
+            name: "Detail",
+            classes: ["btn", "btn-primary"],
+            icon: `eye`,
+            action: (entity: BaseEntity) => {
+              this.router.navigate([`/doctors/${entity.id}`]);
+            }
+          },
+          {
+            id: "user-edit",
+            name: "Aanpassen",
+            classes: ["btn", "btn-warning"],
+            icon: `pencil-alt`,
+            action: (entity: BaseEntity) => {
+              this.router.navigate([`/doctors/${entity.id}/edit`]);
+            }
+          },
+          {
+            id: "user-delete",
+            name: "Delete",
+            classes: ["btn", "btn-danger"],
+            icon: `trash-alt`,
+            action: (entity: BaseEntity) => {
+              this.userEmitter.next(entity);
+            }
+          }
+        ]
+      : [];
 
   @ViewChild("userTable") table;
 

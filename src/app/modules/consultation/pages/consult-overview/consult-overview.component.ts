@@ -51,8 +51,8 @@ export class ConsultOverviewComponent implements OnInit {
     {
       key: "completed",
       text: "Afgerond",
-      transform: (c: Consultation) => {
-        return c.completed ? "Ja" : "Nee";
+      transform: (completed: boolean) => {
+        return completed ? "Ja" : "Nee";
       }
     },
   ];
