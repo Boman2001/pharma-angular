@@ -22,26 +22,26 @@ steps:
       command: custom
       customCommand: ci
 
-  - task: Npm@1
-    displayName: 'Lint Angular'
-    inputs:
-      command: custom
-      customCommand: run lint --  --format=stylish
-      workingDir: src
+  # - task: Npm@1
+  #   displayName: 'Lint Angular'
+  #   inputs:
+  #     command: custom
+  #     customCommand: run lint --  --format=stylish
+  #     workingDir: src
 
-  - task: Npm@1
-    displayName: 'Test Angular'
-    inputs:
-      command: custom
-      customCommand: run test -- --watch=false --code-coverage
-      workingDir: src
+  # - task: Npm@1
+  #   displayName: 'Test Angular'
+  #   inputs:
+  #     command: custom
+  #     customCommand: run test -- --watch=false --code-coverage
+  #     workingDir: src
 
-  - task: Npm@1
-    displayName: 'E2E Test Angular'
-    inputs:
-      command: custom
-      customCommand: run e2e
-      workingDir: src
+  # - task: Npm@1
+  #   displayName: 'E2E Test Angular'
+  #   inputs:
+  #     command: custom
+  #     customCommand: run e2e
+  #     workingDir: src
 
   - task: Npm@1
     displayName: 'Build Angular & Server'
@@ -50,32 +50,32 @@ steps:
       customCommand: run build
       workingDir: src
 
-  - task: PublishTestResults@2
-    displayName: 'Publish Angular test results'
-    condition: succeededOrFailed()
-    inputs:
-      searchFolder: $(System.DefaultWorkingDirectory)/junit
-      testRunTitle: Angular
-      testResultsFormat: JUnit
-      testResultsFiles: "**/*.xml"
+  # - task: PublishTestResults@2
+  #   displayName: 'Publish Angular test results'
+  #   condition: succeededOrFailed()
+  #   inputs:
+  #     searchFolder: $(System.DefaultWorkingDirectory)/junit
+  #     testRunTitle: Angular
+  #     testResultsFormat: JUnit
+  #     testResultsFiles: "**/*.xml"
 
-  - task: PublishTestResults@2
-    displayName: 'Publish Angular E2E test results'
-    condition: succeededOrFailed()
-    inputs:
-      searchFolder: $(System.DefaultWorkingDirectory)/junit
-      testRunTitle: Angular_E2E
-      testResultsFormat: JUnit
-      testResultsFiles: "**/junit*.xml"
+  # - task: PublishTestResults@2
+  #   displayName: 'Publish Angular E2E test results'
+  #   condition: succeededOrFailed()
+  #   inputs:
+  #     searchFolder: $(System.DefaultWorkingDirectory)/junit
+  #     testRunTitle: Angular_E2E
+  #     testResultsFormat: JUnit
+  #     testResultsFiles: "**/junit*.xml"
       
-  - task: PublishCodeCoverageResults@1
-    displayName: 'Publish code coverage Angular results'
-    condition: succeededOrFailed()
-    inputs:
-      codeCoverageTool: Cobertura
-      summaryFileLocation: 'coverage/results/code-coverage.xml'
-      reportDirectory: src/coverage
-      failIfCoverageEmpty: true
+  # - task: PublishCodeCoverageResults@1
+  #   displayName: 'Publish code coverage Angular results'
+  #   condition: succeededOrFailed()
+  #   inputs:
+  #     codeCoverageTool: Cobertura
+  #     summaryFileLocation: 'coverage/results/code-coverage.xml'
+  #     reportDirectory: src/coverage
+  #     failIfCoverageEmpty: true
 
   - task: PublishPipelineArtifact@0
     inputs:
