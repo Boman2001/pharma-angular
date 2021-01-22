@@ -11,7 +11,7 @@
                 <th scope="col">Omschrijving</th>
                 <th scope="col">Start datum</th>
                 <th scope="col">Eind datum</th>
-                <th scope="col" *ngIf="consult && !consult.completed && prescription.endDate == null">Acties</th>
+                <th scope="col" *ngIf="consult && !consult.completed">Acties</th>
               </tr>
               </thead>
               <tbody>
@@ -21,7 +21,9 @@
                   <div *ngIf="prescription.endDate != null; then thenBlock else elseBlock"></div>
                   <ng-template #thenBlock><td>{{moment(prescription.endDate).format("LL")}}</td></ng-template>
                   <ng-template #elseBlock><td>-</td></ng-template>
-                  <td *ngIf="consult && !consult.completed && prescription.endDate == null"><button class="btn btn-primary" (click)="endPrescription(prescription.id)">Beëindig</button></td>
+                  <td>
+                    <button class="btn btn-primary" *ngIf="consult && !consult.completed && prescription.endDate == null" (click)="endPrescription(prescription.id)">Beëindig</button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -36,7 +38,7 @@
               <th scope="col">Omschrijving</th>
               <th scope="col">Start datum</th>
               <th scope="col">Eind datum</th>
-              <th *ngIf="consult && !consult.completed && intolerance.endDate == null" scope="col">Acties</th>
+              <th *ngIf="consult && !consult.completed" scope="col">Acties</th>
             </tr>
             </thead>
             <tbody>
@@ -46,7 +48,9 @@
                 <div *ngIf="intolerance.endDate != null; then thenBlock else elseBlock"></div>
                 <ng-template #thenBlock><td>{{moment(intolerance.endDate).format("LL")}}</td></ng-template>
                 <ng-template #elseBlock><td>-</td></ng-template>
-                <td *ngIf="consult && !consult.completed && intolerance.endDate == null"><button class="btn btn-primary" (click)="endIntolerance(intolerance.id)">Beëindig</button></td>
+                <td>
+                  <button *ngIf="consult && !consult.completed && intolerance.endDate == null" class="btn btn-primary" (click)="endIntolerance(intolerance.id)">Beëindig</button>
+                </td>
               </tr>
             </tbody>
           </table>
