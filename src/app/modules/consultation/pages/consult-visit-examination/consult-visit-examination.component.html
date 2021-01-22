@@ -6,7 +6,7 @@
         <div class="mr-2 mb-2" *ngFor="let examinationTypes of examinations">
           <span>{{examinationTypes[0]["additionalExaminationType"]["name"]}}</span>
           <ul class="list-group">
-            <li class="list-group-item border-0" *ngFor="let examination of examinationTypes">{{moment(examination.date).format("LL")}} {{examination.value}} {{examination["additionalExaminationType"]["unit"]}}</li>
+            <li class="list-group-item border-0" *ngFor="let examination of examinationTypes">{{moment(examination.date).format("LL")}}: {{examination.value}} {{examination["additionalExaminationType"]["unit"]}}</li>
           </ul>
         </div>
       </div>

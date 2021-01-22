@@ -72,7 +72,12 @@ export class UserFormComponent implements OnInit {
     const raw = this.form.getRawValue();
     return {
       ...raw,
-      dob: moment(raw.dob).toISOString(),
+      dob: moment({
+        ...raw.dob,
+        month: raw.dob.month - 1,
+        day: raw.dob.day + 1
+      })
+      .toISOString(),
       password: raw.password !== "" ? raw.password : null,
       passwordCheck: raw.passwordCheck !== "" ? raw.passwordCheck : null,
     };
@@ -82,7 +87,11 @@ export class UserFormComponent implements OnInit {
     const date = moment(value.dob);
     this.form.patchValue({
       ...value,
-      dob: this.calendar.getNext(new NgbDate(date.year(), date.month() + 1, date.date() - 1))
+      dob: new NgbDate(
+        date.year(),
+        date.month() + 1,
+        date.date()
+      )
     });
   }
 

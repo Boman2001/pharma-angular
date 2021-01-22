@@ -64,7 +64,7 @@ export class ConsultOverviewComponent implements OnInit {
       classes: ["btn", "btn-primary"],
       icon: `eye`,
       action: (entity: BaseEntity) => {
-        this.router.navigate([`/consultation/${entity.id}`]);
+        this.router.navigate([`/consultations/${entity.id}`]);
       }
     },
     {

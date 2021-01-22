@@ -18,10 +18,10 @@ const routes: Routes = [
       {
         path: "",
         pathMatch: "full",
-        redirectTo: "consultation"
+        redirectTo: "consultations"
       },
       {
-        path: "consultation",
+        path: "consultations",
         loadChildren: () =>
           import("./modules/consultation/consultation.module").then(m => m.ConsultationModule),
       },
