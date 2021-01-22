@@ -16,10 +16,10 @@ const routes: Routes = [
     pathMatch: "full",
     component: UserOverviewComponent,
     data: {
-      title: "Doktoren",
+      title: "Artsen",
       breadcrumb: [
         {
-          label: "Doktoren",
+          label: "Artsen",
           url: "/doctors"
         }
       ]
@@ -31,14 +31,14 @@ const routes: Routes = [
     canActivate: [ AdminGuard ],
     component: UserCreateComponent,
     data: {
-      title: "Dokter Aanmaken",
+      title: "Arts Aanmaken",
       breadcrumb: [
         {
-          label: "Doktoren",
+          label: "Artsen",
           url: "/doctors"
         },
         {
-          label: "Dokter Aanmaken",
+          label: "Arts Aanmaken",
           url: "/doctors/new"
         }
       ]
@@ -50,14 +50,14 @@ const routes: Routes = [
     canActivate: [ AdminGuard ],
     component: UserDetailComponent,
     data: {
-      title: "Dokter",
+      title: "Arts",
       breadcrumb: [
         {
-          label: "Doktoren",
+          label: "Artsen",
           url: "/doctors"
         },
         {
-          label: "Dokter",
+          label: "Arts",
           url: "/doctors/:id"
         },
       ]
@@ -69,14 +69,14 @@ const routes: Routes = [
     canActivate: [ AdminGuard ],
     component: UserEditComponent,
     data: {
-      title: "Dokter Bewerken",
+      title: "Arts Bewerken",
       breadcrumb: [
         {
-          label: "Doktoren",
+          label: "Artsen",
           url: "/doctors"
         },
         {
-          label: "Dokter Bewerken",
+          label: "Arts Bewerken",
           url: "/doctors/:id/edit"
         },
       ]

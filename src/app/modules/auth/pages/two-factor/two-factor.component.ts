@@ -38,7 +38,7 @@ export class TwoFactorComponent implements OnInit {
 
     try {
       if (await this.authService.TwoFactor(this.twoFactorData.email, this.form.controls.code.value)) {
-        await this.router.navigate(["/consultation"]);
+        await this.router.navigate(["/consultations"]);
         this.twoFactorData = null;
       }
       else {
