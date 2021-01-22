@@ -130,11 +130,11 @@ export class ConsultVisitPolicyComponent implements OnInit {
     const raw = this.medicineForm.getRawValue();
     return {
       ...raw,
-      startDate: moment({
+      startDate: raw.startDate ? moment({
         ...raw.startDate,
         month: raw.startDate.month - 1,
         day: raw.startDate.day + 1
-      }),
+      }) : null,
       endDate: raw.endDate != null ? moment({
         ...raw.endDate,
         month: raw.endDate.month - 1,
@@ -173,11 +173,11 @@ export class ConsultVisitPolicyComponent implements OnInit {
     const endDate = value.endDate != null ? moment(value.endDate) : null;
     this.intoleranceForm.patchValue({
       ...value,
-      startDate: new NgbDate(
+      startDate: startDate != null ? new NgbDate(
         startDate.year(),
         startDate.month() + 1,
         startDate.date()
-      ),
+      ) : null,
       endDate: endDate != null ? new NgbDate(
         endDate.year(),
         endDate.month() + 1,
