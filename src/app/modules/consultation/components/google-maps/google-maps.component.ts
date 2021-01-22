@@ -42,6 +42,11 @@ export class GoogleMapsComponent implements OnInit {
     await this.refresh();
   }
 
+  async currentDay(): Promise<void> {
+    this.selectedDate = moment();
+    await this.refresh();
+  }
+
   async refresh(): Promise<void> {
 
     try {
@@ -66,8 +71,10 @@ export class GoogleMapsComponent implements OnInit {
     .toPromise();
     this.origin = this.initial;
 
-    this.calculateCenter();
-    this.setDestinations();
+    if (this.consultations?.length > 0) {
+      this.calculateCenter();
+      this.setDestinations();
+    }
   }
 
   async ngOnInit(): Promise<void> {

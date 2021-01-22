@@ -9,15 +9,15 @@
             <th scope="col">Startdatum</th>
             <th scope="col">Klacht/Probleem</th>
             <th scope="col">ICPC</th>
-            <th scope="col">Acties</th>
+            <th *ngIf="currentConsult && !currentConsult.completed" scope="col">Acties</th>
           </tr>
           </thead>
           <tbody>
               <tr *ngFor="let episode of currEpisodes">
-                <td>{{ episode.startDate }}</td>
+                <td>{{ moment(episode.startDate).format("LL") }}</td>
                 <td>{{ episode.description }}</td>
                 <td>{{ episode.icpcCode.code }}</td>
-                <td><button class="btn btn-primary" (click)="setEpisodeEndDate(episode.id)">Beëindig</button></td>
+                <td><button class="btn btn-primary" *ngIf="currentConsult && !currentConsult.completed && episode.endDate == null" (click)="setEpisodeEndDate(episode.id)">Beëindig</button></td>
               </tr>
           </tbody>
         </table>
@@ -41,11 +41,11 @@
             <div class="form-group w-50 pl-2">
               <label for="icpc">ICPC code</label>
               <select class="custom-select" id="icpc" name="icpc" formControlName="icpcCodeId">
-                <option selected value="">
+                <option selected value="0">
                   Selecteer een ICPC Code
                 </option>
                 <option *ngFor="let icpcCode of icpcCodes" value="{{icpcCode.id}}">
-                  {{ icpcCode.code }}
+                  {{ icpcCode.code }} ({{ icpcCode.name }})
                 </option>
               </select>
               <div *ngIf="form.controls['icpcCodeId'].getError('incorrect')">
@@ -73,13 +73,15 @@
           <thead>
           <tr>
             <th scope="col">Startdatum</th>
+            <th scope="col">Einddatum</th>
             <th scope="col">Klacht/Probleem</th>
             <th scope="col">ICPC</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let episode of exEpisodes">
-            <td>{{ episode.startDate }}</td>
+            <td>{{ moment(episode.startDate).format("LL") }}</td>
+            <td>{{ moment(episode.endDate).format("LL") }}</td>
             <td>{{ episode.description }}</td>
             <td>{{ episode.icpcCode.code }}</td>
           </tr>

@@ -125,7 +125,12 @@ export class ConsultVisitBiometricsComponent implements OnInit {
     }
 
     await this.physicalExaminationService.Add({
-      date: moment(this.form.controls.date.value).toISOString(),
+      date: moment({
+        ...this.form.controls.date.value,
+        month: this.form.controls.date.value.month - 1,
+        day: this.form.controls.date.value.day + 1
+      })
+      .toISOString(),
       consultationId: this.consultId,
       consultation: null,
       patientId: this.patientId,

@@ -18,11 +18,11 @@ const routes: Routes = [
     path: "",
     component: ConsultOverviewComponent,
     data: {
-      title: "Consult",
+      title: "Consulten",
       breadcrumb: [
         {
-          label: "Consult",
-          url: "/consultation"
+          label: "Consulten",
+          url: "/consultations"
         }
       ]
     }
@@ -33,12 +33,12 @@ const routes: Routes = [
       title: "Route",
       breadcrumb: [
         {
-          label: "Consult",
-          url: "/consultation"
+          label: "Consulten",
+          url: "/consultations"
         },
         {
           label: "Route",
-          url: "/consultation/route"
+          url: "/consultations/route"
         }
       ]
     }
@@ -56,17 +56,17 @@ const routes: Routes = [
       title: "Consult visite",
       breadcrumb: [
         {
-          label: "Consult",
-          url: "/consultation"
+          label: "Consulten",
+          url: "/consultations"
         }, {
-          label: "Visit",
-          url: "/consultation/:id"
+          label: "Visite",
+          url: "/consultations/:id"
         }
       ]
     }
   },
   {
-    path: ":id/anamnese",
+    path: ":id/anamneses",
     component: ConsultVisitComponent,
     children: [
       {
@@ -75,24 +75,24 @@ const routes: Routes = [
       }
     ],
     data: {
-      title: "Consult visite anamnese",
+      title: "Consult visite anamneses",
       breadcrumb: [
         {
-          label: "Consult",
-          url: "/consultation"
+          label: "Consulten",
+          url: "/consultations"
         }, {
-          label: "Visit",
-          url: "/consultation/:id"
+          label: "Visite",
+          url: "/consultations/:id"
         },
         {
           label: "Anamnese",
-          url: "/consultation/:id/anamnese"
+          url: "/consultations/:id/anamneses"
         }
       ]
     }
   },
   {
-    path: ":id/biometrie",
+    path: ":id/biometrics",
     component: ConsultVisitComponent,
     children: [
       {
@@ -104,21 +104,21 @@ const routes: Routes = [
       title: "Consult visite biometrie",
       breadcrumb: [
         {
-          label: "Consult",
-          url: "/consultation"
+          label: "Consulten",
+          url: "/consultations"
         }, {
-          label: "Visit",
-          url: "/consultation/:id"
+          label: "Visite",
+          url: "/consultations/:id"
         },
         {
           label: "Biometrie",
-          url: "/consultation/:id/biometrie"
+          url: "/consultations/:id/biometrics"
         }
       ]
     }
   },
   {
-    path: ":id/onderzoek",
+    path: ":id/examinations",
     component: ConsultVisitComponent,
     children: [
       {
@@ -127,24 +127,24 @@ const routes: Routes = [
       }
     ],
     data: {
-      title: "Consult visite anamnese",
+      title: "Consult visite onderzoeken",
       breadcrumb: [
         {
-          label: "Consult",
-          url: "/consultation"
+          label: "Consulten",
+          url: "/consultations"
         }, {
-          label: "Visit",
-          url: "/consultation/:id"
+          label: "Visite",
+          url: "/consultations/:id"
         },
         {
           label: "Onderzoek",
-          url: "/consultation/:id/onderzoek"
+          url: "/consultations/:id/examinations"
         }
       ]
     }
   },
   {
-    path: ":id/evaluatie",
+    path: ":id/evaluations",
     component: ConsultVisitComponent,
     children: [
       {
@@ -153,24 +153,24 @@ const routes: Routes = [
       }
     ],
     data: {
-      title: "Consult visite evaluatie",
+      title: "Consult visite evaluaties",
       breadcrumb: [
         {
-          label: "Consult",
-          url: "/consultation"
+          label: "Consulten",
+          url: "/consultations"
         }, {
-          label: "Visit",
-          url: "/consultation/:id"
+          label: "Visite",
+          url: "/consultations/:id"
         },
         {
           label: "Evaluatie",
-          url: "/consultation/:id/evaluatie"
+          url: "/consultations/:id/evaluations"
         }
       ]
     }
   },
   {
-    path: ":id/beleid",
+    path: ":id/policies",
     component: ConsultVisitComponent,
     children: [
       {
@@ -182,21 +182,21 @@ const routes: Routes = [
       title: "Consult visite beleid",
       breadcrumb: [
         {
-          label: "Consult",
-          url: "/consultation"
+          label: "Consulten",
+          url: "/consultations"
         }, {
-          label: "Visit",
-          url: "/consultation/:id"
+          label: "Visite",
+          url: "/consultations/:id"
         },
         {
           label: "Beleid",
-          url: "/consultation/:id/beleid"
+          url: "/consultations/:id/policies"
         }
       ]
     }
   },
   {
-    path: ":id/samenvatting",
+    path: ":id/resume",
     component: ConsultVisitComponent,
     children: [
       {
@@ -208,15 +208,15 @@ const routes: Routes = [
       title: "Consult visite samenvatting",
       breadcrumb: [
         {
-          label: "Consult",
-          url: "/consultation"
+          label: "Consulten",
+          url: "/consultations"
         }, {
-          label: "Visit",
-          url: "/consultation/:id"
+          label: "Visite",
+          url: "/consultations/:id"
         },
         {
           label: "Samenvatting",
-          url: "/consultation/:id/samenvatting"
+          url: "/consultations/:id/resume"
         }
       ]
     }

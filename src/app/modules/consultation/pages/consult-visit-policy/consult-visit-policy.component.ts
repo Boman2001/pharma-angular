@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {NgbCalendar, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
+import { NgbCalendar, NgbDate, NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {switchMap} from "rxjs/operators";
 import {ActivatedRoute, ParamMap} from "@angular/router";
@@ -109,11 +109,38 @@ export class ConsultVisitPolicyComponent implements OnInit {
   }
 
   set prescription(value: Prescription) {
-    this.medicineForm.patchValue(value);
+    const startDate = moment(value.startDate);
+    const endDate = value.endDate != null ? moment(value.endDate) : null;
+    this.medicineForm.patchValue({
+      ...value,
+      startDate: new NgbDate(
+        startDate.year(),
+        startDate.month() + 1,
+        startDate.date()
+      ),
+      endDate: endDate != null ? new NgbDate(
+        endDate.year(),
+        endDate.month() + 1,
+        endDate.date()
+      ) : null
+    });
   }
 
   get prescription(): Prescription {
-    return this.medicineForm.getRawValue();
+    const raw = this.medicineForm.getRawValue();
+    return {
+      ...raw,
+      startDate: moment({
+        ...raw.startDate,
+        month: raw.startDate.month - 1,
+        day: raw.startDate.day + 1
+      }),
+      endDate: raw.endDate != null ? moment({
+        ...raw.endDate,
+        month: raw.endDate.month - 1,
+        day: raw.endDate.day + 1
+      }) : null
+    };
   }
 
   async submitIntolerance(): Promise<void>{
@@ -142,10 +169,37 @@ export class ConsultVisitPolicyComponent implements OnInit {
   }
 
   set intolerance(value: Intolerance) {
-    this.intoleranceForm.patchValue(value);
+    const startDate = moment(value.startDate);
+    const endDate = value.endDate != null ? moment(value.endDate) : null;
+    this.intoleranceForm.patchValue({
+      ...value,
+      startDate: new NgbDate(
+        startDate.year(),
+        startDate.month() + 1,
+        startDate.date()
+      ),
+      endDate: endDate != null ? new NgbDate(
+        endDate.year(),
+        endDate.month() + 1,
+        endDate.date()
+      ) : null
+    });
   }
 
   get intolerance(): Intolerance {
-    return this.intoleranceForm.getRawValue();
+    const raw = this.intoleranceForm.getRawValue();
+    return {
+      ...raw,
+      startDate: moment({
+        ...raw.startDate,
+        month: raw.startDate.month - 1,
+        day: raw.startDate.day + 1
+      }),
+      endDate: raw.endDate != null ? moment({
+        ...raw.endDate,
+        month: raw.endDate.month - 1,
+        day: raw.endDate.day + 1
+      }) : null
+    };
   }
 }

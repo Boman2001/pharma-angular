@@ -144,7 +144,7 @@
           <tr *ngFor="let prescription of prescriptions">
             <td>{{prescription.description}}</td>
             <td>{{moment(prescription.startDate).format("LL")}}</td>
-            <td>{{moment(prescription.endDate).format("LL")}}</td>
+            <td>{{ prescription.endDate != null ? moment(prescription.endDate).format("LL") : " - " }}</td>
           </tr>
           </tbody>
         </table>
@@ -165,7 +165,7 @@
           <tr *ngFor="let intolerance of intolerances">
             <td>{{intolerance.description}}</td>
             <td>{{moment(intolerance.startDate).format("LL")}}</td>
-            <td>{{moment(intolerance.endDate).format("LL")}}</td>
+            <td>{{ intolerance.endDate != null ? moment(intolerance.endDate).format("LL") : " - " }}</td>
           </tr>
           </tbody>
         </table>

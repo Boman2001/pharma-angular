@@ -18,6 +18,7 @@ import { HttpParams } from "@angular/common/http";
 })
 export class ConsultVisitAnamnesisComponent implements OnInit {
   form: FormGroup;
+  moment = moment;
   validators = [
     Validators.required
   ];
@@ -37,7 +38,7 @@ export class ConsultVisitAnamnesisComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       startDate: new FormControl("", this.validators),
-      icpcCodeId: new FormControl("", this.validators),
+      icpcCodeId: new FormControl("0", this.validators),
       description: new FormControl("", this.validators)
     });
 
@@ -51,14 +52,28 @@ export class ConsultVisitAnamnesisComponent implements OnInit {
     this.getEpisodes();
   }
 
+  set episode(value: Episode) {
+    const date = moment(value.startDate);
+    this.form.patchValue({
+      ...value,
+      startDate: new NgbDate(
+        date.year(),
+        date.month() + 1,
+        date.date()
+      )
+    });
+  }
+
   get episode(): Episode{
     const date: NgbDateStruct = this.form.getRawValue().startDate;
-    const gooddate: NgbDateStruct = new NgbDate(date.year, date.month - 1, date.day);
     return {
       ...this.form.getRawValue(),
       startDate: moment({
-        ...gooddate
-      }).format("YYYY-MM-DD"),
+        ...date,
+        month: date.month - 1,
+        day: date.day + 1
+      })
+      .toISOString(),
       icpcCodeId: parseInt(this.form.getRawValue().icpcCodeId, 10),
       consultationId: this.currentConsult.id,
       patientId: this.currentConsult.patient.id,
@@ -84,6 +99,17 @@ export class ConsultVisitAnamnesisComponent implements OnInit {
       try {
         await this.episodeService.Add(this.episode).toPromise();
         this.getEpisodes();
+        this.episode = {
+          consultation: null,
+          consultationId: 0,
+          description: "",
+          endDate: null,
+          icpcCodeId: 0,
+          patient: null,
+          patientId: 0,
+          priority: 0,
+          startDate: moment().toISOString()
+        };
       }
       catch (e) {
         // @TODO GlobalModalService / ToastService?
